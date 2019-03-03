@@ -13,7 +13,7 @@ HRESULT MainGame::init(void)
 	//OBJECTMANAGER->AddObject(ObjectType::Object, monster);
 
 	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::Object, _player);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 
 	return S_OK;	

@@ -22,7 +22,6 @@ HRESULT gameNode::init(bool managerInit)
 		KEYMANAGER->init();					//키매니져 초기화
 		RND->init();						//랜덤펑션 초기화
 		IMAGEMANAGER->init();				//이미지 매니져 초기화
-		SCENEMANAGER->Init();
 		OBJECTMANAGER->Init();
 	}
 

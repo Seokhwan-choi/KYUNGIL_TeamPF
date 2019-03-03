@@ -21,7 +21,7 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 
 	//=================플레이어 공용총알 
 	_playerbullet = new Bullet("플레이어 공용총알");
-	_playerbullet->Init("입술.bmp",10,10,10,800);
+	_playerbullet->Init("입술.bmp",10,10,100,800);
 
 	_playerboom = new Boom("플레이어 폭탄");
 	_playerboom->Init("입술.bmp",10,10,800);
@@ -102,7 +102,7 @@ void Player::Update()
 		switch (_playerheavystate)
 		{
 		case PLAYERHEAVYSTATE::LEFTFIRE:
-			_playerbullet->fire(_position.x,RND->range(_position.y-10, _position.y+10) /*_position.y*/, PI, 5.5f);
+			_playerbullet->fire(_position.x, RND->range(_position.y - 10, _position.y + 10) /*_position.y*/, PI, 5.5f);
 			break;
 		case PLAYERHEAVYSTATE::RIGHTFIRE:
 			_playerbullet->fire(_position.x, _position.y, 0, 5.5f);
@@ -120,8 +120,6 @@ void Player::Update()
 			break;
 		}
 	}
-
-
 
 	if (KEYMANAGER->isOnceKeyDown('S') &&_isJump==false)//점프상태 아닐떄 S키 누르면 
 	{
@@ -164,7 +162,7 @@ void Player::Update()
 	}
 	if (KEYMANAGER->isOnceKeyDown('D'))
 	{
-		_playerboom->fire(_position.x,_position.y,PI-20, 1.5f,5.5f);
+		_playerboom->fire(_position.x,_position.y,PI-30, 1.5f,5.5f);
 	}
 
 	_playerbullet->move();//플레이어 총알은 항시 움직이고 

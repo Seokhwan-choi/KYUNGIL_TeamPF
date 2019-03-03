@@ -20,8 +20,6 @@ private:
 private:
 	// 맵을 통해서 게임 오브젝트를 관리, <게임오브젝트 타입, 게임오브젝트를 담은 벡터>
 	map<ObjectType::Enum, vector<class GameObject*>> objectContainer;
-
-
 public:
 	ObjectManager();
 	~ObjectManager();
