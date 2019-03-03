@@ -23,7 +23,7 @@
     <ProjectGuid>{5591683E-2FF1-4062-94C6-706A5876C9EB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GameFramework2D</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
     <ProjectName>WindowAPI</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -149,7 +149,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="CommomMacroFuntion.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="GameObject.h" />
@@ -161,15 +160,13 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="randomFunction.h" />
-    <ClInclude Include="SceneMaker.h" />
-    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Gizmo.cpp" />
@@ -180,8 +177,6 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="randomFunction.cpp" />
-    <ClCompile Include="SceneMaker.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -7,7 +7,7 @@ namespace ObjectType
 	// 게임 오브젝트 type 
 	enum Enum : int
 	{
-		MAP, ENEMY, BOSS, PLAYER, ITEM, UI, END
+		System = 0,Tile,Object,UI
 	};
 }
 

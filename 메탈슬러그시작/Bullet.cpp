@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "Bullet.h"
 
-Bullet::Bullet(string name) : GameObject(name)
+Bullet::Bullet(string name)
+	: GameObject(name)
 {
 	_name = name;				// 클래스 이름 설정 해준
+	
 }
 
 
