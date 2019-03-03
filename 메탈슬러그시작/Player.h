@@ -35,6 +35,7 @@ private:
 	bool _isLeft;//왼쪽상태냐?
 
 	int _count;		// 확인용 count
+	float _angle;	// 확인용 angle
 	bool _fire;		// 확인용 fire
 	int _time;		// 확인용 time
 

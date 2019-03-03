@@ -21,6 +21,7 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 
 
 
+	_angle = 0.0f;
 	_time = 0;
 	_count = 0;
 	_fire = false;
@@ -42,8 +43,6 @@ Player::~Player()
 {
 
 }
-
-
 
 HRESULT Player::Init()
 {
@@ -67,20 +66,29 @@ void Player::Update()
 		_playerbulletstate = PLAYERBULLETSTATE::LEFTFIRE;//왼쪽상태에서는 총알 왼쪽으로 나간다 
 		_playerheavystate = PLAYERHEAVYSTATE::LEFTFIRE;
 		_position.x -= 3.0f;
+		_angle += 0.125f;
+		if (_angle > PI) _angle = PI;
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		_playerbulletstate = PLAYERBULLETSTATE::RIGHTFIRE;//오른쪾상태에서는 총알 오른쪽으로 나간다 
 		_playerheavystate = PLAYERHEAVYSTATE::RIGHTFIRE;
-
 		_position.x += 3.0f;
+		_angle -= 0.125f;
+		if (_angle < 0.0f) _angle = 0.0f;
 	}
 
 	if (KEYMANAGER->isStayKeyDown(VK_UP))
 	{
 		_playerbulletstate = PLAYERBULLETSTATE::UPFIRE; //위쪽상태에서는 총알 위쪽으로 나간다 
 		_playerheavystate = PLAYERHEAVYSTATE::UPFIRE;
-
+		_angle += 0.125f;
+		if (_angle > PI / 2.0f) _angle = PI / 2.0f;
+	}
+	else
+	{
+		_angle -= 0.125f;
+		if (_angle < 0.0f) _angle = 0.0f;
 	}
 
 	if (_isJump == true)//점프가 true일떄  
@@ -108,28 +116,32 @@ void Player::Update()
 		_fire = true;
 	}
 
-
+	// =======================================================================
+	// ########################## 헤비 머신건 예시 #############################
+	// =======================================================================
+	// 한번에 5발씩 발사한다.
 	if (_fire == true) 
 	{
 		if (_time % 3 == 0) 
 		{
-			switch (_playerheavystate)
-			{
-			case PLAYERHEAVYSTATE::LEFTFIRE:
-				_playerbullet->fire(_position.x, RND->range(_position.y - 10, _position.y + 10) /*_position.y*/, PI, 5.5f);
-				break;
-			case PLAYERHEAVYSTATE::RIGHTFIRE:
-				_playerbullet->fire(_position.x, _position.y, 0, 5.5f);
-				break;
-			case PLAYERHEAVYSTATE::UPFIRE:
-				_playerbullet->fire(_position.x, _position.y, PI / 2, 5.5f);
-				break;
-			case PLAYERHEAVYSTATE::DOWNFIRE:
-				_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 5.5f);
-				break;
-			case PLAYERHEAVYSTATE::IDLE:
-				break;
-			}
+			_playerbullet->fire(_position.x, RND->range(_position.y - 10, _position.y + 10) /*_position.y*/, _angle, 5.5f);
+			//switch (_playerheavystate)
+			//{
+			//case PLAYERHEAVYSTATE::LEFTFIRE:
+			//	_playerbullet->fire(_position.x, RND->range(_position.y - 10, _position.y + 10) /*_position.y*/, PI, 5.5f);
+			//	break;
+			//case PLAYERHEAVYSTATE::RIGHTFIRE:
+			//	_playerbullet->fire(_position.x, _position.y, 0, 5.5f);
+			//	break;
+			//case PLAYERHEAVYSTATE::UPFIRE:
+			//	_playerbullet->fire(_position.x, _position.y, PI / 2, 5.5f);
+			//	break;
+			//case PLAYERHEAVYSTATE::DOWNFIRE:
+			//	_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 5.5f);
+			//	break;
+			//case PLAYERHEAVYSTATE::IDLE:
+			//	break;
+			//}
 			_count++;
 		}
 	}
