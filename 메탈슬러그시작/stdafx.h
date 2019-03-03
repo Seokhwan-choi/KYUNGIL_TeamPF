@@ -35,6 +35,8 @@ using namespace std;
 #include "randomFunction.h"
 #include "imageManager.h"
 #include "Gizmo.h"
+#include "Camera.h"
+#include "SceneManager.h"
 #include "ObjectManager.h"
 
 //==============================================================//
@@ -44,6 +46,9 @@ using namespace std;
 #define RND randomFunction::getSingleton()			//랜덤값 주는 싱글톤.
 #define IMAGEMANAGER imageManager::getSingleton()
 #define GIZMO Gizmo::getSingleton()
+#define CAMERA Camera::getSingleton()
+#define SCENEMANAGER SceneManager::getSingleton()
+#define OBJECTMANAGER ObjectManager::getSingleton()
 
 //==============================================================//
 //				## 디파인문 ## (윈도우창 초기화)				    //
