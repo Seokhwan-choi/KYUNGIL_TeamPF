@@ -19,6 +19,12 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_gravity = 0.0f; //플레이어 중력 
 	_isJump = false; //최초 점프안된상태 
 
+
+
+	_time = 0;
+	_count = 0;
+	_fire = false;
+
 	//=================플레이어 공용총알 
 	_playerbullet = new Bullet("플레이어 공용총알");
 	_playerbullet->Init("입술.bmp",10,10,100,800);
@@ -55,6 +61,7 @@ void Player::Release()
 
 void Player::Update()
 {
+	_time++;
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 	{
 		_playerbulletstate = PLAYERBULLETSTATE::LEFTFIRE;//왼쪽상태에서는 총알 왼쪽으로 나간다 
@@ -86,7 +93,6 @@ void Player::Update()
 		}
 	}
 	
-
 	if (_isJump == false  && _playerbulletstate == PLAYERBULLETSTATE::DOWNFIRE)
 	{//점프상태가 아니고 총알방향이 아래쪽일떄는 
 		_playerbulletstate = PLAYERBULLETSTATE::IDLE;
@@ -99,27 +105,41 @@ void Player::Update()
 
 	if (KEYMANAGER->isOnceKeyDown('Q'))
 	{
-		switch (_playerheavystate)
-		{
-		case PLAYERHEAVYSTATE::LEFTFIRE:
-			_playerbullet->fire(_position.x, RND->range(_position.y - 10, _position.y + 10) /*_position.y*/, PI, 5.5f);
-			break;
-		case PLAYERHEAVYSTATE::RIGHTFIRE:
-			_playerbullet->fire(_position.x, _position.y, 0, 5.5f);
-			break;
-		case PLAYERHEAVYSTATE::UPFIRE:
-			_playerbullet->fire(_position.x, _position.y, PI / 2, 5.5f);
-			break;
-		case PLAYERHEAVYSTATE::DOWNFIRE:
-			_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 5.5f);
-			break;
-		case PLAYERHEAVYSTATE::IDLE:
+		_fire = true;
+	}
 
-			break;
-		default:
-			break;
+
+	if (_fire == true) 
+	{
+		if (_time % 3 == 0) 
+		{
+			switch (_playerheavystate)
+			{
+			case PLAYERHEAVYSTATE::LEFTFIRE:
+				_playerbullet->fire(_position.x, RND->range(_position.y - 10, _position.y + 10) /*_position.y*/, PI, 5.5f);
+				break;
+			case PLAYERHEAVYSTATE::RIGHTFIRE:
+				_playerbullet->fire(_position.x, _position.y, 0, 5.5f);
+				break;
+			case PLAYERHEAVYSTATE::UPFIRE:
+				_playerbullet->fire(_position.x, _position.y, PI / 2, 5.5f);
+				break;
+			case PLAYERHEAVYSTATE::DOWNFIRE:
+				_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 5.5f);
+				break;
+			case PLAYERHEAVYSTATE::IDLE:
+				break;
+			}
+			_count++;
 		}
 	}
+
+	if (_count == 4) 
+	{
+		_fire = false;
+		_count = 0;
+	}
+	
 
 	if (KEYMANAGER->isOnceKeyDown('S') &&_isJump==false)//점프상태 아닐떄 S키 누르면 
 	{
@@ -155,11 +175,9 @@ void Player::Update()
 			break;
 		case PLAYERBULLETSTATE::IDLE:
 			break;
-		
-		default:
-			break;
 		}
 	}
+
 	if (KEYMANAGER->isOnceKeyDown('D'))
 	{
 		_playerboom->fire(_position.x,_position.y,PI-30, 1.5f,5.5f);

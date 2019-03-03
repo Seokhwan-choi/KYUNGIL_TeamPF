@@ -34,6 +34,10 @@ private:
 	int _frameIndex; //플레이어 이미지 인댁스 
 	bool _isLeft;//왼쪽상태냐?
 
+	int _count;		// 확인용 count
+	bool _fire;		// 확인용 fire
+	int _time;		// 확인용 time
+
 
 
 
