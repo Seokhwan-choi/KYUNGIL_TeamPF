@@ -28,7 +28,7 @@ HRESULT Bullet::Init(const char * imageName, int width, int height, int bulletMa
 
 		_vBullet.push_back(bullet);
 	}
-	 return S_OK;
+	return S_OK;
 }
 
 
@@ -176,7 +176,7 @@ void Boom::move()
 		if (!_vBoom[i].isFire)continue;
 		_vBoom[i].gravity += 0.5f;
 
-		_vBoom[i].x += cosf(_vBoom[i].angle) * _vBoom[i].speed;
+		_vBoom[i].x += cosf(_vBoom[i].angle) * _vBoom[i].speed  ; 
 		_vBoom[i].y += -sinf(_vBoom[i].angle) * _vBoom[i].speed + _vBoom[i].gravity;
 
 		_vBoom[i].rc = RectMakeCenter(_vBoom[i].x, _vBoom[i].y,
