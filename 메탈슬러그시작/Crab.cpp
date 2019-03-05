@@ -42,7 +42,7 @@ HRESULT Crab::Init()
 
 	//게 카메라 렉트(항상 몸 중앙을 따라다닌다.)
 	_cam.pt = { _position.x, _position.y };
-	_cam.rc = RectMakeCenter(_cam.pt.x, _cam.pt.y, _size.x * 10.f, _size.y);
+	_cam.rc = RectMakeCenter(_cam.pt.x, _cam.pt.y, _size.x * 15.f, _size.y);
 	_cam.isCrush = false;
 
 	//게 충돌 렉트(항상 몸 중앙을 따라 다닌다.)
@@ -102,7 +102,7 @@ void Crab::Update()
 
 	//게 카메라 렉트(항상 몸 중앙을 따라다닌다.)
 	_cam.pt = { _position.x, _position.y };
-	_cam.rc = RectMakeCenter(_cam.pt.x, _cam.pt.y, _size.x * 10.f, _size.y);
+	_cam.rc = RectMakeCenter(_cam.pt.x, _cam.pt.y, _size.x * 15.f, _size.y);
 
 	//게 충돌 렉트(항상 몸 중앙을 따라 다닌다.)
 	for (int i = 0; i < 4; i++)
