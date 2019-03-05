@@ -46,3 +46,18 @@ typedef struct tagAttack
 	RECT rc;
 }
 ATTACK, *LATTACK;
+
+typedef struct tagBubble
+{
+	image* bubbleImage;
+	RECT rc;
+	float x, y;
+	float fireX, fireY;
+	float speed;
+	float angle;
+	float gravity;
+	float radius;
+	bool isFire;
+	int count;
+}
+BUBBLE, *LBUBBLE;

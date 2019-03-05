@@ -217,7 +217,7 @@ void FlyBug::Update()
 
 			if (_deathTimer % 100 == 0)
 			{
-				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "flybug"));
+				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "flyBug"));
 			}
 		}
 
