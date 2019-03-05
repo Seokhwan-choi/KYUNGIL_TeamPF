@@ -151,6 +151,9 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CommomMacroFuntion.h" />
+    <ClInclude Include="CommonEnemyFrame.h" />
+    <ClInclude Include="Crab.h" />
+    <ClInclude Include="FlyBug.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Gizmo.h" />
@@ -170,6 +173,8 @@
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Crab.cpp" />
+    <ClCompile Include="FlyBug.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Gizmo.cpp" />

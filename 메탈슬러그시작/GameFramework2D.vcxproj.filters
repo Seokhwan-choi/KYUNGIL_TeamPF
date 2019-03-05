@@ -107,6 +107,15 @@
     <ClInclude Include="GameObject.h">
       <Filter>소스 파일\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="Crab.h">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonEnemyFrame.h">
+      <Filter>GameFramWork\유틸</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyBug.h">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -159,6 +168,12 @@
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>소스 파일\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Crab.cpp">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyBug.cpp">
+      <Filter>소스 파일\몬스터</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

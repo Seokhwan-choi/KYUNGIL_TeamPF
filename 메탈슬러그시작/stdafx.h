@@ -38,6 +38,7 @@ using namespace std;
 #include "Camera.h"
 #include "SceneManager.h"
 #include "ObjectManager.h"
+#include "CommonEnemyFrame.h"
 
 //==============================================================//
 //					## 싱글톤을 추가한다 ##					    //
@@ -56,8 +57,8 @@ using namespace std;
 #define WINNAME			(LPTSTR)(TEXT(" 프로그래밍 12기 "))
 #define WINSTARTX		100
 #define WINSTARTY		0
-#define WINSIZEX		800
-#define WINSIZEY		700
+#define WINSIZEX		1200
+#define WINSIZEY		800
 #define WINSTYLE		WS_CAPTION | WS_SYSMENU
 
 //==============================================================//

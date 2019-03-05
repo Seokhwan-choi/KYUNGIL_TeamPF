@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MainGame.h"
 #include "Player.h"
+#include "FlyBug.h"
+#include "Crab.h"
 
 //==========================================================================//
 //						## 초기화 ## init(void)								//
@@ -12,9 +14,20 @@ HRESULT MainGame::init(void)
 	//Monster* monster = new Monster("Monster", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::Center);
 	//OBJECTMANAGER->AddObject(ObjectType::Object, monster);
 
-	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { 100, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
+	//잠자리 생성
+	FlyBug* _flybug = new FlyBug("flybug", { WINSIZEX / 2 + 300, 200 }, { 200, 100 }, GameObject::Pivot::Center);
+	//잠자리 객체 추가하기
+	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flybug);
+
+	//게 생성
+	Crab* _crab = new Crab("crab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	//잠자리 객체 추가하기
+	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
+
+	OBJECTMANAGER->Init();
 
 	return S_OK;	
 	//return S_OK밑에 코드 있으면 안됨!!!!!!!!!!!
