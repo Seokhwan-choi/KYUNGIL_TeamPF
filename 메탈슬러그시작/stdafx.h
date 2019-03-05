@@ -38,6 +38,9 @@ using namespace std;
 #include "Camera.h"
 #include "SceneManager.h"
 #include "ObjectManager.h"
+#include "soundManager.h"
+#include "timeManager.h"
+
 
 //==============================================================//
 //					## 싱글톤을 추가한다 ##					    //
@@ -49,6 +52,8 @@ using namespace std;
 #define CAMERA Camera::getSingleton()
 #define SCENEMANAGER SceneManager::getSingleton()
 #define OBJECTMANAGER ObjectManager::getSingleton()
+#define SOUNDMANAGER soundManager::getSingleton()
+#define TIMEMANAGER timeManager::getSingleton()
 
 //==============================================================//
 //				## 디파인문 ## (윈도우창 초기화)				    //
