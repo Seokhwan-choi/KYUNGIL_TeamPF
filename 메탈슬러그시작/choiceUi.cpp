@@ -23,6 +23,12 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	characterRc[1] = RectMake(362, 309, 269, 535);
 	characterRc[2] = RectMake(648, 309, 269, 535);
 	characterRc[3] = RectMake(935, 309, 269, 535);
+	//컬러 렉트 선언해주기
+	colorRc[0] = RectMake(76, 309, 269, 535); //캐릭터 나올 4개 렉트 위치
+	colorRc[1] = RectMake(362, 309, 269, 535);
+	colorRc[2] = RectMake(648, 309, 269, 535);
+	colorRc[3] = RectMake(935, 309, 269, 535);
+
 	//앞으로 올라가는 문 만들어주기
 	door[0] = RectMake(76,309,269, 535);
 	door[3] = RectMake(362, 309, 269, 535);
@@ -42,7 +48,7 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	// 움직일 렉트 초기화
 	//========================================================
 	_position = { 219,422 };
-	gameStartRc[4] = RectMake(_position.x, _position.y, 30, 30);					//움직일 렉트 초기화
+	gameStartRc[4] = RectMake(_position.x, _position.y, 30, 30);				//움직일 렉트 초기화
 	
 	//========================================================
 	// true 값된 인덱스 담을 변수 초기화
@@ -57,16 +63,23 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	//========================================================
 	// 이미지 관련 변수 초기화
 	//========================================================
-	_background = IMAGEMANAGER->addImage("choiceimage", "image/character_main.bmp", 1280, 960, true, RGB(255,0,255));
-	_timeImage = IMAGEMANAGER->addFrameImage("timenumber", "image/scoreNumber.bmp", 500, 48, 10, 1, true, RGB(0, 248, 0));
-	_doorImage = IMAGEMANAGER->addImage("door", "image/door.bmp", 271, 535, true, RGB(255, 0, 255));
+	_background = IMAGEMANAGER->addImage("choiceimage", "UI/character_main.bmp", 1280, 960, true, RGB(255,0,255));
+	_timeImage = IMAGEMANAGER->addFrameImage("timenumber", "UI/scoreNumber.bmp", 500, 48, 10, 1, true, RGB(0, 248, 0));
+	_doorImage = IMAGEMANAGER->addImage("door", "UI/door.bmp", 271, 535, true, RGB(255, 0, 255));
 	
 	//캐릭터 선택 되지 않았을 시  나오는 이미지 선언
-	_characterImage[0] = IMAGEMANAGER->addImage("characterblack1", "image/marco_black.bmp", 271, 535);
-	_characterImage[1] = IMAGEMANAGER->addImage("characterblack2", "image/eri_black.bmp", 271, 535);
-	_characterImage[2] = IMAGEMANAGER->addImage("characterblack3", "image/tarma_black.bmp", 271, 535);
-	_characterImage[3] = IMAGEMANAGER->addImage("characterblack4", "image/pio_black.bmp", 271, 535);
+	_characterImage[0] = IMAGEMANAGER->addImage("characterblack1", "UI/marco_black.bmp", 271, 535);
+	_characterImage[1] = IMAGEMANAGER->addImage("characterblack2", "UI/eri_black.bmp", 271, 535);
+	_characterImage[2] = IMAGEMANAGER->addImage("characterblack3", "UI/tarma_black.bmp", 271, 535);
+	_characterImage[3] = IMAGEMANAGER->addImage("characterblack4", "UI/pio_black.bmp", 271, 535);
 
+	//버튼으로 캐릭터 선택창 이미지 바뀌는것 선언
+	_colorchaImage[0] = IMAGEMANAGER->addImage("charactercolor1", "UI/marco_color.bmp", 271, 535);
+	_colorchaImage[1] = IMAGEMANAGER->addImage("charactercolor2", "UI/eri_color.bmp", 271, 535);
+	_colorchaImage[2] = IMAGEMANAGER->addImage("charactercolor3", "UI/tarma_color.bmp", 271, 535);
+	_colorchaImage[3] = IMAGEMANAGER->addImage("charactercolor4", "UI/pio_color.bmp", 271, 535);
+	//테스트용 이미지
+	_yellow = IMAGEMANAGER->addImage("yellow", "UI/yellow_p1.bmp", 169, 103);
 
 }	
 
@@ -94,10 +107,11 @@ void choiceUi::Update()
 	if (_count == 50) {
 		_doorUp = true;
 	}
+	//맨처음 올라가는 DOOR
 	if (_doorUp == true) {
 		for (int i = 0; i < 4; i++) {
-			door[i].bottom -= 7 * i + 10;
-			door[i].top -= 7 * i + 10;
+			door[i].bottom -= 6 * i + 14;
+			door[i].top -= 6 * i + 14;
 		}
 	}
 	//오른쪽 눌렀냐 선택 렉트 밖으로 벗어나지 않게끔 제한 설정해줌
@@ -146,7 +160,7 @@ void choiceUi::Update()
 	//선정된 렉트를 올리고 5초뒤 씬을 바꿔준다
 	if (_isShow == true) {
 		if (_time == 500) {
-			//SCENEMANAGER->ChangeScene("인 게임")
+			//SCENEMANAGER->ChangeScene("인게임")
 		}
 	}
 
@@ -156,11 +170,25 @@ void choiceUi::Update()
 
 void choiceUi::Render()
 {
+	RECT temp;
+	//문 올라가고 나서 보여줄 흑백색 캐릭터
 	if (_doorUp == true){
 		for (int i = 0; i < 4; i++) {
 			_characterImage[i]->render(getMemDC(), characterRc[i].left, characterRc[i].top);
 		}
 	}
+	//안보이는 렉트와 흑백 캐릭터와 충돌 됐을시 보여줄 이미지 랜더하기
+	for (int i = 0; i < 4; i++) {
+		if (IntersectRect(&temp, &characterRc[i], &gameStartRc[4])) {
+			_isCheck[i] = true;
+			_a = i;
+		}
+	}
+	//안보이는 렉트와 충돌 됐을시 컬러색 캐릭터 보여주기
+	if (_isCheck[_a] == true) {
+		_colorchaImage[_a]->render(getMemDC(), colorRc[_a].left, colorRc[_a].top);
+	}
+
 	//문올라가도록 하는것
 	for (int i = 0; i < 4; i++)
 	{
@@ -175,6 +203,7 @@ void choiceUi::Render()
 		_timeImage->frameRender(getMemDC(), WINSIZEX / 2 - 50, WINSIZEY - 120, (_time - _time % 10) / 10, 0);
 		_timeImage->frameRender(getMemDC(), WINSIZEX / 2, WINSIZEY - 120, _time % 10, 0);
 	}
+	
 	//토글키로 버튼 누를때 해당하는 렉트 색깔 변하는거 보여주기
 	//토글키로 제한시간 보여주기
 	if (KEYMANAGER->isToggleKey('A')) {
@@ -182,8 +211,7 @@ void choiceUi::Render()
 		for (int i = 0; i < 5; i++) {
 			Rectangle(getMemDC(), gameStartRc[i]);
 		}
-
-		RECT temp;
+		//안보이는 렉트 선언하여서 색칠되게끔 보여주기
 		for (int i = 0; i < 4; i++) {
 			if (IntersectRect(&temp, &gameStartRc[i], &gameStartRc[4])) {
 				HBRUSH brush = CreateSolidBrush(RGB(255, 0, 255));
@@ -192,13 +220,21 @@ void choiceUi::Render()
 				DeleteObject(brush);
 			}
 		}
-
+		Rectangle(getMemDC(), gameStartRc[4]);
+		//컬러이미지 캐릭터 렉트 
+		//for (int i = 0; i < 4; i++) {
+		//	Rectangle(getMemDC(), colorRc[i]);
+		//}
+		
 		char str[128];
 		sprintf(str, "제한시간:%d", _time);
 		TextOut(getMemDC(), 0, 200, str, strlen(str));
 	}
+	
+
 	char str1[128];
 	sprintf(str1, "마우스좌표:%d,%d", _ptMouse);
 	TextOut(getMemDC(), 0, 200, str1, strlen(str1));
+	_yellow->render(getMemDC(), 0, 0);
 
 }
