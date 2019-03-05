@@ -3,6 +3,8 @@
 typedef enum class state
 {
 	IDLE,				//대기 상태
+	L_IDLE,				//왼쪽 대기상태
+	R_IDLE,				//오른쪽 대기상태
 	ATTACK,				//공격 상태
 	L_ATTACK_MOVE,		//공격을 위해 왼쪽 이동 상태
 	R_ATTACK_MOVE,		//공격을 위해 오른쪽 이동 상태
