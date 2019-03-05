@@ -57,8 +57,8 @@ using namespace std;
 #define WINNAME			(LPTSTR)(TEXT(" 프로그래밍 12기 "))
 #define WINSTARTX		100
 #define WINSTARTY		0
-#define WINSIZEX		1200
-#define WINSIZEY		800
+#define WINSIZEX		1280
+#define WINSIZEY		960
 #define WINSTYLE		WS_CAPTION | WS_SYSMENU
 
 //==============================================================//

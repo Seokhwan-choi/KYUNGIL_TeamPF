@@ -14,7 +14,7 @@ HRESULT MainGame::init(void)
 	//Monster* monster = new Monster("Monster", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::Center);
 	//OBJECTMANAGER->AddObject(ObjectType::Object, monster);
 
-	_player = new Player("플레이어", { 100, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { 100, WINSIZEY / 2 + 100 }, { 100, 150 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	//잠자리 생성

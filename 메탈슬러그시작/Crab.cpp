@@ -134,12 +134,12 @@ void Crab::Update()
 	//카메라와 충돌일 경우 각도에 따른 움직임 상태
 	if (_cam.isCrush)
 	{
-		if (_angle <= PI && _angle > PI / 2)
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_state = state::L_MOVE;
 		}
 
-		if (_angle < PI / 2 && _angle >= 0.f)
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
 			_state = state::R_MOVE;
 		}
@@ -148,12 +148,12 @@ void Crab::Update()
 	//플레이어와의 거리가 300.f보다 작을때 공격을 위한 이동 상태로 변경
 	if (_dist <= 300.f)
 	{
-		if (_angle <= PI && _angle > PI / 2)
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_state = state::L_ATTACK_MOVE;
 		}
 
-		if (_angle < PI / 2 && _angle >= 0.f)
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
 			_state = state::R_ATTACK_MOVE;
 		}
@@ -164,21 +164,21 @@ void Crab::Update()
 	{
 		_isAttack = true;
 	}
-
+	
 	//공격 명령이 내려졌을 때 조금 기다린 후 공격렉트를 움직임
 	if (_isAttack)
 	{
 		_gauge++;
-
-		if (_angle <= PI && _angle > PI / 2)
+	
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_state = state::L_ATTACK;
 		}
-		if (_angle < PI / 2 && _angle >= 0.f)
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
 			_state = state::R_ATTACK;
 		}
-
+	
 		if (_gauge % 50 == 0)
 		{
 			_isAttack = false;
@@ -189,12 +189,12 @@ void Crab::Update()
 	//공격이 끝나면 뒤로 후퇴 처리
 	if (_isAttackFinish)
 	{
-		if (_angle <= PI && _angle > PI / 2)
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_state = state::L_ATTACK_FINISH;
 		}
 
-		if (_angle < PI / 2 && _angle >= 0.f)
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
 			_state = state::R_ATTACK_FINISH;
 		}
