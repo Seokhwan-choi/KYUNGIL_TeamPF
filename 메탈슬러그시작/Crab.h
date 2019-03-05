@@ -7,6 +7,10 @@ class Crab : public GameObject
 private:
 	//상태
 	STATE _state;
+	//이미지
+	image* crab[4];
+	//이미지 랜더용 변수
+	int index[3], count[3];
 	//상하 움직임 처리를 위한 변수
 	int _move;
 	bool _isUp;
@@ -51,5 +55,11 @@ public:
 	void Release() override;
 	void Update() override;
 	void Render() override;
+
+	//이미지 랜더용 함수
+	void Crabimage();
+	void CrabimageRender();
+
+
 };
 

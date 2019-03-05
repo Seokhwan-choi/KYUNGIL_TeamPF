@@ -116,6 +116,9 @@
     <ClInclude Include="FlyBug.h">
       <Filter>소스 파일\몬스터</Filter>
     </ClInclude>
+    <ClInclude Include="Fish.h">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -173,6 +176,9 @@
       <Filter>소스 파일\몬스터</Filter>
     </ClCompile>
     <ClCompile Include="FlyBug.cpp">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish.cpp">
       <Filter>소스 파일\몬스터</Filter>
     </ClCompile>
   </ItemGroup>

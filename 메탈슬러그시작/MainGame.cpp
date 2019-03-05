@@ -23,7 +23,7 @@ HRESULT MainGame::init(void)
 	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flybug);
 
 	//게 생성
-	Crab* _crab = new Crab("crab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	Crab* _crab = new Crab("crab", { 1060, WINSIZEY / 2 + 175 }, { 150, 150 }, GameObject::Pivot::Center);
 	//잠자리 객체 추가하기
 	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
 

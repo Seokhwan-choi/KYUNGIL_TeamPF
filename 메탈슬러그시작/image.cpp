@@ -501,8 +501,8 @@ void image::frameRender(HDC hdc, int destX, int destY, int currentFrameX, int cu
 	//int hp;
 	//if (hp < 0) hp = 0;
 
-	_imageInfo->currentFrameX * currentFrameX;
-	_imageInfo->currentFrameY * currentFrameY;
+	_imageInfo->currentFrameX = currentFrameX;
+	_imageInfo->currentFrameY = currentFrameY;
 	if (currentFrameX > _imageInfo->maxFrameX)
 	{
 		_imageInfo->currentFrameX = _imageInfo->maxFrameX;
