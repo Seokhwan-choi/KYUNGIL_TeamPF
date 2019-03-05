@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "MainGame.h"
 #include "Player.h"
-
+#include "startScene.h"
+#include "choiceScene.h"
 //==========================================================================//
 //						## 초기화 ## init(void)								//
 //==========================================================================//
@@ -12,10 +13,17 @@ HRESULT MainGame::init(void)
 	//Monster* monster = new Monster("Monster", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::Center);
 	//OBJECTMANAGER->AddObject(ObjectType::Object, monster);
 
-	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+	//_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
+	startScene* _startscene = new startScene;
+	SCENEMANAGER->AddScene("시작화면", _startscene);
+	SCENEMANAGER->ChangeScene("시작화면");
 
+	choiceScene* _choicescene = new choiceScene;
+	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
+
+	SCENEMANAGER->Init();
 	return S_OK;	
 	//return S_OK밑에 코드 있으면 안됨!!!!!!!!!!!
 }
@@ -26,6 +34,9 @@ HRESULT MainGame::init(void)
 void MainGame::release(void)
 {
 	gameNode::release();
+
+	SCENEMANAGER->Release();
+
 	//이미지 클래스를 날갈떄까진 사용할 일 없다.
 	//동적할당 new를 사용했다면 이곳에서 SAFE_DELETE();		
 	
@@ -39,7 +50,8 @@ void MainGame::update(void)
 {
 	gameNode::update();
 
-	OBJECTMANAGER->Update();
+	SCENEMANAGER->Update();
+	//OBJECTMANAGER->Update();
 	
 }
 
@@ -54,8 +66,9 @@ void MainGame::render()
 	//흰색 빈 비트맵 (이것도 렌더에 그냥 두기)
 	PatBlt(memDC, 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//========================================================================//
-	OBJECTMANAGER->Render();
-
+	//OBJECTMANAGER->Render();
+	
+	SCENEMANAGER->Render();
 	
 	//백버퍼의 내용을 HDC에 그린다 (이것도 렌더에 그냥 두기)
 	this->getBackBuffer()->render(getHDC());

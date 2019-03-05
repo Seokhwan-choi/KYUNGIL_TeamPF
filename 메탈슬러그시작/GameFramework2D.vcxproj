@@ -150,6 +150,8 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="choiceScene.h" />
+    <ClInclude Include="choiceUi.h" />
     <ClInclude Include="CommomMacroFuntion.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="GameObject.h" />
@@ -164,12 +166,16 @@
     <ClInclude Include="SceneMaker.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SingletonBase.h" />
+    <ClInclude Include="startScene.h" />
+    <ClInclude Include="startUi.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="choiceScene.cpp" />
+    <ClCompile Include="choiceUi.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Gizmo.cpp" />
@@ -182,6 +188,8 @@
     <ClCompile Include="randomFunction.cpp" />
     <ClCompile Include="SceneMaker.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="startScene.cpp" />
+    <ClCompile Include="startUi.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="stdafx.cpp">
