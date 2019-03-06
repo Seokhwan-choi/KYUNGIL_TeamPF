@@ -39,7 +39,7 @@ void Fish::Update()
 	//카메라 렉트
 	_cam.pt = { _position.x, _position.y };
 	_cam.rc = RectMakeCenter(_cam.pt.x, _cam.pt.y, _size.x * 13.5f, _size.y);
-	
+
 	if (!_cam.isCrush)
 	{
 		_state = state::IDLE;
@@ -93,5 +93,5 @@ void Fish::Render()
 	{
 		Rectangle(getMemDC(), Fish_Rc);
 	}
-	
+
 }

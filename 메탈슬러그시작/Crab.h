@@ -8,9 +8,9 @@ private:
 	//상태
 	STATE _state;
 	//이미지
-	image* crab[4];
+	image* crabImg[4];
 	//이미지 랜더용 변수
-	int index[3], count[3];
+	int indexImg[3], countImg[3];
 	//상하 움직임 처리를 위한 변수
 	int _move;
 	bool _isUp;
@@ -57,8 +57,8 @@ public:
 	void Render() override;
 
 	//이미지 랜더용 함수
-	void Crabimage();
-	void CrabimageRender();
+	void crabImage();
+	void crabImageRender();
 
 
 };

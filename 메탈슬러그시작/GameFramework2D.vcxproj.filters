@@ -60,6 +60,9 @@
     <Filter Include="소스 파일\몬스터\게">
       <UniqueIdentifier>{402116b0-2ff7-48bb-84f0-6ace61b91d46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\몬스터\물고기">
+      <UniqueIdentifier>{1d447d52-c40d-40e9-9edb-5aa2de5db56f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommomMacroFuntion.h">
@@ -125,14 +128,14 @@
     <ClInclude Include="Crab.h">
       <Filter>소스 파일\몬스터\게</Filter>
     </ClInclude>
-    <ClInclude Include="Bubble.h">
-      <Filter>소스 파일\몬스터\게</Filter>
-    </ClInclude>
     <ClInclude Include="BubbleCrab.h">
       <Filter>소스 파일\몬스터\거품게</Filter>
     </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>소스 파일\몬스터\거품게</Filter>
+    </ClInclude>
     <ClInclude Include="Fish.h">
-      <Filter>소스 파일\몬스터</Filter>
+      <Filter>소스 파일\몬스터\물고기</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -193,14 +196,14 @@
     <ClCompile Include="Crab.cpp">
       <Filter>소스 파일\몬스터\게</Filter>
     </ClCompile>
-    <ClCompile Include="Bubble.cpp">
-      <Filter>소스 파일\몬스터\게</Filter>
-    </ClCompile>
     <ClCompile Include="BubbleCrab.cpp">
       <Filter>소스 파일\몬스터\거품게</Filter>
     </ClCompile>
+    <ClCompile Include="Bubble.cpp">
+      <Filter>소스 파일\몬스터\거품게</Filter>
+    </ClCompile>
     <ClCompile Include="Fish.cpp">
-      <Filter>소스 파일\몬스터</Filter>
+      <Filter>소스 파일\몬스터\물고기</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

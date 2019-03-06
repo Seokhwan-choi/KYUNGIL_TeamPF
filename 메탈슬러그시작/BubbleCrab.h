@@ -36,6 +36,8 @@ private:
 	POINT _pt;
 	//플레이어 클래스
 	class Player* _player;
+	//거품 클래스
+	class Bubble* _bubble;
 public:
 	BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BubbleCrab();

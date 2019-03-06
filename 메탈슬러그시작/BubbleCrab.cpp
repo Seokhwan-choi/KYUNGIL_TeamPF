@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "BubbleCrab.h"
 #include "Player.h"
+#include "Bubble.h"
 
 BubbleCrab::BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot) : GameObject(name, pos, size, pivot)
 {
@@ -58,6 +59,10 @@ HRESULT BubbleCrab::Init()
 
 	//플레이어와의 각도 초기화
 	_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
+
+	//거품 클래스 초기화
+	_bubble = new Bubble("거품");
+	_bubble->Init("입술.bmp", 30, 30, 2, 1280);
 
 	return S_OK;
 }
@@ -134,10 +139,10 @@ void BubbleCrab::Update()
 	}
 
 	//플레이어와의 거리가 300.f보다 작을때 공격을 위한 이동 상태로 변경
-	if (_dist <= 300.f)
+	/*if (_dist <= 300.f)
 	{
 		_isAttack = true;
-	}
+	}*/
 
 	//플레이어와의 접촉했을 때 공격 명령
 	/*if (_dist <= _player->GetSize().x / 2 + _size.x / 2)
@@ -153,6 +158,12 @@ void BubbleCrab::Update()
 			_state = state::R_ATTACK_MOVE;
 		}
 	}*/
+
+	//플레이어와의 거리가 300.f보다 작을때 공격을 위한 이동 상태로 변경
+	if (_dist <= 300.f)
+	{
+		//_bubble->fire = true;
+	}
 
 	//공격 명령이 내려졌을 때 조금 기다린 후 공격렉트를 움직임
 	if (_isAttack)

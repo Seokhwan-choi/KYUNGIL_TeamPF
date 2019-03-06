@@ -16,15 +16,16 @@ HRESULT Crab::Init()
 	_state = state::L_IDLE;
 
 	//이미지 초기화
-	crab[0] = IMAGEMANAGER->addFrameImage("crab", "몬스터(게)-2.bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
-	crab[1] = IMAGEMANAGER->addFrameImage("crab1", "몬스터(게)-2(오른쪽).bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
-	crab[2] = IMAGEMANAGER->addFrameImage("crab2", "몬스터(게)-3.bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
-	crab[3] = IMAGEMANAGER->addFrameImage("crab3", "몬스터(게)-3(오른쪽).bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
-	//이미지 랜더용 변수  초기화
+	crabImg[0] = IMAGEMANAGER->addFrameImage("crab", "몬스터(게)-2.bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
+	crabImg[1] = IMAGEMANAGER->addFrameImage("crab1", "몬스터(게)-2(오른쪽).bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
+	crabImg[2] = IMAGEMANAGER->addFrameImage("crab2", "몬스터(게)-3.bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
+	crabImg[3] = IMAGEMANAGER->addFrameImage("crab3", "몬스터(게)-3(오른쪽).bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
+	//이미지 랜더용 변수 초기화
 	for (int i = 0; i < 2; i++)
 	{
-		index[i] = count[i] = 0;
+		indexImg[i] = countImg[i] = 0;
 	}
+
 	//공격 처리를 위한 변수
 	_gauge = 1;
 	_angle = 0.f;
@@ -37,7 +38,7 @@ HRESULT Crab::Init()
 		_part[i].rc = RectMakeCenter(_part[i].pt.x, _part[i].pt.y, 50, 10);
 	}
 
-	//죽음 처리를 위한 변수	
+	//죽음 처리를 위한 변수
 	_deathTimer = 0;
 
 	//게 카메라 렉트(항상 몸 중앙을 따라다닌다.)
@@ -210,6 +211,20 @@ void Crab::Update()
 		}
 	}
 
+	//플레이어 총알과 충돌 체크
+	if (KEYMANAGER->isToggleKey('R'))
+	{
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
+		{
+			_state = state::L_DEATH;
+		}
+
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
+		{
+			_state = state::R_DEATH;
+		}
+	}
+
 	//상태에 따른 움직임 처리
 	switch (_state)
 	{
@@ -249,7 +264,7 @@ void Crab::Update()
 		if (_dist < 320.f)
 		{
 			_position.x += 5.f;
-			index[1] = 0;
+			indexImg[1] = 0;
 		}
 		if (_dist >= 300.f)
 		{
@@ -260,17 +275,79 @@ void Crab::Update()
 		if (_dist < 320.f)
 		{
 			_position.x -= 5.f;
-			index[1] = 11;
+			indexImg[1] = 11;
 		}
 		if (_dist >= 300.f)
 		{
 			_isAttackFinish = false;
 		}
 		break;
+	case state::L_DEATH:
+		//충돌 렉트 없애기
+		for (int i = 0; i < 4; i++)
+		{
+			_col[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+		}
+		//공격 렉트 없애기
+		for (int i = 0; i < 2; i++)
+		{
+			_att[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+		}
+
+		//임시로 y좌표 설정함
+		if (_position.y + _size.y / 2 < 730.f)
+		{
+			//시체 부분 떨어뜨리기
+			_position.y += 5.f;
+		}
+
+		//땅에 도착했을 때
+		if (_position.y + _size.y / 2 >= 730.f)
+		{
+			_deathTimer++;
+
+			if (_deathTimer % 100 == 0)
+			{
+				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "crab"));
+			}
+		}
+
+		break;
+	case state::R_DEATH:
+		//충돌 렉트 없애기
+		for (int i = 0; i < 4; i++)
+		{
+			_col[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+		}
+		//공격 렉트 없애기
+		for (int i = 0; i < 2; i++)
+		{
+			_att[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+		}
+
+		//임시로 y좌표 설정함
+		if (_position.y + _size.y / 2 < 730.f)
+		{
+			//시체 부분 떨어뜨리기
+			_position.y += 5.f;
+		}
+
+		//땅에 도착했을 때
+		if (_position.y + _size.y / 2 >= 730.f)
+		{
+			_deathTimer++;
+
+			if (_deathTimer % 100 == 0)
+			{
+				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "crab"));
+			}
+		}
+
+		break;
 	}
 
-	this->Crabimage();
-
+	//상태에 따른 이미지 변경
+	this->crabImage();
 
 }
 
@@ -281,7 +358,10 @@ void Crab::Render()
 
 	//렉트 그리기
 	Rectangle(getMemDC(), _rc);
-	this->CrabimageRender();
+
+	//게 이미지 그리기
+	//this->crabImageRender();
+
 	//충돌렉트 그리기
 	for (int i = 0; i < 4; i++)
 	{
@@ -291,7 +371,7 @@ void Crab::Render()
 	//시체처리렉트 그리기
 	for (int i = 0; i < 3; i++)
 	{
-		//Rectangle(getMemDC(), _part[i].rc);
+		Rectangle(getMemDC(), _part[i].rc);
 	}
 
 	//공격처리렉트 그리기
@@ -305,113 +385,113 @@ void Crab::Render()
 	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));
 }
 
-void Crab::Crabimage()
+void Crab::crabImage()
 {
 	if ((_state == state::L_IDLE || _state == state::L_MOVE || _state == state::L_ATTACK_MOVE) && !(_state == state::L_ATTACK_FINISH))
 	{
-		count[0]++;
-		if (count[0] % 10 == 0)
+		countImg[0]++;
+		if (countImg[0] % 10 == 0)
 		{
-			index[0]++;
-			if (index[0] > 11)
+			indexImg[0]++;
+			if (indexImg[0] > 11)
 			{
-				index[0] = 0;
+				indexImg[0] = 0;
 			}
-			crab[0]->setFrameX(index[0]);
+			crabImg[0]->setFrameX(indexImg[0]);
 		}
 	}
 	if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE && !(_state == state::R_ATTACK_FINISH))
 	{
-		count[0]++;
-		if (count[0] % 10 == 0)
+		countImg[0]++;
+		if (countImg[0] % 10 == 0)
 		{
-			index[0]++;
-			if (index[0] > 11)
+			indexImg[0]++;
+			if (indexImg[0] > 11)
 			{
-				index[0] = 0;
+				indexImg[0] = 0;
 			}
-			crab[1]->setFrameX(index[0]);
+			crabImg[1]->setFrameX(indexImg[0]);
 		}
 	}
 	if (_state == state::L_ATTACK)
 	{
-		count[1]++;
-		if (count[1] % 8 == 0)
+		countImg[1]++;
+		if (countImg[1] % 8 == 0)
 		{
-			index[1]++;
-			if (index[1] > 11)
+			indexImg[1]++;
+			if (indexImg[1] > 11)
 			{
-				index[1] = 0;
+				indexImg[1] = 0;
 			}
-			crab[2]->setFrameX(index[1]);
+			crabImg[2]->setFrameX(indexImg[1]);
 		}
 	}
 	if (_state == state::R_ATTACK)
 	{
-		count[1]++;
-		if (count[1] % 8 == 0)
+		countImg[1]++;
+		if (countImg[1] % 8 == 0)
 		{
-			index[1]--;
-			if (index[1] < 0)
+			indexImg[1]--;
+			if (indexImg[1] < 0)
 			{
-				index[1] = 11;
+				indexImg[1] = 11;
 			}
-			crab[3]->setFrameX(index[1]);
+			crabImg[3]->setFrameX(indexImg[1]);
 		}
 	}
 	if (_state == state::L_ATTACK_FINISH)
 	{
-		count[2]++;
-		if (count[2] % 10 == 0)
+		countImg[2]++;
+		if (countImg[2] % 10 == 0)
 		{
-			index[2]--;
-			if (index[2] < 0)
+			indexImg[2]--;
+			if (indexImg[2] < 0)
 			{
-				index[2] = 11;
+				indexImg[2] = 11;
 			}
-			crab[0]->setFrameX(index[2]);
+			crabImg[0]->setFrameX(indexImg[2]);
 		}
 	}
 	if (_state == state::R_ATTACK_FINISH)
 	{
-		count[2]++;
-		if (count[2] % 10 == 0)
+		countImg[2]++;
+		if (countImg[2] % 10 == 0)
 		{
-			index[2]--;
-			if (index[2] < 0)
+			indexImg[2]--;
+			if (indexImg[2] < 0)
 			{
-				index[2] = 11;
+				indexImg[2] = 11;
 			}
-			crab[1]->setFrameX(index[2]);
+			crabImg[1]->setFrameX(indexImg[2]);
 		}
 	}
 }
 
-void Crab::CrabimageRender()
+void Crab::crabImageRender()
 {
 	if ((_state == state::L_IDLE || _state == state::L_MOVE || _state == state::L_ATTACK_MOVE) && !(_state == state::L_ATTACK_FINISH))
 	{
-		crab[0]->frameRender(getMemDC(), _rc.left, _rc.top);
+		crabImg[0]->frameRender(getMemDC(), _rc.left, _rc.top);
 	}
 	if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE)
 	{
-		crab[1]->frameRender(getMemDC(), _rc.left, _rc.top);
+		crabImg[1]->frameRender(getMemDC(), _rc.left, _rc.top);
 	}
 	if (_state == state::L_ATTACK)
 	{
-			crab[2]->frameRender(getMemDC(), _rc.left -60, _rc.top - 22);
+			crabImg[2]->frameRender(getMemDC(), _rc.left -60, _rc.top - 22);
 		
 	}
 	if (_state == state::R_ATTACK)
 	{
-		crab[3]->frameRender(getMemDC(), _rc.left + 10, _rc.top - 22);
+		crabImg[3]->frameRender(getMemDC(), _rc.left + 10, _rc.top - 22);
 	}
 	if (_state == state::L_ATTACK_FINISH)
 	{
-		crab[0]->frameRender(getMemDC(), _rc.left, _rc.top);
+		crabImg[0]->frameRender(getMemDC(), _rc.left, _rc.top);
 	}
 	if (_state == state::R_ATTACK_FINISH)
 	{
-		crab[1]->frameRender(getMemDC(), _rc.left, _rc.top);
+		crabImg[1]->frameRender(getMemDC(), _rc.left, _rc.top);
 	}
 }

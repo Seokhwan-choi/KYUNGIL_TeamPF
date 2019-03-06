@@ -14,7 +14,9 @@ typedef enum class state
 	R_ATTACK_FINISH,	//오른쪽 공격 완료
 	L_MOVE,				//왼쪽으로 이동 상태
 	R_MOVE,				//오른쪽으로 이동 상태
-	DEATH				//죽음 상태
+	DEATH,				//죽음 상태
+	L_DEATH,			//왼쪽 죽음 상태
+	R_DEATH				//오른쪽 죽음 상태
 }
 STATE, *LSTATE;
 
@@ -63,10 +65,3 @@ typedef struct tagBubble
 	int count;
 }
 BUBBLE, *LBUBBLE;
-
-typedef struct tagFish
-{
-	RECT rc;
-	float x, y;
-
-};
