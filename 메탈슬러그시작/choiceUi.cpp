@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "choiceUi.h"
-
+//========================================================
+//버그 
+//========================================================
+/*
+선택시 움직였던 제일 마지막 인덱스트루값을 주고 올라감
+*/
 
 
 choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
@@ -35,6 +40,13 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	door[2] = RectMake(648, 309, 269, 535);
 	door[1] = RectMake(935, 309, 269, 535);
 
+	//노란색 빨간색 p1움직일 렉트 선언하기
+	moveRc[0] = RectMake(130, 203, 122, 77);
+	moveRc[1] = RectMake(438, 203, 122, 77);
+	moveRc[2] = RectMake(726, 203, 122, 77);
+	moveRc[3] = RectMake(998, 203, 122, 77);
+	//내려올 렉트 선언해주기
+	downDoorRc = RectMake(648, -226, 269, 535);
 	//========================================================
 	// bool 초기화
 	//========================================================
@@ -44,6 +56,7 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 		_goUp[i] = false;														//숨겨진 캐릭터 보여주기 위한 앞 렉트 올리기 위한 불값
 	}
 	_doorUp = false;
+	_stop = false;
 	//========================================================
 	// 움직일 렉트 초기화
 	//========================================================
@@ -59,10 +72,13 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	// 시간 관련 변수 초기화
 	//========================================================
 	_count = 0;																	
-	_time = 30;																	//제한시간 초기화
+	_time = 30;				//제한시간 초기화
+
+
 	//========================================================
 	// 이미지 관련 변수 초기화
 	//========================================================
+	_index = 0;
 	_background = IMAGEMANAGER->addImage("choiceimage", "UI/character_main.bmp", 1280, 960, true, RGB(255,0,255));
 	_timeImage = IMAGEMANAGER->addFrameImage("timenumber", "UI/scoreNumber.bmp", 500, 48, 10, 1, true, RGB(0, 248, 0));
 	_doorImage = IMAGEMANAGER->addImage("door", "UI/door.bmp", 271, 535, true, RGB(255, 0, 255));
@@ -78,9 +94,17 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_colorchaImage[1] = IMAGEMANAGER->addImage("charactercolor2", "UI/eri_color.bmp", 271, 535);
 	_colorchaImage[2] = IMAGEMANAGER->addImage("charactercolor3", "UI/tarma_color.bmp", 271, 535);
 	_colorchaImage[3] = IMAGEMANAGER->addImage("charactercolor4", "UI/pio_color.bmp", 271, 535);
-	//테스트용 이미지
-	_yellow = IMAGEMANAGER->addImage("yellow", "UI/yellow_p1.bmp", 169, 103);
 
+	//선택된 캐릭터 이미지 선언해주기 - 테스트
+	_choicechaImage[0] = IMAGEMANAGER->addImage("characterchoice1", "UI/marco_choice.bmp", 271, 514);
+	_choicechaImage[1] = IMAGEMANAGER->addImage("characterchoice2", "UI/eri_choice.bmp", 271, 514);
+	_choicechaImage[2] = IMAGEMANAGER->addImage("characterchoice3", "UI/tarma_choice.bmp", 271, 514);
+	_choicechaImage[3] = IMAGEMANAGER->addImage("characterchoice4", "UI/pio_choice.bmp", 271, 514);
+
+	//p1노란색 빨간색
+	_yellow = IMAGEMANAGER->addFrameImage("yellowred", "UI/yellow_p2.bmp", 244, 77, 2,1, true, RGB(255,0,255));
+	//캐릭터 선택 후 문이 내려오면서 캐릭터 움직임 보여줄 이미지
+	_downDoorImage = IMAGEMANAGER->addFrameImage("downcharacter", "UI/down_tarma.bmp", 1084, 535, 4, 1, true, RGB(255, 0, 255));
 }	
 
 choiceUi::~choiceUi()
@@ -99,6 +123,7 @@ void choiceUi::Release()
 void choiceUi::Update()
 {
 	_count++;
+	
 	//1초에 1씩 감소하도록 만들어 준다 
 	if (_count % 100 == 0) {
 		_time--;
@@ -149,6 +174,31 @@ void choiceUi::Update()
 			}
 		}
 	}
+	//선택된 이미지 보여주기 문내리며 보여주기
+	if (_goUp[_a] == true) {
+		_isDown = true;
+		downDoorRc.bottom += 15;
+		downDoorRc.top += 15;
+	}
+	//내려오면서 이미지 랜더 해주기
+	if (_isDown == true) {
+	
+		_downDoorImage->setFrameY(0);
+		if (_count % 25 == 0) {
+			_index++;
+			if (_index > 4) {
+				_index = 0;
+			}
+			_downDoorImage->setFrameX(_index);
+		}		
+	}
+	//문이 더이상 내려가지 못하도록 막아주기
+	if (downDoorRc.bottom >= 839) {
+		downDoorRc.bottom = 839;
+		downDoorRc.top = 839 - 535;
+	}
+	
+
 	//선정된 렉트를 올려줘 안에 있는 캐릭터를 보여준다
 	if (_goUp[_a] == true) {
 		gameStartRc[_a].bottom -= 10;
@@ -164,6 +214,16 @@ void choiceUi::Update()
 		}
 	}
 
+	//노란색 빨간색 계속 반짝반짝거리게한다
+	_yellow->setFrameY(0);
+	if (_count % 20 == 0) {
+		_index++;
+		if (_index > 1) {
+			_index = 0;
+		}
+		_yellow->setFrameX(_index);
+	}
+
 	this->UpdateRectByPivot();	// RECT 그려준다.
 
 }
@@ -171,6 +231,7 @@ void choiceUi::Update()
 void choiceUi::Render()
 {
 	RECT temp;
+	
 	//문 올라가고 나서 보여줄 흑백색 캐릭터
 	if (_doorUp == true){
 		for (int i = 0; i < 4; i++) {
@@ -188,22 +249,37 @@ void choiceUi::Render()
 	if (_isCheck[_a] == true) {
 		_colorchaImage[_a]->render(getMemDC(), colorRc[_a].left, colorRc[_a].top);
 	}
-
 	//문올라가도록 하는것
 	for (int i = 0; i < 4; i++)
 	{
 		_doorImage->render(getMemDC(), door[i].left, door[i].top);
 	}
 	//선택화면 창 보여주기
+	if (_goUp[_a] == true) {
+		_choicechaImage[_a]->render(getMemDC(), colorRc[_a].left, colorRc[_a].top);
+	}
+	if (_isDown == true) {
+		_downDoorImage->frameRender(getMemDC(), downDoorRc.left, downDoorRc.top);
+	}
+
+
 	_background->render(getMemDC(), 0, 0);
 
+	if (_isCheck[_a] == true) {
+		_yellow->frameRender(getMemDC(), moveRc[_a].left, moveRc[_a].top);
+	}
 	//제한시간 표기
 	if (_time < 10) _timeImage->frameRender(getMemDC(), WINSIZEX / 2 -50 , WINSIZEY - 120, _time, 0);
 	if (_time >= 10) {
 		_timeImage->frameRender(getMemDC(), WINSIZEX / 2 - 50, WINSIZEY - 120, (_time - _time % 10) / 10, 0);
 		_timeImage->frameRender(getMemDC(), WINSIZEX / 2, WINSIZEY - 120, _time % 10, 0);
 	}
-	
+	//선택된 이미지 보여주기 문내리며 보여주기
+	//if (_goUp[_a] == true) {
+	//	if (_count % 200 == 0) {
+	//		_isDown = true;
+	//	}
+	//}
 	//토글키로 버튼 누를때 해당하는 렉트 색깔 변하는거 보여주기
 	//토글키로 제한시간 보여주기
 	if (KEYMANAGER->isToggleKey('A')) {
@@ -230,11 +306,14 @@ void choiceUi::Render()
 		sprintf(str, "제한시간:%d", _time);
 		TextOut(getMemDC(), 0, 200, str, strlen(str));
 	}
-	
+	//테스트 선택시 잘 들어오는지 확인
+	//_choicechaImage[0]->render(getMemDC(), colorRc[0].left, colorRc[0].top);
+
+
 
 	char str1[128];
 	sprintf(str1, "마우스좌표:%d,%d", _ptMouse);
 	TextOut(getMemDC(), 0, 200, str1, strlen(str1));
-	_yellow->render(getMemDC(), 0, 0);
+	
 
 }

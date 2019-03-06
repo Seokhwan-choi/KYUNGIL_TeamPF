@@ -44,7 +44,7 @@ void startUi::Update()
 	_count++;
 	//0.5ÃÊ¸¶´Ù ¹Ù²ãÁÜ
 	_startBgImage->setFrameY(0);
-	if (_count % 50 == 0) {
+	if (_count % 30 == 0) {
 		_index++;
 		if (_index > 1) {
 			_index = 0;

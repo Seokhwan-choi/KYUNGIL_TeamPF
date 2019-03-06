@@ -53,7 +53,7 @@ using namespace std;
 //==============================================================//
 //				## 디파인문 ## (윈도우창 초기화)				    //
 //==============================================================//
-#define WINNAME			(LPTSTR)(TEXT(" 프로그래밍 12기 "))
+#define WINNAME			(LPTSTR)(TEXT("메탈슬러그3 :석환, 병윤, 민병, 지연, 수완"))
 #define WINSTARTX		100
 #define WINSTARTY		0
 #define WINSIZEX		1280
