@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MainGame.h"
 #include "Player.h"
-
+#include "Monster.h"
 //==========================================================================//
 //						## 초기화 ## init(void)								//
 //==========================================================================//
@@ -15,6 +15,8 @@ HRESULT MainGame::init(void)
 	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
+	_monster = new Monster("몬스터", { WINSIZEX / 2 + 200,WINSIZEY / 2 }, { 100,100 }, GameObject::Pivot::Center);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _monster);
 
 	return S_OK;	
 	//return S_OK밑에 코드 있으면 안됨!!!!!!!!!!!

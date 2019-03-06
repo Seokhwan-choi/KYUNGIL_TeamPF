@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Bullet.h"
+#include "Player.h"
 
 Bullet::Bullet(string name) : GameObject(name)
 {
@@ -106,11 +107,11 @@ Boom::~Boom()
 {
 }
 
-HRESULT Boom::Init(const char * imageName, int width, int height , int bulletMax)
+HRESULT Boom::Init(const char * imageName, int width, int height , int bulletMax,float range)
 {
 
 	_bulletMax = bulletMax; 
-
+	_range = range; 
 	for (int i = 0; i < bulletMax; i++)
 	{
 		tagBoom boom;
@@ -126,6 +127,8 @@ HRESULT Boom::Init(const char * imageName, int width, int height , int bulletMax
 
 		_vBoom.push_back(boom);
 	}
+	_PlayerBoomMax = 10; 
+
 	return S_OK;
 }
 
@@ -141,6 +144,7 @@ void Boom::Release()
 void Boom::Update()
 {
 	this->move(); 
+	//((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"));
 }
 
 void Boom::Render()
@@ -158,13 +162,15 @@ void Boom::fire(float x, float y, float angle, float gravity ,float speed)
 		if (_vBoom[i].isFire)continue;
 
 		_vBoom[i].isFire = true; 
-		_vBoom[i].x = x; 
-		_vBoom[i].y = y; 
+		_vBoom[i].x = _vBoom[i].fireX= x; 
+		_vBoom[i].y = _vBoom[i].fireY = y;
 		_vBoom[i].rc = RectMakeCenter(_vBoom[i].x, _vBoom[i].y,
 			_vBoom[i].bulletImage->getWidth(), _vBoom[i].bulletImage->getHeight());
 		_vBoom[i].speed = speed; 
 		_vBoom[i].angle = angle; 
 		_vBoom[i].gravity = gravity; 
+	
+		_PlayerBoomMax -= 1;  
 		break;
 	}
 }
@@ -182,6 +188,12 @@ void Boom::move()
 		_vBoom[i].rc = RectMakeCenter(_vBoom[i].x, _vBoom[i].y,
 			_vBoom[i].bulletImage->getWidth(), _vBoom[i].bulletImage->getHeight());
 
+		float distance = GetDistance(_vBoom[i].fireX, _vBoom[i].fireY,
+			_vBoom[i].x, _vBoom[i].y);
 
+		if (_range < distance)
+		{
+			_vBoom[i].isFire = false;
+		}
 	}
 }

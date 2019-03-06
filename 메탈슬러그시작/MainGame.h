@@ -5,7 +5,7 @@ class MainGame : public gameNode
 {
 private:
 	class Player* _player;
-
+	class Monster* _monster; 
 	
 public:
 	HRESULT init(void);
