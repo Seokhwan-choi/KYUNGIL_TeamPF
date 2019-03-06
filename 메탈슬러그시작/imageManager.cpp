@@ -257,6 +257,12 @@ void imageManager::alphaRender(string strKey, HDC hdc, int destX, int destY, int
 	if (img) img->alphaRender(hdc, destX, destY, sourX, sourY, sourWidth, sourHeight, alpha);
 }
 
+void imageManager::alphaFrameRender(string strkey, HDC hdc, int destX, int destY, int currentframeX, int currentframeY, int alpha)
+{
+	image * img = findImage(strkey);
+	if (img) img->alphaFrameRender(hdc, destX, destY, currentframeX, currentframeY, alpha);
+}
+
 void imageManager::frameRender(string strKey, HDC hdc, int destX, int destY)
 {
 	//이미지를 찾아서 그냥 이미지클래스의 함수를 실행시키면 됨
