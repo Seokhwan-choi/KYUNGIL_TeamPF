@@ -164,7 +164,9 @@
     <ClInclude Include="SceneMaker.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SingletonBase.h" />
+    <ClInclude Include="soundManager.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="timeManager.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +184,8 @@
     <ClCompile Include="randomFunction.cpp" />
     <ClCompile Include="SceneMaker.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="soundManager.cpp" />
+    <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="stdafx.cpp">
