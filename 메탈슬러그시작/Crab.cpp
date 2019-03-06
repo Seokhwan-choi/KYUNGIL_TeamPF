@@ -20,8 +20,9 @@ HRESULT Crab::Init()
 	crabImg[1] = IMAGEMANAGER->addFrameImage("crab1", "몬스터(게)-2(오른쪽).bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
 	crabImg[2] = IMAGEMANAGER->addFrameImage("crab2", "몬스터(게)-3.bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
 	crabImg[3] = IMAGEMANAGER->addFrameImage("crab3", "몬스터(게)-3(오른쪽).bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
+	crabImg[4] = IMAGEMANAGER->addFrameImage("crab4", "몬스터(게)-6.bmp", 3300, 194, 22, 1, true, RGB(250, 2, 250));
 	//이미지 랜더용 변수 초기화
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		indexImg[i] = countImg[i] = 0;
 	}
@@ -306,7 +307,7 @@ void Crab::Update()
 		{
 			_deathTimer++;
 
-			if (_deathTimer % 100 == 0)
+			if (_deathTimer % 150 == 0)
 			{
 				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "crab"));
 			}
@@ -348,7 +349,7 @@ void Crab::Update()
 
 	//상태에 따른 이미지 변경
 	this->crabImage();
-
+	
 }
 
 void Crab::Render()
@@ -360,7 +361,7 @@ void Crab::Render()
 	Rectangle(getMemDC(), _rc);
 
 	//게 이미지 그리기
-	//this->crabImageRender();
+	this->crabImageRender();
 
 	//충돌렉트 그리기
 	for (int i = 0; i < 4; i++)
@@ -465,6 +466,19 @@ void Crab::crabImage()
 			crabImg[1]->setFrameX(indexImg[2]);
 		}
 	}
+	if (_state == state::L_DEATH)
+	{
+		countImg[3]++;
+		if (countImg[3] % 7 == 0)
+		{
+			indexImg[3]++;
+			if (indexImg[3] > 21)
+			{
+				indexImg[3] = 0;
+			}
+			crabImg[4]->setFrameX(indexImg[3]);
+		}
+	}
 }
 
 void Crab::crabImageRender()
@@ -493,5 +507,9 @@ void Crab::crabImageRender()
 	if (_state == state::R_ATTACK_FINISH)
 	{
 		crabImg[1]->frameRender(getMemDC(), _rc.left, _rc.top);
+	}
+	if (_state == state::L_DEATH)
+	{
+		crabImg[4]->frameRender(getMemDC(), _rc.left, _rc.top - 44);
 	}
 }

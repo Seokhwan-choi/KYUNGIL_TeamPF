@@ -155,6 +155,7 @@
     <ClInclude Include="CommomMacroFuntion.h" />
     <ClInclude Include="CommonEnemyFrame.h" />
     <ClInclude Include="Crab.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="FlyBug.h" />
     <ClInclude Include="gameNode.h" />

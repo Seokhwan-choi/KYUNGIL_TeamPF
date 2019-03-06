@@ -58,8 +58,8 @@ void Fish::Update()
 		count++;
 		if (count > 0 && count < 50)
 		{
-			Fish_Rc.top -= 2;
-			Fish_Rc.bottom -= 2;
+			Fish_Rc.top -= 3;
+			Fish_Rc.bottom -= 3;
 		}
 		if (count > 50 && count < 100)
 		{
