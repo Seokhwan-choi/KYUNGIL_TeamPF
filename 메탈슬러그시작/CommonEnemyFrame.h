@@ -63,3 +63,10 @@ typedef struct tagBubble
 	int count;
 }
 BUBBLE, *LBUBBLE;
+
+typedef struct tagFish
+{
+	RECT rc;
+	float x, y;
+
+};

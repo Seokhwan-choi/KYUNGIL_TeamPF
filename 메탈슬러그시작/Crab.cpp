@@ -37,7 +37,7 @@ HRESULT Crab::Init()
 		_part[i].rc = RectMakeCenter(_part[i].pt.x, _part[i].pt.y, 50, 10);
 	}
 
-	//죽음 처리를 위한 변수
+	//죽음 처리를 위한 변수	
 	_deathTimer = 0;
 
 	//게 카메라 렉트(항상 몸 중앙을 따라다닌다.)
