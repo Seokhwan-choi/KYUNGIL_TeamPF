@@ -11,6 +11,8 @@ private:
 	image* _bgImage2;			// 배경의 배경
 	image* _PixelImage;			// 픽셀 충돌용 이미지
 
+	image* _wallImage;			// 맵_장벽
+
 	bool _PixelCheck;			// 픽셀 좀 보쟈
 
 	int _index;					// 프레임 인덱스
