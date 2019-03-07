@@ -194,6 +194,7 @@ void Crab::Update()
 		{
 			_isAttack = false;
 			_isAttackFinish = true;
+			_gauge = 1;
 		}
 	}
 

@@ -78,8 +78,29 @@ void Bubble::move()
 	{
 		if (!_vBubble[i].isFire)continue;
 
+		if (!_vBubble[i].isDown)
+		{
+			_vBubble[i].gravity -= 0.02f;
+			_vBubble[i].upDownCount++;
+			if (_vBubble[i].upDownCount >= 40)
+			{
+				_vBubble[i].gravity = 0.f;
+				_vBubble[i].isDown = true;
+			}
+		}
+		if (_vBubble[i].isDown)
+		{
+			_vBubble[i].gravity += 0.02f;
+			_vBubble[i].upDownCount--;
+			if (_vBubble[i].upDownCount <= 0)
+			{
+				_vBubble[i].gravity = 0.f;
+				_vBubble[i].isDown = false;
+			}
+		}
+
 		_vBubble[i].x += cosf(_vBubble[i].angle) * _vBubble[i].speed;
-		_vBubble[i].y += -sinf(_vBubble[i].angle) * _vBubble[i].speed;
+		_vBubble[i].y += -sinf(_vBubble[i].angle) * _vBubble[i].speed + _vBubble[i].gravity;
 
 		_vBubble[i].rc = RectMakeCenter(_vBubble[i].x, _vBubble[i].y
 										, _vBubble[i].bubbleImage->getWidth()
@@ -91,6 +112,9 @@ void Bubble::move()
 		if (_range < dist)
 		{
 			_vBubble[i].isFire = false;
+			_vBubble[i].gravity = 0.f;
+			_vBubble[i].upDownCount = 0;
+			_vBubble[i].isDown = false;
 		}
 	}
 }

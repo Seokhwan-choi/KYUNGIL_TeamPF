@@ -8,14 +8,18 @@ private:
 	//상태
 	STATE _state;
 	//상하 움직임 처리를 위한 변수
-	int _move;
 	bool _isUp;
 	//공격 처리를 위한 변수
-	int _gauge;
+	int _isStop;					//카메라 센서 정지유무
+	int _gauge;						//근접공격 딜레이 처리
+	int _bubbleGauge;				//거품공격 딜레이 처리
 	float _attackAngle;
+	bool _isBubbleShoot;
+	bool _isBubbleShootFinish;
+	int _moveTimer;
 	bool _isAttack;
 	bool _isAttackFinish;
-	POINTFLOAT _tempPt;
+
 	//죽음 처리를 위한 변수
 	int _deathTimer;
 	//카메라 구조체
@@ -31,7 +35,7 @@ private:
 	float _angle;
 	//플레이어와의 거리
 	float _dist;
-	//마우스 좌표 텍스트
+	//텍스트
 	char msg1[128];
 	POINT _pt;
 	//플레이어 클래스

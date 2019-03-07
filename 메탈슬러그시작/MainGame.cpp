@@ -24,14 +24,14 @@ HRESULT MainGame::init(void)
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug);
 
 	//게 생성
-	Crab* _crab = new Crab("crab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	//Crab* _crab = new Crab("crab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	//게 객체 추가하기
-	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
 
 	//거품게 생성
-	//BubbleCrab* _bubbleCrab = new BubbleCrab("bubbleCrab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	BubbleCrab* _bubbleCrab = new BubbleCrab("bubbleCrab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	//거품게 객체 추가하기
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab);
 
 	OBJECTMANAGER->Init();
 

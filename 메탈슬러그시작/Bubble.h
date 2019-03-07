@@ -6,7 +6,6 @@ class Bubble : public GameObject
 private:
 	float _range;						//거품 거리 
 	int _bubbleMax;						//거품 갯수 
-
 	vector<BUBBLE> _vBubble;			
 	vector<BUBBLE>::iterator _viBubble;
 public:
