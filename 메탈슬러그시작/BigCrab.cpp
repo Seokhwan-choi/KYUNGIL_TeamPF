@@ -60,7 +60,7 @@ void BigCrab::Update()
 
 	this->rectmove();
 	this->Attcol();
-	
+
 }
 
 void BigCrab::Render()
@@ -82,7 +82,7 @@ void BigCrab::Render()
 void BigCrab::Attcol()
 {
 	RECT temp;
-	if (IntersectRect(&temp, &_cam[0].rc, &player->GetRect()) && !IntersectRect(&temp,&_cam[1].rc,&player->GetRect()))
+	if (IntersectRect(&temp, &_cam[0].rc, &player->GetRect()) && !IntersectRect(&temp, &_cam[1].rc, &player->GetRect()))
 	{
 		_cam[0].isCrush = true;
 	}

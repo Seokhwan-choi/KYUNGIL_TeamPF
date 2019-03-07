@@ -20,7 +20,7 @@ HRESULT Fish::Init()
 	//플레이어 클래스 초기화
 	player = (Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어");
 	//물고기 렉트 초기화
-	Fish_Rc = RectMakeCenter(_position.x, _position.y, 50, 50);
+	Fish_Rc = RectMakeCenter(_position.x, _position.y, 50, 30);
 	//거리 조절
 	_cam.isCrush = false;
 	//카운터 초기화
@@ -58,8 +58,8 @@ void Fish::Update()
 		count++;
 		if (count > 0 && count < 50)
 		{
-			Fish_Rc.top -= 2;
-			Fish_Rc.bottom -= 2;
+			Fish_Rc.top -= 3;
+			Fish_Rc.bottom -= 3;
 		}
 		if (count > 50 && count < 100)
 		{
@@ -75,7 +75,7 @@ void Fish::Update()
 		}
 		if (Fish_Rc.left < 0)
 		{
-			Fish_Rc = RectMakeCenter(_position.x, _position.y, 50, 50);
+			Fish_Rc = RectMakeCenter(_position.x, _position.y, 50, 30);
 			count = 0;
 		}
 	}

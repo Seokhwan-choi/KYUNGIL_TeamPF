@@ -31,9 +31,9 @@ HRESULT MainGame::init(void)
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
 
 	//거품게 생성
-	BubbleCrab* _bubbleCrab = new BubbleCrab("bubbleCrab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	//BubbleCrab* _bubbleCrab = new BubbleCrab("bubbleCrab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	//거품게 객체 추가하기
-	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab);
 
 	//물고기 생성
 	Fish* fish = new Fish("fish", { WINSIZEX / 2 + 200,WINSIZEY / 2 + 200}, { 100,100 }, GameObject::Pivot::Center);

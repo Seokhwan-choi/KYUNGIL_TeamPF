@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BigCrab.h" />
     <ClInclude Include="Bubble.h" />
     <ClInclude Include="BubbleCrab.h" />
     <ClInclude Include="Bullet.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BigCrab.cpp" />
     <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="BubbleCrab.cpp" />
     <ClCompile Include="Bullet.cpp" />

@@ -63,6 +63,9 @@
     <Filter Include="소스 파일\몬스터\물고기">
       <UniqueIdentifier>{1d447d52-c40d-40e9-9edb-5aa2de5db56f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\몬스터\큰게">
+      <UniqueIdentifier>{870a65f1-9840-442c-9a9c-e9c2e40150d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommomMacroFuntion.h">
@@ -137,6 +140,9 @@
     <ClInclude Include="Fish.h">
       <Filter>소스 파일\몬스터\물고기</Filter>
     </ClInclude>
+    <ClInclude Include="BigCrab.h">
+      <Filter>소스 파일\몬스터\큰게</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -204,6 +210,9 @@
     </ClCompile>
     <ClCompile Include="Fish.cpp">
       <Filter>소스 파일\몬스터\물고기</Filter>
+    </ClCompile>
+    <ClCompile Include="BigCrab.cpp">
+      <Filter>소스 파일\몬스터\큰게</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
