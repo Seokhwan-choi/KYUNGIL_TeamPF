@@ -113,6 +113,9 @@
     <ClInclude Include="timeManager.h">
       <Filter>GameFramWork\매니저</Filter>
     </ClInclude>
+    <ClInclude Include="StageOne.h">
+      <Filter>소스 파일\맵</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -171,6 +174,9 @@
     </ClCompile>
     <ClCompile Include="timeManager.cpp">
       <Filter>GameFramWork\매니저</Filter>
+    </ClCompile>
+    <ClCompile Include="StageOne.cpp">
+      <Filter>소스 파일\맵</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -19,8 +19,6 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_gravity = 0.0f; //플레이어 중력 
 	_isJump = false; //최초 점프안된상태 
 
-
-
 	_angle = 0.0f;
 	_time = 0;
 	_count = 0;
@@ -73,7 +71,7 @@ void Player::Update()
 	{
 		_playerbulletstate = PLAYERBULLETSTATE::RIGHTFIRE;//오른쪾상태에서는 총알 오른쪽으로 나간다 
 		_playerheavystate = PLAYERHEAVYSTATE::RIGHTFIRE;
-		_position.x += 3.0f;
+		_position.x += 20.0f;
 		_angle -= 0.125f;
 		if (_angle < 0.0f) _angle = 0.0f;
 	}
@@ -151,9 +149,8 @@ void Player::Update()
 		_fire = false;
 		_count = 0;
 	}
-	
 
-	if (KEYMANAGER->isOnceKeyDown('S') &&_isJump==false)//점프상태 아닐떄 S키 누르면 
+	if (KEYMANAGER->isOnceKeyDown('S') && _isJump==false)//점프상태 아닐떄 S키 누르면 
 	{
 		_isJump = true; //점프는 true가되고 
 		_jumppower = 7.5f; //점프힘에 7.5
@@ -164,7 +161,7 @@ void Player::Update()
 		_position.y -= _jumppower;//플레이어 y축은 점프힘만큼 빼준다  
 		_jumppower -= _gravity;//점프힘은 중력값만큼 빠진다 
 	}
-	if (_position.y > 400)//플레이어 중점이 400보다 커지면 
+	if (_position.y > 500)//플레이어 중점이 400보다 커지면 
 	{
 		_isJump = false;		//점프상태는 false로 바까준다 
 	}
@@ -198,16 +195,27 @@ void Player::Update()
 	_playerbullet->move();//플레이어 총알은 항시 움직이고 
 	_playerboom->move(); 
 	
-
+	if ( _rc.right > 6550)
+	{
+		_rc.right -= _rc.right - 6550;
+		_rc.left -= _rc.right - 6550;
+	}
+	
 	this->UpdateRectByPivot();
-
+	// 플레이어를 중심으로 카메라 셋팅
+	CAMERA->SetCamera(_position);
 }
 
 void Player::Render()
 {
-	Rectangle(getMemDC(), _rc);
+	RECT _playerRC = CAMERA->Relative(_rc);
+	Rectangle(getMemDC(), _playerRC);
 	_playerbullet->Render();
 	_playerboom->Render();
+
+	char str[30];
+	wsprintf(str, " X 좌표 : %d", _position.x);
+	TextOut(getMemDC(), 50, 50, str, strlen(str));
 }
 
 

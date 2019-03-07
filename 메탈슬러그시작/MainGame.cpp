@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MainGame.h"
-#include "Player.h"
+#include "StageOne.h"
 
 //==========================================================================//
 //						## 초기화 ## init(void)								//
@@ -8,16 +8,9 @@
 HRESULT MainGame::init(void)
 {
 	gameNode::init(true); 
-
-	//Monster* monster = new Monster("Monster", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::Center);
-	//OBJECTMANAGER->AddObject(ObjectType::Object, monster);
-
-	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
-
-
+	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
+	SCENEMANAGER->ChangeScene("스테이지 원");
 	return S_OK;	
-	//return S_OK밑에 코드 있으면 안됨!!!!!!!!!!!
 }
 
 //==========================================================================//
@@ -26,10 +19,7 @@ HRESULT MainGame::init(void)
 void MainGame::release(void)
 {
 	gameNode::release();
-	//이미지 클래스를 날갈떄까진 사용할 일 없다.
-	//동적할당 new를 사용했다면 이곳에서 SAFE_DELETE();		
-	
-
+	SCENEMANAGER->Release();
 }
 
 //==========================================================================//
@@ -37,10 +27,8 @@ void MainGame::release(void)
 //==========================================================================//
 void MainGame::update(void)
 {
-	gameNode::update();
-
-	OBJECTMANAGER->Update();
-	
+	gameNode::update();	
+	SCENEMANAGER->Update();
 }
 
 //==========================================================================//
@@ -54,9 +42,7 @@ void MainGame::render()
 	//흰색 빈 비트맵 (이것도 렌더에 그냥 두기)
 	PatBlt(memDC, 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//========================================================================//
-	OBJECTMANAGER->Render();
-
-	
+	SCENEMANAGER->Render();
 	//백버퍼의 내용을 HDC에 그린다 (이것도 렌더에 그냥 두기)
 	this->getBackBuffer()->render(getHDC());
 
