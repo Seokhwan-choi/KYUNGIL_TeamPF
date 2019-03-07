@@ -39,8 +39,16 @@ HRESULT BigCrab::Init()
 	_col[3].rc = RectMakeCenter(_col[3].pt.x + _size.x / 2 + 5, _col[3].pt.y, _size.x / 10, _size.y);
 	//플레이어 클래스 초기화
 	player = (Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어");
-
-
+	//공격용 렉트 초기화
+	for (int i = 0; i < 2; i++)
+	{
+		_att[i].pt = { _position.x,_position.y };
+	}
+	//왼쪽공격용 렉트
+	_att[0].rc = RectMakeCenter(_att[0].pt.x - _size.x / 4, _att[0].pt.y - _size.y / 15 + 90, _size.x / 3, _size.y - 150);
+	//오른쪽공격용 렉트
+	_att[1].rc = RectMakeCenter(_att[1].pt.x + _size.x / 4 + 10, _att[1].pt.y - _size.y / 15 + 90, _size.x / 3, _size.y - 150);
+	
 	return S_OK;
 }
 
@@ -57,10 +65,25 @@ void BigCrab::Update()
 	if (KEYMANAGER->isStayKeyDown('P')) {
 		_position.x += 5.f;
 	}
-
 	this->rectmove();
 	this->Attcol();
 
+	if (!_cam[0].isCrush && !_cam[1].isCrush && !_cam[2].isCrush)
+	{
+		_state = state::L_IDLE;
+	}
+	if (_cam[0].isCrush)
+	{
+		_state = state::L_ATTACK;
+	}
+	if (_cam[1].isCrush)
+	{
+		_state = state::L_ATTACK;
+	}
+	if (_cam[2].isCrush)
+	{
+		_state = state::L_ATTACK;
+	}
 }
 
 void BigCrab::Render()
@@ -77,6 +100,11 @@ void BigCrab::Render()
 	{
 		Rectangle(getMemDC(), _col[i].rc);
 	}
+	//큰게 공격용렉트 그리기
+	for (int i = 0; i < 2; i++)
+	{
+		Rectangle(getMemDC(), _att[i].rc);
+	}
 }
 
 void BigCrab::Attcol()
@@ -86,13 +114,25 @@ void BigCrab::Attcol()
 	{
 		_cam[0].isCrush = true;
 	}
+	else
+	{
+		_cam[0].isCrush = false;
+	}
 	if (IntersectRect(&temp, &_cam[0].rc, &player->GetRect()) && IntersectRect(&temp, &_cam[1].rc, &player->GetRect()))
 	{
 		_cam[1].isCrush = true;
 	}
+	else
+	{
+		_cam[1].isCrush = false;
+	}
 	if (IntersectRect(&temp, &_cam[2].rc, &player->GetRect()))
 	{
 		_cam[2].isCrush = true;
+	}
+	else
+	{
+		_cam[2].isCrush = false;
 	}
 }
 

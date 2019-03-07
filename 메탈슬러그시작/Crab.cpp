@@ -1,3 +1,4 @@
+
 #include "stdafx.h"
 #include "crab.h"
 #include "Player.h"
@@ -13,7 +14,7 @@ Crab::~Crab()
 HRESULT Crab::Init()
 {
 	//상태 초기화
-	_state = state::L_IDLE;
+	_state = state::IDLE;
 
 	//이미지 초기화
 	crabImg[0] = IMAGEMANAGER->addFrameImage("crab", "몬스터(게)-2.bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
