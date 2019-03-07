@@ -201,11 +201,14 @@ void Player::Update()
 
 	this->UpdateRectByPivot();
 
+	// 플레이어를 중심으로 카메라 셋팅
+	CAMERA->SetCamera(_position);
 }
 
 void Player::Render()
 {
-	Rectangle(getMemDC(), _rc);
+	RECT _playerRC = CAMERA->Relative(_rc);
+	Rectangle(getMemDC(), _playerRC);
 	_playerbullet->Render();
 	_playerboom->Render();
 }

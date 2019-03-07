@@ -10,6 +10,17 @@ void Camera::SetCamera(POINTFLOAT pos)
 
 	// 추가 예정
 	// 추가적으로 카메라의 위치를 보정해줘야 한다.
+
+	if (_cameraRect.left < 0) 
+	{
+		_cameraPos.x -= _cameraRect.left;
+	}
+
+	if (_cameraRect.right > 14070) {
+		_cameraPos.x -= _cameraRect.right - 14070;
+	}
+
+	_cameraRect = RectMakeCenter(_cameraPos.x, _cameraPos.y, WINSIZEX, WINSIZEY);
 }
 
 // 상대 좌표를 계산 해준다.
