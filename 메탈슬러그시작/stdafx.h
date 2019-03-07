@@ -62,7 +62,7 @@ using namespace std;
 #define WINSTARTX		100
 #define WINSTARTY		0
 #define WINSIZEX		1280
-#define WINSIZEY		960
+#define WINSIZEY		958
 #define WINSTYLE		WS_CAPTION | WS_SYSMENU
 
 //==============================================================//
