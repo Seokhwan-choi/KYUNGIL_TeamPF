@@ -1,7 +1,11 @@
 #include "stdafx.h"
 #include "MainGame.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "FlyBug.h"
+#include "Crab.h"
+#include "BubbleCrab.h"
+#include "Fish.h"
+#include "BigCrab.h"
 
 //==========================================================================//
 //						## 초기화 ## init(void)								//
@@ -32,13 +36,19 @@ HRESULT MainGame::init(void)
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab);
 
 	//물고기 생성
-	Fish* fish = new Fish("fish", { WINSIZEX / 2 + 200,WINSIZEY / 2 + 200 }, { 100,100 }, GameObject::Pivot::Center);
+	Fish* fish = new Fish("fish", { WINSIZEX / 2 + 200,WINSIZEY / 2 + 200}, { 100,100 }, GameObject::Pivot::Center);
 	//물고기 객체 추가하기
 	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, fish);
 
+	//큰게 생성
+	//BigCrab* bigCrab = new BigCrab("bigCrab", { 1060,WINSIZEY / 2 + 110}, { 200,280 }, GameObject::Pivot::Center);
+	//큰게 객체 추가하기
+	//OBJECTMANAGER->AddObject(ObjectType::ENEMY, bigCrab);
+
+
 	OBJECTMANAGER->Init();
 
-	return S_OK;
+	return S_OK;	
 	//return S_OK밑에 코드 있으면 안됨!!!!!!!!!!!
 }
 
