@@ -1,9 +1,9 @@
 ﻿  Player.cpp
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(238): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(238): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(241): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(241): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(250): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(250): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(466): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(466): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(469): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(469): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(478): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(478): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   GameFramework2D.vcxproj -> D:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\Debug\WindowAPI.exe
   GameFramework2D.vcxproj -> D:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\Debug\WindowAPI.pdb (Partial PDB)

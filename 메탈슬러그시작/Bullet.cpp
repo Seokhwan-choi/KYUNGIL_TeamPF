@@ -59,7 +59,7 @@ void Bullet::fire(float x, float y, float angle, float speed)
 {
 	for (int i = 0; i < _vBullet.size(); i++)
 	{
-		if (_vBullet[i].isFire)continue;
+		if (_vBullet[i].isFire) continue;
 
 		_vBullet[i].isFire = true;
 		_vBullet[i].x = _vBullet[i].fireX = x;
