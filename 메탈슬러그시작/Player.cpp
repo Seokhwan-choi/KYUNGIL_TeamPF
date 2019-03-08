@@ -663,10 +663,10 @@ void Player::Render()
 	switch (_state)
 	{
 	case Player::STATE::IDLE:
-		IMAGEMANAGER->frameRender("플레이어가만", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어가만", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::WALK:
-		IMAGEMANAGER->frameRender("플레이어이동", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어이동", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::IDLE_SHOT:
 		IMAGEMANAGER->frameRender("플레이어딱총공격", getMemDC(), _rc.left, _rc.top);

@@ -2,15 +2,11 @@
 #include "MainGame.h"
 #include "StageOne.h"
 #include "Player.h"
-#include "FlyBug.h"
-#include "Crab.h"
-#include "BubbleCrab.h"
-#include "Fish.h"
-#include "BigCrab.h"
+#include "Enemy.h"
 #include "startScene.h"
 #include "choiceScene.h"
 #include "stage1Scene.h"
-#include "Monster.h"
+
 //==========================================================================//
 //						## 초기화 ## init(void)								//
 //==========================================================================//
@@ -45,17 +41,12 @@ HRESULT MainGame::init(void)
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, fish);
 
 	//큰게 생성
-	BigCrab* bigCrab = new BigCrab("bigCrab", { 500 ,WINSIZEY / 2 + 110}, { 200,280 }, GameObject::Pivot::Center);
-
+	//BigCrab* bigCrab = new BigCrab("bigCrab", { 500 ,WINSIZEY / 2 + 110}, { 200,280 }, GameObject::Pivot::Center);
 	//큰게 객체 추가하기
-	OBJECTMANAGER->AddObject(ObjectType::ENEMY, bigCrab);
+	//OBJECTMANAGER->AddObject(ObjectType::ENEMY, bigCrab);
 
-
-	OBJECTMANAGER->Init();
 	//_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
-	_monster = new Monster("몬스터", { WINSIZEX / 2 + 200,WINSIZEY / 2 }, { 100,100 }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _monster);
 
 	startScene* _startscene = new startScene;
 	SCENEMANAGER->AddScene("시작화면", _startscene);
@@ -65,8 +56,8 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
 
 	//첫 시작화면
-	stage1Scene* _stage1 = new stage1Scene;
-	SCENEMANAGER->AddScene("스테이지1", _stage1);
+	//stage1Scene* _stage1 = new stage1Scene;
+	//SCENEMANAGER->AddScene("스테이지1", _stage1);
 
 	/*
 	undergroundScene* _underground = new undergroundScene;
