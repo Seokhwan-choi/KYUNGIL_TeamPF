@@ -148,9 +148,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BigCrab.h" />
+    <ClInclude Include="Bubble.h" />
+    <ClInclude Include="BubbleCrab.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CommomMacroFuntion.h" />
+    <ClInclude Include="CommonEnemyFrame.h" />
+    <ClInclude Include="Crab.h" />
+    <ClInclude Include="Fish.h" />
+    <ClInclude Include="FlyBug.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Gizmo.h" />
@@ -171,8 +178,14 @@
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BigCrab.cpp" />
+    <ClCompile Include="Bubble.cpp" />
+    <ClCompile Include="BubbleCrab.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Crab.cpp" />
+    <ClCompile Include="Fish.cpp" />
+    <ClCompile Include="FlyBug.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Gizmo.cpp" />

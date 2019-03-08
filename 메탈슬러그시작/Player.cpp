@@ -161,7 +161,8 @@ void Player::Update()
 		_position.y -= _jumppower;//플레이어 y축은 점프힘만큼 빼준다  
 		_jumppower -= _gravity;//점프힘은 중력값만큼 빠진다 
 	}
-	if (_position.y > 500)//플레이어 중점이 400보다 커지면 
+
+	if (_position.y > 650)//플레이어 중점이 400보다 커지면 
 	{
 		_isJump = false;		//점프상태는 false로 바까준다 
 	}

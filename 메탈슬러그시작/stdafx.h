@@ -38,9 +38,13 @@ using namespace std;
 #include "Camera.h"
 #include "SceneManager.h"
 #include "ObjectManager.h"
+<<<<<<< HEAD
 #include "soundManager.h"
 #include "timeManager.h"
 
+=======
+#include "CommonEnemyFrame.h"
+>>>>>>> feature/Enemy
 
 //==============================================================//
 //					## 싱글톤을 추가한다 ##					    //
@@ -58,7 +62,7 @@ using namespace std;
 //==============================================================//
 //				## 디파인문 ## (윈도우창 초기화)				    //
 //==============================================================//
-#define WINNAME			(LPTSTR)(TEXT(" 프로그래밍 12기 "))
+#define WINNAME			(LPTSTR)(TEXT(" 메탈슬러그3 제작자 : 석환, 병윤, 지연, 수완, 민병 "))
 #define WINSTARTX		100
 #define WINSTARTY		0
 #define WINSIZEX		1280

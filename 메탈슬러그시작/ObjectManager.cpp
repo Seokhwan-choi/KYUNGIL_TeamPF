@@ -23,7 +23,15 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::Init()
 {
-
+	ObjectIter = objectContainer.begin();
+	// 맵을 iterator를 사용해서 탐색을 시작한다.
+	for (; ObjectIter != objectContainer.end(); ++ObjectIter)
+	{
+		for (UINT i = 0; i < ObjectIter->second.size(); ++i)
+		{
+			ObjectIter->second[i]->Init();
+		}
+	}
 }
 
 void ObjectManager::Release()
