@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "startScene.h"
 #include "choiceScene.h"
+#include "stage1Scene.h"
 //==========================================================================//
 //						## 초기화 ## init(void)								//
 //==========================================================================//
@@ -22,6 +23,19 @@ HRESULT MainGame::init(void)
 
 	choiceScene* _choicescene = new choiceScene;
 	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
+
+	//첫 시작화면
+	stage1Scene* _stage1 = new stage1Scene;
+	SCENEMANAGER->AddScene("스테이지1", _stage1);
+
+	/*
+	undergroundScene* _underground = new undergroundScene;
+	SCENEMANAGER->AddScene("스테이지1_1", _underground);
+	underriverScene&  _underriver = new underriverScene;
+	SCENEMANAGER->AddScene("스테이지1_2", _underriver);
+	boosScene&  _bossscene = new boosScene;
+	SCENEMANAGER->AddScene("스테이지1_2", _bossscene);
+	*/
 
 	SCENEMANAGER->Init();
 	return S_OK;	

@@ -51,6 +51,9 @@
     <Filter Include="소스 파일\GameObject">
       <UniqueIdentifier>{27739e9a-50e2-44a3-9e0a-a9b17afae5d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameFramWork\플레이어데이터">
+      <UniqueIdentifier>{54f38f54-afdc-48fd-9240-1acde1772896}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommomMacroFuntion.h">
@@ -119,6 +122,27 @@
     <ClInclude Include="choiceScene.h">
       <Filter>소스 파일\맵</Filter>
     </ClInclude>
+    <ClInclude Include="stage1Scene.h">
+      <Filter>소스 파일\맵</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverUi.h">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="stage1StartUi.h">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="timeUi.h">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>GameFramWork\플레이어데이터</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverUi_2.h">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="playerDataUi.h">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -183,6 +207,27 @@
     </ClCompile>
     <ClCompile Include="choiceScene.cpp">
       <Filter>소스 파일\맵</Filter>
+    </ClCompile>
+    <ClCompile Include="stage1Scene.cpp">
+      <Filter>소스 파일\맵</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverUi.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="stage1StartUi.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerData.cpp">
+      <Filter>GameFramWork\플레이어데이터</Filter>
+    </ClCompile>
+    <ClCompile Include="timeUi.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverUi_2.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="playerDataUi.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -38,7 +38,7 @@ using namespace std;
 #include "Camera.h"
 #include "SceneManager.h"
 #include "ObjectManager.h"
-
+#include "PlayerData.h"
 //==============================================================//
 //					## 싱글톤을 추가한다 ##					    //
 //==============================================================//
@@ -49,6 +49,7 @@ using namespace std;
 #define CAMERA Camera::getSingleton()
 #define SCENEMANAGER SceneManager::getSingleton()
 #define OBJECTMANAGER ObjectManager::getSingleton()
+#define DATA PlayerData::getSingleton()
 
 //==============================================================//
 //				## 디파인문 ## (윈도우창 초기화)				    //
@@ -57,7 +58,7 @@ using namespace std;
 #define WINSTARTX		100
 #define WINSTARTY		0
 #define WINSIZEX		1280
-#define WINSIZEY		960
+#define WINSIZEY		958
 #define WINSTYLE		WS_CAPTION | WS_SYSMENU
 
 //==============================================================//
