@@ -49,7 +49,7 @@ using namespace std;
 #define CAMERA Camera::getSingleton()
 #define SCENEMANAGER SceneManager::getSingleton()
 #define OBJECTMANAGER ObjectManager::getSingleton()
-#define DATA PlayerData::getSingleton()
+#define PLAYERDATA PlayerData::getSingleton()
 
 //==============================================================//
 //				## 디파인문 ## (윈도우창 초기화)				    //

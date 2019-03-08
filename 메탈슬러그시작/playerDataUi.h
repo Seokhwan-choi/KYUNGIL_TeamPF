@@ -10,13 +10,13 @@ private:
 	//========================================================
 	// 씬 관련 이미지 변수
 	//========================================================
-	image* _bombarmsImg;
-	image* _guageImg;
-	image* _1upImg;
+	image* _bombarmsImg;		//틀
+	image* _guageImg;			//게이지바테두리
+	image* _1upImg;				//1up
 
-	image* _lifeImg;
-	image* _scoreImg;
-	image* _buImg;
+	image* _lifeImg;			//생명숫자
+	image* _scoreImg;			//점수숫자
+	image* _buImg;				//블렛숫자
 
 
 
