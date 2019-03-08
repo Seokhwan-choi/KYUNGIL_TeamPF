@@ -110,7 +110,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>소스 파일\GameObject</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="startScene.h">
       <Filter>소스 파일\맵</Filter>
     </ClInclude>
@@ -143,12 +142,12 @@
     </ClInclude>
     <ClInclude Include="playerDataUi.h">
       <Filter>소스 파일\UI/아이템</Filter>
-=======
+    </ClInclude>  
     <ClInclude Include="Monster.h">
       <Filter>헤더 파일</Filter>
->>>>>>> feature/Player2
     </ClInclude>
   </ItemGroup>
+  
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
       <Filter>MainGame\WinMain</Filter>
@@ -201,7 +200,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="startScene.cpp">
       <Filter>소스 파일\맵</Filter>
     </ClCompile>
@@ -234,10 +232,9 @@
     </ClCompile>
     <ClCompile Include="playerDataUi.cpp">
       <Filter>소스 파일\UI/아이템</Filter>
-=======
+    </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>소스 파일</Filter>
->>>>>>> feature/Player2
     </ClCompile>
   </ItemGroup>
 </Project>
