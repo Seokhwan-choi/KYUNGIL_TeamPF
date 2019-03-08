@@ -20,11 +20,16 @@ HRESULT Fish::Init()
 	//플레이어 클래스 초기화
 	player = (Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어");
 	//물고기 렉트 초기화
-	Fish_Rc = RectMakeCenter(_position.x, _position.y, 50, 30);
+	for (int i = 0; i < 8; i++)
+	{
+		fish_rc[i].Fish_Rc = RectMakeCenter(_position.x, _position.y, 50, 30);
+		fish_rc[i].isFish = false;
+		fish_rc[i].count = 1;
+	}
 	//거리 조절
 	_cam.isCrush = false;
 	//카운터 초기화
-	count = 0;
+	count = 1;
 	return S_OK;
 }
 
@@ -56,30 +61,48 @@ void Fish::Update()
 	if (_state == state::L_MOVE)
 	{
 		count++;
-		if (count > 0 && count < 50)
+		if (count % 30 == 0)
 		{
-			Fish_Rc.top -= 3;
-			Fish_Rc.bottom -= 3;
+			for (int i = 0; i < 8; i++)
+			{
+				if (fish_rc[i].isFish == true)
+				{
+					continue;
+				}
+				fish_rc[i].isFish = true;
+				break;
+			}
 		}
-		if (count > 50 && count < 100)
+		for (int i = 0; i < 8; i++)
 		{
-			Fish_Rc.top += 2;
-			Fish_Rc.bottom += 2;
-			Fish_Rc.left -= 2;
-			Fish_Rc.right -= 2;
-		}
-		if (count > 100)
-		{
-			Fish_Rc.left -= 5;
-			Fish_Rc.right -= 5;
-		}
-		if (Fish_Rc.left < 0)
-		{
-			Fish_Rc = RectMakeCenter(_position.x, _position.y, 50, 30);
-			count = 0;
+			if (fish_rc[i].isFish == true)
+			{
+				fish_rc[i].count++;
+				if (fish_rc[i].count && fish_rc[i].count < 50)
+				{
+					fish_rc[i].Fish_Rc.top -= 3;
+					fish_rc[i].Fish_Rc.bottom -= 3;
+				}
+				if (fish_rc[i].count > 50 && fish_rc[i].count < 100)
+				{
+					fish_rc[i].Fish_Rc.top += 2;
+					fish_rc[i].Fish_Rc.bottom += 2;
+					fish_rc[i].Fish_Rc.left -= 2;
+					fish_rc[i].Fish_Rc.right -= 2;
+				}
+				if (fish_rc[i].count > 100)
+				{
+					fish_rc[i].Fish_Rc.left -= 5;
+					fish_rc[i].Fish_Rc.right -= 5;
+				}
+				if (fish_rc[i].Fish_Rc.left < 0)
+				{
+					fish_rc[i].Fish_Rc = RectMakeCenter(_position.x, _position.y, 50, 30);
+					fish_rc[i].count = 0;
+				}
+			}
 		}
 	}
-
 }
 
 void Fish::Render()
@@ -89,9 +112,12 @@ void Fish::Render()
 	//렉트 그리기
 	Rectangle(getMemDC(), _rc);
 	//물고기 렉트 그리기
-	if (_state == state::L_MOVE)
+	for (int i = 0; i < 8; i++)
 	{
-		Rectangle(getMemDC(), Fish_Rc);
-	}
+		if (_state == state::L_MOVE && fish_rc[i].isFish == true)
+		{
+			Rectangle(getMemDC(), fish_rc[i].Fish_Rc);
+		}
 
+	}
 }
