@@ -179,6 +179,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SingletonBase.h" />
     <ClInclude Include="soundManager.h" />
+<<<<<<< HEAD
     <ClInclude Include="stage1Scene.h" />
     <ClInclude Include="stage1StartUi.h" />
     <ClInclude Include="StageOne.h" />
@@ -187,6 +188,10 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timeUi.h" />
+=======
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="timeManager.h" />
+>>>>>>> ## 최석환 ## Image클래스 수정, timeManager, soundManager 추가
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +223,7 @@
     <ClCompile Include="SceneMaker.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="stage1Scene.cpp" />
     <ClCompile Include="stage1StartUi.cpp" />
     <ClCompile Include="StageOne.cpp" />
@@ -225,6 +231,9 @@
     <ClCompile Include="startUi.cpp" />
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timeUi.cpp" />
+=======
+    <ClCompile Include="timeManager.cpp" />
+>>>>>>> ## 최석환 ## Image클래스 수정, timeManager, soundManager 추가
     <ClCompile Include="util.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="stdafx.cpp">
