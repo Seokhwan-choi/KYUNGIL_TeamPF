@@ -61,6 +61,8 @@ private:
 	LPIMAGE_INFO	_blendImage;	//알파블렌드 이미지
 	BLENDFUNCTION	_blendFunc;		//알파블렌드 기능
 
+	LPIMAGE_INFO	_stretchImage;	//스트레치이미지
+
 public:
 	image();
 	~image();
@@ -78,6 +80,8 @@ public:
 
 	//알파블렌드 초기화
 	HRESULT initForAlphaBlend();
+	//스트레치렌더 초기화
+	HRESULT initForStretchBlt();
 
 	//해제
 	void release();
@@ -101,6 +105,18 @@ public:
 	void frameRender(HDC hdc, int destX, int destY);
 	void frameRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY);
 	void alphaFrameRender(HDC hdc, int destX, int destY, int currentframeX, int currentframeY, int alpha);
+
+	//=============================================================
+	//	## 루프렌더 ##
+	//=============================================================
+	void loopRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY);
+	void loopAlphaRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha);
+
+	//=============================================================
+	//	## 스트레치렌더 ## (이미지 스케일링)
+	//=============================================================
+	void stretchRender(HDC hdc, int destX, int destY, float scale = 1.0f);
+	void stretchFrameRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY, float scale = 1.0f);
 
 	//=============================================================
 	//	## 인라인함수 ## (캡슐화 - 겟터, 셋터)

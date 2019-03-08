@@ -51,20 +51,8 @@
     <Filter Include="소스 파일\GameObject">
       <UniqueIdentifier>{27739e9a-50e2-44a3-9e0a-a9b17afae5d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\몬스터\잠자리">
-      <UniqueIdentifier>{b5064d32-3b4c-4352-85ba-a04b7c057a2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\몬스터\거품게">
-      <UniqueIdentifier>{2d75ad83-a292-40da-bf4a-0e3f37f7b0df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\몬스터\게">
-      <UniqueIdentifier>{402116b0-2ff7-48bb-84f0-6ace61b91d46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\몬스터\물고기">
-      <UniqueIdentifier>{1d447d52-c40d-40e9-9edb-5aa2de5db56f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\몬스터\큰게">
-      <UniqueIdentifier>{870a65f1-9840-442c-9a9c-e9c2e40150d6}</UniqueIdentifier>
+    <Filter Include="GameFramWork\플레이어데이터">
+      <UniqueIdentifier>{54f38f54-afdc-48fd-9240-1acde1772896}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -122,37 +110,38 @@
     <ClInclude Include="GameObject.h">
       <Filter>소스 파일\GameObject</Filter>
     </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="soundManager.h">
-      <Filter>GameFramWork\매니저</Filter>
-    </ClInclude>
-    <ClInclude Include="timeManager.h">
-      <Filter>GameFramWork\매니저</Filter>
-    </ClInclude>
-    <ClInclude Include="StageOne.h">
+    <ClInclude Include="startScene.h">
       <Filter>소스 파일\맵</Filter>
-=======
-    <ClInclude Include="CommonEnemyFrame.h">
-      <Filter>GameFramWork\유틸</Filter>
     </ClInclude>
-    <ClInclude Include="FlyBug.h">
-      <Filter>소스 파일\몬스터\잠자리</Filter>
+    <ClInclude Include="startUi.h">
+      <Filter>소스 파일\UI/아이템</Filter>
     </ClInclude>
-    <ClInclude Include="Crab.h">
-      <Filter>소스 파일\몬스터\게</Filter>
+    <ClInclude Include="choiceUi.h">
+      <Filter>소스 파일\UI/아이템</Filter>
     </ClInclude>
-    <ClInclude Include="BubbleCrab.h">
-      <Filter>소스 파일\몬스터\거품게</Filter>
+    <ClInclude Include="choiceScene.h">
+      <Filter>소스 파일\맵</Filter>
     </ClInclude>
-    <ClInclude Include="Bubble.h">
-      <Filter>소스 파일\몬스터\거품게</Filter>
+    <ClInclude Include="stage1Scene.h">
+      <Filter>소스 파일\맵</Filter>
     </ClInclude>
-    <ClInclude Include="Fish.h">
-      <Filter>소스 파일\몬스터\물고기</Filter>
+    <ClInclude Include="GameOverUi.h">
+      <Filter>소스 파일\UI/아이템</Filter>
     </ClInclude>
-    <ClInclude Include="BigCrab.h">
-      <Filter>소스 파일\몬스터\큰게</Filter>
->>>>>>> feature/Enemy
+    <ClInclude Include="stage1StartUi.h">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="timeUi.h">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>GameFramWork\플레이어데이터</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverUi_2.h">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="playerDataUi.h">
+      <Filter>소스 파일\UI/아이템</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -207,34 +196,38 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="soundManager.cpp">
-      <Filter>GameFramWork\매니저</Filter>
-    </ClCompile>
-    <ClCompile Include="timeManager.cpp">
-      <Filter>GameFramWork\매니저</Filter>
-    </ClCompile>
-    <ClCompile Include="StageOne.cpp">
+    <ClCompile Include="startScene.cpp">
       <Filter>소스 파일\맵</Filter>
-=======
-    <ClCompile Include="FlyBug.cpp">
-      <Filter>소스 파일\몬스터\잠자리</Filter>
     </ClCompile>
-    <ClCompile Include="Crab.cpp">
-      <Filter>소스 파일\몬스터\게</Filter>
+    <ClCompile Include="startUi.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
     </ClCompile>
-    <ClCompile Include="BubbleCrab.cpp">
-      <Filter>소스 파일\몬스터\거품게</Filter>
+    <ClCompile Include="choiceUi.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
     </ClCompile>
-    <ClCompile Include="Bubble.cpp">
-      <Filter>소스 파일\몬스터\거품게</Filter>
+    <ClCompile Include="choiceScene.cpp">
+      <Filter>소스 파일\맵</Filter>
     </ClCompile>
-    <ClCompile Include="Fish.cpp">
-      <Filter>소스 파일\몬스터\물고기</Filter>
+    <ClCompile Include="stage1Scene.cpp">
+      <Filter>소스 파일\맵</Filter>
     </ClCompile>
-    <ClCompile Include="BigCrab.cpp">
-      <Filter>소스 파일\몬스터\큰게</Filter>
->>>>>>> feature/Enemy
+    <ClCompile Include="GameOverUi.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="stage1StartUi.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerData.cpp">
+      <Filter>GameFramWork\플레이어데이터</Filter>
+    </ClCompile>
+    <ClCompile Include="timeUi.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverUi_2.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="playerDataUi.cpp">
+      <Filter>소스 파일\UI/아이템</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -38,13 +38,10 @@ using namespace std;
 #include "Camera.h"
 #include "SceneManager.h"
 #include "ObjectManager.h"
-<<<<<<< HEAD
 #include "soundManager.h"
 #include "timeManager.h"
-
-=======
 #include "CommonEnemyFrame.h"
->>>>>>> feature/Enemy
+#include "PlayerData.h"
 
 //==============================================================//
 //					## 싱글톤을 추가한다 ##					    //
@@ -58,6 +55,7 @@ using namespace std;
 #define OBJECTMANAGER ObjectManager::getSingleton()
 #define SOUNDMANAGER soundManager::getSingleton()
 #define TIMEMANAGER timeManager::getSingleton()
+#define DATA PlayerData::getSingleton()
 
 //==============================================================//
 //				## 디파인문 ## (윈도우창 초기화)				    //
