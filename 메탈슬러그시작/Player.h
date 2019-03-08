@@ -45,22 +45,22 @@ enum class STATE : int
 {
 	// ±âº», ±âº»_ÃÑ, ±âº»_¾÷¼¦, ±âº»_Ä®Áú, ±âº»_ÆøÅº, ±âº»_À§º¸±â ( 6°¡Áö )
 	IDLE, IDLE_SHOT, IDLE_UPSHOT, IDLE_SWORD, IDLE_BOOM, IDLE_UPSTARE,
-	//      //          //                                 //
+	//      //          //                     //            //??ÇÏÀÚ
 
 	// °È±â, °È±â_ÃÑ, °È±â_¾÷¼¦, °È±â_Ä®Áú, °È±â_ÆøÅº, °È±â_À§º¸±â ( 6°¡Áö )
 	WALK, WALK_SHOT, WALK_UPSHOT, WALK_SWORD, WALK_BOOM, WLAK_UPSTARE,
-	//      //                
+	//      //        //        
 
 	// Á¡ÇÁ, Á¡ÇÁ_ÃÑ, Á¡ÇÁ_¾÷¼¦, Á¡ÇÁ_´Ù¿î¼¦, Á¡ÇÁ_Ä®Áú, Á¡ÇÁ_ÆøÅº, Á¡ÇÁ_À§º¸±â, Á¡ÇÁ_¾Æ·¡º¸±â ( 8°¡Áö )
 	JUMP, JUMP_SHOT, JUMP_UPSHOT, JUMP_DOWNSHOT, JUMP_SWORD, JUMP_BOOM, JUMP_UPSTARE, JUMP_DOWNSTARE,
-	//     //                                                        
+	//     //           //           //                               
 
 	// Á¡ÇÁ°È±â, Á¡ÇÁ°È±â_ÃÑ, Á¡ÇÁ°È±â_¾÷¼¦, Á¡ÇÁ°È±â_´Ù¿î¼¦, Á¡ÇÁ°È±â_Ä®Áú ( 6°¡Áö )
 	JUMPWALK, JUMPWALK_SHOT, JUMPWALK_UPSHOT, JUMPWALK_DOWNSHOT, JUMPWALK_SWORD,
-	//                          //go
+	//           //                //				//go
 	// Á¡ÇÁ°È±â_ÆøÅº, Á¡ÇÁ°È±â_À§º¸±â, Á¡ÇÁ°È±â_¾Æ·¡º¸±â ( 3°¡Áö)
 	JUMPWALK_BOOM, JUMPWALK_UPSTARE, JUMPWALK_DOWNSTARE,
-
+	                    //
 	// ¾É±â, ¾É¾Æ°È±â, ¾É¾ÆÃÑ, ¾É¾ÆÄ®Áú, ¾É¾ÆÆøÅº ( 5°¡Áö )
 	CROUCH, CROUCHWALK, CROUCHSHOT, CROUCHSWORD, CROUCHBOOM
 	//        //           //   
@@ -107,8 +107,10 @@ private:
 	float _angle1;						// À½¼öÈ®ÀÎ¿ë¾Þ±Û °¢µµ°¡ À½¼öÀÏ¶§´Â À½¼öÀü¿ë º¯¼ö¸¦ ¸¸µé¾î¾ßÇÑ´Ù 
 										//============================================================
 
+	bool _boomfire;                      //d´­·¯¼­ ¹ß»çµÌ³Ä??
 	bool _playerboomFire;				//0¹ßÀÌÇÏ°¡ µÇ¸é ÆøÅºÀ» »ç¿ëÇÒ¼ö°¡¾ø´Ù 
 										//³ª¸ÓÁöÃ³¸®´Â bulletÅ¬·¡½º boom fireÇÔ¼ö¿¡¼­ Ã³¸®ÇÑ´Ù 
+
 	bool _playerbulletfire;				//¾÷µ¥ÀÌÆ®¿¡¼­ ÃÑ¾ËÀÌ ¹ß»çµÌ³Ä? 
 
 
@@ -127,151 +129,6 @@ public:
 	void PlayerBulletMotion();			//ÃÑ¾Ë ¿òÁ÷ÀÏ ¶§
 	void Checkstate();					//ÇÃ·¹ÀÌ¾î »óÅÂ È®ÀÎ
 
-};
+	void PlayerBoomMotion();            //ÇÃ·¹ÀÌ¾îÆøÅº»óÅÂ 
 
-//_frameCount++;
-//if (_isLeft == false)
-//{
-//	IMAGEMANAGER->findImage("ÇÃ·¹ÀÌ¾îÀ§µüÃÑ°ø°Ý")->setFrameY(0);
-//	if (_frameCount % SPEED == 0)
-//	{
-//		_frameIndex++;
-//		if (_frameIndex > 5)
-//		{
-//			_frameIndex = 0;
-//		}
-//		IMAGEMANAGER->findImage("ÇÃ·¹ÀÌ¾îÀ§µüÃÑ°ø°Ý")->setFrameX(_frameIndex);
-//		if (_frameIndex == 0)
-//		{
-//			_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
-//		}
-//		if (_frameIndex == 5)
-//		{
-//			_state = STATE::IDLE;
-//			_playerbulletfire = false;
-//		}
-//	}
-//}
-//switch (_weapon)
-//{
-//case WEAPON::NORMAL:
-//	switch (_bullet)
-//	{
-//	case BULLET::RIGHTFIRE:
-//		switch (_wstate)
-//		{
-//		case WALKSTATE::WALK:
-//			_frameCount++;
-//			if (_isLeft == false)
-//			{
-//				IMAGEMANAGER->findImage("ÇÃ·¹ÀÌ¾îÀÌµ¿ÇÏ¸ç°ø°Ý")->setFrameY(0);
-//				if (_frameCount % SPEED == 0)
-//				{
-//					_frameIndex++;
-//					if (_frameIndex > 5)
-//					{
-//						_frameIndex = 0;
-//					}
-//					IMAGEMANAGER->findImage("ÇÃ·¹ÀÌ¾îÀÌµ¿ÇÏ¸ç°ø°Ý")->setFrameX(_frameIndex);
-//					if (_frameIndex == 0)
-//					{
-//						_playerbullet->fire(_position.x, _position.y, 0, 12.5f);
-//					}
-//					if (_frameIndex == 5)
-//					{
-//						_state = STATE::IDLE;
-//						_playerbulletfire = false;
-//					}
-//				}
-//				break;
-//			}
-//			000break;
-//case WALKSTATE::WALK:
-//	_frameCount++;
-//	if (_isLeft == false)
-//	{
-//		IMAGEMANAGER->findImage("ÇÃ·¹ÀÌ¾îÀÌµ¿ÇÏ¸ç°ø°Ý")->setFrameY(0);
-//		if (_frameCount % SPEED == 0)
-//		{
-//			_frameIndex++;
-//			if (_frameIndex > 5)
-//			{
-//				_frameIndex = 0;
-//			}
-//			IMAGEMANAGER->findImage("ÇÃ·¹ÀÌ¾îÀÌµ¿ÇÏ¸ç°ø°Ý")->setFrameX(_frameIndex);
-//			if (_frameIndex == 0)
-//			{
-//				_playerbullet->fire(_position.x, _position.y, 0, 12.5f);
-//			}
-//			if (_frameIndex == 5)
-//			{
-//				_state = STATE::IDLE;
-//				_playerbulletfire = false;
-//			}
-//		}
-//		break;
-//	}
-//	break;
-//if (_isJump == true)
-//{
-//	if (_state == STATE::JUMP_SHOT)
-//	{
-//		_wstate = WALKSTATE::JUMP;
-//		_state = STATE::JUMP_SHOT;
-//	}
-//	else
-//	{
-//		_wstate = WALKSTATE::JUMP;
-//		_state = STATE::JUMPWALK;
-//	}
-//	/*	_wstate = WALKSTATE::JUMPWALK;
-//	_state = STATE::JUMPWALK;*/
-//	_position.x += 3.0f;
-//}
-//_frameCount++;
-//
-//if (_isLeft == false)
-//{
-//	IMAGEMANAGER->findImage("ÇÃ·¹ÀÌ¾îÀ§µüÃÑ°ø°Ý")->setFrameY(0);
-//	if (_frameCount % SPEED == 0)
-//	{
-//		_frameIndex++;
-//		if (_frameIndex > 5)
-//		{
-//			_frameIndex = 0;
-//		}
-//		IMAGEMANAGER->findImage("ÇÃ·¹ÀÌ¾îÀ§µüÃÑ°ø°Ý")->setFrameX(_frameIndex);
-//		if (_frameIndex == 0)
-//		{
-//			_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
-//		}
-//		if (_frameIndex == 5)
-//		{
-//			_state = STATE::IDLE;
-//			_playerbulletfire = false;
-//		}
-//	}
-//}
-//else//¿ÞÂÊ¸ð¼Ç
-//{
-//
-//	if (_frameCount % SPEED == 0)
-//	{
-//		IMAGEMANAGER->findImage("ÇÃ·¹ÀÌ¾îÀ§µüÃÑ°ø°Ý")->setFrameY(1);
-//		_frameIndex--;
-//		if (_frameIndex < 0)
-//		{
-//			_frameIndex = 5;
-//		}
-//		IMAGEMANAGER->findImage("ÇÃ·¹ÀÌ¾îÀ§µüÃÑ°ø°Ý")->setFrameX(_frameIndex);
-//		if (_frameIndex == 5)
-//		{
-//			_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
-//		}
-//		if (_frameIndex == 0)
-//		{
-//			_state = STATE::IDLE;
-//			_playerbulletfire = false;
-//		}
-//	}
-//}
+};
