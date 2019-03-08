@@ -54,6 +54,21 @@
     <Filter Include="GameFramWork\플레이어데이터">
       <UniqueIdentifier>{54f38f54-afdc-48fd-9240-1acde1772896}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\몬스터\큰게">
+      <UniqueIdentifier>{542fd960-3ad4-4408-8e8f-b5a861e04a09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\몬스터\거품게">
+      <UniqueIdentifier>{b723a8a3-a38a-4c50-abfc-9203615ddb73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\몬스터\작은게">
+      <UniqueIdentifier>{45149611-fe44-4f4d-ad0a-28bc5419f61d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\몬스터\물고기">
+      <UniqueIdentifier>{e42b2eb4-1aa2-4552-8c0e-66006086fa7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\몬스터\잠자리">
+      <UniqueIdentifier>{cc6dba63-baf8-41b4-b005-45693693602a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommomMacroFuntion.h">
@@ -110,7 +125,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>소스 파일\GameObject</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="startScene.h">
       <Filter>소스 파일\맵</Filter>
     </ClInclude>
@@ -144,44 +158,39 @@
     <ClInclude Include="playerDataUi.h">
       <Filter>소스 파일\UI/아이템</Filter>
     </ClInclude>
-    <ClInclude Include="Bubble.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
-    <ClInclude Include="BubbleCrab.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
-    <ClInclude Include="Crab.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
-    <ClInclude Include="Fish.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
-    <ClInclude Include="Flybug.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
-    <ClInclude Include="BigCrab.h">
       <Filter>소스 파일\몬스터</Filter>
     </ClInclude>
     <ClInclude Include="CommonEnemyFrame.h">
       <Filter>GameFramWork\유틸</Filter>
     </ClInclude>
-=======
->>>>>>> ## 최석환 ## Image클래스 수정, timeManager, soundManager 추가
     <ClInclude Include="soundManager.h">
       <Filter>GameFramWork\매니저</Filter>
     </ClInclude>
     <ClInclude Include="timeManager.h">
       <Filter>GameFramWork\매니저</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="StageOne.h">
       <Filter>소스 파일\맵</Filter>
     </ClInclude>
-=======
->>>>>>> ## 최석환 ## Image클래스 수정, timeManager, soundManager 추가
+    <ClInclude Include="BigCrab.h">
+      <Filter>소스 파일\몬스터\큰게</Filter>
+    </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>소스 파일\몬스터\거품게</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleCrab.h">
+      <Filter>소스 파일\몬스터\거품게</Filter>
+    </ClInclude>
+    <ClInclude Include="Crab.h">
+      <Filter>소스 파일\몬스터\작은게</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish.h">
+      <Filter>소스 파일\몬스터\물고기</Filter>
+    </ClInclude>
+    <ClInclude Include="Flybug.h">
+      <Filter>소스 파일\몬스터\잠자리</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -235,7 +244,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="startScene.cpp">
       <Filter>소스 파일\맵</Filter>
     </ClCompile>
@@ -269,40 +277,35 @@
     <ClCompile Include="playerDataUi.cpp">
       <Filter>소스 파일\UI/아이템</Filter>
     </ClCompile>
-    <ClCompile Include="Bubble.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
-    <ClCompile Include="BubbleCrab.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
-    <ClCompile Include="Crab.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
-    <ClCompile Include="Fish.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
-    <ClCompile Include="Flybug.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>소스 파일\몬스터</Filter>
     </ClCompile>
-    <ClCompile Include="BigCrab.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
-=======
->>>>>>> ## 최석환 ## Image클래스 수정, timeManager, soundManager 추가
     <ClCompile Include="soundManager.cpp">
       <Filter>GameFramWork\매니저</Filter>
     </ClCompile>
     <ClCompile Include="timeManager.cpp">
       <Filter>GameFramWork\매니저</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="StageOne.cpp">
       <Filter>소스 파일\맵</Filter>
     </ClCompile>
-=======
->>>>>>> ## 최석환 ## Image클래스 수정, timeManager, soundManager 추가
+    <ClCompile Include="BigCrab.cpp">
+      <Filter>소스 파일\몬스터\큰게</Filter>
+    </ClCompile>
+    <ClCompile Include="Bubble.cpp">
+      <Filter>소스 파일\몬스터\거품게</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleCrab.cpp">
+      <Filter>소스 파일\몬스터\거품게</Filter>
+    </ClCompile>
+    <ClCompile Include="Crab.cpp">
+      <Filter>소스 파일\몬스터\작은게</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish.cpp">
+      <Filter>소스 파일\몬스터\물고기</Filter>
+    </ClCompile>
+    <ClCompile Include="Flybug.cpp">
+      <Filter>소스 파일\몬스터\잠자리</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

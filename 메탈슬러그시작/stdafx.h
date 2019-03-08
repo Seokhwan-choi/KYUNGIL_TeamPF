@@ -41,12 +41,10 @@ using namespace MY_UTIL;
 #include "ObjectManager.h"
 #include "soundManager.h"
 #include "timeManager.h"
-<<<<<<< HEAD
 #include "CommonEnemyFrame.h"
 #include "PlayerData.h"
-=======
 
->>>>>>> ## 최석환 ## Image클래스 수정, timeManager, soundManager 추가
+
 
 //==============================================================//
 //					## 싱글톤을 추가한다 ##					    //
@@ -60,10 +58,8 @@ using namespace MY_UTIL;
 #define OBJECTMANAGER ObjectManager::getSingleton()
 #define SOUNDMANAGER soundManager::getSingleton()
 #define TIMEMANAGER timeManager::getSingleton()
-<<<<<<< HEAD
 #define DATA PlayerData::getSingleton()
-=======
->>>>>>> ## 최석환 ## Image클래스 수정, timeManager, soundManager 추가
+
 
 //==============================================================//
 //				## 디파인문 ## (윈도우창 초기화)				    //
