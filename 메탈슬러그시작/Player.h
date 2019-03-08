@@ -70,6 +70,32 @@ enum class STATE : int
 class Player : public GameObject
 {
 private:
+	enum class STATE : int
+	{
+		// 기본, 기본_총, 기본_업샷, 기본_칼질, 기본_폭탄, 기본_위보기 ( 6가지 )
+		IDLE, IDLE_SHOT, IDLE_UPSHOT, IDLE_SWORD, IDLE_BOOM, IDLE_UPSTARE,
+		//      //          //                                 //
+
+		// 걷기, 걷기_총, 걷기_업샷, 걷기_칼질, 걷기_폭탄, 걷기_위보기 ( 6가지 )
+		WALK, WALK_SHOT, WALK_UPSHOT, WALK_SWORD, WALK_BOOM, WLAK_UPSTARE,
+		//      //                
+
+		// 점프, 점프_총, 점프_업샷, 점프_다운샷, 점프_칼질, 점프_폭탄, 점프_위보기, 점프_아래보기 ( 8가지 )
+		JUMP, JUMP_SHOT, JUMP_UPSHOT, JUMP_DOWNSHOT, JUMP_SWORD, JUMP_BOOM, JUMP_UPSTARE, JUMP_DOWNSTARE,
+		//     //                                                        
+
+		// 점프걷기, 점프걷기_총, 점프걷기_업샷, 점프걷기_다운샷, 점프걷기_칼질 ( 6가지 )
+		JUMPWALK, JUMPWALK_SHOT, JUMPWALK_UPSHOT, JUMPWALK_DOWNSHOT, JUMPWALK_SWORD,
+		//                          //go
+		// 점프걷기_폭탄, 점프걷기_위보기, 점프걷기_아래보기 ( 3가지)
+		JUMPWALK_BOOM, JUMPWALK_UPSTARE, JUMPWALK_DOWNSTARE,
+
+		// 앉기, 앉아걷기, 앉아총, 앉아칼질, 앉아폭탄 ( 5가지 )
+		CROUCH, CROUCHWALK, CROUCHSHOT, CROUCHSWORD, CROUCHBOOM
+		//        //           //   
+		// 총 34가지 동작
+	};
+private:
 	BULLET _bullet;						//플레이어 총알 방향 
 	SWORD _sword;						//플레이어 칼공격 왼쪽과 오른쪽일떄 enum문 
 	WEAPON _weapon;						//플레이어 무기 뭐들고잇나 상태값
@@ -112,6 +138,7 @@ private:
 										//나머지처리는 bullet클래스 boom fire함수에서 처리한다 
 
 	bool _playerbulletfire;				//업데이트에서 총알이 발사됫냐? 
+
 
 
 public:

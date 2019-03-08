@@ -14,7 +14,6 @@ GameObject::GameObject(string name, POINTFLOAT pos, POINTFLOAT size,Pivot pivot)
 GameObject::GameObject(string name)
 	: _name(name), _position({0,0}),_size({ 0,0 }), _pivot(Pivot::LeftTop), _isActive(true), _isLive(true)
 {
-	
 }
 GameObject::~GameObject()
 {
@@ -22,18 +21,15 @@ GameObject::~GameObject()
 
 HRESULT GameObject::Init()
 {
-
 	return S_OK;
 }
 
 void GameObject::Release()
 {
-
 }
 
 void GameObject::Update()
 {
-	
 }
 
 void GameObject::Render()

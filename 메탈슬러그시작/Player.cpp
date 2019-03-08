@@ -791,7 +791,7 @@ void Player::Render()
 	//===================이미지============================================
 	switch (_state)
 	{
-	case STATE::IDLE:
+	case Player::STATE::IDLE:
 		IMAGEMANAGER->frameRender("플레이어가만", getMemDC(), _rc.left, _rc.top);
 		break;
 	case STATE::WALK:

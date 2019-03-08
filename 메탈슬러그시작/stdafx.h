@@ -4,9 +4,6 @@
 //
 #pragma once
 
-#include <SDKDDKVer.h>
-#include "util.h"
-using namespace MY_UTIL;
 #define WIN32_LEAN_AND_MEAN             // 거의 사용되지 않는 내용은 Windows 헤더에서 제외합니다.
 
 // Windows 헤더 파일:
@@ -27,6 +24,10 @@ using namespace MY_UTIL;
 
 using namespace std;
 
+#include <SDKDDKVer.h>
+#include "util.h"
+using namespace MY_UTIL;
+
 //==============================================================//
 //						내가만든 헤더파일							//
 //==============================================================//
@@ -38,6 +39,10 @@ using namespace std;
 #include "Camera.h"
 #include "SceneManager.h"
 #include "ObjectManager.h"
+#include "soundManager.h"
+#include "timeManager.h"
+#include "CommonEnemyFrame.h"
+#include "PlayerData.h"
 
 //==============================================================//
 //					## 싱글톤을 추가한다 ##					    //
@@ -49,15 +54,18 @@ using namespace std;
 #define CAMERA Camera::getSingleton()
 #define SCENEMANAGER SceneManager::getSingleton()
 #define OBJECTMANAGER ObjectManager::getSingleton()
+#define SOUNDMANAGER soundManager::getSingleton()
+#define TIMEMANAGER timeManager::getSingleton()
+#define DATA PlayerData::getSingleton()
 
 //==============================================================//
 //				## 디파인문 ## (윈도우창 초기화)				    //
 //==============================================================//
-#define WINNAME			(LPTSTR)(TEXT(" 프로그래밍 12기 "))
+#define WINNAME			(LPTSTR)(TEXT(" 메탈슬러그3 제작자 : 석환, 병윤, 지연, 수완, 민병 "))
 #define WINSTARTX		100
 #define WINSTARTY		0
-#define WINSIZEX		800
-#define WINSIZEY		700
+#define WINSIZEX		1280
+#define WINSIZEY		958
 #define WINSTYLE		WS_CAPTION | WS_SYSMENU
 
 //==============================================================//
