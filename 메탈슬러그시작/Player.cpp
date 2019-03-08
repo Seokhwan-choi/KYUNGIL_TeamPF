@@ -635,7 +635,7 @@ void Player::Update()
 // =====================================================================================================================================
 void Player::Render()
 {
-	Rectangle(getMemDC(), _rc);//플레이어 렉트 보여주기 
+	Rectangle(getMemDC(), CAMERA->Relative(_rc));//플레이어 렉트 보여주기 
 	_playerbullet->Render(); //bullet에서 받아서 기본총 보여주기 
 
 	_playerboom->Render();   //플레이어 폭탄 보여주기 
@@ -663,43 +663,43 @@ void Player::Render()
 	switch (_state)
 	{
 	case Player::STATE::IDLE:
-		IMAGEMANAGER->frameRender("플레이어가만", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어가만", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::WALK:
-		IMAGEMANAGER->frameRender("플레이어이동", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어이동", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::IDLE_SHOT:
-		IMAGEMANAGER->frameRender("플레이어딱총공격", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어딱총공격", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::IDLE_UPSHOT:
-		IMAGEMANAGER->frameRender("플레이어위딱총공격", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어위딱총공격", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::JUMP:
-		IMAGEMANAGER->frameRender("플레이어기본점프", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어기본점프", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::IDLE_UPSTARE:
-		IMAGEMANAGER->frameRender("플레이어가만위보기", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어가만위보기", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::CROUCH:
-		IMAGEMANAGER->frameRender("플레이어쭈그려", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어쭈그려", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::CROUCHWALK:
-		IMAGEMANAGER->frameRender("플레이어쭈그려서이동", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어쭈그려서이동", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::CROUCHSHOT:
-		IMAGEMANAGER->frameRender("플레이어쭈그려공격", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어쭈그려공격", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::JUMPWALK:
-		IMAGEMANAGER->frameRender("플레이어좌우이동하며점프", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어좌우이동하며점프", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::WALK_SHOT:
-		IMAGEMANAGER->frameRender("플레이어이동하며공격", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어이동하며공격", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::JUMP_SHOT:
-		IMAGEMANAGER->frameRender("플레이어가만점프공격", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어가만점프공격", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	case STATE::JUMPWALK_UPSHOT:
-		IMAGEMANAGER->frameRender("플레이어이동하면서점프하고위에발사", getMemDC(), _rc.left, _rc.top);
+		IMAGEMANAGER->frameRender("플레이어이동하면서점프하고위에발사", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
 	}
 	// =====================================================================

@@ -158,6 +158,7 @@
     <ClInclude Include="CommomMacroFuntion.h" />
     <ClInclude Include="CommonEnemyFrame.h" />
     <ClInclude Include="Crab.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Flybug.h" />
     <ClInclude Include="gameNode.h" />
@@ -187,6 +188,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timeUi.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>

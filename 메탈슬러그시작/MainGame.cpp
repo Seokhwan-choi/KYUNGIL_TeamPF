@@ -18,11 +18,11 @@ HRESULT MainGame::init(void)
 {
 	gameNode::init(true); 
 
-	//SCENEMANAGER->AddScene("스테이지 원", new StageOne);
-	//SCENEMANAGER->ChangeScene("스테이지 원");
+	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
+	SCENEMANAGER->ChangeScene("스테이지 원");
 
-	_player = new Player("플레이어", {100 ,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+	//_player = new Player("플레이어", {100 ,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	//Monster* monster = new Monster("Monster", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::Center);
 	//OBJECTMANAGER->AddObject(ObjectType::Object, monster);
@@ -33,9 +33,9 @@ HRESULT MainGame::init(void)
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug);
 
 	//게 생성
-	Crab* _crab = new Crab("crab", { 1060, WINSIZEY / 2 + 175}, { 100, 150 }, GameObject::Pivot::Center);
+	//Crab* _crab = new Crab("crab", { 1060, WINSIZEY / 2 + 175}, { 100, 150 }, GameObject::Pivot::Center);
 	//게 객체 추가하기
-	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
 
 	//거품게 생성
 	//BubbleCrab* _bubbleCrab = new BubbleCrab("bubbleCrab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
@@ -53,16 +53,16 @@ HRESULT MainGame::init(void)
 	//OBJECTMANAGER->AddObject(ObjectType::ENEMY, bigCrab);
 
 
-	OBJECTMANAGER->Init();
+	//OBJECTMANAGER->Init();
 	//_monster = new Monster("몬스터", { WINSIZEX / 2 + 200,WINSIZEY / 2 }, { 100,100 }, GameObject::Pivot::Center);
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _monster);
 
-	//startScene* _startscene = new startScene;
-	//SCENEMANAGER->AddScene("시작화면", _startscene);
-	//SCENEMANAGER->ChangeScene("시작화면");
+	startScene* _startscene = new startScene;
+	SCENEMANAGER->AddScene("시작화면", _startscene);
+	SCENEMANAGER->ChangeScene("시작화면");
 
-	//choiceScene* _choicescene = new choiceScene;
-	//SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
+	choiceScene* _choicescene = new choiceScene;
+	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
 
 	//첫 시작화면
 	//stage1Scene* _stage1 = new stage1Scene;
@@ -77,7 +77,7 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->AddScene("스테이지1_2", _bossscene);
 	*/
 
-	//SCENEMANAGER->Init();
+	SCENEMANAGER->Init();
 	return S_OK;	
 }
 
@@ -101,7 +101,7 @@ void MainGame::update(void)
 {
 	gameNode::update();	
 	SCENEMANAGER->Update();
-	OBJECTMANAGER->Update();
+	//OBJECTMANAGER->Update();
 }
 
 //==========================================================================//
@@ -116,7 +116,7 @@ void MainGame::render()
 	PatBlt(memDC, 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//========================================================================//
 	SCENEMANAGER->Render();
-	OBJECTMANAGER->Render();
+	//OBJECTMANAGER->Render();
 
 	//백버퍼의 내용을 HDC에 그린다 (이것도 렌더에 그냥 두기)
 	this->getBackBuffer()->render(getHDC());
