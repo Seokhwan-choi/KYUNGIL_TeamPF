@@ -41,34 +41,35 @@ enum class WALKSTATE : int
 // =========================================
 // ############## ÇÃ·¹ÀÌ¾î »óÅÂ ##############
 // =========================================
-enum class STATE : int
-{
-	// ±âº», ±âº»_ÃÑ, ±âº»_¾÷¼¦, ±âº»_Ä®Áú, ±âº»_ÆøÅº, ±âº»_À§º¸±â ( 6°¡Áö )
-	IDLE, IDLE_SHOT, IDLE_UPSHOT, IDLE_SWORD, IDLE_BOOM, IDLE_UPSTARE,
-	//      //          //                                 //
-
-	// °È±â, °È±â_ÃÑ, °È±â_¾÷¼¦, °È±â_Ä®Áú, °È±â_ÆøÅº, °È±â_À§º¸±â ( 6°¡Áö )
-	WALK, WALK_SHOT, WALK_UPSHOT, WALK_SWORD, WALK_BOOM, WLAK_UPSTARE,
-	//      //                
-
-	// Á¡ÇÁ, Á¡ÇÁ_ÃÑ, Á¡ÇÁ_¾÷¼¦, Á¡ÇÁ_´Ù¿î¼¦, Á¡ÇÁ_Ä®Áú, Á¡ÇÁ_ÆøÅº, Á¡ÇÁ_À§º¸±â, Á¡ÇÁ_¾Æ·¡º¸±â ( 8°¡Áö )
-	JUMP, JUMP_SHOT, JUMP_UPSHOT, JUMP_DOWNSHOT, JUMP_SWORD, JUMP_BOOM, JUMP_UPSTARE, JUMP_DOWNSTARE,
-	//     //                                                        
-
-	// Á¡ÇÁ°È±â, Á¡ÇÁ°È±â_ÃÑ, Á¡ÇÁ°È±â_¾÷¼¦, Á¡ÇÁ°È±â_´Ù¿î¼¦, Á¡ÇÁ°È±â_Ä®Áú ( 6°¡Áö )
-	JUMPWALK, JUMPWALK_SHOT, JUMPWALK_UPSHOT, JUMPWALK_DOWNSHOT, JUMPWALK_SWORD,
-	//                          //go
-	// Á¡ÇÁ°È±â_ÆøÅº, Á¡ÇÁ°È±â_À§º¸±â, Á¡ÇÁ°È±â_¾Æ·¡º¸±â ( 3°¡Áö)
-	JUMPWALK_BOOM, JUMPWALK_UPSTARE, JUMPWALK_DOWNSTARE,
-
-	// ¾É±â, ¾É¾Æ°È±â, ¾É¾ÆÃÑ, ¾É¾ÆÄ®Áú, ¾É¾ÆÆøÅº ( 5°¡Áö )
-	CROUCH, CROUCHWALK, CROUCHSHOT, CROUCHSWORD, CROUCHBOOM
-	//        //           //   
-	// ÃÑ 34°¡Áö µ¿ÀÛ
-};
 
 class Player : public GameObject
 {
+private:
+	enum class STATE : int
+	{
+		// ±âº», ±âº»_ÃÑ, ±âº»_¾÷¼¦, ±âº»_Ä®Áú, ±âº»_ÆøÅº, ±âº»_À§º¸±â ( 6°¡Áö )
+		IDLE, IDLE_SHOT, IDLE_UPSHOT, IDLE_SWORD, IDLE_BOOM, IDLE_UPSTARE,
+		//      //          //                                 //
+
+		// °È±â, °È±â_ÃÑ, °È±â_¾÷¼¦, °È±â_Ä®Áú, °È±â_ÆøÅº, °È±â_À§º¸±â ( 6°¡Áö )
+		WALK, WALK_SHOT, WALK_UPSHOT, WALK_SWORD, WALK_BOOM, WLAK_UPSTARE,
+		//      //                
+
+		// Á¡ÇÁ, Á¡ÇÁ_ÃÑ, Á¡ÇÁ_¾÷¼¦, Á¡ÇÁ_´Ù¿î¼¦, Á¡ÇÁ_Ä®Áú, Á¡ÇÁ_ÆøÅº, Á¡ÇÁ_À§º¸±â, Á¡ÇÁ_¾Æ·¡º¸±â ( 8°¡Áö )
+		JUMP, JUMP_SHOT, JUMP_UPSHOT, JUMP_DOWNSHOT, JUMP_SWORD, JUMP_BOOM, JUMP_UPSTARE, JUMP_DOWNSTARE,
+		//     //                                                        
+
+		// Á¡ÇÁ°È±â, Á¡ÇÁ°È±â_ÃÑ, Á¡ÇÁ°È±â_¾÷¼¦, Á¡ÇÁ°È±â_´Ù¿î¼¦, Á¡ÇÁ°È±â_Ä®Áú ( 6°¡Áö )
+		JUMPWALK, JUMPWALK_SHOT, JUMPWALK_UPSHOT, JUMPWALK_DOWNSHOT, JUMPWALK_SWORD,
+		//                          //go
+		// Á¡ÇÁ°È±â_ÆøÅº, Á¡ÇÁ°È±â_À§º¸±â, Á¡ÇÁ°È±â_¾Æ·¡º¸±â ( 3°¡Áö)
+		JUMPWALK_BOOM, JUMPWALK_UPSTARE, JUMPWALK_DOWNSTARE,
+
+		// ¾É±â, ¾É¾Æ°È±â, ¾É¾ÆÃÑ, ¾É¾ÆÄ®Áú, ¾É¾ÆÆøÅº ( 5°¡Áö )
+		CROUCH, CROUCHWALK, CROUCHSHOT, CROUCHSWORD, CROUCHBOOM
+		//        //           //   
+		// ÃÑ 34°¡Áö µ¿ÀÛ
+	};
 private:
 	BULLET _bullet;						//ÇÃ·¹ÀÌ¾î ÃÑ¾Ë ¹æÇâ 
 	SWORD _sword;						//ÇÃ·¹ÀÌ¾î Ä®°ø°Ý ¿ÞÂÊ°ú ¿À¸¥ÂÊÀÏ‹š enum¹® 
@@ -110,6 +111,7 @@ private:
 	bool _playerboomFire;				//0¹ßÀÌÇÏ°¡ µÇ¸é ÆøÅºÀ» »ç¿ëÇÒ¼ö°¡¾ø´Ù 
 										//³ª¸ÓÁöÃ³¸®´Â bulletÅ¬·¡½º boom fireÇÔ¼ö¿¡¼­ Ã³¸®ÇÑ´Ù 
 	bool _playerbulletfire;				//¾÷µ¥ÀÌÆ®¿¡¼­ ÃÑ¾ËÀÌ ¹ß»çµÌ³Ä? 
+
 
 
 public:

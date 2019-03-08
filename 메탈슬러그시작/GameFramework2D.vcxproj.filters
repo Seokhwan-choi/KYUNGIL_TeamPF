@@ -142,12 +142,41 @@
     </ClInclude>
     <ClInclude Include="playerDataUi.h">
       <Filter>소스 파일\UI/아이템</Filter>
-    </ClInclude>  
+    </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleCrab.h">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="Crab.h">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish.h">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="Flybug.h">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="BigCrab.h">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonEnemyFrame.h">
+      <Filter>GameFramWork\유틸</Filter>
+    </ClInclude>
+    <ClInclude Include="soundManager.h">
+      <Filter>GameFramWork\매니저</Filter>
+    </ClInclude>
+    <ClInclude Include="timeManager.h">
+      <Filter>GameFramWork\매니저</Filter>
+    </ClInclude>
+    <ClInclude Include="StageOne.h">
+      <Filter>소스 파일\맵</Filter>
     </ClInclude>
   </ItemGroup>
-  
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
       <Filter>MainGame\WinMain</Filter>
@@ -233,8 +262,35 @@
     <ClCompile Include="playerDataUi.cpp">
       <Filter>소스 파일\UI/아이템</Filter>
     </ClCompile>
+    <ClCompile Include="Bubble.cpp">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleCrab.cpp">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="Crab.cpp">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish.cpp">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="Flybug.cpp">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="BigCrab.cpp">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="soundManager.cpp">
+      <Filter>GameFramWork\매니저</Filter>
+    </ClCompile>
+    <ClCompile Include="timeManager.cpp">
+      <Filter>GameFramWork\매니저</Filter>
+    </ClCompile>
+    <ClCompile Include="StageOne.cpp">
+      <Filter>소스 파일\맵</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

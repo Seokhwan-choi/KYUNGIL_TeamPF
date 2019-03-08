@@ -162,3 +162,4 @@ void BigCrab::rectmove()
 	//¿ÞÂÊ
 	_col[3].rc = RectMakeCenter(_col[3].pt.x + _size.x / 2 + 5, _col[3].pt.y, _size.x / 10, _size.y);
 }
+

@@ -4,9 +4,6 @@
 //
 #pragma once
 
-#include <SDKDDKVer.h>
-#include "util.h"
-using namespace MY_UTIL;
 #define WIN32_LEAN_AND_MEAN             // 거의 사용되지 않는 내용은 Windows 헤더에서 제외합니다.
 
 // Windows 헤더 파일:
@@ -26,6 +23,10 @@ using namespace MY_UTIL;
 #include <map>
 
 using namespace std;
+
+#include <SDKDDKVer.h>
+#include "util.h"
+using namespace MY_UTIL;
 
 //==============================================================//
 //						내가만든 헤더파일							//
