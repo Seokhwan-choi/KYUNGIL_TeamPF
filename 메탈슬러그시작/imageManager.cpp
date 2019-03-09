@@ -270,31 +270,3 @@ void imageManager::frameRender(string strKey, HDC hdc, int destX, int destY, int
 	image* img = findImage(strKey);
 	if (img) img->frameRender(hdc, destX, destY, currentFrameX, currentFrameY);
 }
-
-void imageManager::loopRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY)
-{
-	//이미지를 찾아서 그냥 이미지클래스의 함수를 실행시키면 됨
-	image* img = findImage(strKey);
-	if (img) img->loopRender(hdc, drawArea, offsetX, offsetY);
-}
-
-void imageManager::loopAlphaRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha)
-{
-	//이미지를 찾아서 그냥 이미지클래스의 함수를 실행시키면 됨
-	image* img = findImage(strKey);
-	if (img) img->loopAlphaRender(hdc, drawArea, offsetX, offsetY, alpha);
-}
-
-void imageManager::stretchRender(string strKey, HDC hdc, int destX, int destY, float scale)
-{
-	//이미지를 찾아서 그냥 이미지클래스의 함수를 실행시키면 됨
-	image* img = findImage(strKey);
-	if (img) img->stretchRender(hdc, destX, destY, scale);
-}
-
-void imageManager::stretchFrameRender(string strKey, HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY, float scale)
-{
-	//이미지를 찾아서 그냥 이미지클래스의 함수를 실행시키면 됨
-	image* img = findImage(strKey);
-	if (img) img->stretchFrameRender(hdc, destX, destY, currentFrameX, currentFrameY, scale);
-}

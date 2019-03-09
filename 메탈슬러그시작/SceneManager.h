@@ -6,7 +6,7 @@ class SceneManager : public SingletonBase<SceneManager>
 private:
 	map<string, class SceneMaker*> SceneList;				// 씬 리스트
 	map<string, class SceneMaker*>::iterator SceneIter;		// 씬 반복자
-	SceneMaker* CurrentScene;								// 현재 씬
+	class SceneMaker* CurrentScene;							// 현재 씬
 public:
 
 	HRESULT Init();			// 씬 초기화
@@ -17,11 +17,11 @@ public:
 	void AddScene(string name, class SceneMaker* scene); // 씬 추가
 	void ChangeScene(string name);						 // 씬 바꿔주기
 
-														 // 생성자 현재 씬 nullptr 초기화
+	// 생성자 현재 씬 nullptr 초기화
 	SceneManager() { CurrentScene = nullptr; }
 	// 소멸자
-	~SceneManager();
+	~SceneManager();	
 };
 
-
+#define SCENEMANAGER SceneManager::getSingleton()
 

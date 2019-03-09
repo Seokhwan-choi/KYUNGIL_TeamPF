@@ -5,7 +5,7 @@ class GameObject : public gameNode
 public: 
 	// enum class 로 pivot 상태 등록
 	// pivot에 따라 RECT 생성 기준점을 잡음
-	enum class Pivot : int
+	enum class Pivot
 	{
 		LeftTop,		// RectMake
 		Center,			// RectMakeCeter
@@ -25,6 +25,8 @@ protected:
 public:
 	// 게임오브젝트 생성자를 통해서 멤버변수 초기화 해준다.
 	GameObject(string name,POINTFLOAT pos,POINTFLOAT size,Pivot pivot);
+	
+
 	GameObject(string name);
 	~GameObject();
 

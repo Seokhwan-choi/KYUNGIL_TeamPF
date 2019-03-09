@@ -29,7 +29,7 @@ void SceneManager::Release()
 // ¾À ¾÷µ¥ÀÌÆ®
 void SceneManager::Update()
 {
-	if (CurrentScene != nullptr)
+	if ( CurrentScene != nullptr)
 		CurrentScene->Update();
 }
 // ¾À ·»´õ
@@ -57,3 +57,5 @@ void SceneManager::ChangeScene(string name)
 		SceneIter->second->Init();
 	}
 }
+
+

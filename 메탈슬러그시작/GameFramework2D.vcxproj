@@ -148,63 +148,48 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="choiceScene.h" />
-    <ClInclude Include="choiceUi.h" />
     <ClInclude Include="CommomMacroFuntion.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameOverUi.h" />
-    <ClInclude Include="GameOverUi_2.h" />
     <ClInclude Include="Gizmo.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="oldMan.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerData.h" />
-    <ClInclude Include="playerDataUi.h" />
     <ClInclude Include="randomFunction.h" />
+    <ClInclude Include="realPlayer.h" />
+    <ClInclude Include="Rect.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SceneMaker.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SingletonBase.h" />
-    <ClInclude Include="stage1Scene.h" />
-    <ClInclude Include="stage1StartUi.h" />
-    <ClInclude Include="startScene.h" />
-    <ClInclude Include="startUi.h" />
+    <ClInclude Include="StageOne.h" />
+    <ClInclude Include="StageTwo.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="timeUi.h" />
-    <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="choiceScene.cpp" />
-    <ClCompile Include="choiceUi.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameOverUi.cpp" />
-    <ClCompile Include="GameOverUi_2.cpp" />
     <ClCompile Include="Gizmo.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="oldMan.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerData.cpp" />
-    <ClCompile Include="playerDataUi.cpp" />
     <ClCompile Include="randomFunction.cpp" />
+    <ClCompile Include="realPlayer.cpp" />
+    <ClCompile Include="Rect.cpp" />
     <ClCompile Include="SceneMaker.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="stage1Scene.cpp" />
-    <ClCompile Include="stage1StartUi.cpp" />
-    <ClCompile Include="startScene.cpp" />
-    <ClCompile Include="startUi.cpp" />
-    <ClCompile Include="timeUi.cpp" />
-    <ClCompile Include="util.cpp" />
+    <ClCompile Include="StageOne.cpp" />
+    <ClCompile Include="StageTwo.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -1,60 +1,26 @@
 #pragma once
 #include "GameObject.h"
-#include "Bullet.h"
-
-
-enum class PLAYERBULLETSTATE//플레이어 총알의 방향상태 
-{
-	LEFTFIRE,RIGHTFIRE ,UPFIRE,DOWNFIRE , IDLE 
-};
-
-enum class PLAYERHEAVYSTATE//플레이어 해비머신건일떄 
-{
-	LEFTFIRE, RIGHTFIRE, UPFIRE, DOWNFIRE, IDLE
-};
-
-
 class Player : public GameObject
 {
 private:
-	PLAYERBULLETSTATE _playerbulletstate;//플레이어 총알 방향 
-	PLAYERHEAVYSTATE _playerheavystate; //플레이어 해비머신건일떄 
-   //플레이어 총알 
-	Bullet*_playerbullet;//플레이어의 공용총알 
-	Boom* _playerboom; //플레이어의 폭탄 
-
-	//플레이어 점프 
-	float _jumppower;//플레이어 점프힘
-	float _gravity;//플레이어 중력 
-	bool _isJump; //플레이어 점프상태냐? 
-
+	RECT gameStartRc[5];	//사각형 5개 선언하기
+	POINT _center;			//마지막인덱스의 움직일 렉트 포인트 설정
+	bool _isCheck[4];		//goUp 인덱스 접근하기 위한 불값선언
+	bool _goUp[4];			//인덱스 하나 접근해서 하나만 렉트 올리려고 선언한 불값선언
+	bool _isShow;			//캐릭터 보여줬는가 선언해주는 함수
+	int a;					//i를 넣기위해서 선언한 정수 선언
+	int _time;
+	int _mainSceneTime;		//캐릭터선택 제한 시간
 	
-	//프레임이미지 
-	int _frameCount;//플레이어 이미지 시간변수 
-	int _frameIndex; //플레이어 이미지 인댁스 
-	bool _isLeft;//왼쪽상태냐?
-
-	int _count;		// 확인용 count
-	float _angle;	// 확인용 angle
-	bool _fire;		// 확인용 fire
-	int _time;		// 확인용 time
-
-
-
-
-
-
+	
 public:
 
 	Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Player();
-	
 
-	virtual HRESULT Init();
-	virtual void Release();
-	virtual void Update();
-	virtual void Render();
-
-	
+	HRESULT Init();
+	void Release();
+	void Update();
+	void Render();	
 };
 
