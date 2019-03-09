@@ -1,0 +1,45 @@
+﻿  stdafx.cpp
+d:\teampf_metalslug3\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\teampf_metalslug3\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  Bullet.cpp
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(39): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(53): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(61): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(68): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(78): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(85): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(136): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(150): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(158): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(165): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(176): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\teampf_metalslug3\메탈슬러그시작\bullet.cpp(184): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  gameNode.cpp
+  GameObject.cpp
+d:\teampf_metalslug3\메탈슬러그시작\gameobject.cpp(78): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\gameobject.cpp(82): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\gameobject.cpp(86): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Gizmo.cpp
+  image.cpp
+d:\teampf_metalslug3\메탈슬러그시작\image.cpp(113): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: 'strcpy' 선언을 참조하십시오.
+d:\teampf_metalslug3\메탈슬러그시작\image.cpp(155): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: 'strcpy' 선언을 참조하십시오.
+d:\teampf_metalslug3\메탈슬러그시작\image.cpp(201): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: 'strcpy' 선언을 참조하십시오.
+d:\teampf_metalslug3\메탈슬러그시작\image.cpp(249): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: 'strcpy' 선언을 참조하십시오.
+d:\teampf_metalslug3\메탈슬러그시작\image.cpp(504): warning C4552: '*': 식의 결과가 사용되지 않습니다.
+d:\teampf_metalslug3\메탈슬러그시작\image.cpp(505): warning C4552: '*': 식의 결과가 사용되지 않습니다.
+  imageManager.cpp
+  KeyManager.cpp
+  MainGame.cpp
+  ObjectManager.cpp
+  Player.cpp
+d:\teampf_metalslug3\메탈슬러그시작\player.cpp(105): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\player.cpp(105): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  randomFunction.cpp
+  util.cpp
+  winMain.cpp
+  코드를 생성하고 있습니다...
+  GameFramework2D.vcxproj -> D:\TeamPF_metalslug3\메탈슬러그시작\Debug\WindowAPI.exe
