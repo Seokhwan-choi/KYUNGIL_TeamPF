@@ -22,6 +22,9 @@ HRESULT gameNode::init(bool managerInit)
 		KEYMANAGER->init();					//키매니져 초기화
 		RND->init();						//랜덤펑션 초기화
 		IMAGEMANAGER->init();				//이미지 매니져 초기화
+		TIMEMANAGER->init();				//타임 매니져 초기화
+		SOUNDMANAGER->init();				//사운드 매니져 초기화
+		OBJECTMANAGER->Init();				//오브젝트 매니져 초기화
 	}
 
 	return S_OK;
@@ -45,6 +48,18 @@ void gameNode::release(void)
 		//이미지매니져 해제
 		IMAGEMANAGER->release();
 		IMAGEMANAGER->releaseSingleton();
+		//씬매니져 해제
+		SCENEMANAGER->Release();
+		SCENEMANAGER->releaseSingleton();
+		//오브젝트매니져 해제
+		OBJECTMANAGER->Release();
+		OBJECTMANAGER->releaseSingleton();
+		//타임매니져 해제
+		TIMEMANAGER->release();
+		TIMEMANAGER->releaseSingleton();
+		//사운드 매니져 해제
+		SOUNDMANAGER->release();
+		SOUNDMANAGER->releaseSingleton();
 	}
 
 	//DC 해제
@@ -66,6 +81,7 @@ void gameNode::update(void)
 //=============================================================
 void gameNode::render(void)
 {
+
 }
 
 //=============================================================

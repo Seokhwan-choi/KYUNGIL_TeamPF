@@ -1,71 +1,109 @@
 #include "stdafx.h"
-#include "oldMan.h"
-#include "Item.h"
-#include "realPlayer.h"
+#include "OldMan.h"
+#include "Player.h"
 
-oldMan::oldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
-	: GameObject(name, pos, size, pivot)
+OldMan::OldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
+	:GameObject(name, pos, size, pivot)
 {
-	_name = name;
-	_position = pos;
-	_pivot = Pivot::LeftTop;
-	_isActive = true;
-	_isLive = true;
-	_isRight = true;
-	this->UpdateRectByPivot();
+	//========================================================
+	//포로 상태 및 이미지 변수 관련 초기화 
+	//========================================================
+	_state = CAPTIVESTATE::R_MOVE;
+	_count = 0;
+	_index = 0;
+	_isRight = false;
+	_isCrush = false;
+	_speed = 4.0f;			//포로 속도
+	_move = { 300, 500 };	//시작 - 끝 
+
 
 }
 
-HRESULT oldMan::Init()
+OldMan::~OldMan()
 {
+}
 
+HRESULT OldMan::Init()
+{
 	return S_OK;
 }
 
-void oldMan::Release()
+void OldMan::Release()
 {
 }
 
-void oldMan::Update()
+void OldMan::Update()
 {
-	if (_isRight == true)
-	{
-		_rc.left += 2.f;
-		_rc.right += 2.f;
-		if (_rc.right > WINSIZEX)
-		{
-			_isRight = false;
-		}
-	}
-	else if (_isRight == false)
-	{
-		_rc.left -= 2.f;
-		_rc.right -= 2.f;
-		if (_rc.left < (WINSIZEX / 4) * 3)
-		{
-			_isRight = true;
-		}
-	}
-	//만약 충돌됐다 1노인이랑 -플레이어랑
-	// 2번쨰 노인 - 플레이어
-	//3번째 노인 - 플레이어
 	RECT temp;
-	temp = RectMake(0, 0, 0, 0);
-	if (IntersectRect(&temp, &_rc, &OBJECTMANAGER->FindObject(ObjectType::Enum::Object, "realplayer")->GetRect())) {
-		OBJECTMANAGER->FindObject(ObjectType::Enum::Object, "item")->SetisActive(true);
-		//OBJECTMANAGER->FindObject(ObjectType::Enum::Object, "Item")->GetRect();
-		
+	_count++;
+	//========================================================
+	//포로 충돌 렉트
+	//========================================================
+	//왼쪽
+	_colRc[0] = RectMake(_rc.left + _size.x / 2, _rc.top + _size.y / 2, 10, 10);
+	//오른쪽
+	_colRc[1] = RectMake(_rc.right - _size.x / 2, _rc.top + _size.y / 2, 10, 10);
+
+	//왔다갔다거리게함
+	if (_move.x > _rc.left) {
+		_isRight == true;
 	}
-	_colRc = RectMake(_rc.left - 10, _rc.top + 50, 20, 20);
+	if (_move.y < _rc.right) {
+		_isRight = false;
+	}
+	//오른쪽 걷기
+	if (_isRight == true) {
+		_position.x += _speed;
+		_state = CAPTIVESTATE::R_MOVE;
+	}
+	//왼쪽 걷기
+	if (_isRight == false) {
+		_position.x -= _speed;
+		_state = CAPTIVESTATE::R_MOVE;
+	}
+	//만약 충돌시 아이템 뱉어준다
+	if (IntersectRect(&temp, &OBJECTMANAGER->FindObject(ObjectType::Enum::PLAYER, "플레이어")->GetRect(), &_colRc[0])) {
+		_state = CAPTIVESTATE::R_THANKU;
+		_isCrush = true;
+	}
+	if (IntersectRect(&temp, &OBJECTMANAGER->FindObject(ObjectType::Enum::PLAYER, "플레이어")->GetRect(), &_colRc[1])) {
+		_state = CAPTIVESTATE::L_THANKU;
+		_isCrush = true;
+
+	}
+
+
 
 }
 
-void oldMan::Render()
+void OldMan::Render()
 {
-	Rectangle(getMemDC(), _rc);
-	Rectangle(getMemDC(), _colRc);
+	switch (_state)
+	{
+	case CAPTIVESTATE::R_IDLE:
+
+		break;
+	case CAPTIVESTATE::L_IDLE:
+		break;
+	case CAPTIVESTATE::R_MOVE:
+		break;
+	case CAPTIVESTATE::L_MOVE:
+		break;
+	case CAPTIVESTATE::R_THANKU:
+		break;
+	case CAPTIVESTATE::L_THANKU:
+		break;
+	case CAPTIVESTATE::END:
+		break;
+	default:
+		break;
+	}
 }
 
-oldMan::~oldMan()
+void OldMan::captive1()
+{
+}
+
+void OldMan::captive2()
 {
 }

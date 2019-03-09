@@ -14,8 +14,8 @@ ObjectManager::ObjectManager()
 		pair<ObjectType::Enum, vector<GameObject*>> p = make_pair((ObjectType::Enum)i,vector<GameObject*>());
 		objectContainer.insert(p);
 	}
-}
-
+}//맵은 insert vector는 push_back
+//pair는 키값 벨류값을 두개다 갖고있다 
 ObjectManager::~ObjectManager()
 {
 
@@ -23,14 +23,22 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::Init()
 {
-
+	ObjectIter = objectContainer.begin();
+	// 맵을 iterator를 사용해서 탐색을 시작한다.
+	for (; ObjectIter != objectContainer.end(); ++ObjectIter)
+	{
+		for (UINT i = 0; i < ObjectIter->second.size(); ++i)
+		{
+			ObjectIter->second[i]->Init();
+		}
+	}
 }
 
 void ObjectManager::Release()
 {
 	ObjectIter = objectContainer.begin();
 	// 맵을 iterator를 사용해서 탐색을 시작한다.
-	for (; ObjectIter != objectContainer.end(); ++ObjectIter)
+	for (ObjectIter; ObjectIter != objectContainer.end(); ++ObjectIter)
 	{
 		// 맵의 ObjectIter번째 vector에 접근
 		// first-> ObjectType, second-> vector<GamObject*>
@@ -58,7 +66,7 @@ void ObjectManager::Update()
 		for (UINT i = 0; i < ObjectIter->second.size(); ++i)
 		{
 			// 죽어있는 게임오브젝트를 찾아 Release
-			if (ObjectIter->second[i]->GetLive() != true) {
+			if (! ObjectIter->second[i]->GetLive()) {
 				ObjectIter->second[i]->Release();
 				SAFE_DELETE(ObjectIter->second[i]);
 			}
@@ -110,11 +118,11 @@ void ObjectManager::AddObject(ObjectType::Enum type, GameObject * pObject)
 	// 반복자를 통해서 맵의 가장 끝이 아니라면
 	// type을 맵에서 찾았다는 뜻으로
 	// 그 때 vector에 넣어준다.
-	if (ObjectIter != objectContainer.end()) 
+	if (ObjectIter != objectContainer.end()) //end라는 말은 null값 없다는 뜻이다 
 	{
 		objectContainer[type].push_back(pObject);
 	}
-}
+}//맵에서 find를 써서 해당 타입을 적으면 
 // ======================================================================
 // ######################## 게임 오브젝트 삭제 함수 ########################
 // ======================================================================
@@ -123,6 +131,7 @@ void ObjectManager::RemoveObject(ObjectType::Enum type, GameObject * pObject)
 	// 접근하고자하는 type을 맵에서 찾는다.
 	ObjectIter = objectContainer.find(type);
 	
+	//if ( ObjectIter != objectContainer.end()))
 	// 해당 type의 vector를 탐색한다.
 	for (UINT i = 0; i < ObjectIter->second.size(); ++i)
 	{
@@ -151,7 +160,7 @@ GameObject * ObjectManager::FindObject(ObjectType::Enum type, string name)
 		}
 	}
 
-	return nullptr;
+	return nullptr;//이건 걍널 
 }
 // ======================================================================
 // #################### 같은 이름 게임 오브젝트 찾기 함수 ####################
@@ -165,7 +174,7 @@ vector<class GameObject*> ObjectManager::FindObjects(ObjectType::Enum type, stri
 		{
 			returnValue.push_back(objectContainer[type][i]);
 		}
-	}
+	}//고블린 10마리만들고 한꺼번에 뱉을려고 
 	return returnValue;
 }
 // ======================================================================

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "SceneMaker.h"
 
-
 HRESULT SceneMaker::Init(void)
 {
 	return S_OK;
