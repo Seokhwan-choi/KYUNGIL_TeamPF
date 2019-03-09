@@ -1,45 +1,45 @@
 ﻿  stdafx.cpp
   gameNode.cpp
   GameObject.cpp
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\gameobject.cpp(83): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\gameobject.cpp(87): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\gameobject.cpp(91): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\gameobject.cpp(83): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\gameobject.cpp(87): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\gameobject.cpp(91): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Gizmo.cpp
   image.cpp
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\image.cpp(113): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\image.cpp(155): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\image.cpp(201): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\image.cpp(249): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+d:\teampf_metalslug3\메탈슬러그시작\image.cpp(113): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: 'strcpy' 선언을 참조하십시오.
+d:\teampf_metalslug3\메탈슬러그시작\image.cpp(155): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: 'strcpy' 선언을 참조하십시오.
+d:\teampf_metalslug3\메탈슬러그시작\image.cpp(201): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: 'strcpy' 선언을 참조하십시오.
+d:\teampf_metalslug3\메탈슬러그시작\image.cpp(249): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: 'strcpy' 선언을 참조하십시오.
   imageManager.cpp
   Item.cpp
   KeyManager.cpp
   MainGame.cpp
   ObjectManager.cpp
   oldMan.cpp
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\oldman.cpp(33): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\oldman.cpp(34): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\oldman.cpp(42): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\oldman.cpp(43): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\oldman.cpp(33): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\oldman.cpp(34): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\oldman.cpp(42): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\oldman.cpp(43): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Player.cpp
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\player.cpp(140): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
+d:\teampf_metalslug3\메탈슬러그시작\player.cpp(140): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
   randomFunction.cpp
   realPlayer.cpp
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\realplayer.cpp(32): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\realplayer.cpp(33): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\realplayer.cpp(36): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\realplayer.cpp(37): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\realplayer.cpp(32): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\realplayer.cpp(33): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\realplayer.cpp(36): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\teampf_metalslug3\메탈슬러그시작\realplayer.cpp(37): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Rect.cpp
-c:\users\kyungil\desktop\20190301-캐릭터선택 (2)\rect.cpp(51): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
+d:\teampf_metalslug3\메탈슬러그시작\rect.cpp(51): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
   SceneMaker.cpp
   SceneManager.cpp
   StageOne.cpp
   StageTwo.cpp
   winMain.cpp
   코드를 생성하고 있습니다...
-  GameFramework2D.vcxproj -> C:\Users\kyungil\Desktop\20190301-캐릭터선택 (2)\Debug\WindowAPI.exe
+  GameFramework2D.vcxproj -> D:\TeamPF_metalslug3\메탈슬러그시작\Debug\WindowAPI.exe
