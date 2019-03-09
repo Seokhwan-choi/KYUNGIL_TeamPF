@@ -23,7 +23,15 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::Init()
 {
-
+	ObjectIter = objectContainer.begin();
+	// 맵을 iterator를 사용해서 탐색을 시작한다.
+	for (; ObjectIter != objectContainer.end(); ++ObjectIter)
+	{
+		for (UINT i = 0; i < ObjectIter->second.size(); ++i)
+		{
+			ObjectIter->second[i]->Init();
+		}
+	}
 }
 
 void ObjectManager::Release()
@@ -37,7 +45,7 @@ void ObjectManager::Release()
 		// iter->second = 벡터
 		for (UINT i = 0; i < ObjectIter->second.size(); ++i)
 		{
-			ObjectIter->second[i]->release();
+			ObjectIter->second[i]->Release();
 			SAFE_DELETE(ObjectIter->second[i]);
 		}
 		ObjectIter->second.clear();
@@ -59,7 +67,7 @@ void ObjectManager::Update()
 		{
 			// 죽어있는 게임오브젝트를 찾아 Release
 			if (! ObjectIter->second[i]->GetLive()) {
-				ObjectIter->second[i]->release();
+				ObjectIter->second[i]->Release();
 				SAFE_DELETE(ObjectIter->second[i]);
 			}
 			// 활성화 되어있는 게임오브젝트를 찾아 Update
