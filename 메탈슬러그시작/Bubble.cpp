@@ -3,6 +3,7 @@
 
 Bubble::Bubble(string name) : GameObject(name)
 {
+	_name = name;
 }
 
 Bubble::~Bubble()
@@ -49,7 +50,7 @@ void Bubble::Render()
 	{
 		if (!_vBubble[i].isFire) continue;
 
-		_vBubble[i].bubbleImage->render(getMemDC(), _vBubble[i].rc.left, _vBubble[i].rc.top);
+		_vBubble[i].bubbleImage->render(getMemDC(), _vBubble[i].rc.left + 30 - CAMERA->GetCamera().left, _vBubble[i].rc.top - CAMERA->GetCamera().top);
 	}
 }
 

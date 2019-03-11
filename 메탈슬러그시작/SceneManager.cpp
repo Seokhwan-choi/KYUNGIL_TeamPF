@@ -38,8 +38,6 @@ void SceneManager::Render()
 	if (CurrentScene != nullptr)
 		CurrentScene->Render();
 }
-
-
 // ¾À Ãß°¡ ÇÔ¼ö
 void SceneManager::AddScene(string name, SceneMaker * scene)
 {

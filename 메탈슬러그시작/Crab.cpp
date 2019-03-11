@@ -1,3 +1,4 @@
+
 #include "stdafx.h"
 #include "crab.h"
 #include "Player.h"
@@ -13,20 +14,24 @@ Crab::~Crab()
 HRESULT Crab::Init()
 {
 	//상태 초기화
-	_state = state::L_IDLE;
+	_state = state::IDLE;
 
 	//이미지 초기화
-	crabImg[0] = IMAGEMANAGER->addFrameImage("crab", "몬스터(게)-2.bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
-	crabImg[1] = IMAGEMANAGER->addFrameImage("crab1", "몬스터(게)-2(오른쪽).bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
-	crabImg[2] = IMAGEMANAGER->addFrameImage("crab2", "몬스터(게)-3.bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
-	crabImg[3] = IMAGEMANAGER->addFrameImage("crab3", "몬스터(게)-3(오른쪽).bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
-	crabImg[4] = IMAGEMANAGER->addFrameImage("crab4", "몬스터(게)-6.bmp", 3300, 194, 22, 1, true, RGB(250, 2, 250));
+	crabImg[0] = IMAGEMANAGER->addFrameImage("crab", "Enemy/몬스터(게)-2.bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
+	crabImg[1] = IMAGEMANAGER->addFrameImage("crab1", "Enemy/몬스터(게)-2(오른쪽).bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
+	crabImg[2] = IMAGEMANAGER->addFrameImage("crab2", "Enemy/몬스터(게)-3.bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
+	crabImg[3] = IMAGEMANAGER->addFrameImage("crab3", "Enemy/몬스터(게)-3(오른쪽).bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
+	crabImg[4] = IMAGEMANAGER->addFrameImage("crab4", "Enemy/몬스터(게)-6.bmp", 3300, 194, 22, 1, true, RGB(250, 2, 250));
+	crabImg[5] = IMAGEMANAGER->addFrameImage("crab5", "Enemy/몬스터(게)-6(오른쪽).bmp", 3300, 194, 22, 1, true, RGB(255, 0, 255));
 	//이미지 랜더용 변수 초기화
 	for (int i = 0; i < 4; i++)
 	{
-		indexImg[i] = countImg[i] = 0;
+		indexImg[i] = 0;
+		countImg[i] = 0;
 	}
 
+	indexImg[4] = 22;
+	countImg[4] = 0;
 	//공격 처리를 위한 변수
 	_gauge = 1;
 	_angle = 0.f;
@@ -176,12 +181,12 @@ void Crab::Update()
 	{
 		_isAttack = true;
 	}
-	
+
 	//공격 명령이 내려졌을 때 조금 기다린 후 공격렉트를 움직임
 	if (_isAttack)
 	{
 		_gauge++;
-	
+
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_state = state::L_ATTACK;
@@ -190,7 +195,7 @@ void Crab::Update()
 		{
 			_state = state::R_ATTACK;
 		}
-	
+
 		if (_gauge % 80 == 0)
 		{
 			_isAttack = false;
@@ -339,7 +344,7 @@ void Crab::Update()
 		{
 			_deathTimer++;
 
-			if (_deathTimer % 100 == 0)
+			if (_deathTimer % 150 == 0)
 			{
 				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "crab"));
 			}
@@ -350,16 +355,16 @@ void Crab::Update()
 
 	//상태에 따른 이미지 변경
 	this->crabImage();
-	
+
 }
 
 void Crab::Render()
 {
 	//카메라 렉트 그리기
-	Rectangle(getMemDC(), _cam.rc);
+	Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
 
 	//렉트 그리기
-	Rectangle(getMemDC(), _rc);
+	Rectangle(getMemDC(), CAMERA->Relative(_rc));
 
 	//게 이미지 그리기
 	this->crabImageRender();
@@ -367,19 +372,19 @@ void Crab::Render()
 	//충돌렉트 그리기
 	for (int i = 0; i < 4; i++)
 	{
-		Rectangle(getMemDC(), _col[i].rc);
+		Rectangle(getMemDC(), CAMERA->Relative(_col[i].rc));
 	}
 
 	//시체처리렉트 그리기
 	for (int i = 0; i < 3; i++)
 	{
-		Rectangle(getMemDC(), _part[i].rc);
+		Rectangle(getMemDC(), CAMERA->Relative(_part[i].rc));
 	}
 
 	//공격처리렉트 그리기
 	for (int i = 0; i < 2; i++)
 	{
-		Rectangle(getMemDC(), _att[i].rc);
+		Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
 	}
 
 	//텍스트 출력
@@ -480,6 +485,19 @@ void Crab::crabImage()
 			crabImg[4]->setFrameX(indexImg[3]);
 		}
 	}
+	if (_state == state::R_DEATH)
+	{
+		countImg[4]++;
+		if (countImg[4] % 7 == 0)
+		{
+			indexImg[4]--;
+			if (indexImg[4] < 0)
+			{
+				indexImg[4] = 21;
+			}
+			crabImg[5]->setFrameX(indexImg[4]);
+		}
+	}
 }
 
 void Crab::crabImageRender()
@@ -494,7 +512,8 @@ void Crab::crabImageRender()
 	}
 	if (_state == state::L_ATTACK)
 	{
-		crabImg[2]->frameRender(getMemDC(), _rc.left -60 - CAMERA->GetCamera().left, _rc.top - 22 - CAMERA->GetCamera().top);
+		crabImg[2]->frameRender(getMemDC(), _rc.left - 60 - CAMERA->GetCamera().left, _rc.top - 22 - CAMERA->GetCamera().top);
+
 	}
 	if (_state == state::R_ATTACK)
 	{
@@ -511,5 +530,9 @@ void Crab::crabImageRender()
 	if (_state == state::L_DEATH)
 	{
 		crabImg[4]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 44 - CAMERA->GetCamera().top);
+	}
+	if (_state == state::R_DEATH)
+	{
+		crabImg[5]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 44 - CAMERA->GetCamera().top);
 	}
 }

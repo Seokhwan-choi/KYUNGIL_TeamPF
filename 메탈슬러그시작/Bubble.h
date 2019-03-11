@@ -1,23 +1,6 @@
 #pragma once
 #include "GameObject.h"
 
-typedef struct tagBubble
-{
-	image* bubbleImage;
-	RECT rc;
-	float x, y;
-	float fireX, fireY;
-	float speed;
-	float angle;
-	float gravity;
-	float radius;
-	bool isFire;
-	int count;
-	int upDownCount;
-	bool isDown;
-}
-BUBBLE, *LBUBBLE;
-
 class Bubble : public GameObject
 {
 private:

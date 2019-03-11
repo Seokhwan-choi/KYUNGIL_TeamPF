@@ -47,3 +47,11 @@ public:
 	void Render() override;
 };
 
+class Flybug :
+	public GameObject
+{
+public:
+	Flybug();
+	~Flybug();
+};
+

@@ -1,11 +1,10 @@
 #pragma once
 #include "SceneMaker.h"
-
 class StageOne : public SceneMaker
 {
 private:
 	class Player* _player;
-	class Crab* _crab;
+	class BubbleCrab* _crab;
 
 	image* _bgImage;			// 배경이미지 
 	image* _bgSea;				// 배경 출렁출렁
@@ -29,10 +28,10 @@ private:
 
 public:
 
-	HRESULT Init(void);
-	void Release(void);
-	void Update(void);
-	void Render(void);
+	virtual HRESULT Init(void);
+	virtual void Release(void);
+	virtual void Update(void);
+	virtual void Render(void);
 
 	StageOne() {}
 	~StageOne() {}
