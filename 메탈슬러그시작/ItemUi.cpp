@@ -26,6 +26,9 @@ void ItemUi::Update(void)
 
 void ItemUi::Render(void)
 {
+	RECT _rect;
+	_rect = CAMERA->Relative(_rc);
+
 	//트루일때만 보여줌
 	if (_isShow) {
 		switch (_item)
@@ -33,20 +36,26 @@ void ItemUi::Render(void)
 			//위치는 알아서 선정
 		case ITEM::FISH:
 			//IMAGEMANAGER->frameRender(getMemDC(), _rc.left, _rc.top);
+			Rectangle(getMemDC(), _rect);
 			break;
 		case ITEM::CHICKEN:
+			Rectangle(getMemDC(), _rect);
 			//IMAGEMANAGER->frameRender(getMemDC(), _rc.left, _rc.top);
 			break;
 		case ITEM::FRUIT:
+			Rectangle(getMemDC(), _rect);
 			//IMAGEMANAGER->frameRender(getMemDC(), _rc.left, _rc.top);
 			break;
 		case ITEM::HEAVY:
+			Rectangle(getMemDC(), _rect);
 			//IMAGEMANAGER->frameRender(getMemDC(), _rc.left, _rc.top);
 			break;
 		case ITEM::GRENADE:
+			Rectangle(getMemDC(), _rect);
 			//IMAGEMANAGER->frameRender(getMemDC(), _rc.left, _rc.top);
 			break;
 		case ITEM::CRAB:
+			Rectangle(getMemDC(), _rect);
 			//IMAGEMANAGER->frameRender(getMemDC(), _rc.left, _rc.top);
 			break;
 		default:
@@ -58,9 +67,11 @@ void ItemUi::Render(void)
 		switch (_item)
 		{
 		case ITEM::HEAVY:
+			Rectangle(getMemDC(), _rect);
 			//IMAGEMANAGER->frameRender(getMemDC(), _rc.left, _rc.top);
 			break;
 		case ITEM::GRENADE:
+			Rectangle(getMemDC(), _rect);
 			//IMAGEMANAGER->frameRender(getMemDC(), _rc.left, _rc.top);
 			break;
 		default:

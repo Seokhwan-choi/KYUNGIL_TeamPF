@@ -9,7 +9,6 @@
 #include "BigCrab.h"
 #include "startScene.h"
 #include "choiceScene.h"
-#include "stage1Scene.h"
 #include "Monster.h"
 //==========================================================================//
 //						## √ ±‚»≠ ## init(void)								//

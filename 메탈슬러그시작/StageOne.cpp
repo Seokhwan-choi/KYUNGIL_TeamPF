@@ -8,6 +8,7 @@
 #include "playerDataUi.h"
 #include "OldMan.h"
 #include "GameCompleteUi.h"
+#include "ItemUi.h"
 HRESULT StageOne::Init(void)
 {
 	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
@@ -34,8 +35,19 @@ HRESULT StageOne::Init(void)
 	playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
 
-	OldMan* _oldman = new OldMan("oldman", { 1100, WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
+	//OldMan* _oldman = new OldMan("oldman", { 1100, WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
+
+	ItemUi* _item = new ItemUi("item", { WINSIZEX/ 2, WINSIZEY/2 }, { 50,50 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
+	
+	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::CHICKEN);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
+
+	OldMan* _oldman2 = new OldMan("oldman2", { 1500, WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop, CAPTIVE::TIED, ITEM::FISH);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman2);
+
+
 
 	_bgImage = IMAGEMANAGER->addImage("배경", "배경.bmp", 14070, 1150, true , RGB(255,0,255));
 	_bgSea = IMAGEMANAGER->addFrameImage("배경출렁", "배경출렁2.bmp", 19568, 278, 8, 1);

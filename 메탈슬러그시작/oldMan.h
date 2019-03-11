@@ -22,7 +22,7 @@ private:
 
 
 public:
-	OldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
+	OldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, CAPTIVE captive, ITEM item);
 	~OldMan();
 
 	virtual HRESULT Init(void);
