@@ -99,6 +99,8 @@ void StageOne::Update(void)
 		}
 		CAMERA->SetCamera(_player->GetPosition());
 	}
+
+	CAMERA->SetCamera(_player->GetPosition());
 	
 }
 

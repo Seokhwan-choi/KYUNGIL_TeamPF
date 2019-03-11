@@ -29,10 +29,10 @@ private:
 
 public:
 
-	virtual HRESULT Init(void);
-	virtual void Release(void);
-	virtual void Update(void);
-	virtual void Render(void);
+	HRESULT Init(void);
+	void Release(void);
+	void Update(void);
+	void Render(void);
 
 	StageOne() {}
 	~StageOne() {}

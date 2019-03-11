@@ -254,6 +254,9 @@
     <ClInclude Include="BubbleCrab.h">
       <Filter>소스 파일\몬스터\거품게</Filter>
     </ClInclude>
+    <ClInclude Include="BaseMent.h">
+      <Filter>소스 파일\맵</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -411,6 +414,9 @@
     </ClCompile>
     <ClCompile Include="Flybug.cpp">
       <Filter>소스 파일\몬스터\잠자리</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseMent.cpp">
+      <Filter>소스 파일\맵</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

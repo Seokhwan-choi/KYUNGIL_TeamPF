@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BaseMent.h" />
     <ClInclude Include="BigCrab.h" />
     <ClInclude Include="Bubble.h" />
     <ClInclude Include="BubbleCrab.h" />
@@ -213,6 +214,7 @@
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseMent.cpp" />
     <ClCompile Include="BigCrab.cpp" />
     <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="BubbleCrab.cpp" />

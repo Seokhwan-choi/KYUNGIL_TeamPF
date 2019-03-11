@@ -19,10 +19,14 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->AddScene("시작화면", _startscene);
 	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
 	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
+	SCENEMANAGER->AddScene("스테이지1", _stage1);
+
+	
+	//SCENEMANAGER->ChangeScene("시작화면");
 
 	//첫 시작화면
-	//SCENEMANAGER->AddScene("스테이지1", _stage1);
-	SCENEMANAGER->ChangeScene("시작화면");
+	SCENEMANAGER->ChangeScene("스테이지 원");
+
 	/*
 	undergroundScene* _underground = new undergroundScene;
 	SCENEMANAGER->AddScene("스테이지1_1", _underground);
@@ -32,7 +36,6 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->AddScene("스테이지1_2", _bossscene);
 	*/
 
-	SCENEMANAGER->Init();
 	return S_OK;	
 }
 

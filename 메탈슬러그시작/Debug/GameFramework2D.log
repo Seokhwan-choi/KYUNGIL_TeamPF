@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿  stdafx.cpp
 d:\teampf_metalslug3\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
   d:\teampf_metalslug3\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
@@ -73,6 +74,9 @@ d:\teampf_metalslug3\메탈슬러그시작\player.cpp(105): warning C4244: '인�
   soundManager.cpp
   winMain.cpp
   코드를 생성하고 있습니다...
+=======
+﻿  StageOne.cpp
+>>>>>>> feature/map_test
   GameFramework2D.vcxproj -> D:\팀포폴\메탈슬러그시작\Debug\WindowAPI.exe
 >>>>>>> ccfd30dbccfe8421223f6db6aca298aa337ad70a
 =======
