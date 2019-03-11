@@ -1,13 +1,10 @@
 #include "stdafx.h"
 #include "MainGame.h"
 #include "Player.h"
-#include "FlyBug.h"
-#include "Crab.h"
-#include "BubbleCrab.h"
-#include "Fish.h"
-#include "BigCrab.h"
-#include "Boss.h"
-
+#include "Enemy.h"
+#include "startScene.h"
+#include "choiceScene.h"
+#include "stage1Scene.h"
 //==========================================================================//
 //						## 초기화 ## init(void)								//
 //==========================================================================//
@@ -52,6 +49,29 @@ HRESULT MainGame::init(void)
 
 	OBJECTMANAGER->Init();
 
+	startScene* _startscene = new startScene;
+	choiceScene* _choicescene = new choiceScene;
+	stage1Scene* _stage1 = new stage1Scene;
+	SCENEMANAGER->AddScene("시작화면", _startscene);
+	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
+	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
+	SCENEMANAGER->AddScene("스테이지1", _stage1);
+
+	
+	//SCENEMANAGER->ChangeScene("시작화면");
+
+	//첫 시작화면
+	SCENEMANAGER->ChangeScene("스테이지 원");
+
+	/*
+	undergroundScene* _underground = new undergroundScene;
+	SCENEMANAGER->AddScene("스테이지1_1", _underground);
+	underriverScene&  _underriver = new underriverScene;
+	SCENEMANAGER->AddScene("스테이지1_2", _underriver);
+	boosScene&  _bossscene = new boosScene;
+	SCENEMANAGER->AddScene("스테이지1_2", _bossscene);
+	*/
+
 	return S_OK;	
 	//return S_OK밑에 코드 있으면 안됨!!!!!!!!!!!
 }
@@ -73,10 +93,11 @@ void MainGame::release(void)
 //==========================================================================//
 void MainGame::update(void)
 {
-	gameNode::update();
+	gameNode::update();	
 
+	SCENEMANAGER->Update();
 	OBJECTMANAGER->Update();
-	
+
 }
 
 //==========================================================================//

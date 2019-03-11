@@ -39,6 +39,7 @@ using namespace std;
 #include "SceneManager.h"
 #include "ObjectManager.h"
 #include "CommonEnemyFrame.h"
+#include "PlayerData.h"
 
 //==============================================================//
 //					## 싱글톤을 추가한다 ##					    //

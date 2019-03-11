@@ -38,7 +38,7 @@ typedef struct tagCollision
 {
 	POINTFLOAT pt;
 	RECT rc;
-	bool isCrush;		//플레이어 총알과 충돌여부
+	bool isCrush;		//총알과 충돌여부
 	bool isKill;		//플레이어와 충돌여부
 }
 COL, *LCOL;
