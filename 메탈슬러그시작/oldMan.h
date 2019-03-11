@@ -1,42 +1,36 @@
 #pragma once
 #include "GameObject.h"
-
 class OldMan : public GameObject
 {
 private:
-	// =========================================
-	// ############## 포로 상태 ##############
-	// =========================================
-	CAPTIVESTATE _state;	//상태처리
-	bool _isRight;			//포로 보는 방향
-	bool _isCrush;			//플레이어와 충돌했냐?
-	float _speed;			//포로 스피드
-	POINTFLOAT _move;		//포로가 움직이는 시작-끝
-
-	float _gravity;			//항시중력값준다
-
-	// =========================================
-	// ############## 포로 이미지 ##############
-	// =========================================
-	int _count;				
+	CAPTIVE _captive;
+	CAPTIVESTATE _state;
+	
+	//프레임 이미지 관련 변수
 	int _index;
-
-	// =========================================
-	// ############## 포로 렉트 ##############
-	// =========================================
-	RECT _colRc[2];			//오른쪽 왼쪽 충돌 렉트
+	int _count;
+	int _t;
+	//움직이는 범위
+	POINTFLOAT _range;
+	//포로 관련
+	RECT _colRc[3];		//포로 충돌 렉트
+	float _speed;		//포로스피드
+	float _gravity;		//포로 중력값
+	bool _isRight;		//오른쪽이냐?
+	bool _isCrush;		//부딪혓냐?
+	bool _isGo;			//왼쪽으로 달려나간다
 
 
 public:
 	OldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~OldMan();
-	HRESULT Init();
-	void Release();
-	void Update();
-	void Render();
 
-	void captive1();
-	void captive2();
-
+	virtual HRESULT Init(void);
+	virtual void Release(void);
+	virtual void Update(void);
+	virtual void Render(void);
+	void motion();
+	void tied();
+	void move();
 };
 

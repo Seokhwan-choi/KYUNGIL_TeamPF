@@ -11,15 +11,21 @@ enum class WEAPON : int
 // ############ 아이템 종류 ###########
 // =========================================
 enum class ITEM : int {
-	HEAVY, GRENADE, FISH, CHICKEN, FRUIT, CRAB, MONKEY
+	FISH, CHICKEN, FRUIT, HEAVY, GRENADE, CRAB
 };
 
 // =========================================
-// ############ 포로 상태처리 ###########
+// ############ 포로 종류 ###########
 // =========================================
-enum class CAPTIVESTATE {
-	R_IDLE, L_IDLE,
-	R_MOVE ,L_MOVE,
-	R_THANKU, L_THANKU,
-	END
+enum class CAPTIVE : int {
+	TIED, MOVE
 };
+
+// =========================================
+// ############ 포로 행동 ###########
+// =========================================
+enum class CAPTIVESTATE : int {
+	TIED, UNTIED, WALK, RUN, THANKU, ITEM 
+};
+
+

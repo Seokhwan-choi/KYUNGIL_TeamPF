@@ -130,7 +130,7 @@ public:
 	void PlayerMotionState();			//플레이어 동작 애니메이션 
 	void PlayerBulletMotion();			//총알 움직일 때
 	void Checkstate();					//플레이어 상태 확인
-
+	
 };
 
 //_frameCount++;
