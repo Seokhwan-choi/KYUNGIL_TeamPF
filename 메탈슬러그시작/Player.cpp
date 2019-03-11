@@ -635,9 +635,9 @@ void Player::Update()
 // =====================================================================================================================================
 void Player::Render()
 {
-	Rectangle(getMemDC(), CAMERA->Relative(_rc));//플레이어 렉트 보여주기 
+	RECT _rect = CAMERA->Relative(_rc);		//상대좌표로 넣어주기 
+	Rectangle(getMemDC(), _rect);//플레이어 렉트 보여주기 
 	_playerbullet->Render(); //bullet에서 받아서 기본총 보여주기 
-
 	_playerboom->Render();   //플레이어 폭탄 보여주기 
 
 							 //Rectangle(getMemDC(), PlayerLeftSword); //실제충돌되는 렉트 확인용

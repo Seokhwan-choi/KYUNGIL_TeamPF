@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneMaker.h"
+
 class StageOne : public SceneMaker
 {
 private:

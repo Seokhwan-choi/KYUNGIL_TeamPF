@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "Bullet.h"
+#include "enumClaas.h"
 // =========================================
 // ############ 플레이어 버그 ###########
 // =========================================
@@ -30,6 +31,13 @@ enum class WEAPON : int
 {
 	NORMAL, HEAVY, SWORD, GRENADE
 };
+// =========================================
+// ############ 플레이어 무기 상태 ###########
+// =========================================
+//enum class WEAPON : int
+//{
+//	NORMAL, HEAVY, SWORD, GRENADE
+//};
 
 // =========================================
 // ############ 플레이어 하체 상태 ############
@@ -50,7 +58,6 @@ private:
 		// 기본, 기본_총, 기본_업샷, 기본_칼질, 기본_폭탄, 기본_위보기 ( 6가지 )
 		IDLE, IDLE_SHOT, IDLE_UPSHOT, IDLE_SWORD, IDLE_BOOM, IDLE_UPSTARE,
 		//      //          //                                 //
-
 		// 걷기, 걷기_총, 걷기_업샷, 걷기_칼질, 걷기_폭탄, 걷기_위보기 ( 6가지 )
 		WALK, WALK_SHOT, WALK_UPSHOT, WALK_SWORD, WALK_BOOM, WLAK_UPSTARE,
 		//      //                
@@ -119,6 +126,7 @@ public:
 	Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Player();
 
+	enum WEAPON getWeapon() { return _weapon; }
 
 	virtual HRESULT Init();
 	virtual void Release();

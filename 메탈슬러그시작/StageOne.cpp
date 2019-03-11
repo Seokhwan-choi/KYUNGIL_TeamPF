@@ -1,12 +1,17 @@
 #include "stdafx.h"
 #include "StageOne.h"
+#include "GameOverUi.h"
+#include "stage1StartUi.h"
+#include "timeUi.h"
+#include "GameOverUi_2.h"
 #include "Player.h"
+#include "playerDataUi.h"
 #include "UI.h"
 #include "Enemy.h"
 
 HRESULT StageOne::Init(void)
 {
-	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	_crab = new BubbleCrab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
@@ -15,21 +20,28 @@ HRESULT StageOne::Init(void)
 
 	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui);
-
+	
 	GameOverUi_2* _gameoverui2 = new GameOverUi_2("gameoverui2", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui2);
-
+	
 	stage1StartUi* _stage1startui = new stage1StartUi("stage1startui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
-
+	
+	//Player* _player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+	
 	timeUi* _timeui = new timeUi("timeui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _timeui);
+	
+	playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
 
-	_bgImage = IMAGEMANAGER->addImage("배경", "Background/배경.bmp", 14070, 1150, true , RGB(255,0,255));
-	_bgSea = IMAGEMANAGER->addFrameImage("배경출렁", "Background/배경출렁2.bmp", 19568, 278, 8, 1);
-	_wallImage = IMAGEMANAGER->addFrameImage("맵장벽", "Background/맵장벽.bmp", 5400, 960, 6, 1, true, RGB(255, 0, 255));
-	_bgImage2 = IMAGEMANAGER->addImage("배경의배경", "Background/배경의배경.bmp", 9562, 1200, true, RGB(255, 0, 255));
-	_PixelImage = IMAGEMANAGER->addImage("배경픽셀", "Background/배경픽셀.bmp", 14070, 1150, true, RGB(255, 0, 255));
+
+	_bgImage = IMAGEMANAGER->addImage("배경", "배경.bmp", 14070, 1150, true , RGB(255,0,255));
+	_bgSea = IMAGEMANAGER->addFrameImage("배경출렁", "배경출렁2.bmp", 19568, 278, 8, 1);
+	_wallImage = IMAGEMANAGER->addFrameImage("맵장벽", "맵장벽.bmp", 5400, 960, 6, 1, true, RGB(255, 0, 255));
+	_bgImage2 = IMAGEMANAGER->addImage("배경의배경", "배경의배경.bmp", 9562, 1200, true, RGB(255, 0, 255));
+	_PixelImage = IMAGEMANAGER->addImage("배경픽셀", "배경픽셀.bmp", 14070, 1150, true, RGB(255, 0, 255));
 
 	_PixelCheck = false;
 
@@ -78,6 +90,7 @@ void StageOne::Update(void)
 		_PixelCheck = !_PixelCheck;
 		_crush = !_crush;
 	}
+
 	CAMERA->SetCamera(_player->GetPosition());
 
 	if (_crush) {
@@ -104,6 +117,8 @@ void StageOne::Render(void)
 	}
 	
 	OBJECTMANAGER->Render();
-	//RECT _WALL = CAMERA->Relative(_wallRect);
-	//Rectangle(getMemDC(), _WALL);
+
+	RECT _WALL = CAMERA->Relative(_wallRect);
+	Rectangle(getMemDC(), _WALL);
+
 }

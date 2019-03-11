@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "stage1Scene.h"
+
 HRESULT stage1Scene::Init(void)
 {
 	return S_OK;

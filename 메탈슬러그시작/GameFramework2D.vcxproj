@@ -23,7 +23,11 @@
     <ProjectGuid>{5591683E-2FF1-4062-94C6-706A5876C9EB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GameFramework2D</RootNamespace>
+<<<<<<< HEAD
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+=======
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+>>>>>>> feature/UI
     <ProjectName>WindowAPI</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -158,9 +162,16 @@
     <ClInclude Include="CommomMacroFuntion.h" />
     <ClInclude Include="CommonEnemyFrame.h" />
     <ClInclude Include="Crab.h" />
+<<<<<<< HEAD
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Flybug.h" />
+=======
+    <ClInclude Include="enumClaas.h" />
+    <ClInclude Include="Fish.h" />
+    <ClInclude Include="Flybug.h" />
+    <ClInclude Include="GameCompleteUi.h" />
+>>>>>>> feature/UI
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameOverUi.h" />
@@ -168,10 +179,12 @@
     <ClInclude Include="Gizmo.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
+    <ClInclude Include="ItemUi.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="OldMan.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="playerDataUi.h" />
@@ -188,7 +201,11 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timeUi.h" />
+<<<<<<< HEAD
     <ClInclude Include="UI.h" />
+=======
+    <ClInclude Include="totalScoreUi.h" />
+>>>>>>> feature/UI
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +219,10 @@
     <ClCompile Include="Crab.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Flybug.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="GameCompleteUi.cpp" />
+>>>>>>> feature/UI
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameOverUi.cpp" />
@@ -209,10 +230,12 @@
     <ClCompile Include="Gizmo.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
+    <ClCompile Include="ItemUi.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="OldMan.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="playerDataUi.cpp" />
@@ -227,6 +250,7 @@
     <ClCompile Include="startUi.cpp" />
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timeUi.cpp" />
+    <ClCompile Include="totalScoreUi.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="stdafx.cpp">

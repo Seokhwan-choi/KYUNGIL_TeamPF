@@ -6,7 +6,6 @@
 #include "startScene.h"
 #include "choiceScene.h"
 #include "stage1Scene.h"
-
 //==========================================================================//
 //						## ÃÊ±âÈ­ ## init(void)								//
 //==========================================================================//
@@ -61,7 +60,6 @@ void MainGame::update(void)
 {
 	gameNode::update();	
 	SCENEMANAGER->Update();
-	//OBJECTMANAGER->Update();
 }
 
 //==========================================================================//
