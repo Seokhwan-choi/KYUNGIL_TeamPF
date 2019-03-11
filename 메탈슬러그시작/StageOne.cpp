@@ -15,7 +15,7 @@ HRESULT StageOne::Init(void)
 	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 200, 251 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
-	_crab = new BubbleCrab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	_crab = new Crab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	_crab->Init();
 	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
 
