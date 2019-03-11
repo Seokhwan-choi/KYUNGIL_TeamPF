@@ -374,8 +374,8 @@ void BubbleCrab::Render()
 		Rectangle(getMemDC(), _att[i].rc);
 	}
 	//텍스트 출력
-	sprintf(msg1, "x : %f", _dist);
-	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));
+	//sprintf(msg1, "x : %f", _dist);
+	//TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));
 
 	//거품 그리기
 	_bubble->Render();

@@ -3,7 +3,6 @@
 
 Bubble::Bubble(string name) : GameObject(name)
 {
-	_name = name;
 }
 
 Bubble::~Bubble()

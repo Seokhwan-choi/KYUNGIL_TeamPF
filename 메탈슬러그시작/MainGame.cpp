@@ -6,6 +6,7 @@
 #include "BubbleCrab.h"
 #include "Fish.h"
 #include "BigCrab.h"
+#include "Boss.h"
 
 //==========================================================================//
 //						## 초기화 ## init(void)								//
@@ -17,34 +18,37 @@ HRESULT MainGame::init(void)
 	//Monster* monster = new Monster("Monster", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::Center);
 	//OBJECTMANAGER->AddObject(ObjectType::Object, monster);
 
-	_player = new Player("플레이어", { 100, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { WINSIZEX - 200, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	//잠자리 생성
-	//FlyBug* _flyBug = new FlyBug("flyBug", { WINSIZEX / 2 + 300, 200 }, { 200, 100 }, GameObject::Pivot::Center);
+	//_flyBug = new FlyBug("flyBug", { WINSIZEX / 2 + 300, 200 }, { 200, 100 }, GameObject::Pivot::Center);
 	//잠자리 객체 추가하기
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug);
 
 	//게 생성
-	//Crab* _crab = new Crab("crab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	//_crab = new Crab("crab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	//게 객체 추가하기
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
 
 	//거품게 생성
-	//BubbleCrab* _bubbleCrab = new BubbleCrab("bubbleCrab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	//_bubbleCrab = new BubbleCrab("bubbleCrab", { 1060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	//거품게 객체 추가하기
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab);
 
 	//물고기 생성
-	Fish* fish = new Fish("fish", { WINSIZEX / 2 + 200,WINSIZEY / 2 + 200}, { 100,100 }, GameObject::Pivot::Center);
+	//_fish = new Fish("fish", { WINSIZEX / 2 + 200,WINSIZEY / 2 + 200}, { 100,100 }, GameObject::Pivot::Center);
 	//물고기 객체 추가하기
-	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, fish);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _fish);
 
 	//큰게 생성
-	//BigCrab* bigCrab = new BigCrab("bigCrab", { 1060,WINSIZEY / 2 + 110}, { 200,280 }, GameObject::Pivot::Center);
+	//_bigCrab = new BigCrab("bigCrab", { 1060,WINSIZEY / 2 + 110}, { 200,280 }, GameObject::Pivot::Center);
 	//큰게 객체 추가하기
-	//OBJECTMANAGER->AddObject(ObjectType::ENEMY, bigCrab);
+	//OBJECTMANAGER->AddObject(ObjectType::ENEMY, _bigCrab);
 
+	//보스 생성
+	_boss = new Boss("boss", { -WINSIZEX / 4, WINSIZEY / 2 + 100 }, { WINSIZEX / 2, WINSIZEY }, GameObject::Pivot::Center);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _boss);
 
 	OBJECTMANAGER->Init();
 

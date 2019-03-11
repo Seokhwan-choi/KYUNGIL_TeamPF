@@ -1,6 +1,0 @@
-﻿  Fish.cpp
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\fish.cpp(23): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\fish.cpp(38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\fish.cpp(41): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\fish.cpp(78): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  GameFramework2D.vcxproj -> C:\Users\kyungil\Documents\KYUNGIL_TeamPF\메탈슬러그시작\Debug\WindowAPI.exe

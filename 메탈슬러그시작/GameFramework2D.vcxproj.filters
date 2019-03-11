@@ -143,6 +143,15 @@
     <ClInclude Include="BigCrab.h">
       <Filter>소스 파일\몬스터\큰게</Filter>
     </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>소스 파일\보스</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>소스 파일\보스</Filter>
+    </ClInclude>
+    <ClInclude Include="FireCannon.h">
+      <Filter>소스 파일\보스</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -213,6 +222,15 @@
     </ClCompile>
     <ClCompile Include="BigCrab.cpp">
       <Filter>소스 파일\몬스터\큰게</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>소스 파일\보스</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>소스 파일\보스</Filter>
+    </ClCompile>
+    <ClCompile Include="FireCannon.cpp">
+      <Filter>소스 파일\보스</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -35,13 +35,13 @@ private:
 	float _angle;
 	//플레이어와의 거리
 	float _dist;
-	//텍스트
-	char msg1[128];
-	POINT _pt;
 	//플레이어 클래스
 	class Player* _player;
 	//거품 클래스
 	class Bubble* _bubble;
+	//텍스트
+	//char msg1[128];
+	//POINT _pt;
 public:
 	BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BubbleCrab();
