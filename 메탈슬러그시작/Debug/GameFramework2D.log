@@ -1,0 +1,25 @@
+﻿  BubbleCrab.cpp
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(47): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(55): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(64): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(65): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(66): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(73): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(74): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(98): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(104): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(109): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(116): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(117): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(118): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(119): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(126): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(127): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(302): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(303): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(306): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(307): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bubblecrab.cpp(394): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
+  GameFramework2D.vcxproj -> C:\Users\kyungil\Documents\KYUNGIL_TeamPF\메탈슬러그시작\Debug\WindowAPI.exe

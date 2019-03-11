@@ -39,9 +39,11 @@ private:
 	class Player* _player;
 	//거품 클래스
 	class Bubble* _bubble;
-	//텍스트
-	//char msg1[128];
-	//POINT _pt;
+	//이미지
+	image* BubblecrabImg[8];
+	//이미지 랜더용 변수
+	int indexImg[6], countImg[6];
+
 public:
 	BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BubbleCrab();
@@ -57,5 +59,9 @@ public:
 	void Release() override;
 	void Update() override;
 	void Render() override;
+
+	void bubblecrabImage();
+	void bubblecrabImageRender();
 };
+
 
