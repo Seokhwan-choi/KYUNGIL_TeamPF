@@ -13,6 +13,12 @@ private:
 	ATTACK _att[2];
 	//플레이어 클래스
 	class Player* player;
+	//행동을 위한 카운트
+	int count;
+	//왼쪽 오른쪽
+	bool isLeft;
+	float _angle;
+	float _dist;
 public:
 	BigCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BigCrab();

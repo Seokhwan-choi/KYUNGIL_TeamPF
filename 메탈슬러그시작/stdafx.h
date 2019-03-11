@@ -44,6 +44,8 @@ using namespace MY_UTIL;
 #include "CommonEnemyFrame.h"
 #include "PlayerData.h"
 
+
+
 //==============================================================//
 //					## 싱글톤을 추가한다 ##					    //
 //==============================================================//
@@ -57,6 +59,7 @@ using namespace MY_UTIL;
 #define SOUNDMANAGER soundManager::getSingleton()
 #define TIMEMANAGER timeManager::getSingleton()
 #define DATA PlayerData::getSingleton()
+
 
 //==============================================================//
 //				## 디파인문 ## (윈도우창 초기화)				    //

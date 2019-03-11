@@ -1,0 +1,11 @@
+diff a/메탈슬러그시작/GameFramework2D.vcxproj b/메탈슬러그시작/GameFramework2D.vcxproj	(rejected hunks)
+@@ -231,6 +231,9 @@
+     <ClCompile Include="startUi.cpp" />
+     <ClCompile Include="timeManager.cpp" />
+     <ClCompile Include="timeUi.cpp" />
++=======
++    <ClCompile Include="timeManager.cpp" />
++>>>>>>> ## 최석환 ## Image클래스 수정, timeManager, soundManager 추가
+     <ClCompile Include="util.cpp" />
+     <ClCompile Include="winMain.cpp" />
+     <ClCompile Include="stdafx.cpp">
