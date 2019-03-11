@@ -13,7 +13,7 @@ struct tagBullet
 	float gravity; 
 	float radius;
 	bool isFire;
-	int count;
+	//int count;
 };
 
 
@@ -24,12 +24,18 @@ private:
 	//const char* _imageName;
 	//float _range;
 	//int _bulletMax;
-	//bool _isFrameImg;
+	bool _isFrameImg;
 
 	float _range; //ÃÑ¾Ë°Å¸® 
 	int _bulletMax; //ÃÑ¾Ë°¹¼ö 
 	vector<tagBullet> _vBullet;
 	vector<tagBullet>::iterator _viBullet; 
+
+	float _angle;
+	float _angle1; 
+
+///	int _frameX;
+//int _frameY;
 
 public:
 	//ÃÑ¾Ë¹ß»ç
@@ -39,7 +45,7 @@ public:
 	Bullet(string name);
 	~Bullet();
 
-	virtual HRESULT Init(const char * imageName, int width, int height, int bulletMax, float range);
+	virtual HRESULT Init(const char * imageName, int width, int height, int bulletMax, float range,bool frameimage);
 	//virtual HRESULT Init(const char * imageName, int width, int height, int bulletMax, float range);
 	virtual void Release();
 	virtual void Update();

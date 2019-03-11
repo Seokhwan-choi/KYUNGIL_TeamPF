@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.16299.0
 Debug|Win32|D:\TeamPF_metalslug3\메탈슬러그시작\|
 =======
@@ -14,3 +15,7 @@ Debug|Win32|C:\Users\남신우\Desktop\KYUNGIL_TeamPF\메탈슬러그시작\|
 Debug|Win32|D:\TeamPF_metalslug3\메탈슬러그시작\|
 >>>>>>> 2b678f276510fa570b9f618a5f7e97d2b0ed6d27
 >>>>>>> feature/UI
+=======
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.15063.0
+Debug|Win32|D:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\|
+>>>>>>> feature/Player2

@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿  stdafx.cpp
 d:\teampf_metalslug3\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
   d:\teampf_metalslug3\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
@@ -133,3 +134,18 @@ d:\teampf_metalslug3\메탈슬러그시작\rect.cpp(51): warning C4996: 'sprintf
   GameFramework2D.vcxproj -> D:\TeamPF_metalslug3\메탈슬러그시작\Debug\WindowAPI.exe
 >>>>>>> 2b678f276510fa570b9f618a5f7e97d2b0ed6d27
 >>>>>>> feature/UI
+=======
+﻿  Player.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(670): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(670): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(673): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(673): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(682): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(682): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(884): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(2981): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(2983): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(2990): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameFramework2D.vcxproj -> D:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\Debug\WindowAPI.exe
+  GameFramework2D.vcxproj -> D:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\Debug\WindowAPI.pdb (Partial PDB)
+>>>>>>> feature/Player2

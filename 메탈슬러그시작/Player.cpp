@@ -16,15 +16,24 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 
 													// ================= 플레이어 총알 ============================= 
 	_playerbullet = new Bullet("플레이어 공용총알");
-	_playerbullet->Init("플레이어/기본총알.bmp", 25, 10, 1000, 800);
+	_playerbullet->Init("플레이어/기본총알.bmp", 25, 10, 1000, 1200,false);
+
+	//===============해비머신건 
+	_heavyBullet = new Bullet("플레이어 해비");
+	_heavyBullet->Init("플레이어/헤비머신건총알.bmp", 510, 120, 200, 30000,true);
+
+	//====================플레이어 픽셀=============================
+	_pixely = _position.y + 52;//맨아래쪽 플레이어y축 충돌렉트 
+	//====================실제 플레이어 렉트=========================
 
 	// ================= 플레이어 폭탄 =============================
 	_playerboom = new Boom("플레이어 폭탄");
 	_playerboom->Init("입술.bmp", 10, 10, 2, WINSIZEY);
 
+	//_InterPlayerRc = RectMakeCenter(_position.x + 75, _position.y + 130, 60, 95);//충돌렉트는 항심움직인다 
 
 	_bullet = BULLET::RIGHTFIRE;					//플레이어 최초상태는 오른쪽보고 총알쏘는상태 
-	_weapon = WEAPON::NORMAL;						//플레이어의 기본 총상태는 딱총상태이다 
+	_weapon = WEAPON::HEAVY;						//플레이어의 기본 총상태는 딱총상태이다 
 	_sword = SWORD::RIGHTATTACK;					//칼은 기본적으로 오른쪽모션먼저세팅되어있다 
 	_state = STATE::IDLE;
 	PlayerRealSwordState = false;					//진짜 충돌할 칼의 bool 값 
@@ -32,8 +41,9 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_playerbulletfire = false;						//총알 발사 눌렀냐?
 	_frameCount = 0;								//프레임 카운트 초기화
 	_frameIndex = 0;								//프레임 인덱스 초기화
+	_isLeft = false;
 
-
+	_boomfire = false;                               //폭탄 발사됫냐?
 													// ========================================== 플레이어 이미지 =======================================================
 	IMAGEMANAGER->addFrameImage("플레이어가만", "플레이어/플레이어가만.bmp", 800, 503, 4, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("플레이어딱총공격", "플레이어/기본딱총공격.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
@@ -48,10 +58,35 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	IMAGEMANAGER->addFrameImage("플레이어이동하며공격", "플레이어/플레이어이동하며공격.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("플레이어가만점프공격", "플레이어/플레이어가만점프공격.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("플레이어이동하면서점프하고위에발사", "플레이어/플레이어이동하면서점프하고위에모션.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));//발사하는것 
-}
+	IMAGEMANAGER->addFrameImage("플레이어점프하면서공격","플레이어/플레이어점프하면서공격.bmp",1200,503,6,2,true,RGB(255,0,255));
+	IMAGEMANAGER->addFrameImage("플레이어점프중위공격", "플레이어/플레이어점프중위공격.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("플레이어이동하며위에공격", "플레이어/플레이어이동하며위에공격.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("플레이어가만점프중아래공격", "플레이어/플레이어가만점프중아래공격.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("플레이어이동점프중아래공격", "플레이어/플레이어이동점프중아래공격.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
+    
+	//수류탄
+	IMAGEMANAGER->addFrameImage("플레이어이동수류탄", "플레이어/플레이어이동수류탄.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("플레이어가만수류탄던지기", "플레이어/플레이어가만수류탄던지기.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("플레이어가만점프수류탄", "플레이어/플레이어가만점프수류탄.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
+
+	//해비머신건 
+	IMAGEMANAGER->addFrameImage("해비가만", "플레이어/해비가만.bmp", 800, 503, 4, 2, true, RGB(255, 0, 255));//아직안씀 render에 적긴적음 
+	IMAGEMANAGER->addFrameImage("해비이동하며공격", "플레이어/해비이동하며공격.bmp", 800, 503, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("해비가만점프공격", "플레이어/해비가만점프공격.bmp", 800, 503, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("해비가만공격", "플레이어/해비가만공격.bmp", 800, 503, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("해비이동점프공격", "플레이어/해비이동점프공격.bmp", 800, 503, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("해비가만점프", "플레이어/해비가만점프.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("해비아래공격", "플레이어/해비아래공격.bmp", 800, 503, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("해비아래가만", "플레이어/해비아래가만.bmp", 800, 503, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("해비아래이동", "플레이어/해비아래이동.bmp", 1400, 503, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("해비이동하며점프", "플레이어/해비이동하며점프.bmp", 1000, 503, 5, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("해비이동", "플레이어/해비이동.bmp", 1200, 503, 6, 2, true, RGB(255, 0, 255));
+
+	
+
+} 
 Player::~Player()
 {
-
 }
 
 HRESULT Player::Init()
@@ -63,7 +98,7 @@ void Player::Release()
 {
 
 }
-
+//점프업샷을하고 walk_shot을 하면 이상 
 void Player::Update()
 {
 	SwordCount++;								//칼충돌됫을시 몆초뒤에 충돌박스 커주는 변수 
@@ -74,9 +109,18 @@ void Player::Update()
 												// ========================================================================
 	if (KEYMANAGER->isStayKeyDown(VK_LEFT))		//플레이어 왼쪽키 눌럿을시 
 	{
-		_bullet = BULLET::LEFTFIRE;				//왼쪽상태에서는 총알 왼쪽으로 나간다 
+	//	_bullet = BULLET::LEFTFIRE;				//왼쪽상태에서는 총알 왼쪽으로 나간다 
 												//_state = STATE::CROUCHWALK
 												//플레이어 움직임 
+		if (_bullet != BULLET::UPFIRE && _bullet != BULLET::DOWNFIRE)
+			_bullet = BULLET::LEFTFIRE;
+		// && _bullet != BULLET::DOWNFIRE)
+				//오른쪾상태에서는 총알 오른쪽으로 나간다 
+	/*	else if (_bullet != BULLET::LEFTFIRE)
+			_bullet = BULLET::DOWNFIRE; 
+		else if (_bullet != BULLET::DOWNFIRE)
+			_bullet = BULLET::UPFIRE;*/
+
 		_isLeft = true;							//왼쪽눌르면 isLeft는 true 
 												//if (_isJump == true)
 												//{
@@ -86,19 +130,33 @@ void Player::Update()
 												//}
 		if (_isJump == true)
 		{
-			if (_state == STATE::JUMP_SHOT)
+			if (_state == STATE::JUMP_SHOT)                   //점프하면서 총쏘기
 			{
 				_wstate = WALKSTATE::JUMP;
 				_state = STATE::JUMP_SHOT;
 			}
-			else
+			else if (_state == STATE::JUMPWALK_UPSHOT)
 			{
-				_wstate = WALKSTATE::JUMP;
+				_wstate = WALKSTATE::JUMPWALK;
+				_state = STATE::JUMPWALK_UPSHOT;
+			}
+			else if(_state==STATE::JUMP)
+			{
+				_wstate = WALKSTATE::JUMPWALK;
 				_state = STATE::JUMPWALK;
 			}
+	     	else if (_state == STATE::JUMPWALK) {
+				_wstate = WALKSTATE::JUMPWALK;
+				_state = STATE::JUMPWALK;
+			}
+			//else if (_state == STATE::JUMP_UPSHOT)
+			//{
+			//	_wstate = WALKSTATE::JUMP;
+			//	_state = STATE::JUMP_UPSHOT; //점프중에 위로 공격하는것
+			//}
 			_position.x -= 3.0f;
 		}
-
+	
 
 		else if (_state == STATE::CROUCHWALK)
 		{
@@ -113,6 +171,26 @@ void Player::Update()
 				_wstate = WALKSTATE::WALK;
 				_state = STATE::WALK_SHOT;      //상태는 이동하면서 쏘는상태로 
 			}
+			else if (_state == STATE::WALK_UPSHOT)
+			{
+				_wstate = WALKSTATE::WALK;
+				_state = STATE::WALK_UPSHOT;
+			}
+			else if (_state == STATE::WALK_BOOM)
+			{
+				_wstate = WALKSTATE::WALK;
+				_state = STATE::WALK_BOOM;
+			}
+		/*	else if (_state == STATE::JUMPWALK) {
+				_wstate = WALKSTATE::JUMPWALK;
+				_state = STATE::JUMPWALK;
+			}*/
+		/*	else if (_state == STATE::IDLE_BOOM)
+			{
+				_wstate = WALKSTATE::IDLE;
+				_state = STATE::IDLE_BOOM;
+			}*/
+
 			else
 			{
 				_wstate = WALKSTATE::WALK;      //그렇지않으면 그냥 걷는상태로 
@@ -127,13 +205,21 @@ void Player::Update()
 	// 수정해야댐
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))	//플레이어 오른쪽키 눌럿을시 
 	{
-		if (_bullet != BULLET::UPFIRE)
+		if (_bullet != BULLET::UPFIRE && _bullet != BULLET::DOWNFIRE)
 			_bullet = BULLET::RIGHTFIRE;		//오른쪾상태에서는 총알 오른쪽으로 나간다 
-												//플레이어 오른쪽으로 움직임 
+	  											//플레이어 오른쪽으로 움직임 
+	/*	if (_bullet == BULLET::UPFIRE)
+		{
+			_bullet = BULLET::UPFIRE
+	    }
+		else if (_bullet == BULLET::DOWNFIRE)
+		{
+			_bullet = BULLET::DOWNFIRE; 
+		}*/
 		_isLeft = false;						//오른쪽키눌르면 isleft는 false 
 		if (_isJump == true)
 		{
-			if (_state == STATE::JUMP_SHOT)
+			if (_state == STATE::JUMP_SHOT)      
 			{
 				_wstate = WALKSTATE::JUMP;
 				_state = STATE::JUMP_SHOT;
@@ -143,11 +229,21 @@ void Player::Update()
 				_wstate = WALKSTATE::JUMPWALK;
 				_state = STATE::JUMPWALK;
 			}
+			else if (_state == STATE::JUMPWALK) {
+				_wstate = WALKSTATE::JUMPWALK;
+				_state = STATE::JUMPWALK;
+			}
 			else if (_state == STATE::JUMPWALK_UPSHOT)
 			{
 				_wstate = WALKSTATE::JUMPWALK;
 				_state = STATE::JUMPWALK_UPSHOT;
 			}
+		
+			//else if (_state == STATE::JUMP_UPSHOT)
+			//{
+			//	_wstate = WALKSTATE::JUMP;
+			//	_state = STATE::JUMP_UPSHOT; //점프중에 위로 공격하는것
+			//}
 
 
 			/*	_wstate = WALKSTATE::JUMPWALK;
@@ -169,7 +265,17 @@ void Player::Update()
 				_wstate = WALKSTATE::WALK;
 				_state = STATE::WALK_SHOT;
 			}
-			else
+			else if (_state == STATE::WALK_UPSHOT)
+			{
+				_wstate = WALKSTATE::WALK;
+				_state = STATE::WALK_UPSHOT;
+			}
+			else if (_state == STATE::WALK_BOOM)
+			{
+				_wstate = WALKSTATE::WALK;
+				_state= STATE::WALK_BOOM;
+			}
+			else 
 			{
 				_wstate = WALKSTATE::WALK;
 				_state = STATE::WALK;
@@ -221,13 +327,11 @@ void Player::Update()
 	// ========================================================================
 	// ###################### 플레이어 아래 눌렀을 때 ############################
 	// ========================================================================
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))		//플레이어 아래쪽키 눌럿을시 
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN)&& _isJump==false )		//플레이어 아래쪽키 눌럿을시 
 	{
 		//_bullet = BULLET::DOWNATTACK;			//총알 앉아 쏘기 상태
 		//_wstate = WALKSTATE::CROUCH;			//플레이어 상태 앉기(CROUCH)
 		//_state = STATE::CROUCH;                 //기본으로 앉는모션
-
-
 		_bullet = BULLET::DOWNATTACK;
 		switch (_wstate)
 		{
@@ -241,7 +345,7 @@ void Player::Update()
 			break;
 		}
 	}
-	if (KEYMANAGER->isOnceKeyUp(VK_DOWN))		//앉아 있다가 일어나면
+	if (KEYMANAGER->isOnceKeyUp(VK_DOWN) && _isJump==false)		//앉아 있다가 일어나면
 	{											//플레이어의 isLeft를 확인 총알 상태 초기화
 		if (_isLeft == true)
 		{
@@ -283,20 +387,23 @@ void Player::Update()
 												//
 												//}
 
+
+	   
+
 		if (_isLeft == true)					//왼쪽보고잇을시에는 
 		{
 			_angle -= 0.125f;
-			if (_angle < PI / 2)
+			if (_angle < PI / 2.0f)
 			{
-				_angle = PI / 2;
+				_angle = PI / 2.0f;
 			}
 		}
 		else
 		{
 			_angle += 0.125f;
-			if (_angle > PI / 2)
+			if (_angle > PI / 2.0f)
 			{
-				_angle = PI / 2;
+				_angle = PI / 2.0f;
 			}
 		}
 	}
@@ -312,20 +419,31 @@ void Player::Update()
 		else
 		{
 			_angle -= 0.125f;
-			if (_angle < 0)
+			if (_angle < 0.0f )
 			{
 				_angle = 0.0f;
 			}
 		}
 	}
-
+	if (KEYMANAGER->isOnceKeyUp(VK_UP))		//플레이어 up키를 누르면 
+	{
+		_bullet = BULLET::IDLE;
+		_wstate = WALKSTATE::IDLE;
+		_state = STATE::IDLE;
+	}
 	// ========================================================================
 	// ###################### 플레이어 공격(A) 눌렀을 때 #########################
 	// ========================================================================
 
 	if (KEYMANAGER->isOnceKeyDown('A'))//A키를 눌럿을떄 
 	{
-		_playerbulletfire = true;
+		_playerbulletfire = true;// 동작을 랜더하겟다 
+		if (_weapon == WEAPON::HEAVY)
+		{
+			_hfire = true;
+		}
+	
+		
 		if (_isLeft)
 		{
 			_frameIndex = 0;
@@ -438,7 +556,93 @@ void Player::Update()
 			// 나중에 추가하시면 댐
 
 		case WEAPON::HEAVY:
+			switch (_wstate)
+			{
 
+			case WALKSTATE::IDLE:
+
+				switch (_bullet)
+				{
+				case BULLET::LEFTFIRE:
+					_state = STATE::IDLE_SHOT;
+					break;
+				case BULLET::RIGHTFIRE:
+					_state = STATE::IDLE_SHOT;
+					break;
+				case BULLET::UPFIRE:
+					_state = STATE::IDLE_UPSHOT;
+					break;
+				case BULLET::IDLE:
+					break;
+				}
+				break;
+
+			case WALKSTATE::WALK:
+				switch (_bullet)
+				{
+				case BULLET::LEFTFIRE:
+					_state = STATE::WALK_SHOT;
+					break;
+				case BULLET::RIGHTFIRE:
+					_state = STATE::WALK_SHOT;
+					break;
+				case BULLET::UPFIRE:
+					_state = STATE::WALK_UPSHOT;
+					break;
+				case BULLET::IDLE:
+					break;
+				}
+				break;
+
+			case WALKSTATE::JUMP:
+				switch (_bullet)
+				{
+				case BULLET::LEFTFIRE:
+					_state = STATE::JUMP_SHOT;
+					break;
+				case BULLET::RIGHTFIRE:
+					_state = STATE::JUMP_SHOT;
+					break;
+				case BULLET::UPFIRE:
+					_state = STATE::JUMP_UPSHOT;
+					break;
+				case BULLET::DOWNFIRE:
+					_state = STATE::JUMP_DOWNSHOT;
+					break;
+				case BULLET::IDLE:
+					break;
+				}
+				break;
+
+			case WALKSTATE::JUMPWALK:
+				switch (_bullet)
+				{
+				case BULLET::LEFTFIRE:
+					_state = STATE::JUMPWALK_SHOT;
+					break;
+				case BULLET::RIGHTFIRE:
+					_state = STATE::JUMPWALK_SHOT;
+					break;
+				case BULLET::UPFIRE:
+					_state = STATE::JUMPWALK_UPSHOT;
+					break;
+				case BULLET::DOWNFIRE:
+					_state = STATE::JUMPWALK_DOWNSHOT;
+					break;
+				case BULLET::IDLE:
+					break;
+				}
+				break;
+
+			case WALKSTATE::CROUCH:
+				switch (_bullet)
+				{
+				case BULLET::DOWNATTACK:
+					_state = STATE::CROUCHSHOT;
+					break;
+				}
+				break;
+			}
 			break;
 		case WEAPON::SWORD:
 
@@ -463,19 +667,19 @@ void Player::Update()
 			switch (_bullet)
 			{
 			case BULLET::LEFTFIRE://왼쪽만 가는 헤비머신건 
-				_playerbullet->fire(_position.x, RND->range(_position.y - 10, _position.y + 10) /*_position.y*/, PI, 5.5f);
+				_heavyBullet->fire(_position.x + 300, RND->range(_position.y - 10, _position.y + 10) /*_position.y*/, _angle, 12.5f);
 				break;
 			case BULLET::RIGHTFIRE://오른쪽만 가는 헤비머신건 
-				_playerbullet->fire(_position.x, RND->range(_position.y - 10, _position.y + 10), 0, 5.5f);
+				_heavyBullet->fire(_position.x + 300, RND->range(_position.y - 10, _position.y + 10), _angle, 12.5f);
 				break;
 			case BULLET::UPFIRE://위에보면서 좌르륵가는거 
-				_playerbullet->fire(_position.x, _position.y, _angle, 5.5f);
+				_heavyBullet->fire(_position.x + 300, _position.y, _angle, 12.5f);
 				break;
 			case BULLET::DOWNFIRE://점프상태일떄 아래보면서 쏘는거 
-				_playerbullet->fire(_position.x, _position.y, _angle1, 5.5f);
+				_heavyBullet->fire(_position.x + 300, _position.y, _angle1, 12.5f);
 				break;
 			case BULLET::DOWNATTACK://그냥 앉아서 쏘는거 
-				_playerbullet->fire(_position.x, RND->range(_position.y + 10, _position.y + 30), _angle, 10.5f);
+				_heavyBullet->fire(_position.x + 300, RND->range(_position.y + 10, _position.y + 30), _angle, 12.5f);
 			case BULLET::IDLE:
 				break;
 			}
@@ -499,8 +703,18 @@ void Player::Update()
 
 											// 걷고 있으면서 JUMP를 누르면 WLAKJUMP
 											// 그냥 누르면 JUMP
-		_wstate = WALKSTATE::JUMP;
+	
+	
+		
+		
+		if (_wstate != WALKSTATE::JUMPWALK)
+			_wstate = WALKSTATE::JUMP;
+
+	//	_wstate = WALKSTATE::JUMP;
 		_state = STATE::JUMP;
+
+		//_wstate = WALKSTATE::JUMPWALK;
+		//_state = STATE::JUMPWALK_DOWNSHOT;
 
 	}
 
@@ -514,12 +728,26 @@ void Player::Update()
 		_position.y -= _jumppower;			//플레이어 y축은 점프힘만큼 빼준다  
 		_jumppower -= _gravity;				//점프힘은 중력값만큼 빠진다 
 
+	//	_wstate = WALKSTATE::JUMP; 
+		//_state = STATE::JUMP_UPSHOT;
+
 											// ------- 점프 중 아래를 누르면 -------
 		if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 		{//앉아잇기 앉아서 쏘기 앉아서 `` 앉아서 이동 
 		 //플레이어 총알방향은 아래쪽이된다 
 			_bullet = BULLET::DOWNFIRE;
 
+			if (_state == STATE::JUMPWALK_DOWNSHOT)
+			{
+				_state = STATE::JUMPWALK_DOWNSHOT;
+				_wstate = WALKSTATE::JUMPWALK;
+			}
+			else if (_state == STATE::JUMP_DOWNSHOT)
+
+			{
+				_state = STATE::JUMP_DOWNSHOT;
+				_wstate = WALKSTATE::JUMP;
+			}
 			if (_isLeft == true)
 			{
 				_angle1 += 0.125f;
@@ -562,13 +790,21 @@ void Player::Update()
 		_bullet = BULLET::IDLE;
 	}
 	// ========================================================
-	if (_position.y > 400 && _isJump == true)		//플레이어 중점이 400보다 커지면 
-	{
-		_isJump = false;		//점프상태는 false로 바까준다 
-		_wstate = WALKSTATE::IDLE;
-		_state = STATE::IDLE;
-	}
+	//**********************픽셀 
+
+	//if (_position.y > 400 && _isJump == true)		//플레이어 중점이 400보다 커지면 
+	//{
+	//	_isJump = false;		//점프상태는 false로 바까준다 
+	//	_wstate = WALKSTATE::IDLE;
+	//	_state = STATE::IDLE;
+	//}
 	// ========================================================
+
+
+
+
+
+
 
 
 
@@ -599,8 +835,16 @@ void Player::Update()
 
 	if (KEYMANAGER->isOnceKeyDown('D') && _playerboomFire == false)//boomfire가 false일때만 수류탄던질수가있다 
 	{
+		_boomfire = true; 
+		if (_isLeft)
+		{
+			_frameIndex = 0;
+		}
+		else {
+			_frameIndex = -1;
+		}
 		//만약에 수류탄이 바닥이랑 충돌하면
-		if (_isLeft == true)
+		/*if (_isLeft == true)
 		{
 			_playerboom->fire(_position.x, _position.y, PI - 1.1f, 0.5f, 7.5f);
 		}
@@ -608,13 +852,36 @@ void Player::Update()
 		{
 			_playerboom->fire(_position.x, _position.y, 1.14f, 0.5f, 7.5f);
 		}
+*/
+		switch (_wstate)
+		{
+		case WALKSTATE::IDLE:
+			_state = STATE::IDLE_BOOM;
+			break;
+		case WALKSTATE::WALK:
+			_state = STATE::WALK_BOOM;
+			break;
+		case WALKSTATE::JUMP:
+			_state = STATE::JUMP_BOOM;
+			break;
+		case WALKSTATE::JUMPWALK:
+			_state = STATE::JUMPWALK_BOOM;
+			break;
+		case WALKSTATE::CROUCH:
+			_state = STATE::CROUCHBOOM;
+
+			break;
+		default:
+			break;
+		}
+
 	}
 	if (_playerboom->GetPlayerBoomMax() <= 0)//플레이어 수류탄갯수 던지는거 처리는 bullet클래스boom에서 처리한다 
 	{
 		_playerboomFire = true;//true가 되면 던질수가없다 
 	}
 
-
+	check = RectMakeCenter(_position.x, _position.y+52,30,30);
 
 
 	this->UpdateRectByPivot();//렉트를 다시그려주는거 즉 업데이트에서 항시움직일려고  
@@ -627,17 +894,37 @@ void Player::Update()
 							  //==============이미지
 	this->PlayerMotionState();
 	this->PlayerBulletMotion();
+	this->PlayerBoomMotion(); 
+	this->PixelMapCollision();
 	_playerbullet->move();//플레이어 총알은 항시 움직이고 
 	_playerboom->move();//플레이어 폭탄도 항심 움직인다  
+	_heavyBullet->move();
+	//_InterPlayerRc = RectMakeCenter(_position.x+75, _position.y+130, 60, 95);//충돌렉트는 항심움직인다 
+	
+//	_temp = RectMakeCenter(_InterPlayerRc.left + 75, _InterPlayerRc.bottom, 15, 15);
 }
 // =====================================================================================================================================
 // ####################################################### 플레이어 Render ##############################################################
 // =====================================================================================================================================
 void Player::Render()
 {
+<<<<<<< HEAD
 	RECT _rect = CAMERA->Relative(_rc);		//상대좌표로 넣어주기 
 	Rectangle(getMemDC(), _rect);//플레이어 렉트 보여주기 
 	_playerbullet->Render(); //bullet에서 받아서 기본총 보여주기 
+=======
+	RECT playerRC = CAMERA->Relative(_rc);
+	RECT CHEK = CAMERA->Relative(check);
+	Rectangle(getMemDC(), CHEK);
+
+	//RECT interplayerrc= CAMERA->Relative(_InterPlayerRc);
+
+	FrameRect(getMemDC(), &playerRC, HBRUSH(RGB(255, 0, 0)));
+	//FrameRect(getMemDC(), &CAMERA->Relative(_temp), HBRUSH(RGB(255, 0, 0)));
+	_playerbullet->Render(); //bullet에서 받아서 기본총 보여주기 
+	_heavyBullet->Render(); //해비머신건 
+
+>>>>>>> feature/Player2
 	_playerboom->Render();   //플레이어 폭탄 보여주기 
 
 							 //Rectangle(getMemDC(), PlayerLeftSword); //실제충돌되는 렉트 확인용
@@ -658,10 +945,9 @@ void Player::Render()
 	{
 		Rectangle(getMemDC(), PlayerRealRightSword);
 	}
-
-	//===================이미지============================================
-	switch (_state)
+	switch (_weapon)
 	{
+<<<<<<< HEAD
 	case Player::STATE::IDLE:
 		IMAGEMANAGER->frameRender("플레이어가만", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 		break;
@@ -700,8 +986,132 @@ void Player::Render()
 		break;
 	case STATE::JUMPWALK_UPSHOT:
 		IMAGEMANAGER->frameRender("플레이어이동하면서점프하고위에발사", getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
+=======
+	case WEAPON::NORMAL:
+		switch (_state)
+		{
+		case Player::STATE::IDLE:
+			IMAGEMANAGER->frameRender("플레이어가만", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::WALK:
+			//IMAGEMANAGER->frameRender("플레이어이동", getMemDC(), playerRC.left, playerRC.top);
+			IMAGEMANAGER->frameRender("플레이어이동", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::IDLE_SHOT:
+			IMAGEMANAGER->frameRender("플레이어딱총공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::IDLE_UPSHOT:
+			IMAGEMANAGER->frameRender("플레이어위딱총공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::JUMP:
+			IMAGEMANAGER->frameRender("플레이어기본점프", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::IDLE_UPSTARE:
+			IMAGEMANAGER->frameRender("플레이어가만위보기", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::CROUCH:
+			IMAGEMANAGER->frameRender("플레이어쭈그려", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::CROUCHWALK:
+			IMAGEMANAGER->frameRender("플레이어쭈그려서이동", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::CROUCHSHOT:
+			IMAGEMANAGER->frameRender("플레이어쭈그려공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::JUMPWALK:
+			IMAGEMANAGER->frameRender("플레이어좌우이동하며점프", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::WALK_SHOT:
+			IMAGEMANAGER->frameRender("플레이어이동하며공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::JUMP_SHOT:
+			IMAGEMANAGER->frameRender("플레이어가만점프공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::JUMPWALK_UPSHOT:
+			IMAGEMANAGER->frameRender("플레이어이동하면서점프하고위에발사", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::JUMPWALK_SHOT:
+			IMAGEMANAGER->frameRender("플레이어점프하면서공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::JUMP_UPSHOT:
+			IMAGEMANAGER->frameRender("플레이어점프중위공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::WALK_UPSHOT:
+			IMAGEMANAGER->frameRender("플레이어이동하며위에공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::JUMP_DOWNSHOT:
+			IMAGEMANAGER->frameRender("플레이어가만점프중아래공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::JUMPWALK_DOWNSHOT:
+			IMAGEMANAGER->frameRender("플레이어이동점프중아래공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+
+			//수류탄 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		case STATE::WALK_BOOM:
+			IMAGEMANAGER->frameRender("플레이어이동수류탄", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::IDLE_BOOM:
+			IMAGEMANAGER->frameRender("플레이어가만수류탄던지기", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::JUMP_BOOM:
+			IMAGEMANAGER->frameRender("플레이어가만점프수류탄", getMemDC(), playerRC.left, playerRC.top);
+			break;
+
+		}
+		break;
+	case WEAPON::HEAVY:
+		/*해비이동하며공격
+		해비가만*/
+		switch (_state)
+		{
+		case STATE::IDLE_SHOT:
+			IMAGEMANAGER->frameRender("해비가만공격", getMemDC(), playerRC.left, playerRC.top);
+			break; 
+		case STATE::IDLE:
+			IMAGEMANAGER->frameRender("해비가만", getMemDC(), playerRC.left, playerRC.top);
+			break; 
+		case STATE::WALK_SHOT:
+			IMAGEMANAGER->frameRender("해비이동하며공격", getMemDC(), playerRC.left, playerRC.top);
+			break; 
+		case STATE::JUMP_SHOT:
+			IMAGEMANAGER->frameRender("해비가만점프공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::JUMPWALK_SHOT:
+			IMAGEMANAGER->frameRender("해비이동점프공격", getMemDC(), playerRC.left, playerRC.top);
+			break; 
+		case STATE::JUMP:
+			IMAGEMANAGER->frameRender("해비가만점프", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::CROUCHSHOT:
+			IMAGEMANAGER->frameRender("해비아래공격", getMemDC(), playerRC.left, playerRC.top);
+			break;
+		case STATE::CROUCH:
+			IMAGEMANAGER->frameRender("해비아래가만", getMemDC(), playerRC.left, playerRC.top);
+			break; 
+		case STATE::CROUCHWALK:
+			IMAGEMANAGER->frameRender("해비아래이동", getMemDC(), playerRC.left, playerRC.top);
+			break; 
+		case STATE::JUMPWALK:
+			IMAGEMANAGER->frameRender("해비이동하며점프", getMemDC(), playerRC.left, playerRC.top);
+			break; 
+		case STATE::WALK:
+			IMAGEMANAGER->frameRender("해비이동", getMemDC(), playerRC.left, playerRC.top);
+			break; 
+		}
+		
+		break;
+	case WEAPON::SWORD:
+		break;
+	case WEAPON::GRENADE:
+		break;
+	default:
+>>>>>>> feature/Player2
 		break;
 	}
+	//===================이미지============================================
+	
 	// =====================================================================
 
 	//====================디버그용 예시용도다 확인=============================
@@ -715,6 +1125,9 @@ void Player::Render()
 		}
 	}
 	// =====================================================================
+
+
+//	Rectangle(getMemDC(), interplayerrc/*.left - playerRC.left, _InterPlayerRc.top - playerRC.top, _InterPlayerRc.right - playerRC.right, _InterPlayerRc.bottom - playerRC.bottom*/);
 }
 
 // =====================================================================================================================================
@@ -722,224 +1135,486 @@ void Player::Render()
 // =====================================================================================================================================
 void Player::PlayerMotionState()
 {
-	switch (_state)
+
+	switch (_weapon)  //무기상태 노말일때 
 	{
-	case STATE::IDLE:
-		_frameCount++;
-		if (!_isLeft)
+	case WEAPON::NORMAL:
+		switch (_state)
 		{
-			IMAGEMANAGER->findImage("플레이어가만")->setFrameY(0);
-			if (_frameCount % SPEED == 0) {
-				_frameIndex++;
-				if (_frameIndex > 3) {
-					_frameIndex = 0;
-				}
 
-				IMAGEMANAGER->findImage("플레이어가만")->setFrameX(_frameIndex);
-			}
-		}
-		else
-		{
-			IMAGEMANAGER->findImage("플레이어가만")->setFrameY(1);
-			if (_frameCount % SPEED == 0) {
-				_frameIndex--;
-				if (_frameIndex < 0) {
-					_frameIndex = 3;
-				}
+		case STATE::IDLE:
+			_frameCount++;
+			if (!_isLeft)
+			{
+				IMAGEMANAGER->findImage("플레이어가만")->setFrameY(0);
+				if (_frameCount % SPEED == 0) {
+					_frameIndex++;
+					if (_frameIndex > 3) {
+						_frameIndex = 0;
+					}
 
-				IMAGEMANAGER->findImage("플레이어가만")->setFrameX(_frameIndex);
+					IMAGEMANAGER->findImage("플레이어가만")->setFrameX(_frameIndex);
+				}
 			}
-		}
-		//플레이어이동하면서점프하고위에발사
-		break;
-	case STATE::WALK:
-		IMAGEMANAGER->findImage("플레이어이동")->setFrameY(0);
-		_frameCount++;
-		if (!_isLeft) {
-			if (_frameCount % SPEED == 0) {
-				_frameIndex++;
-				if (_frameIndex > 5)
+			else
+			{
+				IMAGEMANAGER->findImage("플레이어가만")->setFrameY(1);
+				if (_frameCount % SPEED == 0) {
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 3;
+					}
+
+					IMAGEMANAGER->findImage("플레이어가만")->setFrameX(_frameIndex);
+				}
+			}
+			//플레이어이동하면서점프하고위에발사
+			break;
+		case STATE::WALK:
+
+			_frameCount++;
+			if (!_isLeft) {
+				IMAGEMANAGER->findImage("플레이어이동")->setFrameY(0);
+				if (_frameCount % SPEED == 0) {
+					_frameIndex++;
+					if (_frameIndex > 5)
+					{
+						_frameIndex = 0;
+					}
+
+					IMAGEMANAGER->findImage("플레이어이동")->setFrameX(_frameIndex);
+				}
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("플레이어이동")->setFrameY(1);
+				if (_frameCount % SPEED == 0)
 				{
-					_frameIndex = 0;
-				}
-				IMAGEMANAGER->findImage("플레이어이동")->setFrameX(_frameIndex);
-			}
-		}
-		else
-		{
-			IMAGEMANAGER->findImage("플레이어이동")->setFrameY(1);
-			if (_frameCount % SPEED == 0)
-			{
-				_frameIndex--;
-				if (_frameIndex < 0) {
-					_frameIndex = 5;
-				}
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 5;
+					}
 
-				IMAGEMANAGER->findImage("플레이어이동")->setFrameX(_frameIndex);
+					IMAGEMANAGER->findImage("플레이어이동")->setFrameX(_frameIndex);
+				}
 			}
+			break;
+		case STATE::JUMP:
+			IMAGEMANAGER->findImage("플레이어기본점프")->setFrameY(0);
+			_frameCount++;
+			if (!_isLeft)
+			{
+				if (_frameCount % 10 == 0) {
+					_frameIndex++;
+					if (_frameIndex > 5)
+					{
+						_frameIndex = 0;
+					}
+
+					IMAGEMANAGER->findImage("플레이어기본점프")->setFrameX(_frameIndex);
+				}
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("플레이어기본점프")->setFrameY(1);
+				if (_frameCount % 10 == 0)
+				{
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 5;
+					}
+
+					IMAGEMANAGER->findImage("플레이어기본점프")->setFrameX(_frameIndex);
+				}
+			}
+			break;
+		case STATE::IDLE_UPSTARE:
+
+			_frameCount++;
+			if (!_isLeft)
+			{
+				IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameY(0);
+				if (_frameCount % 10 == 0)
+				{
+					_frameIndex++;
+					if (_frameIndex > 5)
+					{
+						_frameIndex = 5;
+					}
+
+					IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameX(_frameIndex);
+				}
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameY(1);
+				if (_frameCount % 10 == 0)
+				{
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 0;
+					}
+
+					IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameX(_frameIndex);
+				}
+			}
+
+			break;
+			//플레이어쭈그려
+		case STATE::CROUCH:
+
+			_frameCount++;
+			if (!_isLeft)
+			{
+				IMAGEMANAGER->findImage("플레이어쭈그려")->setFrameY(0);
+				if (_frameCount % 10 == 0)
+				{
+					_frameIndex++;
+					if (_frameIndex > 3)
+					{
+						_frameIndex = 0;
+					}
+
+					IMAGEMANAGER->findImage("플레이어쭈그려")->setFrameX(_frameIndex);
+				}
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("플레이어쭈그려")->setFrameY(1);
+				if (_frameCount % 10 == 0)
+				{
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 3;
+					}
+
+					IMAGEMANAGER->findImage("플레이어쭈그려")->setFrameX(_frameIndex);
+				}
+			}
+			break;
+
+			//	플레이어쭈그려서이동
+		case STATE::CROUCHWALK:
+
+			_frameCount++;
+			if (!_isLeft)
+			{
+				IMAGEMANAGER->findImage("플레이어쭈그려서이동")->setFrameY(0);
+				if (_frameCount % 10 == 0)
+				{
+					_frameIndex++;
+					if (_frameIndex > 7)
+					{
+						_frameIndex = 0;
+					}
+
+					IMAGEMANAGER->findImage("플레이어쭈그려서이동")->setFrameX(_frameIndex);
+				}
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("플레이어쭈그려서이동")->setFrameY(1);
+				if (_frameCount % 10 == 0)
+				{
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 7;
+					}
+
+					IMAGEMANAGER->findImage("플레이어쭈그려서이동")->setFrameX(_frameIndex);
+				}
+			}
+			break;
+			//플레이어좌우이동하며점프
+		case STATE::JUMPWALK:
+			_frameCount++;
+			if (_isLeft == false)
+			{
+				IMAGEMANAGER->findImage("플레이어좌우이동하며점프")->setFrameY(0);
+				if (_frameCount % 10 == 0)
+				{
+					_frameIndex++;
+					if (_frameIndex > 5)
+					{
+						_frameIndex = 0;
+					}
+					IMAGEMANAGER->findImage("플레이어좌우이동하며점프")->setFrameX(_frameIndex);
+				}
+			}//플레이어이동하면서점프하고위에발사
+			else
+			{
+				IMAGEMANAGER->findImage("플레이어좌우이동하며점프")->setFrameY(1);
+				if (_frameCount % 10 == 0)
+				{
+					_frameIndex--;
+					if (_frameIndex < 0)
+					{
+						_frameIndex = 5;
+					}
+
+					IMAGEMANAGER->findImage("플레이어쭈그려서이동")->setFrameX(_frameIndex);
+				}
+			}
+			break;
+			//플레이어이동하며공격
+		default:
+			break;
 		}
 		break;
-	case STATE::JUMP:
-		IMAGEMANAGER->findImage("플레이어기본점프")->setFrameY(0);
-		_frameCount++;
-		if (!_isLeft)
+		//============================================================================================%%%%%%%%%%%%%%%%%%%%%
+		//==================================================플레이어 해비 상태처리========================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+		//=============================================================================================================================
+	case WEAPON::HEAVY:
+		switch (_state)
 		{
-			if (_frameCount % 10 == 0) {
-				_frameIndex++;
-				if (_frameIndex > 5)
-				{
-					_frameIndex = 0;
-				}
 
-				IMAGEMANAGER->findImage("플레이어기본점프")->setFrameX(_frameIndex);
-			}
-		}
-		else
-		{
-			IMAGEMANAGER->findImage("플레이어기본점프")->setFrameY(1);
-			if (_frameCount % 10 == 0)
+		case STATE::IDLE:
+			_frameCount++;
+			if (!_isLeft)
 			{
-				_frameIndex--;
-				if (_frameIndex < 0) {
-					_frameIndex = 5;
-				}
+				IMAGEMANAGER->findImage("해비가만")->setFrameY(0);
+				if (_frameCount % SPEED == 0) {
+					_frameIndex++;
+					if (_frameIndex > 3) {
+						_frameIndex = 0;
+					}
 
-				IMAGEMANAGER->findImage("플레이어기본점프")->setFrameX(_frameIndex);
+					IMAGEMANAGER->findImage("해비가만")->setFrameX(_frameIndex);
+				}
 			}
+			else
+			{
+				IMAGEMANAGER->findImage("해비가만")->setFrameY(1);
+				if (_frameCount % SPEED == 0) {
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 3;
+					}
+
+					IMAGEMANAGER->findImage("해비가만")->setFrameX(_frameIndex);
+				}
+			}
+			//플레이어이동하면서점프하고위에발사
+			break;
+		case STATE::WALK:
+
+			_frameCount++;
+			if (!_isLeft) {
+				IMAGEMANAGER->findImage("해비이동")->setFrameY(0);
+				if (_frameCount % SPEED == 0) {
+					_frameIndex++;
+					if (_frameIndex > 5)
+					{
+						_frameIndex = 0;
+					}
+
+					IMAGEMANAGER->findImage("해비이동")->setFrameX(_frameIndex);
+				}
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("해비이동")->setFrameY(1);
+				if (_frameCount % SPEED == 0)
+				{
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 5;
+					}
+
+					IMAGEMANAGER->findImage("해비이동")->setFrameX(_frameIndex);
+				}
+			}
+			break;
+		case STATE::JUMP:
+			IMAGEMANAGER->findImage("해비가만점프")->setFrameY(0);
+			_frameCount++;
+			if (!_isLeft)
+			{
+				if (_frameCount % SPEED == 0) {
+					_frameIndex++;
+					if (_frameIndex > 5)
+					{
+						_frameIndex = 0;
+					}
+
+					IMAGEMANAGER->findImage("해비가만점프")->setFrameX(_frameIndex);
+				}
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("해비가만점프")->setFrameY(1);
+				if (_frameCount % SPEED == 0)
+				{
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 5;
+					}
+
+					IMAGEMANAGER->findImage("해비가만점프")->setFrameX(_frameIndex);
+				}
+			}
+			break;
+		case STATE::IDLE_UPSTARE:
+
+			_frameCount++;
+			if (!_isLeft)
+			{
+				IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameY(0);
+				if (_frameCount % 10 == 0)
+				{
+					_frameIndex++;
+					if (_frameIndex > 5)
+					{
+						_frameIndex = 5;
+					}
+
+					IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameX(_frameIndex);
+				}
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameY(1);
+				if (_frameCount % 10 == 0)
+				{
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 0;
+					}
+
+					IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameX(_frameIndex);
+				}
+			}
+
+			break;
+			//플레이어쭈그려
+		case STATE::CROUCH:
+
+			_frameCount++;
+			if (!_isLeft)
+			{
+				IMAGEMANAGER->findImage("해비아래가만")->setFrameY(0);
+				if (_frameCount % SPEED == 0)
+				{
+					_frameIndex++;
+					if (_frameIndex > 3)
+					{
+						_frameIndex = 0;
+					}
+
+					IMAGEMANAGER->findImage("해비아래가만")->setFrameX(_frameIndex);
+				}
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("해비아래가만")->setFrameY(1);
+				if (_frameCount % SPEED == 0)
+				{
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 3;
+					}
+
+					IMAGEMANAGER->findImage("해비아래가만")->setFrameX(_frameIndex);
+				}
+			}
+			break;
+
+			//	플레이어쭈그려서이동
+		case STATE::CROUCHWALK:
+
+			_frameCount++;
+			if (!_isLeft)
+			{
+				IMAGEMANAGER->findImage("해비아래이동")->setFrameY(0);
+				if (_frameCount % SPEED == 0)
+				{
+					_frameIndex++;
+					if (_frameIndex > 6)
+					{
+						_frameIndex = 0;
+					}
+
+					IMAGEMANAGER->findImage("해비아래이동")->setFrameX(_frameIndex);
+				}
+			}
+			else
+			{
+				IMAGEMANAGER->findImage("해비아래이동")->setFrameY(1);
+				if (_frameCount % SPEED == 0)
+				{
+					_frameIndex--;
+					if (_frameIndex < 0) {
+						_frameIndex = 6;
+					}
+
+					IMAGEMANAGER->findImage("해비아래이동")->setFrameX(_frameIndex);
+				}
+			}
+			break;
+			//플레이어좌우이동하며점프
+		case STATE::JUMPWALK:
+			_frameCount++;
+			if (_isLeft == false)
+			{
+				IMAGEMANAGER->findImage("해비이동하며점프")->setFrameY(0);
+				if (_frameCount % SPEED == 0)
+				{
+					_frameIndex++;
+					if (_frameIndex > 4)
+					{
+						_frameIndex = 0;
+					}
+					IMAGEMANAGER->findImage("해비이동하며점프")->setFrameX(_frameIndex);
+				}
+			}//플레이어이동하면서점프하고위에발사
+			else
+			{
+				IMAGEMANAGER->findImage("해비이동하며점프")->setFrameY(1);
+				if (_frameCount % SPEED == 0)
+				{
+					_frameIndex--;
+					if (_frameIndex < 0)
+					{
+						_frameIndex = 4;
+					}
+
+					IMAGEMANAGER->findImage("해비이동하며점프")->setFrameX(_frameIndex);
+				}
+			}
+			break;
+			//플레이어이동하며공격
+		default:
+			break;
 		}
 		break;
-	case STATE::IDLE_UPSTARE:
-
-		_frameCount++;
-		if (!_isLeft)
-		{
-			IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameY(0);
-			if (_frameCount % 10 == 0)
-			{
-				_frameIndex++;
-				if (_frameIndex > 5)
-				{
-					_frameIndex = 5;
-				}
-
-				IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameX(_frameIndex);
-			}
-		}
-		else
-		{
-			IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameY(1);
-			if (_frameCount % 10 == 0)
-			{
-				_frameIndex--;
-				if (_frameIndex < 0) {
-					_frameIndex = 0;
-				}
-
-				IMAGEMANAGER->findImage("플레이어가만위보기")->setFrameX(_frameIndex);
-			}
-		}
-
+	case WEAPON::SWORD:
 		break;
-		//플레이어쭈그려
-	case STATE::CROUCH:
-
-		_frameCount++;
-		if (!_isLeft)
-		{
-			IMAGEMANAGER->findImage("플레이어쭈그려")->setFrameY(0);
-			if (_frameCount % 10 == 0)
-			{
-				_frameIndex++;
-				if (_frameIndex > 3)
-				{
-					_frameIndex = 0;
-				}
-
-				IMAGEMANAGER->findImage("플레이어쭈그려")->setFrameX(_frameIndex);
-			}
-		}
-		else
-		{
-			IMAGEMANAGER->findImage("플레이어쭈그려")->setFrameY(1);
-			if (_frameCount % 10 == 0)
-			{
-				_frameIndex--;
-				if (_frameIndex < 0) {
-					_frameIndex = 3;
-				}
-
-				IMAGEMANAGER->findImage("플레이어쭈그려")->setFrameX(_frameIndex);
-			}
-		}
+	case WEAPON::GRENADE:
 		break;
-
-		//	플레이어쭈그려서이동
-	case STATE::CROUCHWALK:
-
-		_frameCount++;
-		if (!_isLeft)
-		{
-			IMAGEMANAGER->findImage("플레이어쭈그려서이동")->setFrameY(0);
-			if (_frameCount % 10 == 0)
-			{
-				_frameIndex++;
-				if (_frameIndex > 7)
-				{
-					_frameIndex = 0;
-				}
-
-				IMAGEMANAGER->findImage("플레이어쭈그려서이동")->setFrameX(_frameIndex);
-			}
-		}
-		else
-		{
-			IMAGEMANAGER->findImage("플레이어쭈그려서이동")->setFrameY(1);
-			if (_frameCount % 10 == 0)
-			{
-				_frameIndex--;
-				if (_frameIndex < 0) {
-					_frameIndex = 7;
-				}
-
-				IMAGEMANAGER->findImage("플레이어쭈그려서이동")->setFrameX(_frameIndex);
-			}
-		}
-		break;
-		//플레이어좌우이동하며점프
-	case STATE::JUMPWALK:
-		_frameCount++;
-		if (_isLeft == false)
-		{
-			IMAGEMANAGER->findImage("플레이어좌우이동하며점프")->setFrameY(0);
-			if (_frameCount % 10 == 0)
-			{
-				_frameIndex++;
-				if (_frameIndex > 5)
-				{
-					_frameIndex = 0;
-				}
-				IMAGEMANAGER->findImage("플레이어좌우이동하며점프")->setFrameX(_frameIndex);
-			}
-		}//플레이어이동하면서점프하고위에발사
-		else
-		{
-			IMAGEMANAGER->findImage("플레이어좌우이동하며점프")->setFrameY(1);
-			if (_frameCount % 10 == 0)
-			{
-				_frameIndex--;
-				if (_frameIndex < 0)
-				{
-					_frameIndex = 5;
-				}
-
-				IMAGEMANAGER->findImage("플레이어쭈그려서이동")->setFrameX(_frameIndex);
-			}
-		}
-		break;
-		//플레이어이동하며공격
 	default:
 		break;
 	}
+
+	
+	
 }
 
 
@@ -948,6 +1623,7 @@ void Player::PlayerMotionState()
 // =====================================================================================================================================
 void Player::PlayerBulletMotion()
 {
+	
 	// A(공격) 눌렀을 때
 	if (_playerbulletfire == true)
 	{
@@ -971,6 +1647,7 @@ void Player::PlayerBulletMotion()
 							{
 								_frameIndex = 0;
 							}
+
 							IMAGEMANAGER->findImage("플레이어이동하며공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 0)
 							{
@@ -1038,12 +1715,73 @@ void Player::PlayerBulletMotion()
 							break;
 						}
 					}
+
+
+					
+
 					break;
+
+
+					//=================jumpwalk right 
+				case WALKSTATE::JUMPWALK:
+					//플레이어점프하면서공격
+					_frameCount++; 
+					IMAGEMANAGER->findImage("플레이어점프하면서공격")->setFrameY(0);
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex++; 
+						if (_frameIndex > 5)
+						{
+							_frameIndex = 0; 
+						}
+						IMAGEMANAGER->findImage("플레이어점프하면서공격")->setFrameX(_frameIndex);
+						if (_frameIndex == 0)
+						{
+							_playerbullet->fire(_position.x, _position.y, 0, 12.5f);
+						}
+						if (_frameIndex == 5)
+						{
+							_state = STATE::IDLE;
+							_playerbulletfire = false; 
+
+						}
+
+					}
+					
+					break; 
 				}
+
 				break;
 			case BULLET::LEFTFIRE:
 				switch (_wstate)
 				{
+
+				case WALKSTATE::JUMPWALK:
+					//플레이어점프하면서공격
+					_frameCount++;
+					IMAGEMANAGER->findImage("플레이어점프하면서공격")->setFrameY(1);
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex--;
+						if (_frameIndex < 0)
+						{
+							_frameIndex = 5;
+						}
+						IMAGEMANAGER->findImage("플레이어점프하면서공격")->setFrameX(_frameIndex);
+						if (_frameIndex == 5)
+						{
+							_playerbullet->fire(_position.x, _position.y, PI, 12.5f);
+						}
+						if (_frameIndex == 0)
+						{
+							_state = STATE::IDLE;
+							_playerbulletfire = false;
+
+						}
+
+					}
+					break;
+
 				case WALKSTATE::IDLE:
 					_frameCount++;
 					IMAGEMANAGER->findImage("플레이어딱총공격")->setFrameY(1);
@@ -1119,10 +1857,63 @@ void Player::PlayerBulletMotion()
 					}
 					break;
 				}
+
 				break;
+
+
 			case BULLET::UPFIRE://점프 
 				switch (_wstate)
 				{
+				case WALKSTATE::WALK:
+					//플레이어이동하며위에공격
+					_frameCount++; 
+					if (_isLeft == false)
+					{
+						IMAGEMANAGER->findImage("플레이어이동하며위에공격")->setFrameY(0);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex++;
+							if (_frameIndex > 5)
+							{
+								_frameIndex = 0;
+							}
+							IMAGEMANAGER->findImage("플레이어이동하며위에공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 0)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+							}
+							if (_frameIndex == 5)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+					else//왼쪽모션
+					{
+
+						if (_frameCount % SPEED == 0)
+						{
+							IMAGEMANAGER->findImage("플레이어이동하며위에공격")->setFrameY(1);
+							_frameIndex--;
+							if (_frameIndex < 0)
+							{
+								_frameIndex = 5;
+							}
+							IMAGEMANAGER->findImage("플레이어이동하며위에공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 5)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+							}
+							if (_frameIndex == 0)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+					break;
+
 				case WALKSTATE::IDLE:
 					_frameCount++;
 
@@ -1176,12 +1967,65 @@ void Player::PlayerBulletMotion()
 
 					break;
 
+				case WALKSTATE::JUMP:
+					_frameCount++; 
+				{
+					if (_isLeft == false)
+					{
+						IMAGEMANAGER->findImage("플레이어점프중위공격")->setFrameY(0);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex++;
+							if (_frameIndex > 5)
+							{
+								_frameIndex = 0;
+							}
+							IMAGEMANAGER->findImage("플레이어점프중위공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 0)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+							}
+							if (_frameIndex == 5)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+						
+					}
+					else
+					{
+						IMAGEMANAGER->findImage("플레이어점프중위공격")->setFrameY(1);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex--;
+							if (_frameIndex < 0)
+							{
+								_frameIndex = 5;
+							}
+							IMAGEMANAGER->findImage("플레이어점프중위공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 5)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+							}
+							if (_frameIndex == 0)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+
+				}
+					
+					break;
 				case WALKSTATE::JUMPWALK:
 					//여기서 쓴다 플레이어이동하면서점프하고위에발사
 					_frameCount++;
-					IMAGEMANAGER->findImage("플레이어이동하면서점프하고위에발사")->setFrameY(0);
+					
 					if (_isLeft == false)
 					{
+						IMAGEMANAGER->findImage("플레이어이동하면서점프하고위에발사")->setFrameY(0);
 						if (_frameCount % SPEED == 0)
 						{
 							_frameIndex++;
@@ -1201,9 +2045,8 @@ void Player::PlayerBulletMotion()
 							}
 						}
 					}
-				/*	else
+					else
 					{
-						_frameCount++; 
 						IMAGEMANAGER->findImage("플레이어이동하면서점프하고위에발사")->setFrameY(1);
 						if (_frameCount % SPEED == 0)
 						{
@@ -1213,24 +2056,129 @@ void Player::PlayerBulletMotion()
 								_frameIndex = 5; 
 							}
 							IMAGEMANAGER->findImage("플레이어이동하면서점프하고위에발사")->setFrameX(_frameIndex);
-                     	   
+							if (_frameIndex == 5)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+						   }
+							if (_frameIndex == 0)
+							{
+								_state = STATE::JUMPWALK; 
+								_playerbulletfire = false; 
+							}
 						}
-					}*/
-
-
-
-
+					}
 					break;
-
-
-
 				}
-
-
 				break;
 			case BULLET::DOWNFIRE:
-				_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 12.5f);
-				break;
+				//플레이어가만점프중아래공격
+				switch (_wstate)
+				{
+				case WALKSTATE::JUMP:
+					_frameCount++;
+
+					if (_isLeft == false)
+					{
+						IMAGEMANAGER->findImage("플레이어가만점프중아래공격")->setFrameY(0);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex++;
+							if (_frameIndex > 5)
+							{
+								_frameIndex = 0;
+							}
+							IMAGEMANAGER->findImage("플레이어가만점프중아래공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 0)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 12.5f);
+							}
+							if (_frameIndex == 5)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+					else
+					{
+						IMAGEMANAGER->findImage("플레이어가만점프중아래공격")->setFrameY(1);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex--;
+							if (_frameIndex < 0)
+							{
+								_frameIndex = 5;
+							}
+							IMAGEMANAGER->findImage("플레이어가만점프중아래공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 5)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 12.5f);
+							}
+							if (_frameIndex == 0)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+
+					break;
+				case WALKSTATE::JUMPWALK:
+					//플레이어이동점프중아래공격
+				
+					_frameCount++;
+
+					if (_isLeft == false)
+					{
+						IMAGEMANAGER->findImage("플레이어이동점프중아래공격")->setFrameY(0);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex++;
+							if (_frameIndex > 5)
+							{
+								_frameIndex = 0;
+							}
+							IMAGEMANAGER->findImage("플레이어이동점프중아래공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 0)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 12.5f);
+							}
+							if (_frameIndex == 5)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+					else
+					{
+						IMAGEMANAGER->findImage("플레이어이동점프중아래공격")->setFrameY(1);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex--;
+							if (_frameIndex < 0)
+							{
+								_frameIndex = 5;
+							}
+							IMAGEMANAGER->findImage("플레이어이동점프중아래공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 5)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 12.5f);
+							}
+							if (_frameIndex == 0)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+
+					break;
+				
+				
+				}
+				//_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 12.5f);
+				break; 
 			case BULLET::DOWNATTACK://플레이어쭈그려공격
 				_frameCount++;
 				if (_isLeft == false)
@@ -1285,11 +2233,580 @@ void Player::PlayerBulletMotion()
 				break;
 			}
 			break;
+			//#########################################################################################################
+			//#########################################################################################################
+			//#########################################################################################################
+			//##################################해비머신건 ##################################
+			//#########################################################################################################
+			//#########################################################################################################
+			//#########################################################################################################
+			//#########################################################################################################
+			//#########################################################################################################
+			//#########################################################################################################
+			//#########################################################################################################
+			//#########################################################################################################
+			//#########################################################################################################
+			//#########################################################################################################
+
 
 		case WEAPON::HEAVY:
-			_hfire = true;//fire발사가되면  
-			break;
+			switch (_bullet)
+			{
+			case BULLET::RIGHTFIRE:
+				switch (_wstate)
+				{
+				case WALKSTATE::WALK:
+					_frameCount++;
+					if (_isLeft == false)
+					{
+						IMAGEMANAGER->findImage("해비이동하며공격")->setFrameY(0);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex++;
+							if (_frameIndex > 3)
+							{
+								_frameIndex = 0;
+							}
+							IMAGEMANAGER->findImage("해비이동하며공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 3)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+						break;
+					}
+					break;
+				case WALKSTATE::IDLE:
+					_frameCount++;
+					if (_isLeft == false)
+					{
+						IMAGEMANAGER->findImage("해비가만공격")->setFrameY(0);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex++;
+							if (_frameIndex > 3)
+							{
+								_frameIndex = 0;
+							}
+							IMAGEMANAGER->findImage("해비가만공격")->setFrameX(_frameIndex);				
+							if (_frameIndex == 3)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}break;
+					//============점프=====================
+				case WALKSTATE::JUMP:
+					_frameCount++;
+					{
+						if (_isLeft == false)
+						{
+							IMAGEMANAGER->findImage("해비가만점프공격")->setFrameY(0);
+							if (_frameCount % SPEED == 0)
+							{
+								_frameIndex++;
+								if (_frameIndex > 3)
+								{
+									_frameIndex = 0;
+								}
+								IMAGEMANAGER->findImage("해비가만점프공격")->setFrameX(_frameIndex);
+								if (_frameIndex == 3)
+								{
+									_state = STATE::IDLE;
+									_playerbulletfire = false;
+								}
+							}
+							break;
+						}
+					}
 
+
+
+
+					break;
+
+
+					//=================jumpwalk right 
+				case WALKSTATE::JUMPWALK:
+					//플레이어점프하면서공격
+					_frameCount++;
+					IMAGEMANAGER->findImage("해비이동점프공격")->setFrameY(0);
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex++;
+						if (_frameIndex > 3)
+						{
+							_frameIndex = 0;
+						}
+						IMAGEMANAGER->findImage("해비이동점프공격")->setFrameX(_frameIndex);
+						if (_frameIndex == 3)
+						{
+							_state = STATE::IDLE;
+							_playerbulletfire = false;
+
+						}
+
+					}
+
+					break;
+				}
+
+				break;
+			case BULLET::LEFTFIRE:
+				switch (_wstate)
+				{
+
+				case WALKSTATE::JUMPWALK:
+					//플레이어점프하면서공격
+					_frameCount++;
+					IMAGEMANAGER->findImage("해비이동점프공격")->setFrameY(1);
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex--;
+						if (_frameIndex < 0)
+						{
+							_frameIndex = 3;
+						}
+						IMAGEMANAGER->findImage("해비이동점프공격")->setFrameX(_frameIndex);
+						if (_frameIndex == 0)
+						{
+							_state = STATE::IDLE;
+							_playerbulletfire = false;
+
+						}
+
+					}
+					break;
+
+				case WALKSTATE::IDLE:
+					_frameCount++;
+					IMAGEMANAGER->findImage("해비가만공격")->setFrameY(1);
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex--;
+						if (_frameIndex < 0)
+						{
+							_frameIndex = 3;
+						}
+						IMAGEMANAGER->findImage("해비가만공격")->setFrameX(_frameIndex);
+						if (_frameIndex == 0)
+						{
+							_state = STATE::IDLE;
+							_playerbulletfire = false;
+						}
+					}
+					break;
+				case WALKSTATE::WALK:
+					_frameCount--;
+					if (_isLeft == true)
+					{
+						IMAGEMANAGER->findImage("해비이동하며공격")->setFrameY(1);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex--;
+							if (_frameIndex < 0)
+							{
+								_frameIndex = 3;
+							}
+							IMAGEMANAGER->findImage("해비이동하며공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 0)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+
+					}
+					break;
+
+				case WALKSTATE::JUMP:
+					_frameCount--;
+					if (_isLeft == true)
+					{
+						IMAGEMANAGER->findImage("해비가만점프공격")->setFrameY(1);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex--;
+							if (_frameIndex < 0)
+							{
+								_frameIndex = 3;
+							}
+							IMAGEMANAGER->findImage("해비가만점프공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 0)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+					break;
+				}
+
+				break;
+
+
+			case BULLET::UPFIRE://점프 
+				switch (_wstate)
+				{
+				case WALKSTATE::WALK:
+					//플레이어이동하며위에공격
+					_frameCount++;
+					if (_isLeft == false)
+					{
+						IMAGEMANAGER->findImage("플레이어이동하며위에공격")->setFrameY(0);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex++;
+							if (_frameIndex > 5)
+							{
+								_frameIndex = 0;
+							}
+							IMAGEMANAGER->findImage("플레이어이동하며위에공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 0)
+							{
+								_heavyBullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+							}
+							if (_frameIndex == 5)
+							{
+								_state = STATE::IDLE;
+								_hfire = false;
+							}
+						}
+					}
+					else//왼쪽모션
+					{
+
+						if (_frameCount % SPEED == 0)
+						{
+							IMAGEMANAGER->findImage("플레이어이동하며위에공격")->setFrameY(1);
+							_frameIndex--;
+							if (_frameIndex < 0)
+							{
+								_frameIndex = 5;
+							}
+							IMAGEMANAGER->findImage("플레이어이동하며위에공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 5)
+							{
+								_heavyBullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+							}
+							if (_frameIndex == 0)
+							{
+								_state = STATE::IDLE;
+								_hfire = false;
+							}
+						}
+					}
+					break;
+
+				case WALKSTATE::IDLE:
+					_frameCount++;
+
+					if (_isLeft == false)
+					{
+						IMAGEMANAGER->findImage("플레이어위딱총공격")->setFrameY(0);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex++;
+							if (_frameIndex > 5)
+							{
+								_frameIndex = 0;
+							}
+							IMAGEMANAGER->findImage("플레이어위딱총공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 0)
+							{
+								_heavyBullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+							}
+							if (_frameIndex == 5)
+							{
+								_state = STATE::IDLE;
+								_hfire = false;
+							}
+						}
+					}
+					else//왼쪽모션
+					{
+
+						if (_frameCount % SPEED == 0)
+						{
+							IMAGEMANAGER->findImage("플레이어위딱총공격")->setFrameY(1);
+							_frameIndex--;
+							if (_frameIndex < 0)
+							{
+								_frameIndex = 5;
+							}
+							IMAGEMANAGER->findImage("플레이어위딱총공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 5)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+							}
+							if (_frameIndex == 0)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+
+
+
+					break;
+
+				case WALKSTATE::JUMP:
+					_frameCount++;
+					{
+						if (_isLeft == false)
+						{
+							IMAGEMANAGER->findImage("플레이어점프중위공격")->setFrameY(0);
+							if (_frameCount % SPEED == 0)
+							{
+								_frameIndex++;
+								if (_frameIndex > 5)
+								{
+									_frameIndex = 0;
+								}
+								IMAGEMANAGER->findImage("플레이어점프중위공격")->setFrameX(_frameIndex);
+								if (_frameIndex == 0)
+								{
+									_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+								}
+								if (_frameIndex == 5)
+								{
+									_state = STATE::IDLE;
+									_playerbulletfire = false;
+								}
+							}
+
+						}
+						else
+						{
+							IMAGEMANAGER->findImage("플레이어점프중위공격")->setFrameY(1);
+							if (_frameCount % SPEED == 0)
+							{
+								_frameIndex--;
+								if (_frameIndex < 0)
+								{
+									_frameIndex = 5;
+								}
+								IMAGEMANAGER->findImage("플레이어점프중위공격")->setFrameX(_frameIndex);
+								if (_frameIndex == 5)
+								{
+									_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+								}
+								if (_frameIndex == 0)
+								{
+									_state = STATE::IDLE;
+									_playerbulletfire = false;
+								}
+							}
+						}
+
+					}
+
+					break;
+				case WALKSTATE::JUMPWALK:
+					//여기서 쓴다 플레이어이동하면서점프하고위에발사
+					_frameCount++;
+
+					if (_isLeft == false)
+					{
+						IMAGEMANAGER->findImage("플레이어이동하면서점프하고위에발사")->setFrameY(0);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex++;
+							if (_frameIndex > 5)
+							{
+								_frameIndex = 0;
+							}
+							IMAGEMANAGER->findImage("플레이어이동하면서점프하고위에발사")->setFrameX(_frameIndex);
+							if (_frameIndex == 0)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+							}
+							if (_frameIndex == 5)
+							{
+								_state = STATE::JUMPWALK;
+								_playerbulletfire = false;
+							}
+						}
+					}
+					else
+					{
+						IMAGEMANAGER->findImage("플레이어이동하면서점프하고위에발사")->setFrameY(1);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex--;
+							if (_frameIndex < 0)
+							{
+								_frameIndex = 5;
+							}
+							IMAGEMANAGER->findImage("플레이어이동하면서점프하고위에발사")->setFrameX(_frameIndex);
+							if (_frameIndex == 5)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI / 2, 12.5f);
+							}
+							if (_frameIndex == 0)
+							{
+								_state = STATE::JUMPWALK;
+								_playerbulletfire = false;
+							}
+						}
+					}
+					break;
+				}
+				break;
+			case BULLET::DOWNFIRE:
+				//플레이어가만점프중아래공격
+				switch (_wstate)
+				{
+				case WALKSTATE::JUMP:
+					_frameCount++;
+
+					if (_isLeft == false)
+					{
+						IMAGEMANAGER->findImage("플레이어가만점프중아래공격")->setFrameY(0);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex++;
+							if (_frameIndex > 5)
+							{
+								_frameIndex = 0;
+							}
+							IMAGEMANAGER->findImage("플레이어가만점프중아래공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 0)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 12.5f);
+							}
+							if (_frameIndex == 5)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+					else
+					{
+						IMAGEMANAGER->findImage("플레이어가만점프중아래공격")->setFrameY(1);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex--;
+							if (_frameIndex < 0)
+							{
+								_frameIndex = 5;
+							}
+							IMAGEMANAGER->findImage("플레이어가만점프중아래공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 5)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 12.5f);
+							}
+							if (_frameIndex == 0)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+
+					break;
+				case WALKSTATE::JUMPWALK:
+					//플레이어이동점프중아래공격
+
+					_frameCount++;
+
+					if (_isLeft == false)
+					{
+						IMAGEMANAGER->findImage("플레이어이동점프중아래공격")->setFrameY(0);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex++;
+							if (_frameIndex > 5)
+							{
+								_frameIndex = 0;
+							}
+							IMAGEMANAGER->findImage("플레이어이동점프중아래공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 0)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 12.5f);
+							}
+							if (_frameIndex == 5)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+					else
+					{
+						IMAGEMANAGER->findImage("플레이어이동점프중아래공격")->setFrameY(1);
+						if (_frameCount % SPEED == 0)
+						{
+							_frameIndex--;
+							if (_frameIndex < 0)
+							{
+								_frameIndex = 5;
+							}
+							IMAGEMANAGER->findImage("플레이어이동점프중아래공격")->setFrameX(_frameIndex);
+							if (_frameIndex == 5)
+							{
+								_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 12.5f);
+							}
+							if (_frameIndex == 0)
+							{
+								_state = STATE::IDLE;
+								_playerbulletfire = false;
+							}
+						}
+					}
+
+					break;
+
+
+				}
+				//_playerbullet->fire(_position.x, _position.y, PI2 - (PI / 2), 12.5f);
+				break;
+			case BULLET::DOWNATTACK://플레이어쭈그려공격
+				_frameCount++;
+				if (_isLeft == false)
+				{
+					IMAGEMANAGER->findImage("해비아래공격")->setFrameY(0);
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex++;
+						if (_frameIndex > 3)
+						{
+							_frameIndex = 0;
+						}
+						IMAGEMANAGER->findImage("해비아래공격")->setFrameX(_frameIndex);
+						if (_frameIndex == 3)
+						{
+							_state = STATE::CROUCH;
+							_playerbulletfire = false;
+						}
+					}
+				}
+				else//왼쪽모션
+				{
+
+					if (_frameCount % SPEED == 0)
+					{
+						IMAGEMANAGER->findImage("해비아래공격")->setFrameY(1);
+						_frameIndex--;
+						if (_frameIndex < 0)
+						{
+							_frameIndex = 3;
+						}
+						IMAGEMANAGER->findImage("해비아래공격")->setFrameX(_frameIndex);
+						if (_frameIndex == 0)
+						{
+							_state = STATE::CROUCH;
+							_playerbulletfire = false;
+						}
+					}
+				}
+				break;
+			}
+			break;
 		case WEAPON::SWORD:
 
 			switch (_sword)
@@ -1304,6 +2821,11 @@ void Player::PlayerBulletMotion()
 				break;
 			}
 			break;
+			
+		
+		
+
+
 		}
 	}
 
@@ -1329,3 +2851,201 @@ void Player::Checkstate()
 		break;
 	}
 }
+
+void Player::PlayerBoomMotion()
+{
+	if (_boomfire == true)
+	{
+		switch (_wstate)
+		{
+			case WALKSTATE::IDLE:
+			//플레이어가만수류탄던지기
+				_frameCount++; 
+				if (_isLeft == false)
+				{
+					IMAGEMANAGER->findImage("플레이어가만수류탄던지기")->setFrameY(0);
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex++; 
+						if (_frameIndex > 5)
+						{
+							_frameIndex = 0;
+						}
+						IMAGEMANAGER->findImage("플레이어가만수류탄던지기")->setFrameX(_frameIndex);
+						if (_frameIndex == 0)
+						{
+							_playerboom->fire(_position.x, _position.y, PI / 2 - 1.1f, 0.05f, 12.5f);
+						}
+						if (_frameIndex == 5)
+						{
+							_state = STATE::IDLE;
+							_boomfire = false;
+						}
+
+					}
+				}
+				else
+				{
+					IMAGEMANAGER->findImage("플레이어가만수류탄던지기")->setFrameY(1);
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex--;
+						if (_frameIndex < 0)
+						{
+							_frameIndex = 5;
+						}
+						IMAGEMANAGER->findImage("플레이어가만수류탄던지기")->setFrameX(_frameIndex);
+						if (_frameIndex == 5)
+						{
+							_playerboom->fire(_position.x, _position.y, PI / 2 + 1.1f, 0.05f, 12.5f);
+						}
+						if (_frameIndex == 0)
+						{
+							_state = STATE::IDLE;
+							_boomfire = false;
+						}
+					}
+				}
+				break;
+			case WALKSTATE::WALK:
+				//플레이어가만수류탄
+				_frameCount++;
+				if (_isLeft == false)
+				{
+					IMAGEMANAGER->findImage("플레이어이동수류탄")->setFrameY(0);
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex++;
+						if (_frameIndex > 5)
+						{
+							_frameIndex = 0;
+						}
+						IMAGEMANAGER->findImage("플레이어이동수류탄")->setFrameX(_frameIndex);
+						if (_frameIndex == 0)
+						{
+							_playerboom->fire(_position.x, _position.y, PI / 2 - 1.1f, 0.05f, 12.5f);
+						}
+						if (_frameIndex == 5)
+						{
+							_state = STATE::IDLE;
+							_boomfire = false;
+						}
+					}
+					break;
+				}
+				else
+				{
+					IMAGEMANAGER->findImage("플레이어이동수류탄")->setFrameY(1);
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex--; 
+						if (_frameIndex < 0)
+						{
+							_frameIndex = 5; 
+						}
+						IMAGEMANAGER->findImage("플레이어이동수류탄")->setFrameX(_frameIndex);
+						if (_frameIndex == 5)
+						{
+							_playerboom->fire(_position.x, _position.y, PI / 2 +1.1f, 0.05f, 12.5f);
+						}
+						if (_frameIndex == 0)
+						{
+							_state = STATE::IDLE;
+							_boomfire = false; 
+						}
+					}
+					break;
+				}
+				break;
+			case WALKSTATE::JUMP:
+				_frameCount++; 
+			
+				if (_isLeft == false)
+				{
+					IMAGEMANAGER->findImage("플레이어가만점프수류탄")->setFrameY(0);
+
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex++;
+
+						if (_frameIndex > 5)
+						{
+							_frameIndex = 0;
+						}
+						IMAGEMANAGER->findImage("플레이어가만점프수류탄")->setFrameX(_frameIndex);
+						if (_frameIndex == 0)
+						{
+							_playerboom->fire(_position.x, _position.y, PI / 2 - 1.1f, 0.05f, 12.5f);
+						}
+						if (_frameIndex == 5)
+						{
+							_state = STATE::IDLE;
+							_boomfire = false;
+						}
+
+					}
+				}
+				else
+				{
+					IMAGEMANAGER->findImage("플레이어가만점프수류탄")->setFrameY(1);
+					if (_frameCount % SPEED == 0)
+					{
+						_frameIndex--; 
+						if (_frameIndex < 0)
+						{
+							_frameIndex = 5; 
+						}
+						IMAGEMANAGER->findImage("플레이어가만점프수류탄")->setFrameX(_frameIndex);
+						if (_frameIndex == 5)
+						{
+							_playerboom->fire(_position.x, _position.y, PI / 2 + 1.1f, 0.05f, 12.5f);
+						}
+						if (_frameIndex == 0)
+						{
+							_state = STATE::IDLE;
+							_boomfire = false; 
+						}
+					}
+				}
+				break;
+		case WALKSTATE::JUMPWALK:
+			break;
+		case WALKSTATE::CROUCH:
+			break;
+		default:
+			break;
+		}
+	}
+
+}
+
+void Player::PixelMapCollision()
+{
+	//
+
+	_pixely = _position.y + 190; //여기가 애니메이션 맨아래부분 
+	
+	for (int i = _pixely- 5; i < _pixely + 5; i++)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("배경픽셀")->getMemDC(), _position.x, i);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+		if ((r == 255 && g == 255 && b == 0) && _jumppower < 0)
+		{
+			_jumppower = 0.0f; 
+			_position.y = i-190;
+			_isJump = false; 
+			_state = STATE::IDLE; 
+			break; 
+		}
+	}
+
+	//_InterPlayerRc = RectMakeCenter(_position.x + 75, _position.y + 130, 60, 95);//충돌렉트는 항심움직인다 
+
+}
+
+//void Player::PlayerHeavy()
+//{
+//	if(_angle )
+//}

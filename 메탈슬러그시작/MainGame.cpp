@@ -13,20 +13,16 @@ HRESULT MainGame::init(void)
 {
 	gameNode::init(true); 
 
-	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
-	SCENEMANAGER->ChangeScene("스테이지 원");
-
 	startScene* _startscene = new startScene;
-	SCENEMANAGER->AddScene("시작화면", _startscene);
-	SCENEMANAGER->ChangeScene("시작화면");
-
 	choiceScene* _choicescene = new choiceScene;
+	stage1Scene* _stage1 = new stage1Scene;
+	SCENEMANAGER->AddScene("시작화면", _startscene);
 	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
+	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
 
 	//첫 시작화면
-	//stage1Scene* _stage1 = new stage1Scene;
 	//SCENEMANAGER->AddScene("스테이지1", _stage1);
-
+	SCENEMANAGER->ChangeScene("시작화면");
 	/*
 	undergroundScene* _underground = new undergroundScene;
 	SCENEMANAGER->AddScene("스테이지1_1", _underground);
@@ -59,6 +55,7 @@ void MainGame::release(void)
 void MainGame::update(void)
 {
 	gameNode::update();	
+
 	SCENEMANAGER->Update();
 }
 
