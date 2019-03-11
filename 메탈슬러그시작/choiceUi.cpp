@@ -208,7 +208,7 @@ void choiceUi::Update()
 	if (_isDown == true ) {
 		_t++;
 		if(_t == 250) {
-			SCENEMANAGER->ChangeScene("스테이지1");
+			SCENEMANAGER->ChangeScene("스테이지원");
 		}		
 	}
 	this->UpdateRectByPivot();	// RECT 그려준다.

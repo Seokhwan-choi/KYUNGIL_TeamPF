@@ -18,8 +18,7 @@ HRESULT MainGame::init(void)
 {
 	gameNode::init(true); 
 
-	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
-	SCENEMANAGER->ChangeScene("스테이지 원");
+	
 
 	//Monster* monster = new Monster("Monster", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::Center);
 	//OBJECTMANAGER->AddObject(ObjectType::Object, monster);
@@ -45,28 +44,28 @@ HRESULT MainGame::init(void)
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, fish);
 
 	//큰게 생성
-	BigCrab* bigCrab = new BigCrab("bigCrab", { 500 ,WINSIZEY / 2 + 110}, { 200,280 }, GameObject::Pivot::Center);
-
-	//큰게 객체 추가하기
-	OBJECTMANAGER->AddObject(ObjectType::ENEMY, bigCrab);
-
-
-	OBJECTMANAGER->Init();
-	//_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
-	_monster = new Monster("몬스터", { WINSIZEX / 2 + 200,WINSIZEY / 2 }, { 100,100 }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _monster);
+	//BigCrab* bigCrab = new BigCrab("bigCrab", { 500 ,WINSIZEY / 2 + 110}, { 200,280 }, GameObject::Pivot::Center);
+	//
+	////큰게 객체 추가하기
+	//OBJECTMANAGER->AddObject(ObjectType::ENEMY, bigCrab);
+	//OBJECTMANAGER->Init();
+	////_player = new Player("
+	//", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
+	////OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+	//_monster = new Monster("몬스터", { WINSIZEX / 2 + 200,WINSIZEY / 2 }, { 100,100 }, GameObject::Pivot::Center);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _monster);
 
 	startScene* _startscene = new startScene;
+	choiceScene* _choicescene = new choiceScene;
+	stage1Scene* _stage1 = new stage1Scene;
 	SCENEMANAGER->AddScene("시작화면", _startscene);
+	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
+	//첫 시작화면
+	SCENEMANAGER->AddScene("스테이지1", _stage1);
+	SCENEMANAGER->AddScene("스테이지원", new StageOne);
 	SCENEMANAGER->ChangeScene("시작화면");
 
-	choiceScene* _choicescene = new choiceScene;
-	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
-
-	//첫 시작화면
-	stage1Scene* _stage1 = new stage1Scene;
-	SCENEMANAGER->AddScene("스테이지1", _stage1);
+	
 
 	/*
 	undergroundScene* _underground = new undergroundScene;
@@ -100,6 +99,7 @@ void MainGame::release(void)
 void MainGame::update(void)
 {
 	gameNode::update();	
+
 	SCENEMANAGER->Update();
 }
 

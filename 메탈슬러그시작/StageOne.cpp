@@ -1,12 +1,28 @@
 #include "stdafx.h"
 #include "StageOne.h"
 #include "Player.h"
-
+#include "GameOverUi.h"
+#include "stage1StartUi.h"
+#include "timeUi.h"
+#include "GameOverUi_2.h"
 
 HRESULT StageOne::Init(void)
 {
-	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
+
+	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 200, 251 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+
+	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui);
+	
+	GameOverUi_2* _gameoverui2 = new GameOverUi_2("gameoverui2", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui2);
+	
+	stage1StartUi* _stage1startui = new stage1StartUi("stage1startui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
+	
+	timeUi* _timeui = new timeUi("timeui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _timeui);
 
 	_bgImage = IMAGEMANAGER->addImage("배경", "배경.bmp", 14070, 1150, true , RGB(255,0,255));
 	_bgSea = IMAGEMANAGER->addFrameImage("배경출렁", "배경출렁2.bmp", 19568, 278, 8, 1);
@@ -61,28 +77,28 @@ void StageOne::Update(void)
 		_PixelCheck = !_PixelCheck;
 		_crush = !_crush;
 	}
-
-	if (_crush) {
-		RECT _temp;
-		if (IntersectRect(&_temp, &_player->GetRect(), &_wallRect)) {
-			_player->SetPosition({
-				_wallRect.left - (_player->GetSize().x / 2.0f),
-				_player->GetPosition().y });
-		}
-		CAMERA->SetCamera(_player->GetPosition());
-	}
+	CAMERA->SetCamera(_player->GetPosition());
+	//if (_crush) {
+	//	RECT _temp;
+	//	if (IntersectRect(&_temp, &_player->GetRect(), &_wallRect)) {
+	//		_player->SetPosition({
+	//			_wallRect.left - (_player->GetSize().x / 2.0f),
+	//			_player->GetPosition().y });
+	//	}
+	//	CAMERA->SetCamera(_player->GetPosition());
+	//}
 	
 }
 
 void StageOne::Render(void)
 {
-	_bgImage2->render(getMemDC(), 0 - (CAMERA->GetCamera().left / 2), -310 - CAMERA->GetCamera().top);
-	_bgImage->render(getMemDC(), 0 - CAMERA->GetCamera().left, -135 - CAMERA->GetCamera().top);
-	_bgSea->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left, WINSIZEY - 278 - CAMERA->GetCamera().top);
+	_bgImage2->render(getMemDC(), 0 - (CAMERA->GetCamera().left / 2) -300, -310 - CAMERA->GetCamera().top);
+	_bgImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, -135 - CAMERA->GetCamera().top);
+	_bgSea->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left - 300, WINSIZEY - 278 - CAMERA->GetCamera().top);
 	
 	if (_PixelCheck) {
-		_PixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left, -135 - CAMERA->GetCamera().top);
-		_wallImage->frameRender(getMemDC(), 5850 - CAMERA->GetCamera().left, 0 - CAMERA->GetCamera().top);
+		_PixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, -135 - CAMERA->GetCamera().top);
+		_wallImage->frameRender(getMemDC(), 5850 - CAMERA->GetCamera().left- 300, 0 - CAMERA->GetCamera().top);
 	}
 	
 	OBJECTMANAGER->Render();

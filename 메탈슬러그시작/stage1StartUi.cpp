@@ -59,7 +59,8 @@ void stage1StartUi::Release()
 void stage1StartUi::Update()
 {
 	_count++;
-	if (_count == 130) {
+	if (_count == 130)
+	{
 		_isMove = true;
 	}
 	if (_isMove == true) {

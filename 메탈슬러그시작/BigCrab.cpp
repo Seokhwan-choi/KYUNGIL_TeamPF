@@ -37,7 +37,7 @@ HRESULT BigCrab::Init()
 	_col[2].rc = RectMakeCenter(_col[2].pt.x - _size.x / 2 + 5, _col[2].pt.y, _size.x / 10, _size.y);
 	//왼쪽
 	_col[3].rc = RectMakeCenter(_col[3].pt.x + _size.x / 2 + 5, _col[3].pt.y, _size.x / 10, _size.y);
-	//플레이어 클래스 초기화
+	//클래스 초기화
 	player = (Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어");
 	//공격용 렉트 초기화
 	for (int i = 0; i < 2; i++)
