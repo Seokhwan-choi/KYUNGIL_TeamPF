@@ -197,6 +197,18 @@
     <ClInclude Include="Enemy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>소스 파일\보스</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>소스 파일\보스</Filter>
+    </ClInclude>
+    <ClInclude Include="FireCannon.h">
+      <Filter>소스 파일\보스</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -312,6 +324,15 @@
     </ClCompile>
     <ClCompile Include="Flybug.cpp">
       <Filter>소스 파일\몬스터\잠자리</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>소스 파일\보스</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>소스 파일\보스</Filter>
+    </ClCompile>
+    <ClCompile Include="FireCannon.cpp">
+      <Filter>소스 파일\보스</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

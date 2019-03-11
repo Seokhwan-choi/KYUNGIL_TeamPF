@@ -1,16 +1,8 @@
 #include "stdafx.h"
 #include "MainGame.h"
-#include "StageOne.h"
+#include "Scene.h"
 #include "Player.h"
-#include "FlyBug.h"
-#include "Crab.h"
-#include "BubbleCrab.h"
-#include "Fish.h"
-#include "BigCrab.h"
-#include "startScene.h"
-#include "choiceScene.h"
-#include "stage1Scene.h"
-#include "Monster.h"
+#include "Enemy.h"
 //==========================================================================//
 //						## √ ±‚»≠ ## init(void)								//
 //==========================================================================//

@@ -149,6 +149,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BigCrab.h" />
+    <ClInclude Include="Bomb.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Bubble.h" />
     <ClInclude Include="BubbleCrab.h" />
     <ClInclude Include="Bullet.h" />
@@ -159,6 +161,7 @@
     <ClInclude Include="CommonEnemyFrame.h" />
     <ClInclude Include="Crab.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="FireCannon.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Flybug.h" />
     <ClInclude Include="gameNode.h" />
@@ -176,6 +179,7 @@
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="playerDataUi.h" />
     <ClInclude Include="randomFunction.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMaker.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SingletonBase.h" />
@@ -193,6 +197,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigCrab.cpp" />
+    <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="BubbleCrab.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -200,6 +206,7 @@
     <ClCompile Include="choiceScene.cpp" />
     <ClCompile Include="choiceUi.cpp" />
     <ClCompile Include="Crab.cpp" />
+    <ClCompile Include="FireCannon.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Flybug.cpp" />
     <ClCompile Include="gameNode.cpp" />
