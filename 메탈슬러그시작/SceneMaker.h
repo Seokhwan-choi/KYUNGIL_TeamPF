@@ -2,7 +2,7 @@
 #include "gameNode.h"
 
 // 요놈 상속 받아서 맵 만들면된당
-class SceneMaker : public gameNode
+class SceneMaker	
 {
 private:
 

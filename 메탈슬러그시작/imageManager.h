@@ -46,25 +46,12 @@ public:
 	void alphaRender(string strKey, HDC hdc, BYTE alpha);
 	void alphaRender(string strKey, HDC hdc, int destX, int destY, BYTE alpha);
 	void alphaRender(string strKey, HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha);
-	void alphaFrameRender(string strkey, HDC hdc, int destX, int destY, int currentframeX, int currentframeY, int alpha);
 
 	//=============================================================
 	//	## 프레임렌더 ##
 	//=============================================================
 	void frameRender(string strKey, HDC hdc, int destX, int destY);
 	void frameRender(string strKey, HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY);
-	//=============================================================
-	//	## 루프렌더 ##
-	//=============================================================
-	void loopRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY);
-	void loopAlphaRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha);
-
-	//=============================================================
-	//	## 스트레치렌더 ## (이미지 스케일링)
-	//=============================================================
-	void stretchRender(string strKey, HDC hdc, int destX, int destY, float scale = 1.0f);
-	void stretchFrameRender(string strKey, HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY, float scale = 1.0f);
-
 
 
 	imageManager() {}
