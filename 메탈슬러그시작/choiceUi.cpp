@@ -207,7 +207,7 @@ void choiceUi::Update()
 	//2초 뒤에 스테이지 1으로 가게 한다.
 	if (_isDown == true ) {
 		_t++;
-		if(_t == 250) {
+		if(_t == 10) {
 			SCENEMANAGER->ChangeScene("스테이지원");
 		}		
 	}

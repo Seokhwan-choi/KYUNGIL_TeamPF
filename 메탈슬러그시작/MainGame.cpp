@@ -63,7 +63,7 @@ HRESULT MainGame::init(void)
 	//첫 시작화면
 	SCENEMANAGER->AddScene("스테이지1", _stage1);
 	SCENEMANAGER->AddScene("스테이지원", new StageOne);
-	SCENEMANAGER->ChangeScene("시작화면");
+	SCENEMANAGER->ChangeScene("스테이지원");
 
 	
 
@@ -75,8 +75,6 @@ HRESULT MainGame::init(void)
 	boosScene&  _bossscene = new boosScene;
 	SCENEMANAGER->AddScene("스테이지1_2", _bossscene);
 	*/
-
-	SCENEMANAGER->Init();
 	return S_OK;	
 }
 

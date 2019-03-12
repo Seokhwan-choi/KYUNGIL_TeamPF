@@ -62,9 +62,6 @@
     <ClInclude Include="gameNode.h">
       <Filter>MainGame\WinMain</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>MainGame</Filter>
-    </ClInclude>
     <ClInclude Include="SingletonBase.h">
       <Filter>GameFramWork\매니저</Filter>
     </ClInclude>
@@ -175,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="StageOne.h">
       <Filter>소스 파일\맵</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

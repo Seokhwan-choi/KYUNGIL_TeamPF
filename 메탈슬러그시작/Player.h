@@ -75,7 +75,7 @@ private:
 	STATE _state;						//플레이어 상태
 	WALKSTATE _wstate;					//플레이어 하체 상태
 
-	Bullet*_playerbullet;				//플레이어의 공용총알 
+	Bullet1*_playerbullet;				//플레이어의 공용총알 
 
 	Bullet* _heavyBullet;         //플레이어의 해비머신건 
 

@@ -77,6 +77,7 @@ void StageOne::Update(void)
 		_PixelCheck = !_PixelCheck;
 		_crush = !_crush;
 	}
+
 	CAMERA->SetCamera(_player->GetPosition());
 	//if (_crush) {
 	//	RECT _temp;
@@ -87,7 +88,6 @@ void StageOne::Update(void)
 	//	}
 	//	CAMERA->SetCamera(_player->GetPosition());
 	//}
-	
 }
 
 void StageOne::Render(void)
