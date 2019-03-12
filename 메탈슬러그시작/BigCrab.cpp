@@ -57,7 +57,7 @@ HRESULT BigCrab::Init()
 	_angle = GetAngle(_position.x, _position.y, player->GetPosition().x, player->GetPosition().y);
 	
 	_bubble = new Bubble("거품");
-	_bubble->Init2("Enemy/거품.bmp", 480, 60, 8, 1, 12, 1280);
+	_bubble->Init2("Enemy/거품.bmp", 480, 60, 7, 1, 6, 1280);
 
 	_isBubbleShoot = false;
 	_bubbleGauge = 1;

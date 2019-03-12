@@ -474,7 +474,7 @@ void BubbleCrab::Render()
 	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));
 
 	//거품 그리기
-	_bubble->Render();
+	_bubble->Render2();
 }
 
 void BubbleCrab::bubblecrabImage()

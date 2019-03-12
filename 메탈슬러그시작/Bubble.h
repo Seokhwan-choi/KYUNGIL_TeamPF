@@ -3,7 +3,7 @@
 
 typedef struct tagBubble
 {
-	image* bubbleImage;
+	image* bubbleImage[2];
 	RECT rc;
 	float x, y;
 	float fireX, fireY;
@@ -12,10 +12,11 @@ typedef struct tagBubble
 	float gravity;
 	float radius;
 	bool isFire;
-	int count;
-	int index;
+	int count[3];
+	int index[2];
 	int upDownCount;
 	bool isDown;
+	bool ImageChange;
 }
 BUBBLE, *LBUBBLE;
 
@@ -42,6 +43,7 @@ public:
 	virtual void Release();
 	virtual void Update();
 	virtual void Render();
+	virtual void Render2();
 
 	//∞≈«∞ ∫§≈Õ get
 	vector<BUBBLE> getVBubble() { return _vBubble; }
