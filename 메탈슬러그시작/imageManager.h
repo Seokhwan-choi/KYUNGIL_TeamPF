@@ -53,6 +53,18 @@ public:
 	//=============================================================
 	void frameRender(string strKey, HDC hdc, int destX, int destY);
 	void frameRender(string strKey, HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY);
+	//=============================================================
+	//	## 루프렌더 ##
+	//=============================================================
+	void loopRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY);
+	void loopAlphaRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha);
+
+	//=============================================================
+	//	## 스트레치렌더 ## (이미지 스케일링)
+	//=============================================================
+	void stretchRender(string strKey, HDC hdc, int destX, int destY, float scale = 1.0f);
+	void stretchFrameRender(string strKey, HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY, float scale = 1.0f);
+
 
 
 	imageManager() {}
