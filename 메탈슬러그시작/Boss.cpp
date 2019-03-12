@@ -50,6 +50,11 @@ HRESULT Boss::Init()
 	_isBuffStart = false;
 	//보스 버프 등장 종료 유무
 	_isBuffStartEnd = false;
+
+	//보스 충돌 처리 렉트
+	_col.pt = { _position.x, _position.y };
+	_col.rc = RectMakeCenter(_position.x, _position.y, _size.x - 100.f, _size.y - 100.f);
+
 	//보스 화염포 공격 렉트(항상 몸 중앙을 따라 다닌다.)
 	for (int i = 0; i < 2; i++)
 	{
@@ -65,6 +70,7 @@ HRESULT Boss::Init()
 	//보스 근접 공격 렉트(항상 몸 중앙을 따라 다닌다.)
 	_att.pt = { _position.x, _position.y };
 	_att.rc = RectMakeCenter(_att.pt.x + _size.x / 2 - 100.f, _att.pt.y, 300.f, 200.f);
+
 
 	//플레이어 클래스 초기화
 	_player = (Player*)OBJECTMANAGER->FindObject(ObjectType::Enum::PLAYER, "플레이어");
@@ -104,6 +110,10 @@ void Boss::Update()
 
 	//보스 렉트
 	_rc = RectMakeCenter(_position.x, _position.y, _size.x, _size.y);
+
+	//보스 충돌 처리 렉트
+	_col.pt = { _position.x, _position.y };
+	_col.rc = RectMakeCenter(_position.x, _position.y, _size.x - 100.f, _size.y - 100.f);
 
 	//보스 화염포 대포 렉트(항상 몸 중앙을 따라 다닌다.)
 	for (int i = 0; i < 2; i++)
@@ -332,8 +342,11 @@ void Boss::Update()
 
 void Boss::Render()
 {
-	//렉트 그리기
+	//보스 렉트 그리기
 	Rectangle(getMemDC(), _rc);
+
+	//충돌 렉트 그리기
+	Rectangle(getMemDC(), _col.rc);
 
 	//화염포 대포 렉트 그리기
 	for (int i = 0; i < 2; i++)

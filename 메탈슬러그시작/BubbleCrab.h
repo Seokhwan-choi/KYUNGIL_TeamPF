@@ -19,6 +19,7 @@ private:
 	int _moveTimer;
 	bool _isAttack;
 	bool _isAttackFinish;
+	int _hp;
 
 	//죽음 처리를 위한 변수
 	int _deathTimer;
@@ -49,6 +50,14 @@ private:
 public:
 	BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BubbleCrab();
+
+	//충돌렉트 get
+	COL getCol(int i) { return _col[i]; }
+
+	//체력 get
+	int getHp() { return _hp; }
+	//체력 set
+	void setHp(int hp) { _hp = hp; }
 
 	//충돌여부 get
 	bool getIsCrush(int i) { return _col[i].isCrush; }

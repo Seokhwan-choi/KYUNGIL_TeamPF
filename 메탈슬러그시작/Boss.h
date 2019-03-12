@@ -19,12 +19,15 @@ private:
 	bool _isAttack;					//공격 유무
 	bool _isAttackFinish;			//움직임공격 종료 유무
 	float _angle;					//플레이어와의 각도
-	float _dist;					//플레이어와의 거리
+	float _dist;						//플레이어와의 거리
 	int _deathTimer;				//죽음 처리를 위한 변수
 	int _hp;						//보스 체력
 	bool _isBuff;					//보스 버프 유무
 	bool _isBuffStart;				//보스 버프 등장 유무
 	bool _isBuffStartEnd;			//보스 버프 등장 종료 유무
+
+	//충돌 처리 구조체
+	COL _col;
 	//근접 공격처리 구조체
 	ATTACK _att;
 	//화염포 발사 구조체
@@ -45,8 +48,9 @@ public:
 	Boss(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Boss();
 
-	//플레이어 죽임여부 get
-	//bool getIsKill(int i) { return _col[i].isKill; }
+	//충돌 렉트 get
+	COL getCol() { return _col; }
+
 	//보스 체력 get
 	int getHp() { return _hp; }
 	//보스 체력 set

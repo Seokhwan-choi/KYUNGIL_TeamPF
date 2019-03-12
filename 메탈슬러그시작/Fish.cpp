@@ -2,8 +2,6 @@
 #include "Fish.h"
 #include "Player.h"
 
-
-
 Fish::Fish(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot) : GameObject(name, pos, size, pivot)
 {
 }
@@ -30,6 +28,7 @@ HRESULT Fish::Init()
 		fish_rc[i].Imgcount[0] = fish_rc[i].Imgindex[0] = 0;
 		fish_rc[i].Imgcount[1] = fish_rc[i].Imgindex[1] = 0;
 		fish_rc[i].Imgcount[2] = fish_rc[i].Imgindex[2] = 0;
+		fish_rc[i].hp = 3;
 	}
 		
 	
@@ -86,6 +85,7 @@ void Fish::Update()
 				break;
 			}
 		}
+
 		for (int i = 0; i < 8; i++)
 		{
 			if (fish_rc[i].isFish == true)
@@ -141,6 +141,15 @@ void Fish::Update()
 					fish_rc[i].Imgchange = false;
 				}
 			}
+		}
+	}
+
+	//Á×À½ Ã³¸®
+	for (int i = 0; i < 8; i++)
+	{
+		if (fish_rc[i].hp <= 0)
+		{
+			fish_rc[i].hp = 0;
 		}
 	}
 	//if (count_death % 100 == 0)

@@ -39,7 +39,9 @@ public:
 	virtual void Update();
 	virtual void Render();
 
+	//거품 벡터 get
 	vector<BUBBLE> getVBubble() { return _vBubble; }
+	//거품 반복자 get
 	vector<BUBBLE>::iterator getViBubble() { return _viBubble; }
 };
 
