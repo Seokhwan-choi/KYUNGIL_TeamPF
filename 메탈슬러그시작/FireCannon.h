@@ -46,7 +46,9 @@ public:
 	//발사 당시 플레이어 좌표 입력
 	void setPosition(float x, float y) { _x = x, _y = y; }
 
+	//화염포 벡터 get
 	vector<FIRECANNON> getVFireCannon(int i) { return _vFireCannon[i]; }
+	//화염포 반복자 get
 	vector<FIRECANNON>::iterator getViFireCannon(int i) { return _viFireCannon[i]; }
 };
 

@@ -30,6 +30,9 @@ HRESULT Bomb::Init(const char * imageName, int width, int height, int bombMax, f
 		_vBomb.push_back(bomb);
 	}
 
+	//다리 이미지 초기화
+	_bridgeImg = IMAGEMANAGER->findImage("다리");
+
 	return S_OK;
 }
 
@@ -109,6 +112,36 @@ void Bomb::move()
 		_idx->rc = RectMakeCenter(_idx->x, _idx->y, _idx->bombImage->getWidth(), _idx->bombImage->getHeight());
 
 		float dist = GetDistance(_idx->fireX, _idx->fireY, _idx->x, _idx->y);
+
+		//다리 충돌 체크 임시 렉트
+		RECT rc;
+		//다리와 충돌 체크
+		if (IntersectRect(&rc, &_idx->rc, &_bridgeImg->boudingBox()))
+		{
+			//펜 생성하기
+			HPEN pen = CreatePen(PS_NULL, 0, RGB(255, 0, 255));
+			//펜 사용하기
+			HGDIOBJ oldPen = SelectObject(_bridgeImg->getMemDC(), pen);
+			//붓 생성하기
+			HBRUSH brush = CreateSolidBrush(RGB(255, 0, 255));
+			//붓 사용하기
+			HGDIOBJ oldBrush = SelectObject(_bridgeImg->getMemDC(), brush);
+
+			//렉트 그리기
+			if (_idx->isFire)
+			{
+				Rectangle(_bridgeImg->getMemDC(), _idx->rc);
+			}
+
+			//펜 삭제 하기
+			DeleteObject(oldPen);
+			//붓 삭제 하기
+			DeleteObject(oldBrush);
+
+			//값 초기화
+			_idx->isFire = false;
+			_idx->gravity = 0.f;
+		}
 
 		//사거리 멀어지면 폭탄 사라짐
 		if (_range < dist)

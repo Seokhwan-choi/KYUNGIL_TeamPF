@@ -44,6 +44,9 @@ private:
 	//텍스트
 	char msg1[128];
 	POINT _pt;
+	//이미지
+	image* _bridgeImg;
+
 public:
 	Boss(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Boss();

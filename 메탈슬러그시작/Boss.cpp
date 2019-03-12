@@ -86,6 +86,8 @@ HRESULT Boss::Init()
 	_bomb = new Bomb("미사일폭탄");
 	_bomb->Init("입술.bmp", 30, 30, 1, 1200);
 
+	_bridgeImg = IMAGEMANAGER->addImage("다리", "Background/bridge.bmp", 634, 146, true, RGB(255, 0, 255));
+
 	return S_OK;
 }
 
@@ -342,6 +344,9 @@ void Boss::Update()
 
 void Boss::Render()
 {
+	//다리 이미지 그리기
+	_bridgeImg->render(getMemDC(), WINSIZEX / 2 - 100.f, WINSIZEY / 2 + 100.f);
+
 	//보스 렉트 그리기
 	Rectangle(getMemDC(), _rc);
 

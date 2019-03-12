@@ -101,7 +101,7 @@ void StageOne::Render(void)
 		_PixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left, -135 - CAMERA->GetCamera().top);
 		_wallImage->frameRender(getMemDC(), 5850 - CAMERA->GetCamera().left, 0 - CAMERA->GetCamera().top);
 	}
-	
+
 	OBJECTMANAGER->Render();
 	//RECT _WALL = CAMERA->Relative(_wallRect);
 	//Rectangle(getMemDC(), _WALL);

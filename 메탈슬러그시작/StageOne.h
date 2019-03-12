@@ -26,6 +26,8 @@ private:
 	bool _crush;				// 박았냐?
 	RECT _wallRect;				// 막을꺼임
 
+	image* _bridgeImg;
+
 public:
 
 	virtual HRESULT Init(void);

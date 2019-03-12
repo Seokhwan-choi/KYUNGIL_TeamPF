@@ -24,7 +24,7 @@ private:
 	float _range;						//ÆøÅº °Å¸® 
 	int _bombMax;						//ÆøÅº °¹¼ö 
 	float _x, _y;						//¹ß»ç ´ç½Ã ÇÃ·¹ÀÌ¾î ÁÂÇ¥
-
+	image* _bridgeImg;					//´Ù¸® ÀÌ¹ÌÁö
 	vector<BOMB> _vBomb;
 	vector<BOMB>::iterator _viBomb;
 public:
@@ -43,7 +43,9 @@ public:
 	//¹ß»ç ´ç½Ã ÇÃ·¹ÀÌ¾î ÁÂÇ¥ ÀÔ·Â
 	void setPosition(float x, float y) { _x = x, _y = y; }
 
+	//ÆøÅº º¤ÅÍ get
 	vector<BOMB> getVBomb() { return _vBomb; }
+	//ÆøÅº ¹İº¹ÀÚ get
 	vector<BOMB>::iterator getViBomb() { return _viBomb; }
 };
 
