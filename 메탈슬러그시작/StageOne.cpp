@@ -9,7 +9,7 @@ HRESULT StageOne::Init(void)
 	_player = new Player("플레이어", { 500,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
-	_boss = new BigCrab("boss", { 2060, WINSIZEY / 2 + 110 }, { 200,280 }, GameObject::Pivot::Center);
+	_boss = new BubbleCrab("boss", { 2060, WINSIZEY / 2 + 175 }, { 100,150 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _boss);
 	_boss->Init();
 

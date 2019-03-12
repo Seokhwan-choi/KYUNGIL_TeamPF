@@ -12,7 +12,8 @@ typedef struct tagBubble
 	float gravity;
 	float radius;
 	bool isFire;
-	int count[3];
+	int count[3];				//카운트 0번 배열은 큰게의 거품이 터져서 사라지는 시간
+								//카운트 1, 2번 배열은 큰게의 거품을 랜더링 하는 시간
 	int index[2];
 	int upDownCount;
 	bool isDown;

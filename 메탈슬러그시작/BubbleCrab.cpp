@@ -83,7 +83,7 @@ HRESULT BubbleCrab::Init()
 
 	//거품 클래스 초기화
 	_bubble = new Bubble("거품");
-	_bubble->Init2("Enemy/거품.bmp", 480, 60, 8, 1, 3, 1280);
+	_bubble->Init2("Enemy/거품.bmp", 420, 60, 7, 1, 3, 1280);
 
 	return S_OK;
 }
