@@ -19,6 +19,10 @@ private:
 	bool isLeft;
 	float _angle;
 	float _dist;
+	//거품공격
+	bool _isBubbleShoot;
+	class Bubble* _bubble;
+	int _bubbleGauge;
 public:
 	BigCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BigCrab();

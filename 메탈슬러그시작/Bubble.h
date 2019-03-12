@@ -13,6 +13,7 @@ typedef struct tagBubble
 	float radius;
 	bool isFire;
 	int count;
+	int index;
 	int upDownCount;
 	bool isDown;
 }
@@ -30,11 +31,14 @@ public:
 	void fire(float x, float y, float angle, float speed);
 	//芭前 框流烙 贸府
 	void move();
+	void move1();
+	void render();
 
 	Bubble(string name);
 	~Bubble();
 
 	virtual HRESULT Init(const char * imageName, int width, int height, int bubbleMax, float range);
+	virtual HRESULT Init2(const char * imageName, int width, int height, int FrameX, int FrameY, int bubbleMax, float range);
 	virtual void Release();
 	virtual void Update();
 	virtual void Render();

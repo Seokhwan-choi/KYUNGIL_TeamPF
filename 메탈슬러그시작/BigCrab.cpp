@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "BigCrab.h"
 #include "Player.h"
+#include "Bubble.h"
 
 BigCrab::BigCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot) : GameObject(name, pos, size, pivot)
 {
@@ -54,6 +55,12 @@ HRESULT BigCrab::Init()
 	isLeft = true;
 	//플레이어와의 각도 초기화
 	_angle = GetAngle(_position.x, _position.y, player->GetPosition().x, player->GetPosition().y);
+	
+	_bubble = new Bubble("거품");
+	_bubble->Init2("Enemy/거품.bmp", 480, 60, 8, 1, 12, 1280);
+
+	_isBubbleShoot = false;
+	_bubbleGauge = 1;
 	return S_OK;
 }
 
@@ -63,7 +70,6 @@ void BigCrab::Release()
 
 void BigCrab::Update()
 {
-
 	//각도 체크
 	_angle = GetAngle(_position.x, _position.y, player->GetPosition().x, player->GetPosition().y);
 	//거리 체크
@@ -137,6 +143,40 @@ void BigCrab::Update()
 		_att[1].rc.left += _size.x / 2 + 40.f;
 		_att[1].rc.right += _size.x / 2 + 40.f;
 	}
+	if (_state == state::L_BUBBLE_SHOOT_MOVE)
+	{
+		//if (_dist < 400.f && _rc.left >= 0.f)
+		//{
+		//	_position.x -= 5.f;
+		//}
+		//거품발사명령(끝 지점일 때도 플레이어와 충돌이 아닐 경우 거품 발사 명령)
+		if (_dist >= 400.f || _rc.left <= 0.f)
+		{
+			_isBubbleShoot = true;
+		}
+	}
+	if (_isBubbleShoot == true)
+	{
+		_bubbleGauge++;
+	}
+	if (_bubbleGauge % 25 == 0)
+	{
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
+		{
+			_bubble->fire(_position.x - 50.f, _position.y - 20, _angle, 5.f);
+		}
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
+		{
+			_bubble->fire(_position.x + 50.f, _position.y - 20, _angle, 5.f);
+		}
+
+		//값 초기화
+		_bubbleGauge = 1;
+		_isBubbleShoot = false;
+		
+	}
+	_bubble->move1();
+	_bubble->render();
 }
 
 void BigCrab::Render()
@@ -158,6 +198,8 @@ void BigCrab::Render()
 	{
 		Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
 	}
+	//거품 그리기
+	_bubble->Render();
 }
 
 void BigCrab::Attcol()

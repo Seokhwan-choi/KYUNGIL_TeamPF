@@ -83,7 +83,7 @@ HRESULT BubbleCrab::Init()
 
 	//거품 클래스 초기화
 	_bubble = new Bubble("거품");
-	_bubble->Init("입술.bmp", 30, 30, 3, 1280);
+	_bubble->Init2("Enemy/거품.bmp", 480, 60, 8, 1, 3, 1280);
 
 	return S_OK;
 }
@@ -195,11 +195,11 @@ void BubbleCrab::Update()
 	{
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
-			_bubble->fire(_position.x - 50.f, _position.y, _angle, 5.f);
+			_bubble->fire(_position.x + 170, _position.y, _angle, 5.f);
 		}
 		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
-			_bubble->fire(_position.x + 50.f, _position.y, _angle, 5.f);
+			_bubble->fire(_position.x + 220.f, _position.y, _angle, 5.f);
 		}
 
 		//값 초기화
@@ -440,6 +440,7 @@ void BubbleCrab::Update()
 	this->bubblecrabImage();
 	//거품 움직임 처리
 	_bubble->move();
+	_bubble->render();
 }
 
 void BubbleCrab::Render()
