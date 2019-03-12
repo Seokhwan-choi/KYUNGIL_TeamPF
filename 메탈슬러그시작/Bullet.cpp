@@ -35,7 +35,9 @@ HRESULT Bullet::Init(const char * imageName, int width, int height, int bulletMa
 		_vBullet.push_back(bullet);
 	}
 	_angle=0.0f;
-	_angle1=0.0f;
+	//_angle1 = 0.0f; 
+	
+	
 	return S_OK;
 }
 
@@ -48,14 +50,7 @@ void Bullet::Release()
 		SAFE_DELETE(_vBullet[i].bulletImage);
 	}
 }
-//if (DATA->getScore() < 10) {
-//	_scoreImg->frameRender(getMemDC(), 268, 34, DATA->getScore(), 0);
-//}
-////백자리
-//if (DATA->getScore() >= 100 && DATA->getScore() < 1000) {
-//	_scoreImg->frameRender(getMemDC(), 218, 34, (DATA->getScore() - DATA->getScore() % 100) / 100, 0);
-//	_scoreImg->frameRender(getMemDC(), 243, 34, (DATA->getScore() / 10) % 10, 0);
-//	_scoreImg->frameRender(getMemDC(), 268, 34, DATA->getScore() % 10, 0);
+
 
 void Bullet::Update()
 {
@@ -66,27 +61,78 @@ void Bullet::Render()
 {
 	//RECT playerRC = CAMERA->Relative(_rc);
 	if (_isFrameImg)//프레임 이미지냐?
+
 	{
+		
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
-			RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
-			
-			_angle =_vBullet[i].angle;
 
+			RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
+			_angle = _vBullet[i].angle;//기본총알
+
+			//OBJECTMANAGER->FindObject(ObjectType::Enum::PLAYER, "플레이어") 
+			switch (((Player*)OBJECTMANAGER->FindObject(ObjectType::Enum::PLAYER, "플레이어"))->GetWeapon())
+			{
+			
+			case WEAPON::NORMAL:
+				//_angle = _vBullet[i].angle;//해비버신건총알 
+			  
+				if (_angle == 0 || _angle == PI)
+				{
+					_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, 0, 0);
+				}
+				else if (_angle == PI / 2 || _angle == PI + PI / 2)
+				{
+					_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, 1, 0);
+				}
+				break;
+
+			case WEAPON::HEAVY:
+
+				if (_angle >= 0 && _angle <= (PI / 2) /**  180/PI*/)
+				{
+					_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, _angle / 5.29f * (180 / PI), 3);
+				}
+				//황금비율 5.29f
+				else if (_angle >= (PI / 2)/* * 180/ PI */ && _angle <= PI /** (180 / PI)*/) //구지 계산식에서 angle옆에 180쓸필요가없다 
+																							 //else if
+				{
+					_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, (int)((_angle / 5.29f) *(180 / PI)) - 17, 2);//존나이해안됨 
+																																			   //100도 일떄는 5.29나누면 18 정도인데 17을빼면 1번인댁스나와야한다 
+																																			   //180도는 34정도가 나오고 17을뺴면 17 이나와야한다 
+				}
+				else if (_angle >= -(PI) && _angle <= -(PI / 2))
+				{
+					_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, (int)(((_angle * -1) / 5.29f) * (180 / PI)) - 17, 1);
+				}
+				else if (_angle <= 0 && _angle >= -(PI / 2))
+				{
+					_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, (int)(_angle * -1) / 5.29f * (180 / PI), 0);
+				}
+				break;
+
+
+				//((Player*)OBJECTMANAGER->FindObject(ObjectType::Enum::PLAYER, "플레이어"))->SetWeapon(((Player*)OBJECTMANAGER->FindObject(ObjectType::Enum::PLAYER, "플레이어"))->GetWeapon());
+			}
+			
+			
+			//_angle =_vBullet[i].angle;//해비버신건총알 
+			//_angle1 = _vBullet[i].angle1;//기본총알  
+		 //   if (_angle1 == 0 || _angle1 == PI)
+			//{
+			//	_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, 0, 0);
+			//}
+			//else if (_angle1 == PI / 2 || _angle1 == PI + PI / 2)
+			//{
+			//	_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, 1, 0);
+			//}
+
+
+
+			//해비=======================================================해비=========================================
 			//if (!_vBullet[i].isFire)continue;
 			//_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top);	
-			if (_angle >= 0 && _angle < (3.14f / 2) /**  180/PI*/ )
-			{
-				_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top,  _angle / 5.29f * (180 / PI),3);
-			}
-			//황금비율 5.29f
-			else if (_angle> (PI / 2)/* * 180/ PI */ &&   _angle < PI /** (180 / PI)*/ ) //구지 계산식에서 angle옆에 180쓸필요가없다 
-			//else if
-			{
-				_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, (int)((_angle / 5.29f ) *(180 / PI) )- 17 , 2);//존나이해안됨 
-				//100도 일떄는 5.29나누면 18 정도인데 17을빼면 1번인댁스나와야한다 
-				//180도는 34정도가 나오고 17을뺴면 17 이나와야한다 
-			}
+			
 
 		}
 	}
@@ -115,6 +161,7 @@ void Bullet::fire(float x, float y, float angle, float speed)
 			_vBullet[i].bulletImage->getWidth(), _vBullet[i].bulletImage->getHeight());
 		_vBullet[i].speed = speed;
 		_vBullet[i].angle = angle;
+		//_vBullet[i].angle1 = angle;
 		break;
 	}
 }

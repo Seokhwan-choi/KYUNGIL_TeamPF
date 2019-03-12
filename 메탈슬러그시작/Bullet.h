@@ -10,6 +10,7 @@ struct tagBullet
 	float fireX, fireY; 
 	float speed; 
 	float angle; 
+	//float angle1; 
 	float gravity; 
 	float radius;
 	bool isFire;
@@ -32,7 +33,7 @@ private:
 	vector<tagBullet>::iterator _viBullet; 
 
 	float _angle;
-	float _angle1; 
+//	float _angle1; 
 
 ///	int _frameX;
 //int _frameY;

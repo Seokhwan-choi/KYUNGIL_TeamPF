@@ -1,13 +1,270 @@
-﻿  Player.cpp
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(670): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(670): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(673): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(673): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(682): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(682): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(884): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(2981): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(2983): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(2990): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  GameFramework2D.vcxproj -> D:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\Debug\WindowAPI.exe
-  GameFramework2D.vcxproj -> D:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\Debug\WindowAPI.pdb (Partial PDB)
+﻿  Bullet.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(49): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(69): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(96): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(112): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(143): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(155): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(163): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(173): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(182): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(233): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(248): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(256): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(264): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(276): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bullet.cpp(285): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  winMain.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  util.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  timeUi.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\timeui.cpp(14): warning C4305: '인수': 'COLORREF'에서 'bool'(으)로 잘립니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\timeui.cpp(14): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  timeManager.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\timemanager.cpp(105): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\timemanager.cpp(108): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\timemanager.cpp(111): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+  stdafx.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  startUi.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  startScene.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  stage1StartUi.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\stage1startui.cpp(25): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\stage1startui.cpp(35): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\stage1startui.cpp(77): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  stage1Scene.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  soundManager.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  randomFunction.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  playerDataUi.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  imageManager.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  image.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\image.cpp(114): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(136): note: 'strcpy' 선언을 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\image.cpp(156): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(136): note: 'strcpy' 선언을 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\image.cpp(202): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(136): note: 'strcpy' 선언을 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\image.cpp(250): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\string.h(136): note: 'strcpy' 선언을 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\image.cpp(782): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\image.cpp(783): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\image.cpp(820): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\image.cpp(821): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  gameNode.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  choiceUi.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\choiceui.cpp(63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\choiceui.cpp(282): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\choiceui.cpp(287): warning C4477: 'sprintf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'POINT'입니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\choiceui.cpp(287): warning C4473: 'sprintf': 서식 문자열에 대한 인수가 충분하게 전달되지 않았습니다.
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\choiceui.cpp(287): note: 자리 표시자 및 해당 매개 변수에는 variadic 인수가 2개 필요하지만 1개가 제공되었습니다.
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\choiceui.cpp(287): note: 누락된 variadic 인수 2이(가) 서식 문자열 '%d'에 필요합니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\choiceui.cpp(287): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+  choiceScene.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  StageOne.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  SceneManager.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  SceneMaker.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  PlayerData.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  Player.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(799): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(799): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(802): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(802): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(811): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(811): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(1047): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(3265): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(3267): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\player.cpp(3274): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ObjectManager.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  Monster.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  MainGame.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  KeyManager.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  Gizmo.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  GameOverUi_2.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  GameOverUi.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  GameObject.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\gameobject.cpp(74): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\gameobject.cpp(78): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\gameobject.cpp(82): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Flybug.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\flybug.cpp(28): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\flybug.cpp(34): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\flybug.cpp(41): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\flybug.cpp(57): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\flybug.cpp(63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\flybug.cpp(68): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\flybug.cpp(72): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\flybug.cpp(206): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\flybug.cpp(206): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\flybug.cpp(243): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+  Fish.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\fish.cpp(23): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\fish.cpp(38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\fish.cpp(41): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\fish.cpp(78): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Crab.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(48): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(56): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(57): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(58): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(59): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(66): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(67): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(97): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(103): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(108): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(115): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(116): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(117): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(118): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(125): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(126): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(259): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(260): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(263): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(264): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(292): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(292): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(297): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(297): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(323): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(323): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(328): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(328): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\crab.cpp(387): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+  Camera.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\camera.cpp(9): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\camera.cpp(59): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  BubbleCrab.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(32): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(48): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(49): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(50): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(51): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(58): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(59): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(83): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(89): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(94): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(101): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(102): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(103): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(104): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(111): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(112): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(287): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(288): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(291): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(292): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubblecrab.cpp(377): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+  Bubble.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubble.cpp(35): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubble.cpp(49): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubble.cpp(59): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubble.cpp(68): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubble.cpp(77): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bubble.cpp(107): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  BigCrab.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(24): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(25): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(26): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(33): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(35): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(37): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(39): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(48): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(50): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(142): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(148): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(149): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(150): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(157): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(159): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(161): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\bigcrab.cpp(163): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+MSVCRTD.lib(exe_wwinmain.obj) : error LNK2019: _wWinMain@16 외부 기호(참조 위치: "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 함수)에서 확인하지 못했습니다.
+D:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\Debug\WindowAPI.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.

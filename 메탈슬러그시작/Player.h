@@ -51,7 +51,7 @@ private:
 
 		// 걷기, 걷기_총, 걷기_업샷, 걷기_칼질, 걷기_폭탄, 걷기_위보기 ( 6가지 )
 		WALK, WALK_SHOT, WALK_UPSHOT, WALK_SWORD, WALK_BOOM, WLAK_UPSTARE,
-	
+	                           //                             //애가 실험용 
 
 		// 점프, 점프_총, 점프_업샷, 점프_다운샷, 점프_칼질, 점프_폭탄, 점프_위보기, 점프_아래보기 ( 8가지 )
 		JUMP, JUMP_SHOT, JUMP_UPSHOT, JUMP_DOWNSHOT, JUMP_SWORD, JUMP_BOOM, JUMP_UPSTARE, JUMP_DOWNSTARE,
@@ -94,6 +94,9 @@ private:
 	float _jumppower;						//플레이어 점프힘
 	float _gravity;						//플레이어 중력 
 	bool _isJump;						//플레이어 점프상태냐? 
+	float _normalangle;                  //기본총알 앵글
+	
+
 										//============================================================
 
 										//===================# 프레임 랜더 변수 #=======================
@@ -132,7 +135,9 @@ public:
 	Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Player();
 
-
+	WEAPON GetWeapon() {return _weapon; }						//플레이어 무기 뭐들고잇나 상태값
+	
+	void SetWeapon(WEAPON Weapon) { _weapon = Weapon; }
 	virtual HRESULT Init();
 	virtual void Release();
 	virtual void Update();
@@ -147,98 +152,33 @@ public:
 	void PlayerHeavy();                 //해비머신건 각도 
 };
 
-//
-//if (KEYMANAGER->isOnceKeyDown('S') && _isJump == false)
-//{
-//	_isJump = true;						//점프는 true가되고 
-//	_jumppower = 10.5f;					//점프힘에 10.5
-//	_gravity = 0.5f;					//중력값은 0.5
-//
-//										// 걷고 있으면서 JUMP를 누르면 WLAKJUMP
-//										// 그냥 누르면 JUMP
-//
-//
-//
-//
-//	if (_wstate != WALKSTATE::JUMPWALK)
-//		_wstate = WALKSTATE::JUMP;
-//
-//	//	_wstate = WALKSTATE::JUMP;
-//	_state = STATE::JUMP;
-//
-//	//_wstate = WALKSTATE::JUMPWALK;
-//	//_state = STATE::JUMPWALK_DOWNSHOT;
-//
-//}
-//
-//
-//
-//// ========================================================================
-//// ###################### 플레이어 점프(JUMP) 처리 ##########################
-//// ========================================================================
-//if (_isJump == true)
-//{
-//	_position.y -= _jumppower;			//플레이어 y축은 점프힘만큼 빼준다  
-//	_jumppower -= _gravity;				//점프힘은 중력값만큼 빠진다 
-//
-//										//	_wstate = WALKSTATE::JUMP; 
-//										//_state = STATE::JUMP_UPSHOT;
-//
-//										// ------- 점프 중 아래를 누르면 -------
-//	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-//	{//앉아잇기 앉아서 쏘기 앉아서 `` 앉아서 이동 
-//	 //플레이어 총알방향은 아래쪽이된다 
-//		_bullet = BULLET::DOWNFIRE;
-//
-//		if (_state == STATE::JUMPWALK_DOWNSHOT)
-//		{
-//			_state = STATE::JUMPWALK_DOWNSHOT;
-//			_wstate = WALKSTATE::JUMPWALK;
-//		}
-//		else if (_state == STATE::JUMP_DOWNSHOT)
-//
-//		{
-//			_state = STATE::JUMP_DOWNSHOT;
-//			_wstate = WALKSTATE::JUMP;
-//		}
-//		if (_isLeft == true)
-//		{
-//			_angle1 += 0.125f;
-//			if (_angle1 > -(PI / 2))
-//			{
-//				_angle1 = -(PI / 2);
-//			}
-//		}
-//		else if (_isLeft == false)
-//		{
-//			_angle1 -= 0.125f;
-//			if (_angle1 < -(PI / 2))
-//			{
-//				_angle1 = -(PI / 2);
-//			}
-//		}
-//	}
-//	else
-//		if (_isLeft == true)
-//		{
-//			_angle1 -= 0.125f;
-//			if (_angle1 < -PI)
-//			{
-//				_angle1 = -PI;
-//			}
-//		}
-//		else if (_isLeft == false)
-//		{
-//			_angle1 += 0.125f;
-//			if (_angle1 > 0)
-//			{
-//				_angle1 = 0.0f;
-//			}
-//		}
-//}
-////점프상태가 아니고 총알방향이 아래쪽일떄는 
-////총알방향은 아무것도 안나가게 막아놧다 
-//if (_isJump == false && _bullet == BULLET::DOWNFIRE)
-//{
-//	_bullet = BULLET::IDLE;
-//}
+	//case WALKSTATE::WALK:
+	//	_frameCount--;
+	//	if (_isLeft == true)
+	//	{
+	//		IMAGEMANAGER->findImage("해비이동하며공격")->setFrameY(1);
+	//		if (_frameCount % SPEED == 0)
+	//		{
+	//			_frameIndex--;
+	//			if (_frameIndex < 0)
+	//			{
+	//				_frameIndex = 3;
+	//			}
+	//			IMAGEMANAGER->findImage("해비이동하며공격")->setFrameX(_frameIndex);
+	//			if (_frameIndex == 0)
+	//			{
+	//				_state = STATE::IDLE;
+	//				_playerbulletfire = false;
+	//			}
+	//		}
+
+	//	}
+	//	break;
+
+
+	//case STATE::WALK_UPSHOT:
+	//	IMAGEMANAGER->frameRender("해비이동업샷", getMemDC(), playerRC.left, playerRC.top);
+	//	break;
+	//case STATE::IDLE_UPSHOT:
+	//	IMAGEMANAGER->frameRender("해비가만업샷", getMemDC(), playerRC.left, playerRC.top);
+	//	break;
