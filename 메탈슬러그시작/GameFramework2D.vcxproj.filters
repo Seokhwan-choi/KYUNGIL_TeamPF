@@ -78,6 +78,33 @@
     <Filter Include="소스 파일\UI/아이템\스테이지관련">
       <UniqueIdentifier>{0083fa3e-4511-45cb-a511-e5fb43a2dea7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameFramWork\로딩">
+      <UniqueIdentifier>{8308458e-e69f-4152-9136-7a2613b4a118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramWork\체력바">
+      <UniqueIdentifier>{0e1ba18c-2147-4b0f-9acc-5f368e0df1cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\맵\지하스테이지">
+      <UniqueIdentifier>{56ad1da9-2d4e-4ccb-aaf2-7403b3535082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\맵\보스스테이지">
+      <UniqueIdentifier>{78ac392c-2c2a-4033-9a53-0b33c0852fc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\맵\SceneMaker">
+      <UniqueIdentifier>{cf7cfcf1-834c-48aa-ad21-9d260805e2e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\맵\스테이지원">
+      <UniqueIdentifier>{3e2b63f3-e9b6-406e-b198-bf67df2bdf6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\맵\시작화면">
+      <UniqueIdentifier>{3989db42-d940-4b37-9083-daf5610e6987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\맵\선택화면">
+      <UniqueIdentifier>{50ba552c-6037-41e6-98da-3dd004e41976}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\맵\로딩화면">
+      <UniqueIdentifier>{d69c63aa-6823-4e4f-bff0-f419b451792f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommomMacroFuntion.h">
@@ -128,17 +155,8 @@
     <ClInclude Include="Bullet.h">
       <Filter>소스 파일\플레이어</Filter>
     </ClInclude>
-    <ClInclude Include="SceneMaker.h">
-      <Filter>소스 파일\맵</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>소스 파일\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="startScene.h">
-      <Filter>소스 파일\맵</Filter>
-    </ClInclude>
-    <ClInclude Include="choiceScene.h">
-      <Filter>소스 파일\맵</Filter>
     </ClInclude>
     <ClInclude Include="stage1Scene.h">
       <Filter>소스 파일\맵</Filter>
@@ -175,9 +193,6 @@
     </ClInclude>
     <ClInclude Include="timeManager.h">
       <Filter>GameFramWork\매니저</Filter>
-    </ClInclude>
-    <ClInclude Include="StageOne.h">
-      <Filter>소스 파일\맵</Filter>
     </ClInclude>
     <ClInclude Include="enumClaas.h">
       <Filter>GameFramWork\플레이어데이터</Filter>
@@ -254,11 +269,32 @@
     <ClInclude Include="BubbleCrab.h">
       <Filter>소스 파일\몬스터\거품게</Filter>
     </ClInclude>
+    <ClInclude Include="loading.h">
+      <Filter>GameFramWork\로딩</Filter>
+    </ClInclude>
+    <ClInclude Include="progressBar.h">
+      <Filter>GameFramWork\체력바</Filter>
+    </ClInclude>
     <ClInclude Include="BaseMent.h">
-      <Filter>소스 파일\맵</Filter>
+      <Filter>소스 파일\맵\지하스테이지</Filter>
     </ClInclude>
     <ClInclude Include="BossStage.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\맵\보스스테이지</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMaker.h">
+      <Filter>소스 파일\맵\SceneMaker</Filter>
+    </ClInclude>
+    <ClInclude Include="StageOne.h">
+      <Filter>소스 파일\맵\스테이지원</Filter>
+    </ClInclude>
+    <ClInclude Include="startScene.h">
+      <Filter>소스 파일\맵\시작화면</Filter>
+    </ClInclude>
+    <ClInclude Include="choiceScene.h">
+      <Filter>소스 파일\맵\선택화면</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScene.h">
+      <Filter>소스 파일\맵\로딩화면</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -307,17 +343,8 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>소스 파일\플레이어</Filter>
     </ClCompile>
-    <ClCompile Include="SceneMaker.cpp">
-      <Filter>소스 파일\맵</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>소스 파일\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="startScene.cpp">
-      <Filter>소스 파일\맵</Filter>
-    </ClCompile>
-    <ClCompile Include="choiceScene.cpp">
-      <Filter>소스 파일\맵</Filter>
     </ClCompile>
     <ClCompile Include="stage1Scene.cpp">
       <Filter>소스 파일\맵</Filter>
@@ -351,9 +378,6 @@
     </ClCompile>
     <ClCompile Include="timeManager.cpp">
       <Filter>GameFramWork\매니저</Filter>
-    </ClCompile>
-    <ClCompile Include="StageOne.cpp">
-      <Filter>소스 파일\맵</Filter>
     </ClCompile>
     <ClCompile Include="choiceUi.cpp">
       <Filter>소스 파일\UI/아이템\시작화면</Filter>
@@ -418,11 +442,32 @@
     <ClCompile Include="Flybug.cpp">
       <Filter>소스 파일\몬스터\잠자리</Filter>
     </ClCompile>
+    <ClCompile Include="loading.cpp">
+      <Filter>GameFramWork\로딩</Filter>
+    </ClCompile>
+    <ClCompile Include="progressBar.cpp">
+      <Filter>GameFramWork\체력바</Filter>
+    </ClCompile>
     <ClCompile Include="BaseMent.cpp">
-      <Filter>소스 파일\맵</Filter>
+      <Filter>소스 파일\맵\지하스테이지</Filter>
     </ClCompile>
     <ClCompile Include="BossStage.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\맵\보스스테이지</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMaker.cpp">
+      <Filter>소스 파일\맵\SceneMaker</Filter>
+    </ClCompile>
+    <ClCompile Include="StageOne.cpp">
+      <Filter>소스 파일\맵\스테이지원</Filter>
+    </ClCompile>
+    <ClCompile Include="startScene.cpp">
+      <Filter>소스 파일\맵\시작화면</Filter>
+    </ClCompile>
+    <ClCompile Include="choiceScene.cpp">
+      <Filter>소스 파일\맵\선택화면</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingScene.cpp">
+      <Filter>소스 파일\맵\로딩화면</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

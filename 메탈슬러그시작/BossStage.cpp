@@ -3,9 +3,9 @@
 
 HRESULT BossStage::Init(void)
 {
-	_bgImage = IMAGEMANAGER->addImage("보스배경", "BackGround/보스배경.bmp", 2555, 958);
-	_waterground = IMAGEMANAGER->addFrameImage("보스출렁", "BackGround/보스출렁.bmp", 10240, 100, 8, 1);
-	_breakImage = IMAGEMANAGER->addImage("곧부서짐", "BackGround/곧부서짐.bmp", 875, 183, true, RGB(248, 0, 248));
+	_bgImage = IMAGEMANAGER->findImage("보스배경");
+	_waterground = IMAGEMANAGER->findImage("보스출렁");
+	_breakImage = IMAGEMANAGER->findImage("곧부서짐");
 
 	for (int i = 0; i < 11; ++i) 
 	{

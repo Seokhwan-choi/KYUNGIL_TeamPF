@@ -24,20 +24,8 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->AddScene("스테이지1", _stage1);
 	SCENEMANAGER->AddScene("지하스테이지", new BaseMent);
 	SCENEMANAGER->AddScene("보스스테이지", new BossStage);
-	
-	//SCENEMANAGER->ChangeScene("시작화면");
-
 	//첫 시작화면
 	SCENEMANAGER->ChangeScene("보스스테이지");
-
-	/*
-	undergroundScene* _underground = new undergroundScene;
-	SCENEMANAGER->AddScene("스테이지1_1", _underground);
-	underriverScene&  _underriver = new underriverScene;
-	SCENEMANAGER->AddScene("스테이지1_2", _underriver);
-	boosScene&  _bossscene = new boosScene;
-	SCENEMANAGER->AddScene("스테이지1_2", _bossscene);
-	*/
 
 	return S_OK;	
 }
