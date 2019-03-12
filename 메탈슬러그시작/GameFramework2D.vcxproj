@@ -151,6 +151,7 @@
     <ClInclude Include="BigCrab.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossStage.h" />
     <ClInclude Include="Bubble.h" />
     <ClInclude Include="BubbleCrab.h" />
     <ClInclude Include="Bullet.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="BigCrab.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossStage.cpp" />
     <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="BubbleCrab.cpp" />
     <ClCompile Include="Bullet.cpp" />
