@@ -7,6 +7,7 @@ private:
 	image* _bgImage;			// 보스 스테이지 배경 이미지
 	RECT _ground[11];			// 보스 스테이지 바닥 RECT ( 바닥 RECT 11개 )
 	image* _groundImage[11];	// 보스 스테이지 바닥 이미지
+	image* _pixelground[11];	// 보스 스테이지 바닥 픽셀 이미지
 	image* _waterground;		// 보스 스테이지 출렁 이미지
 	image* _breakImage;			// 보스 등장하면서 부서질 바닥
 	bool _check[11];			// 보스 스테이지 바닥 없어졌냐 ?

@@ -3,16 +3,22 @@
 
 HRESULT BossStage::Init(void)
 {
-	_bgImage = IMAGEMANAGER->addImage("º¸½º¹è°æ", "BackGround/º¸½º¹è°æ.bmp", 2555, 958);
-	_waterground = IMAGEMANAGER->addFrameImage("º¸½ºÃâ··", "BackGround/º¸½ºÃâ··.bmp", 10240, 100, 8, 1);
-	_breakImage = IMAGEMANAGER->addImage("°ðºÎ¼­Áü", "BackGround/°ðºÎ¼­Áü.bmp", 875, 183, true, RGB(248, 0, 248));
+	_bgImage = IMAGEMANAGER->addImage("º¸½º¹è°æ", "Background/º¸½º¹è°æ.bmp", 2555, 958);
+	_waterground = IMAGEMANAGER->addFrameImage("º¸½ºÃâ··", "Background/º¸½ºÃâ··.bmp", 10240, 100, 8, 1);
+	_breakImage = IMAGEMANAGER->addImage("°ðºÎ¼­Áü", "Background/°ðºÎ¼­Áü.bmp", 875, 183, true, RGB(248, 0, 248));
 
 	for (int i = 0; i < 11; ++i) 
 	{
 		char str[100];
 		sprintf(str, "´Ù¸®%d", i+1);
 		_ground[i] = RectMake( WINSIZEX/2 + (175 * i), WINSIZEY - 215, 175, 183);
-		_groundImage[i] = IMAGEMANAGER->addImage(str, string("BackGround/"+ string(str) + ".bmp").c_str(), 175, 183, true, RGB(248,0,248));
+		_groundImage[i] = IMAGEMANAGER->addImage(str, string("Background/"+ string(str) + ".bmp").c_str(), 175, 183, true, RGB(248,0,248));
+
+		char str1[100];
+		sprintf(str1, "ÇÈ¼¿´Ù¸®%d", i + 1);
+		_pixelground[i] = IMAGEMANAGER->addImage(str1, string("Background/" + string(str1) + ".bmp").c_str(), 175, 183, true, RGB(248, 0, 248));
+
+
 		_check[i] = true;
 	}
 
@@ -92,10 +98,14 @@ void BossStage::Render(void)
 	{
 		//Rectangle(getMemDC(), _ground[i]);
 		_groundImage[i]->render(getMemDC(), _ground[i].left, _ground[i].top);
+		if (!_start) {
+			_pixelground[i]->render(getMemDC(), _ground[i].left, _ground[i].top);
+		}
 	}
 	
 	if (!_start)
 	{
-		_breakImage->render(getMemDC(), -235, WINSIZEY - 215);
+		//_breakImage->render(getMemDC(), -235, WINSIZEY - 215);
+		
 	}
 }
