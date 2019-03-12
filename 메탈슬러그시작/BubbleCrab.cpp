@@ -25,6 +25,8 @@ HRESULT BubbleCrab::Init()
 	_isBubbleShoot = false;
 	_isBubbleShootFinish = false;
 	_moveTimer = 1;
+	_hp = 5;
+
 	//이미지 초기화
 	BubblecrabImg[0] = IMAGEMANAGER->addFrameImage("bubblecrab", "Enemy/몬스터(게)-2.bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
 	BubblecrabImg[1] = IMAGEMANAGER->addFrameImage("bubblecrab2", "Enemy/몬스터(게)-2(오른쪽).bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
@@ -182,7 +184,8 @@ void BubbleCrab::Update()
 	}
 
 	//근접 공격 중이 아닐 때 거품 공격 명령이 내려 지고 조금 기다린 다음 거품 발사
-	if ((_isBubbleShoot && !_isBubbleShootFinish && !_isAttack && !_isAttackFinish) && (_state == state::L_BUBBLE_SHOOT_MOVE || _state == state::R_BUBBLE_SHOOT_MOVE))
+	if ((_isBubbleShoot && !_isBubbleShootFinish && !_isAttack && !_isAttackFinish) 
+		&& (_state == state::L_BUBBLE_SHOOT_MOVE || _state == state::R_BUBBLE_SHOOT_MOVE))
 	{
 		_bubbleGauge++;
 	}
@@ -216,7 +219,6 @@ void BubbleCrab::Update()
 			{
 				_state = state::L_BUBBLE_SHOOT_FINISH;
 			}
-
 
 			if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 			{
@@ -258,6 +260,20 @@ void BubbleCrab::Update()
 		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
 			_state = state::R_ATTACK_FINISH;
+		}
+	}
+
+	//체력에 따른 죽음 처리
+	if (KEYMANAGER->isToggleKey('R') || _hp <= 0)
+	{
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
+		{
+			_state = state::L_DEATH;
+		}
+
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
+		{
+			_state = state::R_DEATH;
 		}
 	}
 
@@ -357,6 +373,68 @@ void BubbleCrab::Update()
 			_isStop = false;
 		}
 		break;
+	case state::L_DEATH:
+		//충돌 렉트 없애기
+		for (int i = 0; i < 4; i++)
+		{
+			_col[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+		}
+		//공격 렉트 없애기
+		for (int i = 0; i < 2; i++)
+		{
+			_att[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+		}
+
+		//임시로 y좌표 설정함
+		if (_position.y + _size.y / 2 < 730.f)
+		{
+			//시체 부분 떨어뜨리기
+			_position.y += 5.f;
+		}
+
+		//땅에 도착했을 때
+		if (_position.y + _size.y / 2 >= 730.f)
+		{
+			_deathTimer++;
+
+			if (_deathTimer % 150 == 0)
+			{
+				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "crab"));
+			}
+		}
+
+		break;
+	case state::R_DEATH:
+		//충돌 렉트 없애기
+		for (int i = 0; i < 4; i++)
+		{
+			_col[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+		}
+		//공격 렉트 없애기
+		for (int i = 0; i < 2; i++)
+		{
+			_att[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+		}
+
+		//임시로 y좌표 설정함
+		if (_position.y + _size.y / 2 < 730.f)
+		{
+			//시체 부분 떨어뜨리기
+			_position.y += 5.f;
+		}
+
+		//땅에 도착했을 때
+		if (_position.y + _size.y / 2 >= 730.f)
+		{
+			_deathTimer++;
+
+			if (_deathTimer % 150 == 0)
+			{
+				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "crab"));
+			}
+		}
+
+		break;
 	}
 	//상태에 따른 이미지 변경
 	this->bubblecrabImage();
@@ -400,7 +478,11 @@ void BubbleCrab::Render()
 
 void BubbleCrab::bubblecrabImage()
 {
-	if ((_state == state::L_IDLE || _state == state::L_MOVE || _state == state::L_ATTACK_MOVE || _state == state::L_BUBBLE_SHOOT_FINISH) && !(_state == state::L_ATTACK_FINISH))
+	if ((_state == state::L_IDLE 
+		|| _state == state::L_MOVE 
+		|| _state == state::L_ATTACK_MOVE 
+		|| _state == state::L_BUBBLE_SHOOT_FINISH) 
+		&& !(_state == state::L_ATTACK_FINISH))
 	{
 		countImg[0]++;
 		if (countImg[0] % 10 == 0)
@@ -413,7 +495,10 @@ void BubbleCrab::bubblecrabImage()
 			BubblecrabImg[0]->setFrameX(indexImg[0]);
 		}
 	}
-	if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE && !(_state == state::R_ATTACK_FINISH))
+	if (_state == state::R_IDLE 
+		|| _state == state::R_MOVE 
+		|| _state == state::R_ATTACK_MOVE 
+		&& !(_state == state::R_ATTACK_FINISH))
 	{
 		countImg[0]++;
 		if (countImg[0] % 10 == 0)
@@ -535,40 +620,53 @@ void BubbleCrab::bubblecrabImage()
 
 void BubbleCrab::bubblecrabImageRender()
 {
-	if ((_state == state::L_IDLE || _state == state::L_MOVE || _state == state::L_ATTACK_MOVE) && !(_state == state::L_ATTACK_FINISH))
+	if ((_state == state::L_IDLE 
+		|| _state == state::L_MOVE 
+		|| _state == state::L_ATTACK_MOVE) 
+		&& !(_state == state::L_ATTACK_FINISH))
 	{
 		BubblecrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 	}
-	if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE)
+
+	if (_state == state::R_IDLE 
+		|| _state == state::R_MOVE 
+		|| _state == state::R_ATTACK_MOVE)
 	{
 		BubblecrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 	}
+
 	if (_state == state::L_BUBBLE_SHOOT_MOVE)
 	{
 		BubblecrabImg[6]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 
 	}
+
 	if (_state == state::R_BUBBLE_SHOOT_MOVE)
 	{
 		BubblecrabImg[7]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 	}
+
 	if (_state == state::L_ATTACK)
 	{
 		BubblecrabImg[2]->frameRender(getMemDC(), _rc.left - 60 - CAMERA->GetCamera().left, _rc.top - 22 - CAMERA->GetCamera().top);
 
 	}
+
 	if (_state == state::R_ATTACK)
 	{
 		BubblecrabImg[3]->frameRender(getMemDC(), _rc.left + 10 - CAMERA->GetCamera().left, _rc.top - 22 - CAMERA->GetCamera().top);
 	}
+
 	if (_state == state::L_ATTACK_FINISH)
 	{
 		BubblecrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 	}
+
 	if (_state == state::R_ATTACK_FINISH)
 	{
 		BubblecrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 	}
+
 	if (_state == state::L_BUBBLE_SHOOT_FINISH)
 	{
 		BubblecrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
@@ -577,10 +675,12 @@ void BubbleCrab::bubblecrabImageRender()
 	//{
 	//	BubblecrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
 	//}
+
 	if (_state == state::L_DEATH)
 	{
 		BubblecrabImg[4]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 44 - CAMERA->GetCamera().top);
 	}
+
 	if (_state == state::R_DEATH)
 	{
 		BubblecrabImg[5]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 44 - CAMERA->GetCamera().top);

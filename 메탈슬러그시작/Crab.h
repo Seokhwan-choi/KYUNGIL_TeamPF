@@ -35,9 +35,11 @@ private:
 	float _angle;
 	//플레이어와의 거리
 	float _dist;
-	//마우스 좌표 텍스트
-	char msg1[128];
-	POINT _pt;
+	//체력
+	int _hp;
+	////마우스 좌표 텍스트
+	//char msg1[128];
+	//POINT _pt;
 	//플레이어 클래스
 	class Player* _player;
 public:
@@ -50,6 +52,12 @@ public:
 	void setIsCrush(int i, bool crush) { _col[i].isCrush = crush; }
 	//플레이어 죽임여부 get
 	bool getIsKill(int i) { return _col[i].isKill; }
+	//충돌렉트 get
+	COL getCol(int i) { return _col[i]; }
+	//체력 get
+	int getHp() { return _hp; }
+	//체력 set
+	void setHp(int hp) { _hp = hp; }
 
 	HRESULT Init() override;
 	void Release() override;
@@ -59,7 +67,5 @@ public:
 	//이미지 랜더용 함수
 	void crabImage();
 	void crabImageRender();
-
-
 };
 

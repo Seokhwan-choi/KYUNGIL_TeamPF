@@ -129,13 +129,13 @@ void BigCrab::Update()
 
 	if (_state == state::L_ATTACK)
 	{
-		_att[0].rc.left -= _size.x / 2 + 40;
-		_att[0].rc.right -= _size.x / 2 + 40;
+		_att[0].rc.left -= _size.x / 2 + 40.f;
+		_att[0].rc.right -= _size.x / 2 + 40.f;
 	}
 	if (_state == state::R_ATTACK)
 	{
-		_att[1].rc.left += _size.x / 2 + 40;
-		_att[1].rc.right += _size.x / 2 + 40;
+		_att[1].rc.left += _size.x / 2 + 40.f;
+		_att[1].rc.right += _size.x / 2 + 40.f;
 	}
 }
 

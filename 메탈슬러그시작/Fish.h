@@ -16,6 +16,8 @@ typedef struct fish
 	bool Imgchange;
 	//물고기 데스카운트
 	int fish_death;
+	//물고기 체력
+	int hp;
 }Fish_t;
 
 class Fish : public GameObject
@@ -41,6 +43,12 @@ public:
 	Fish(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Fish();
 
+	//체력 get
+	int getHp(int i) { return fish_rc[i].hp; }
+	//체력 set
+	void setHp(int i, int hp) { fish_rc[i].hp = hp; }
+	//물고기 렉트 get
+	RECT getCol(int i) { return fish_rc[i].Fish_Rc; }
 
 	HRESULT Init() override;
 	void Release() override;
