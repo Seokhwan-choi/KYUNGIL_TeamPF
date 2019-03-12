@@ -197,7 +197,7 @@ void choiceUi::Update()
 	//내려오면서 이미지 랜더 해주기
 	if (_isDown == true) {
 		_downDoorImage->setFrameY(0);
-		if (_count % 25 == 0) {
+		if (_count % 12== 0) {
 			_index++;
 			if (_index > 4) {
 				_index = 0;

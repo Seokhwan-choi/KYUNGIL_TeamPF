@@ -14,11 +14,17 @@ private:
 	POINTFLOAT _range;
 	//포로 관련
 	RECT _colRc[3];		//포로 충돌 렉트
+	int _coly;			//충돌탐지
 	float _speed;		//포로스피드
 	float _gravity;		//포로 중력값
+	//불 변수
 	bool _isRight;		//오른쪽이냐?
 	bool _isCrush;		//부딪혓냐?
 	bool _isGo;			//왼쪽으로 달려나간다
+	bool _isShot;		//쐇냐?
+	RECT _temp;
+	bool _touch;       //닿았냐?
+	
 
 
 public:
@@ -29,8 +35,11 @@ public:
 	virtual void Release(void);
 	virtual void Update(void);
 	virtual void Render(void);
+
+
 	void motion();
 	void tied();
 	void move();
+
 };
 

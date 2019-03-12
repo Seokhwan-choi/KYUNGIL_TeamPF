@@ -17,16 +17,17 @@ protected:
 	// 상속관계에서만 사용가능
 	string _name;					// 게임오브젝트 이름
 	Pivot _pivot;					// 게임오브젝트 피벗(RECT를 그리는 기준점)
-	POINTFLOAT _position;			// 게임오브젝트 좌표
-	POINTFLOAT _size;				// 게임오브젝트 크기
 	ITEM _item;
 	CAPTIVE _captive;
+	POINTFLOAT _position;			// 게임오브젝트 좌표
+	POINTFLOAT _size;				// 게임오브젝트 크기
 	RECT _rc;						// 게임오브젝트 RECT
 	bool _isActive;					// 게임오브젝트 활성화되있냐?
 	bool _isLive;					// 게임오브젝트 살아있냐?
 public:
 	// 게임오브젝트 생성자를 통해서 멤버변수 초기화 해준다.
 	GameObject(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, CAPTIVE captive, ITEM item);
+	GameObject(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM item);
 	GameObject(string name,POINTFLOAT pos,POINTFLOAT size,Pivot pivot);
 	GameObject(string name);
 	~GameObject();

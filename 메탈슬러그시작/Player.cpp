@@ -707,15 +707,15 @@ void Player::Render()
 	// =====================================================================
 
 	//====================디버그용 예시용도다 확인=============================
-	if (KEYMANAGER->isOnceKeyDown(VK_F1)) {
-		if (_weapon == WEAPON::NORMAL)
-		{
-			_weapon = WEAPON::HEAVY;
-		}
-		else {
-			_weapon = WEAPON::NORMAL;
-		}
-	}
+	//if (KEYMANAGER->isOnceKeyDown(VK_F1)) {
+	//	if (_weapon == WEAPON::NORMAL)
+	//	{
+	//		_weapon = WEAPON::HEAVY;
+	//	}
+	//	else {
+	//		_weapon = WEAPON::NORMAL;
+	//	}
+	//}
 	// =====================================================================
 }
 

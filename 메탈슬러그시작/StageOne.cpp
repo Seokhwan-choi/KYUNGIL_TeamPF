@@ -20,11 +20,11 @@ HRESULT StageOne::Init(void)
 	GameOverUi_2* _gameoverui2 = new GameOverUi_2("gameoverui2", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui2);
 	
-	//stage1StartUi* _stage1startui = new stage1StartUi("stage1startui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	//OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
+	stage1StartUi* _stage1startui = new stage1StartUi("stage1startui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
 	
-	GameCompleteUi* _complete = new GameCompleteUi("complete", { WINSIZEX / 2, WINSIZEY / 2 }, { 10,10 }, GameObject::Pivot::LeftTop);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _complete);
+	//GameCompleteUi* _complete = new GameCompleteUi("complete", { WINSIZEX / 2, WINSIZEY / 2 }, { 10,10 }, GameObject::Pivot::LeftTop);
+	//OBJECTMANAGER->AddObject(ObjectType::UI, _complete);
 
 	//Player* _player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
@@ -38,15 +38,15 @@ HRESULT StageOne::Init(void)
 	//OldMan* _oldman = new OldMan("oldman", { 1100, WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
 
-	ItemUi* _item = new ItemUi("item", { WINSIZEX/ 2, WINSIZEY/2 }, { 50,50 }, GameObject::Pivot::LeftTop);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
 	
-	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::CHICKEN);
+	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::HEAVY);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
 
-	OldMan* _oldman2 = new OldMan("oldman2", { 1500, WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop, CAPTIVE::TIED, ITEM::FISH);
+	OldMan* _oldman2 = new OldMan("oldman2", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::TIED, ITEM::HEAVY);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman2);
 
+	ItemUi* _item = new ItemUi("item", {WINSIZEX,WINSIZEY/2}, { 50,50 }, GameObject::Pivot::LeftTop, ITEM::FISH);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
 
 
 	_bgImage = IMAGEMANAGER->addImage("배경", "배경.bmp", 14070, 1150, true , RGB(255,0,255));
