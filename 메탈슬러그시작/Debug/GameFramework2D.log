@@ -1,2 +1,12 @@
-﻿  StageOne.cpp
-  GameFramework2D.vcxproj -> D:\팀포폴\메탈슬러그시작\Debug\WindowAPI.exe
+﻿  Player.cpp
+d:\팀포폴\메탈슬러그시작\player.cpp(466): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\팀포폴\메탈슬러그시작\player.cpp(466): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\팀포폴\메탈슬러그시작\player.cpp(469): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\팀포폴\메탈슬러그시작\player.cpp(469): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\팀포폴\메탈슬러그시작\player.cpp(478): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\팀포폴\메탈슬러그시작\player.cpp(478): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\팀포폴\메탈슬러그시작\player.cpp(1586): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\팀포폴\메탈슬러그시작\player.cpp(1590): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\팀포폴\메탈슬러그시작\player.cpp(1597): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\팀포폴\메탈슬러그시작\player.cpp(1614): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
+LINK : fatal error LNK1168: D:\팀포폴\메탈슬러그시작\Debug\WindowAPI.exe을(를) 쓰기용으로 열 수 없습니다.
