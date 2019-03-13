@@ -8,6 +8,7 @@
 #include "stage1Scene.h"
 #include "BaseMent.h"
 #include "BossStage.h"
+#include "LoadingScene.h"
 //==========================================================================//
 //						## 초기화 ## init(void)								//
 //==========================================================================//
@@ -24,20 +25,9 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->AddScene("스테이지1", _stage1);
 	SCENEMANAGER->AddScene("지하스테이지", new BaseMent);
 	SCENEMANAGER->AddScene("보스스테이지", new BossStage);
-	
-	//SCENEMANAGER->ChangeScene("시작화면");
-
+	SCENEMANAGER->AddScene("로딩", new LoadingScene);
 	//첫 시작화면
-	SCENEMANAGER->ChangeScene("보스스테이지");
-
-	/*
-	undergroundScene* _underground = new undergroundScene;
-	SCENEMANAGER->AddScene("스테이지1_1", _underground);
-	underriverScene&  _underriver = new underriverScene;
-	SCENEMANAGER->AddScene("스테이지1_2", _underriver);
-	boosScene&  _bossscene = new boosScene;
-	SCENEMANAGER->AddScene("스테이지1_2", _bossscene);
-	*/
+	SCENEMANAGER->ChangeScene("로딩");
 
 	return S_OK;	
 }

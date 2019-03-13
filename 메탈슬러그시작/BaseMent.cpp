@@ -3,9 +3,9 @@
 
 HRESULT BaseMent::Init(void)
 {
-	_bgImage = IMAGEMANAGER->addImage("지하배경", "BackGround/지하베이스.bmp", 6774, 958);
-	_pixelImage = IMAGEMANAGER->addImage("지하배경픽셀", "BackGround/지하베이스픽셀.bmo", 6774, 958);
-	_Out = IMAGEMANAGER->addFrameImage("통나옴", "BackGround/통나옴.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
+	_bgImage = IMAGEMANAGER->findImage("지하배경");
+	_pixelImage = IMAGEMANAGER->findImage("지하배경픽셀");
+	_Out = IMAGEMANAGER->findImage("통나옴");
 
 
 	_index = 0;	
