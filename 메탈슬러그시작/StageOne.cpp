@@ -10,9 +10,12 @@
 
 HRESULT StageOne::Init(void)
 {
-	//_crab = new Crab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
-	//_crab->Init();
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
+	_player = new Player("플레이어", { 500,WINSIZEY / 2 + 175 }, { 50, 50 }, GameObject::Pivot::Center);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+
+	_crab = new Crab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	_crab->Init();
+	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
 	//_boss = new BubbleCrab("boss", { 2060, WINSIZEY / 2 + 175 }, { 100,150 }, GameObject::Pivot::Center);
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _boss);
 	//_boss->Init();
@@ -32,10 +35,6 @@ HRESULT StageOne::Init(void)
 	playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
 
-
-	_player = new Player("플레이어", { 500,WINSIZEY / 2 + 175 }, { 50, 50 }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
-	
 	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::HEAVY);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
 

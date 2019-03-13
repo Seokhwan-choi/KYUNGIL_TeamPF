@@ -377,7 +377,7 @@ void Player::Update()
 				_wstate = WALKSTATE::WALK;
 				_state = STATE::WALK;
 			}
-			_position.x += 3.0f;
+			_position.x += 20.0f;
 		}
 		//_wstate = WALKSTATE::WALK;				//플레이어 상태 걷기(WALK)
 		//	_state = STATE::WALK;
