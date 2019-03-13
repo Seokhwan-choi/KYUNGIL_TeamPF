@@ -15,7 +15,7 @@ HRESULT soundManager::init(void)
 
 	//메모리 초기화
 	memset(_sound, 0, sizeof(Sound*) * SOUNDBUFFER);
-	memset(_channel, 0, sizeof(Channel*) * SOUNDBUFFER);
+	memset(_channel, 0, sizeof(Channel*) * SOUNDBUFFER); 
 
 	return S_OK;
 }

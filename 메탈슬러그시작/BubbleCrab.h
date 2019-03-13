@@ -19,7 +19,6 @@ private:
 	int _moveTimer;
 	bool _isAttack;
 	bool _isAttackFinish;
-	int _hp;
 
 	//죽음 처리를 위한 변수
 	int _deathTimer;
@@ -43,21 +42,9 @@ private:
 	class Player* _player;
 	//거품 클래스
 	class Bubble* _bubble;
-	//이미지
-	image* BubblecrabImg[8];
-	//이미지 랜더용 변수
-	int indexImg[6], countImg[6];
 public:
 	BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BubbleCrab();
-
-	//충돌렉트 get
-	COL getCol(int i) { return _col[i]; }
-
-	//체력 get
-	int getHp() { return _hp; }
-	//체력 set
-	void setHp(int hp) { _hp = hp; }
 
 	//충돌여부 get
 	bool getIsCrush(int i) { return _col[i].isCrush; }
@@ -70,9 +57,6 @@ public:
 	void Release() override;
 	void Update() override;
 	void Render() override;
-
-	void bubblecrabImage();
-	void bubblecrabImageRender();
 };
 
 

@@ -25,11 +25,9 @@ private:
 	PART _part[3];
 	//플레이어와의 각도
 	float _angle;
-	//체력
-	int _hp;
 	//마우스 좌표 텍스트
-	//char msg1[128];
-	//POINT _pt;
+	char msg1[128];
+	POINT _pt;
 	//플레이어 클래스
 	class Player* _player;
 public:
@@ -43,16 +41,17 @@ public:
 	//플레이어 죽임여부 get
 	bool getIsKill() { return _col.isKill; }
 
-	//충돌렉트 get
-	COL getCol() { return _col; }
-
-	//체력 get
-	int getHp() { return _hp; }
-	//체력 set
-	void setHp(int hp){_hp = hp;}
-
 	HRESULT Init() override;
 	void Release() override;
 	void Update() override;
 	void Render() override;
 };
+
+class Flybug :
+	public GameObject
+{
+public:
+	Flybug();
+	~Flybug();
+};
+

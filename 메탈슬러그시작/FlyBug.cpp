@@ -21,9 +21,6 @@ HRESULT FlyBug::Init()
 	_gauge = 1;
 	_angle = 0.f;
 	_isAttack = false;
-	//체력 초기화
-	_hp = 3;
-
 	//잠자리 시체처리 렉트
 	for (int i = 0; i < 3; i++)
 	{
@@ -53,8 +50,8 @@ void FlyBug::Release()
 void FlyBug::Update()
 {
 	//마우스 좌표 담기
-	//_pt.x = _ptMouse.x;
-	//_pt.y = _ptMouse.y;
+	_pt.x = _ptMouse.x;
+	_pt.y = _ptMouse.y;
 
 	//잠자리 렉트
 	_rc = RectMakeCenter(_position.x, _position.y, _size.x, _size.y);
@@ -106,7 +103,7 @@ void FlyBug::Update()
 	}
 
 	//플레이어 총알과 충돌 체크
-	if (KEYMANAGER->isToggleKey('R') || _hp <= 0)
+	if (KEYMANAGER->isToggleKey('R'))
 	{
 		_state = state::DEATH;
 	}
@@ -243,6 +240,6 @@ void FlyBug::Render()
 		Rectangle(getMemDC(), _part[i].rc);
 	}
 	//텍스트 출력
-	/*sprintf(msg1, "x : %d, y : %d", _pt.x, _pt.y);
-	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));*/
+	sprintf(msg1, "x : %d, y : %d", _pt.x, _pt.y);
+	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));
 }

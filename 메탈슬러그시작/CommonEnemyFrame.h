@@ -5,9 +5,7 @@ typedef enum class state
 	IDLE,						//대기 상태
 	L_IDLE,						//왼쪽 대기상태
 	R_IDLE,						//오른쪽 대기상태
-	ATTACK,						//공격 중
-	BACK_MOVE,					//공격을 위해 뒤로 이동(보스)
-	ATTACK_FINISH,				//공격 종료
+	ATTACK,						//공격 상태
 	L_ATTACK_MOVE,				//공격을 위해 왼쪽 이동 상태
 	R_ATTACK_MOVE,				//공격을 위해 오른쪽 이동 상태
 	L_ATTACK,					//왼쪽 근접 공격 상태
@@ -38,7 +36,7 @@ typedef struct tagCollision
 {
 	POINTFLOAT pt;
 	RECT rc;
-	bool isCrush;		//플레이어 총알과 충돌여부
+	bool isCrush;		//총알과 충돌여부
 	bool isKill;		//플레이어와 충돌여부
 }
 COL, *LCOL;
@@ -57,9 +55,19 @@ typedef struct tagAttack
 }
 ATTACK, *LATTACK;
 
-typedef struct tagShoot
+typedef struct tagBubble
 {
-	POINTFLOAT pt;
+	image* bubbleImage;
 	RECT rc;
+	float x, y;
+	float fireX, fireY;
+	float speed;
+	float angle;
+	float gravity;
+	float radius;
+	bool isFire;
+	int count;
+	int upDownCount;
+	bool isDown;
 }
-SHOOT, *LSHHOT;
+BUBBLE, *LBUBBLE;

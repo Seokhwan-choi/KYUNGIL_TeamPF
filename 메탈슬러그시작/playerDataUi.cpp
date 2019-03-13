@@ -10,9 +10,9 @@ playerDataUi::playerDataUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot p
 	_upRc = RectMake(215, 101, 92, 36);
 	_guageRc = RectMake(203, 68, 168, 33);
 
-	_bombarmsImg = IMAGEMANAGER->addImage("bombarms", "UI/PlayerStateRegardingPicture/armsbomb.bmp", 196, 74, true, RGB(255, 0, 255));
-	_guageImg = IMAGEMANAGER->addImage("guagebar", "UI/PlayerStateRegardingPicture/guageBar.bmp", 168, 33, true, RGB(255, 0, 255));
-	_1upImg = IMAGEMANAGER->addImage("1up", "UI/PlayerStateRegardingPicture/1up=.bmp", 92, 36, true, RGB(255, 0, 255));
+	_bombarmsImg = IMAGEMANAGER->addImage("bombarms", "UI/PlayerRegardingPicture/armsbomb.bmp", 196, 74, true, RGB(255, 0, 255));
+	_guageImg = IMAGEMANAGER->addImage("guagebar", "UI/PlayerRegardingPicture/guageBar.bmp", 168, 33, true, RGB(255, 0, 255));
+	_1upImg = IMAGEMANAGER->addImage("1up", "UI/PlayerRegardingPicture/1up.bmp", 92, 36, true, RGB(255, 0, 255));
 }
 
 playerDataUi::~playerDataUi()
