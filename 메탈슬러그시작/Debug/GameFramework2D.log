@@ -66,17 +66,6 @@ c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\bullet.cpp(188):
   Camera.cpp
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\camera.cpp(9): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\camera.cpp(38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  choiceScene.cpp
-  choiceUi.cpp
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(293): warning C4477: 'sprintf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'POINT'입니다.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(293): warning C4473: 'sprintf': 서식 문자열에 대한 인수가 충분하게 전달되지 않았습니다.
-  c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(293): note: 자리 표시자 및 해당 매개 변수에는 variadic 인수가 2개 필요하지만 1개가 제공되었습니다.
-  c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(293): note: 누락된 variadic 인수 2이(가) 서식 문자열 '%d'에 필요합니다.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(288): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(293): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
   Crab.cpp
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\crab.cpp(40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\crab.cpp(48): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -130,7 +119,6 @@ c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\flybug.cpp(243):
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\gamecompleteui.cpp(21): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\gamecompleteui.cpp(31): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\gamecompleteui.cpp(72): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  gameNode.cpp
   GameObject.cpp
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\gameobject.cpp(88): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\gameobject.cpp(92): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -138,24 +126,8 @@ c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\gameobject.cpp(9
   GameOverUi.cpp
   GameOverUi_2.cpp
   Gizmo.cpp
-  image.cpp
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(114): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(156): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(202): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(250): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(782): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(783): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(820): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(821): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  imageManager.cpp
   ItemUi.cpp
   KeyManager.cpp
-  코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
   MainGame.cpp
   Monster.cpp
   ObjectManager.cpp
@@ -176,17 +148,45 @@ c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\player.cpp(470):
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\player.cpp(470): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\player.cpp(479): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\player.cpp(479): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
   PlayerData.cpp
-  playerDataUi.cpp
-  randomFunction.cpp
   SceneMaker.cpp
   SceneManager.cpp
+  StageOne.cpp
+  choiceScene.cpp
+  choiceUi.cpp
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(293): warning C4477: 'sprintf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'POINT'입니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(293): warning C4473: 'sprintf': 서식 문자열에 대한 인수가 충분하게 전달되지 않았습니다.
+  c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(293): note: 자리 표시자 및 해당 매개 변수에는 variadic 인수가 2개 필요하지만 1개가 제공되었습니다.
+  c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(293): note: 누락된 variadic 인수 2이(가) 서식 문자열 '%d'에 필요합니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(288): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(293): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
+  gameNode.cpp
+  image.cpp
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(114): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(156): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(202): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(250): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(782): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(783): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(820): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\image.cpp(821): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  imageManager.cpp
+  playerDataUi.cpp
+  randomFunction.cpp
   soundManager.cpp
   stage1StartUi.cpp
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\stage1startui.cpp(25): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\stage1startui.cpp(35): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\stage1startui.cpp(76): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  StageOne.cpp
   startScene.cpp
   startUi.cpp
   timeManager.cpp
@@ -203,4 +203,5 @@ c:\users\kyungil\documents\kyungil_teampf\메탈슬러그시작\timeui.cpp(14): 
   util.cpp
   winMain.cpp
   코드를 생성하고 있습니다...
+  LINK : C:\Users\kyungil\Documents\KYUNGIL_TeamPF\메탈슬러그시작\Debug\WindowAPI.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
   GameFramework2D.vcxproj -> C:\Users\kyungil\Documents\KYUNGIL_TeamPF\메탈슬러그시작\Debug\WindowAPI.exe
