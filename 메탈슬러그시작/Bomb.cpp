@@ -31,7 +31,13 @@ HRESULT Bomb::Init(const char * imageName, int width, int height, int bombMax, f
 	}
 
 	//다리 이미지 초기화
-	_bridgeImg = IMAGEMANAGER->findImage("다리");
+	for (int i = 0; i < 22; i++)
+	{
+		string idx = to_string(i + 1);
+		string key = "다리" + idx;
+	
+		_bridgeImg[i] = IMAGEMANAGER->findImage(key);
+	}
 
 	return S_OK;
 }
@@ -63,6 +69,14 @@ void Bomb::Render()
 		if (!_idx->isFire) continue;
 
 		_idx->bombImage->render(getMemDC(), _idx->rc.left, _idx->rc.top);
+	}
+
+	if (KEYMANAGER->isToggleKey(VK_F2))
+	{
+		for (int i = 0; i < 22; ++i) 
+		{
+			Rectangle(getMemDC(), _bridgeImg[i]->boudingBox());
+		}
 	}
 }
 
@@ -99,6 +113,7 @@ void Bomb::move()
 
 		//발사 당시의 플레이어 위치를 기억해 각도를 계속 계산한다.
 		float _angle = GetAngle(_idx->x, _idx->y, _x, _y);
+
 		//270도가 되었을 경우 발사 당시의 플레이어 위치로 각도 보정
 		if (_angle <= PI / 180 * 270)
 		{
@@ -112,35 +127,22 @@ void Bomb::move()
 		_idx->rc = RectMakeCenter(_idx->x, _idx->y, _idx->bombImage->getWidth(), _idx->bombImage->getHeight());
 
 		float dist = GetDistance(_idx->fireX, _idx->fireY, _idx->x, _idx->y);
-
+		
 		//다리 충돌 체크 임시 렉트
 		RECT rc;
 		//다리와 충돌 체크
-		if (IntersectRect(&rc, &_idx->rc, &_bridgeImg->boudingBox()))
+		for (int i = 0; i < 22; i++)
 		{
-			//펜 생성하기
-			HPEN pen = CreatePen(PS_NULL, 0, RGB(255, 0, 255));
-			//펜 사용하기
-			HGDIOBJ oldPen = SelectObject(_bridgeImg->getMemDC(), pen);
-			//붓 생성하기
-			HBRUSH brush = CreateSolidBrush(RGB(255, 0, 255));
-			//붓 사용하기
-			HGDIOBJ oldBrush = SelectObject(_bridgeImg->getMemDC(), brush);
-
-			//렉트 그리기
-			if (_idx->isFire)
+			if (IntersectRect(&rc, &_idx->rc, &_bridgeImg[i]->boudingBox()))
 			{
-				Rectangle(_bridgeImg->getMemDC(), _idx->rc);
+				//임시로 보냄
+				_bridgeImg[i]->setX(-200);
+				//_bridgeImg[i]->setX(1575 + (i * 175));
+		
+				//값 초기화
+				_idx->isFire = false;
+				_idx->gravity = 0.f;
 			}
-
-			//펜 삭제 하기
-			DeleteObject(oldPen);
-			//붓 삭제 하기
-			DeleteObject(oldBrush);
-
-			//값 초기화
-			_idx->isFire = false;
-			_idx->gravity = 0.f;
 		}
 
 		//사거리 멀어지면 폭탄 사라짐

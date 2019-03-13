@@ -24,7 +24,9 @@ private:
 	float _range;						//폭탄 거리 
 	int _bombMax;						//폭탄 갯수 
 	float _x, _y;						//발사 당시 플레이어 좌표
-	image* _bridgeImg;					//다리 이미지
+
+	image* _bridgeImg[22];				//다리 이미지
+
 	vector<BOMB> _vBomb;
 	vector<BOMB>::iterator _viBomb;
 public:

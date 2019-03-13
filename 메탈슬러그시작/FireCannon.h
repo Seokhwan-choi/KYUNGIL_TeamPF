@@ -26,6 +26,8 @@ private:
 	int _fireCannonMax;								//화염포 갯수 
 	float _x, _y;									//발사 당시 플레이어 좌표
 
+	image* _bridgeImg[22];							//다리 이미지
+
 	vector<FIRECANNON> _vFireCannon[2];
 	vector<FIRECANNON>::iterator _viFireCannon[2];
 public:
@@ -37,12 +39,15 @@ public:
 	virtual void Update();
 	virtual void Render();
 
-	//화염포 발사 명령
+	//왼쪽 화염포 발사 명령
 	void leftFire(float x, float y, float angle, float speed);
-	void rightFire(float x, float y, float angle, float speed);
-	//화염포 움직임 처리
+	//왼쪽 화염포 움직임 처리
 	void leftFireMove();
+	//오른쪽 화염포 발사 명령
+	void rightFire(float x, float y, float angle, float speed);
+	//오른쪽 화염포 움직임 처리
 	void rightFireMove();
+
 	//발사 당시 플레이어 좌표 입력
 	void setPosition(float x, float y) { _x = x, _y = y; }
 

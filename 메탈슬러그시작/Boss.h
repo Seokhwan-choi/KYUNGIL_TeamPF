@@ -26,6 +26,8 @@ private:
 	bool _isBuffStart;				//보스 버프 등장 유무
 	bool _isBuffStartEnd;			//보스 버프 등장 종료 유무
 
+	image* _bridgeImg[22];			//다리 이미지
+
 	//충돌 처리 구조체
 	COL _col;
 	//근접 공격처리 구조체
@@ -44,8 +46,6 @@ private:
 	//텍스트
 	char msg1[128];
 	POINT _pt;
-	//이미지
-	image* _bridgeImg;
 
 public:
 	Boss(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
@@ -53,7 +53,8 @@ public:
 
 	//충돌 렉트 get
 	COL getCol() { return _col; }
-
+	//공격 렉트 get
+	ATTACK getAtt() { return _att; }
 	//보스 체력 get
 	int getHp() { return _hp; }
 	//보스 체력 set

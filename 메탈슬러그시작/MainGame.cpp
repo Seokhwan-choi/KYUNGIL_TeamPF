@@ -56,19 +56,12 @@ HRESULT MainGame::init(void)
 
 	startScene* _startscene = new startScene;
 	SCENEMANAGER->AddScene("시작화면", _startscene);
-<<<<<<< HEAD
-	SCENEMANAGER->ChangeScene("시작화면");
 
 	choiceScene* _choicescene = new choiceScene;
-	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
 
-	//첫 시작화면
-	//stage1Scene* _stage1 = new stage1Scene;
-	//SCENEMANAGER->AddScene("스테이지1", _stage1);
-=======
 	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
 	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
-	SCENEMANAGER->AddScene("스테이지1", _stage1);
+	//SCENEMANAGER->AddScene("스테이지1", _stage1);
 	SCENEMANAGER->AddScene("지하스테이지", new BaseMent);
 	SCENEMANAGER->AddScene("보스스테이지", new BossStage);
 	
@@ -76,7 +69,7 @@ HRESULT MainGame::init(void)
 
 	//첫 시작화면
 	SCENEMANAGER->ChangeScene("보스스테이지");
->>>>>>> feature/map_test
+
 
 	/*
 	undergroundScene* _underground = new undergroundScene;

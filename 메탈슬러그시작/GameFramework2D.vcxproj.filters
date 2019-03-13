@@ -209,8 +209,11 @@
     <ClInclude Include="Scene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="BaseMent.h">
+      <Filter>소스 파일\맵</Filter>
+    </ClInclude>
     <ClInclude Include="BossStage.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\맵</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -337,8 +340,11 @@
     <ClCompile Include="FireCannon.cpp">
       <Filter>소스 파일\보스</Filter>
     </ClCompile>
+    <ClCompile Include="BaseMent.cpp">
+      <Filter>소스 파일\맵</Filter>
+    </ClCompile>
     <ClCompile Include="BossStage.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\맵</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

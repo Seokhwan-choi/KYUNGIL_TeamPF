@@ -6,13 +6,8 @@
 
 HRESULT StageOne::Init(void)
 {
-	_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
-
-
-	_boss = new Boss("boss", { -WINSIZEX / 4, WINSIZEY / 2 + 100 }, { WINSIZEX / 2, WINSIZEY }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _boss);
-	_boss->Init();
+	//_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	//_crab = new Crab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	//_crab->Init();

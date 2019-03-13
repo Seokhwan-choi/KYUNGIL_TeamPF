@@ -53,7 +53,8 @@ public:
 
 	//충돌렉트 get
 	COL getCol(int i) { return _col[i]; }
-
+	//공격렉트 get
+	ATTACK getAtt(int i) { return _att[i]; }
 	//체력 get
 	int getHp() { return _hp; }
 	//체력 set

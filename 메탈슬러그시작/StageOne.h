@@ -4,7 +4,6 @@ class StageOne : public SceneMaker
 {
 private:
 	class Player* _player;
-	class Boss* _boss;
 
 	image* _bgImage;			// 배경이미지 
 	image* _bgSea;				// 배경 출렁출렁
@@ -25,8 +24,6 @@ private:
 
 	bool _crush;				// 박았냐?
 	RECT _wallRect;				// 막을꺼임
-
-	image* _bridgeImg;
 
 public:
 
