@@ -12,8 +12,8 @@ public:
 	void Update(void);
 	void Render(void);
 
-	void LoaindImage();
-	void LoaingSound();
+	void LoadingImage();
+	void LoadingSound();
 
 	LoadingScene() {}
 	~LoadingScene() {}

@@ -81,11 +81,8 @@ private:
 private:
 	arrLoadItem _vLoadItem;
 
+	image* _bgImage;	// 로딩 백그라운드 이미지
 	//이부분은 로딩화면에서 사용할 이미지와 로딩바
-	image* _loadingText;
-	image* _pipRunning;
-	int pipIndex;
-	int counter;
 	progressBar* _loadingBar;
 	int _currentGauge;
 
@@ -93,7 +90,7 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-	void render(float per);
+	void render();
 
 	//빈 비트맵 초기화
 	void loadImage(string keyName, int width, int height);

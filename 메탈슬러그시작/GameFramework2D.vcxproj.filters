@@ -164,25 +164,7 @@
     <ClInclude Include="PlayerData.h">
       <Filter>GameFramWork\플레이어데이터</Filter>
     </ClInclude>
-    <ClInclude Include="Bubble.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
-    <ClInclude Include="BubbleCrab.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
-    <ClInclude Include="Crab.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
-    <ClInclude Include="Fish.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
-    <ClInclude Include="Flybug.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClInclude>
-    <ClInclude Include="BigCrab.h">
       <Filter>소스 파일\몬스터</Filter>
     </ClInclude>
     <ClInclude Include="CommonEnemyFrame.h">
@@ -242,15 +224,6 @@
     <ClInclude Include="timeManager.h">
       <Filter>GameFramWork\매니저</Filter>
     </ClInclude>
-    <ClInclude Include="StageOne.h">
-      <Filter>소스 파일\맵</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="BigCrab.h">
       <Filter>소스 파일\몬스터\큰게</Filter>
     </ClInclude>
@@ -295,6 +268,33 @@
     </ClInclude>
     <ClInclude Include="LoadingScene.h">
       <Filter>소스 파일\맵\로딩화면</Filter>
+    </ClInclude>
+    <ClInclude Include="StageOne.h">
+      <Filter>소스 파일\맵\스테이지원</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>소스 파일\UI/아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>소스 파일\몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="BigCrab.h">
+      <Filter>소스 파일\몬스터\큰게</Filter>
+    </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>소스 파일\몬스터\거품게</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleCrab.h">
+      <Filter>소스 파일\몬스터\거품게</Filter>
+    </ClInclude>
+    <ClInclude Include="Crab.h">
+      <Filter>소스 파일\몬스터\작은게</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish.h">
+      <Filter>소스 파일\몬스터\물고기</Filter>
+    </ClInclude>
+    <ClInclude Include="Flybug.h">
+      <Filter>소스 파일\몬스터\잠자리</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -352,25 +352,7 @@
     <ClCompile Include="PlayerData.cpp">
       <Filter>GameFramWork\플레이어데이터</Filter>
     </ClCompile>
-    <ClCompile Include="Bubble.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
-    <ClCompile Include="BubbleCrab.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
-    <ClCompile Include="Crab.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
-    <ClCompile Include="Fish.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
-    <ClCompile Include="Flybug.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>소스 파일\몬스터</Filter>
-    </ClCompile>
-    <ClCompile Include="BigCrab.cpp">
       <Filter>소스 파일\몬스터</Filter>
     </ClCompile>
     <ClCompile Include="soundManager.cpp">
@@ -421,9 +403,6 @@
     <ClCompile Include="timeManager.cpp">
       <Filter>GameFramWork\매니저</Filter>
     </ClCompile>
-    <ClCompile Include="StageOne.cpp">
-      <Filter>소스 파일\맵</Filter>
-    </ClCompile>
     <ClCompile Include="BigCrab.cpp">
       <Filter>소스 파일\몬스터\큰게</Filter>
     </ClCompile>
@@ -468,6 +447,27 @@
     </ClCompile>
     <ClCompile Include="LoadingScene.cpp">
       <Filter>소스 파일\맵\로딩화면</Filter>
+    </ClCompile>
+    <ClCompile Include="StageOne.cpp">
+      <Filter>소스 파일\맵\스테이지원</Filter>
+    </ClCompile>
+    <ClCompile Include="BigCrab.cpp">
+      <Filter>소스 파일\몬스터\큰게</Filter>
+    </ClCompile>
+    <ClCompile Include="Bubble.cpp">
+      <Filter>소스 파일\몬스터\거품게</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleCrab.cpp">
+      <Filter>소스 파일\몬스터\거품게</Filter>
+    </ClCompile>
+    <ClCompile Include="Crab.cpp">
+      <Filter>소스 파일\몬스터\작은게</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish.cpp">
+      <Filter>소스 파일\몬스터\물고기</Filter>
+    </ClCompile>
+    <ClCompile Include="Flybug.cpp">
+      <Filter>소스 파일\몬스터\잠자리</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
