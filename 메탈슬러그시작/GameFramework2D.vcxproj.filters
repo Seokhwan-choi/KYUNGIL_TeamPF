@@ -108,6 +108,9 @@
     <Filter Include="소스 파일\맵\로딩화면">
       <UniqueIdentifier>{d69c63aa-6823-4e4f-bff0-f419b451792f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\UI/아이템\최종점수">
+      <UniqueIdentifier>{1ce4bbb1-9bae-4201-bef4-f14b59630acc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommomMacroFuntion.h">
@@ -187,9 +190,6 @@
     </ClInclude>
     <ClInclude Include="startUi.h">
       <Filter>소스 파일\UI/아이템\시작화면</Filter>
-    </ClInclude>
-    <ClInclude Include="stage1StartUi.h">
-      <Filter>소스 파일\UI/아이템</Filter>
     </ClInclude>
     <ClInclude Include="PlayerData.h">
       <Filter>GameFramWork\플레이어데이터</Filter>
@@ -308,9 +308,6 @@
     <ClInclude Include="Scene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="enumClaas.h">
-      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
-    </ClInclude>
     <ClInclude Include="GameCompleteUi.h">
       <Filter>소스 파일\UI/아이템\종료화면</Filter>
     </ClInclude>
@@ -322,6 +319,15 @@
     </ClInclude>
     <ClInclude Include="oldMan.h">
       <Filter>소스 파일\포로</Filter>
+    </ClInclude>
+    <ClInclude Include="totalScore.h">
+      <Filter>소스 파일\UI/아이템\최종점수</Filter>
+    </ClInclude>
+    <ClInclude Include="enumClaas.h">
+      <Filter>GameFramWork\플레이어데이터</Filter>
+    </ClInclude>
+    <ClInclude Include="stage1StartUi.h">
+      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -399,12 +405,6 @@
     </ClCompile>
     <ClCompile Include="PlayerData.cpp">
       <Filter>GameFramWork\플레이어데이터</Filter>
-    </ClCompile>
-    <ClCompile Include="timeUi.cpp">
-      <Filter>소스 파일\UI/아이템</Filter>
-    </ClCompile>
-    <ClCompile Include="playerDataUi.cpp">
-      <Filter>소스 파일\UI/아이템</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>소스 파일\몬스터</Filter>
@@ -513,6 +513,15 @@
     </ClCompile>
     <ClCompile Include="oldMan.cpp">
       <Filter>소스 파일\포로</Filter>
+    </ClCompile>
+    <ClCompile Include="totalScore.cpp">
+      <Filter>소스 파일\UI/아이템\최종점수</Filter>
+    </ClCompile>
+    <ClCompile Include="playerDataUi.cpp">
+      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
+    </ClCompile>
+    <ClCompile Include="timeUi.cpp">
+      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

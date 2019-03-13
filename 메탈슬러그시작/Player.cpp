@@ -36,7 +36,8 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	//_InterPlayerRc = RectMakeCenter(_position.x + 75, _position.y + 130, 60, 95);//충돌렉트는 항심움직인다 
 
 	_bullet = BULLET::RIGHTFIRE;					//플레이어 최초상태는 오른쪽보고 총알쏘는상태 
-	_weapon = WEAPON::HEAVY;						//플레이어의 기본 총상태는 딱총상태이다 
+	DATA->getWeapon();
+	_weapon = WEAPON::NORMAL;						//플레이어의 기본 총상태는 딱총상태이다 
 	_sword = SWORD::RIGHTATTACK;					//칼은 기본적으로 오른쪽모션먼저세팅되어있다 
 	_state = STATE::IDLE;
 	PlayerRealSwordState = false;					//진짜 충돌할 칼의 bool 값 

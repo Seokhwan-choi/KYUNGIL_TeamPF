@@ -360,9 +360,9 @@ void OldMan::Update(void)
 		IMAGEMANAGER->findImage("rumi_walk")->setFrameY(0);
 		_count++;
 		if (_count % 8 == 0) {
-			_index++;
-			if (_index > 15) {
-				_index = 0;
+			_index--;
+			if (_index < 0) {
+				_index = 15;
 			}
 			IMAGEMANAGER->findImage("rumi_walk")->setFrameX(_index);
 		}

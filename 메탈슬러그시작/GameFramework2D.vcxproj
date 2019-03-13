@@ -200,6 +200,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timeUi.h" />
+    <ClInclude Include="totalScore.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
@@ -249,6 +250,7 @@
     <ClCompile Include="startUi.cpp" />
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timeUi.cpp" />
+    <ClCompile Include="totalScore.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="stdafx.cpp">

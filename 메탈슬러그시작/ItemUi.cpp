@@ -2,7 +2,6 @@
 #include "ItemUi.h"
 #include "OldMan.h"
 #include "Player.h"
-
 ItemUi::ItemUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM item)
 	:GameObject(name, pos, size, pivot, item)
 {
@@ -19,7 +18,7 @@ ItemUi::ItemUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM i
 		_isShow = true;
 		break;
 	case ITEM::CHICKEN:
-		
+
 		break;
 	case ITEM::FRUIT:
 		_isShow = true;
@@ -33,17 +32,21 @@ ItemUi::ItemUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM i
 	default:
 		break;
 	}
-
+	//픽셀 충돌
+	_coly = _position.y + _size.y;
+	_botRc = RectMake(_position.x, _position.y, _size.x, _size.y);
+	//_gravity = 3.3f;
+	_gravity = 0.0f;
 	//플레이어와 닿기 전
 	IMAGEMANAGER->addFrameImage("cap_granade", "UI/item/item_1.bmp", 7, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("heavy", "UI/item/item_2.bmp", 50, 50, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("granade", "UI/item/item_3.bmp", 50, 50, true, RGB(255, 0, 255));
-	
+
 	//플레이어와 닿은 후 사라지도록 만들어야함
 	IMAGEMANAGER->addFrameImage("heavy_dis", "UI/item/item_4.bmp", 100, 20, 4, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("fish", "UI/item/item_5.bmp",540,60, 6, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("fish", "UI/item/item_5.bmp", 540, 60, 6, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("chicken", "UI/item/item_6.bmp", 341, 32, 11, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("fuit", "UI/item/item_7.bmp", 389, 38, 12, 1, true, RGB(255, 0, 255));	
+	IMAGEMANAGER->addFrameImage("fuit", "UI/item/item_7.bmp", 389, 38, 12, 1, true, RGB(255, 0, 255));
 }
 
 ItemUi::~ItemUi()
@@ -61,17 +64,36 @@ void ItemUi::Release(void)
 
 void ItemUi::Update(void)
 {
-	
+	//항시 중력값을 준다
+	_position.y += _gravity;
+	//아래쪽 충돌렉트 위치 좌표 업데이트
+	_coly = _position.y + _size.y;
+	//픽셀충돌
+	for (int i = _coly - 60; i < _coly + 60; i++) {
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("배경픽셀")->getMemDC(), _position.x, i);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if (r == 255 && g == 255 && b == 0) {
+			_gravity = 0.0f;
+			_position.y = i - _size.y - 140;
+			break;
+		}
+
+	}
+	_botRc = RectMake(_position.x + _size.x / 2, _coly, 10, 10);
+
 	_count++;
 	RECT temp;
-	
+
 	//충돌체크
 	if (IntersectRect(&temp, &_rc, &OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect())) {
 		_isTouch = true;
 		switch (_item)
 		{
-		//점수처리
-		case ITEM::FISH:				
+			//점수처리
+		case ITEM::FISH:
 			if (_isTouch == true && _isShow == true) {
 				DATA->setScore(DATA->getScore() + 500);
 				_isShow = false;
@@ -99,12 +121,13 @@ void ItemUi::Update(void)
 			if (_isShow == true) {
 				((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->SetWeapon(WEAPON::HEAVY);
 				DATA->setWeapon(WEAPON::HEAVY);
+				DATA->setArms(200);
 			}
 			break;
 		case ITEM::GRENADE:
 			if (_isShow == true) {
 				((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->SetWeapon(WEAPON::GRENADE);
-				//DATA->setWeapon(WEAPON::GRENADE);
+				DATA->setWeapon(WEAPON::GRENADE);
 			}
 			break;
 		case ITEM::CRAB:
@@ -113,7 +136,7 @@ void ItemUi::Update(void)
 			break;
 		}
 	}
-	
+
 
 	//프레임 처리
 	if (_isShow == true) {
@@ -170,7 +193,7 @@ void ItemUi::Render(void)
 	}
 
 	//트루일때만 보여줌
-	
+
 	switch (_item)
 	{
 		//위치는 알아서 선정
@@ -194,7 +217,7 @@ void ItemUi::Render(void)
 		if (_isShow == true) {
 			IMAGEMANAGER->render("heavy", getMemDC(), _rect.left, _rect.top);
 		}
-		
+
 		//Rectangle(getMemDC(), _rect);
 		break;
 	case ITEM::GRENADE:
@@ -209,7 +232,7 @@ void ItemUi::Render(void)
 	default:
 		break;
 	}
-	
+
 	//트루일때 보여주고 바로 없어지게끔 처리해야함
 	if (_isVanish) {
 		switch (_item)

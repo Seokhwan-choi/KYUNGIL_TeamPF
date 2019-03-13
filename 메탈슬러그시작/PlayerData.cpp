@@ -18,7 +18,7 @@ HRESULT PlayerData::Init()
 	_life = 2;
 	_bomb = 10;
 	_score = 0;
-	_saveCaptive = 0;
+	_saveCaptive = 2;
 	_weapon = WEAPON::NORMAL;
 	
 

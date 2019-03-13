@@ -7,6 +7,7 @@
 #include "OldMan.h"
 #include "GameCompleteUi.h"
 #include "ItemUi.h"
+#include "totalScore.h"
 
 HRESULT StageOne::Init(void)
 {
@@ -48,6 +49,8 @@ HRESULT StageOne::Init(void)
 	ItemUi* _item = new ItemUi("item", {WINSIZEX,WINSIZEY/2}, { 50,50 }, GameObject::Pivot::LeftTop, ITEM::FISH);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
 
+	totalScore* _total = new totalScore("total", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _total);
 
 	_test = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 250, 250);
 	_bgImage = IMAGEMANAGER->addImage("배경", "Background/배경.bmp", 14070, 1150, true , RGB(255,0,255));
