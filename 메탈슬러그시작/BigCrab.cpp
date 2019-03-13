@@ -89,138 +89,7 @@ void BigCrab::Update()
 	}
 	this->rectmove();
 	this->Attcol();
-
-	if (!_cam[0].isCrush && !_cam[1].isCrush && !_cam[2].isCrush && !_cam[3].isCrush)
-	{
-		_state = state::IDLE;
-	}
-	if (_cam[0].isCrush == true && _isStop == false)
-	{
-		if (_angle <= PI + PI / 2 && _angle > PI / 2)
-		{
-			_state = state::L_MOVE;
-		}
-		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
-		{
-			_state = state::R_MOVE;
-		}
-	}
-
-	if (_cam[1].isCrush && _isStop == false && _isAttack == true)
-	{
-		if (_angle <= PI + PI / 2 && _angle > PI / 2)
-		{
-			_state = state::L_BUBBLE_SHOOT_MOVE;
-		}
-		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
-		{
-			_state = state::R_BUBBLE_SHOOT_MOVE;
-		}
-		_isStop = true;
-	}
-	if (_cam[3].isCrush && _isAttack == false)
-	{
-		if (_angle <= PI + PI / 2 && _angle > PI / 2)
-		{
-			_state = state::L_ATTACK;
-		}
-		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
-		{
-			_state = state::R_ATTACK;
-		}
-	}
-	//if (_cam[2].isCrush)
-	//{
-	//	_state = state::L_ATTACK;
-	//}
-
-	if (_state == state::L_MOVE)
-	{
-		if (_dist > 300.f)
-		{
-			_position.x -= 5.f;
-		}
-	}
-	if (_state == state::R_MOVE)
-	{
-		if (_dist > 300.f)
-		{
-			_position.x += 5.f;
-		}
-	}
-
-	if (_state == state::L_ATTACK)
-	{
-		_att[0].rc.left -= _size.x / 2 + 40.f;
-		_att[0].rc.right -= _size.x / 2 + 40.f;
-	}
-	if (_state == state::R_ATTACK)
-	{
-		_att[1].rc.left += _size.x / 2 + 40.f;
-		_att[1].rc.right += _size.x / 2 + 40.f;
-	}
-	if (_state == state::L_BUBBLE_SHOOT_MOVE)
-	{
-		if (_dist < 400.f && _rc.right <= WINSIZEX)
-		{
-			_position.x += 5.f;
-		}
-		//거품발사명령(끝 지점일 때도 플레이어와 충돌이 아닐 경우 거품 발사 명령)
-		//if (_dist >= 400.f || _rc.right <= WINSIZEX)
-		//{
-		//	_isBubbleShoot = true;
-		//}
-		_isBubbleShoot = true;
-	}
-	if (_state == state::R_BUBBLE_SHOOT_MOVE)
-	{
-		if (_dist < 400.f && _rc.left >= 0.f)
-		{
-			_position.x -= 5.f;
-		}
-		//거품발사명령(끝 지점일 때도 플레이어와 충돌이 아닐 경우 거품 발사 명령)
-		//if (_dist >= 400.f || _rc.left <= 0.f)
-		//{
-		//	_isBubbleShoot = true;
-		//}
-		_isBubbleShoot = true;
-	}
-	if (_isBubbleShoot == true)
-	{
-		_bubbleGauge++;
-	}
-	if (_bubbleGauge % 25 == 0 && bubbleMax < 7)
-	{
-		if (_angle <= PI + PI / 2 && _angle > PI / 2)
-		{
-			_bubble->fire(_position.x - 50.f, _position.y - 20, _angle, 5.f);
-		}
-		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
-		{
-			_bubble->fire(_position.x + 50.f, _position.y - 20, _angle, 5.f);
-		}
-
-		//값 초기화
-		_bubbleGauge = 1;
-		_isBubbleShoot = false;
-		bubbleMax++;
-	}
-	if (bubbleMax > 6)
-	{
-		_isBubbleShootFinish = true;
-	}
-	if (_isBubbleShootFinish == true)
-	{
-		_bubblefinishcount++;
-	}
-	if (_bubblefinishcount == 80)
-	{
-		bubbleMax = 0;
-		_isStop = false;
-		_isBubbleShootFinish = false;
-		_isAttack = false;
-		_bubblefinishcount = 0;
-	}
+	this->Crabpattern();
 	_bubble->move1();
 	_bubble->render();
 }
@@ -324,4 +193,134 @@ void BigCrab::rectmove()
 	//오른쪽공격용 렉트
 	_att[1].rc = RectMakeCenter(_att[1].pt.x + _size.x / 4 + 10, _att[1].pt.y - _size.y / 15 + 90, _size.x / 3, _size.y - 150);
 
+}
+
+void BigCrab::Crabpattern()
+{
+	if (!_cam[0].isCrush && !_cam[1].isCrush && !_cam[2].isCrush && !_cam[3].isCrush)
+	{
+		_state = state::IDLE;
+	}
+	if (_cam[0].isCrush == true && _isStop == false)
+	{
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
+		{
+			_state = state::L_MOVE;
+		}
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
+		{
+			_state = state::R_MOVE;
+		}
+	}
+
+	if (_cam[1].isCrush && _isStop == false && _isAttack == true)
+	{
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
+		{
+			_state = state::L_BUBBLE_SHOOT_MOVE;
+		}
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
+		{
+			_state = state::R_BUBBLE_SHOOT_MOVE;
+		}
+		_isStop = true;
+	}
+	if (_cam[3].isCrush && _isAttack == false)
+	{
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
+		{
+			_state = state::L_ATTACK;
+		}
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
+		{
+			_state = state::R_ATTACK;
+		}
+	}
+	if (_state == state::L_MOVE)
+	{
+		if (_dist > 300.f)
+		{
+			_position.x -= 5.f;
+		}
+	}
+	if (_state == state::R_MOVE)
+	{
+		if (_dist > 300.f)
+		{
+			_position.x += 5.f;
+		}
+	}
+
+	if (_state == state::L_ATTACK)
+	{
+		_att[0].rc.left -= _size.x / 2 + 40.f;
+		_att[0].rc.right -= _size.x / 2 + 40.f;
+	}
+	if (_state == state::R_ATTACK)
+	{
+		_att[1].rc.left += _size.x / 2 + 40.f;
+		_att[1].rc.right += _size.x / 2 + 40.f;
+	}
+	if (_state == state::L_BUBBLE_SHOOT_MOVE)
+	{
+		if (_dist < 400.f && _rc.right <= WINSIZEX)
+		{
+			_position.x += 5.f;
+		}
+		//거품발사명령(끝 지점일 때도 플레이어와 충돌이 아닐 경우 거품 발사 명령)
+		//if (_dist >= 400.f || _rc.right <= WINSIZEX)
+		//{
+		//	_isBubbleShoot = true;
+		//}
+		_isBubbleShoot = true;
+	}
+	if (_state == state::R_BUBBLE_SHOOT_MOVE)
+	{
+		if (_dist < 400.f && _rc.left >= 0.f)
+		{
+			_position.x -= 5.f;
+		}
+		//거품발사명령(끝 지점일 때도 플레이어와 충돌이 아닐 경우 거품 발사 명령)
+		//if (_dist >= 400.f || _rc.left <= 0.f)
+		//{
+		//	_isBubbleShoot = true;
+		//}
+		_isBubbleShoot = true;
+	}
+	if (_isBubbleShoot == true)
+	{
+		_bubbleGauge++;
+	}
+	if (_bubbleGauge % 25 == 0 && bubbleMax < 7)
+	{
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
+		{
+			_bubble->fire(_position.x - 50.f, _position.y - 20, _angle, 5.f);
+		}
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
+		{
+			_bubble->fire(_position.x + 50.f, _position.y - 20, _angle, 5.f);
+		}
+
+		//값 초기화
+		_bubbleGauge = 1;
+		_isBubbleShoot = false;
+		bubbleMax++;
+	}
+	if (bubbleMax > 6)
+	{
+		_isBubbleShootFinish = true;
+	}
+	if (_isBubbleShootFinish == true)
+	{
+		_bubblefinishcount++;
+	}
+	if (_bubblefinishcount == 80)
+	{
+		bubbleMax = 0;
+		_isStop = false;
+		_isBubbleShootFinish = false;
+		_isAttack = false;
+		_bubblefinishcount = 0;
+	}
 }

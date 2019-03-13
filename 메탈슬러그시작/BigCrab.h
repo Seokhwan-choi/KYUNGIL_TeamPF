@@ -39,5 +39,6 @@ public:
 
 	void Attcol();
 	void rectmove();
+	void Crabpattern();
 };
 
