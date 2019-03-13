@@ -68,7 +68,7 @@ HRESULT MainGame::init(void)
 	//SCENEMANAGER->ChangeScene("시작화면");
 
 	//첫 시작화면
-	SCENEMANAGER->ChangeScene("보스스테이지");
+	SCENEMANAGER->ChangeScene("스테이지 원");
 
 
 	/*

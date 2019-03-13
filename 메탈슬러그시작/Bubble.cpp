@@ -61,6 +61,7 @@ void Bubble::Release()
 		_vBubble[i].bubbleImage[1]->release();
 		SAFE_DELETE(_vBubble[i].bubbleImage[1]);
 	}
+	_vBubble.clear();
 }
 
 void Bubble::Update()
@@ -207,7 +208,7 @@ void Bubble::move1()
 			_vBubble[i].ImageChange = true;
 			_vBubble[i].count[0]++;
 		}
-		if (_vBubble[i].count[0] == 70)
+		if (_vBubble[i].count[0] == 90)
 		{
 			_vBubble[i].isFire = false;
 			_vBubble[i].isDown = false;

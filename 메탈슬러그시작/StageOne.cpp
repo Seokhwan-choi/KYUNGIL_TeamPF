@@ -7,12 +7,24 @@
 HRESULT StageOne::Init(void)
 {
 
-	//_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+	_player = new Player("플레이어", { 1560,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
-	//_crab = new Crab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
-	//_crab->Init();
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
+//   _crab = new BubbleCrab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+//   _crab->Init();
+//   OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
+
+	//큰게 생성
+	BigCrab* _bigCrab = new BigCrab("bigCrab", { 500 ,WINSIZEY / 2 + 110}, { 200,280 }, GameObject::Pivot::Center);
+	//큰게 객체 추가하기
+	_bigCrab->Init();
+	OBJECTMANAGER->AddObject(ObjectType::ENEMY, _bigCrab);
+
+	//물고기 생성
+	//_fish = new Fish("fish", { 1460 ,WINSIZEY / 2 + 175}, { 100,150 }, GameObject::Pivot::Center);
+	//물고기 객체 추가하기
+	//_fish->Init();
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _fish);
 
 	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui);

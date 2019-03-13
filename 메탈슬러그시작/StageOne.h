@@ -5,7 +5,9 @@ class StageOne : public SceneMaker
 private:
 
 	class Player* _player;
-	class BubbleCrab* _boss;
+	class BubbleCrab* _crab;
+	class Fish* _fish;
+	class BigCrab* _bigCrab;
 
 
 	image* _bgImage;			// 배경이미지 
