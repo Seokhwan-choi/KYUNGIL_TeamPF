@@ -96,6 +96,18 @@
     <Filter Include="소스 파일\맵\로딩화면">
       <UniqueIdentifier>{d69c63aa-6823-4e4f-bff0-f419b451792f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\UI/아이템\시작화면">
+      <UniqueIdentifier>{fb122cb8-c2c8-4ac4-bf20-095940703a5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\UI/아이템\플레이어데이터관련">
+      <UniqueIdentifier>{2fbdb6d0-e388-4304-8b04-6538c47e5e9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\UI/아이템\종료화면">
+      <UniqueIdentifier>{0475a61a-2b82-4ab0-a0b5-33023a924989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\UI/아이템\아이템">
+      <UniqueIdentifier>{96256ace-f3ad-490a-b4bc-b08385fa4b90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommomMacroFuntion.h">
@@ -149,7 +161,10 @@
     <ClInclude Include="GameObject.h">
       <Filter>소스 파일\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="stage1Scene.h">
+    <ClInclude Include="startScene.h">
+      <Filter>소스 파일\맵</Filter>
+    </ClInclude>
+    <ClInclude Include="choiceScene.h">
       <Filter>소스 파일\맵</Filter>
     </ClInclude>
     <ClInclude Include="PlayerData.h">
@@ -176,23 +191,11 @@
     <ClInclude Include="startUi.h">
       <Filter>소스 파일\UI/아이템\시작화면</Filter>
     </ClInclude>
-    <ClInclude Include="GameOverUi.h">
-      <Filter>소스 파일\UI/아이템</Filter>
-    </ClInclude>
     <ClInclude Include="stage1StartUi.h">
-      <Filter>소스 파일\UI/아이템</Filter>
-    </ClInclude>
-    <ClInclude Include="timeUi.h">
       <Filter>소스 파일\UI/아이템</Filter>
     </ClInclude>
     <ClInclude Include="PlayerData.h">
       <Filter>GameFramWork\플레이어데이터</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOverUi_2.h">
-      <Filter>소스 파일\UI/아이템</Filter>
-    </ClInclude>
-    <ClInclude Include="playerDataUi.h">
-      <Filter>소스 파일\UI/아이템</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
       <Filter>소스 파일\몬스터</Filter>
@@ -284,6 +287,24 @@
     <ClInclude Include="Enemy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="playerDataUi.h">
+      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
+    </ClInclude>
+    <ClInclude Include="stage1StartUi.h">
+      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
+    </ClInclude>
+    <ClInclude Include="timeUi.h">
+      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCompleteUi.h">
+      <Filter>소스 파일\UI/아이템\종료화면</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverUi.h">
+      <Filter>소스 파일\UI/아이템\종료화면</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverUi_2.h">
+      <Filter>소스 파일\UI/아이템\종료화면</Filter>
+    </ClInclude>
     <ClInclude Include="Bomb.h">
       <Filter>소스 파일\보스</Filter>
     </ClInclude>
@@ -295,6 +316,12 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemUi.h">
+      <Filter>소스 파일\UI/아이템\아이템</Filter>
+    </ClInclude>
+    <ClInclude Include="totalScoreUi.h">
+      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -373,19 +400,10 @@
     <ClCompile Include="choiceScene.cpp">
       <Filter>소스 파일\맵</Filter>
     </ClCompile>
-    <ClCompile Include="GameOverUi.cpp">
-      <Filter>소스 파일\UI/아이템</Filter>
-    </ClCompile>
-    <ClCompile Include="stage1StartUi.cpp">
-      <Filter>소스 파일\UI/아이템</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerData.cpp">
       <Filter>GameFramWork\플레이어데이터</Filter>
     </ClCompile>
     <ClCompile Include="timeUi.cpp">
-      <Filter>소스 파일\UI/아이템</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOverUi_2.cpp">
       <Filter>소스 파일\UI/아이템</Filter>
     </ClCompile>
     <ClCompile Include="playerDataUi.cpp">
@@ -469,11 +487,35 @@
     <ClCompile Include="Bomb.cpp">
       <Filter>소스 파일\보스</Filter>
     </ClCompile>
+    <ClCompile Include="playerDataUi.cpp">
+      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
+    </ClCompile>
+    <ClCompile Include="stage1StartUi.cpp">
+      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
+    </ClCompile>
+    <ClCompile Include="timeUi.cpp">
+      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCompleteUi.cpp">
+      <Filter>소스 파일\UI/아이템\종료화면</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverUi.cpp">
+      <Filter>소스 파일\UI/아이템\종료화면</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverUi_2.cpp">
+      <Filter>소스 파일\UI/아이템\종료화면</Filter>
+    </ClCompile>
     <ClCompile Include="Boss.cpp">
       <Filter>소스 파일\보스</Filter>
     </ClCompile>
     <ClCompile Include="FireCannon.cpp">
       <Filter>소스 파일\보스</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemUi.cpp">
+      <Filter>소스 파일\UI/아이템\아이템</Filter>
+    </ClCompile>
+    <ClCompile Include="totalScoreUi.cpp">
+      <Filter>소스 파일\UI/아이템\플레이어데이터관련</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

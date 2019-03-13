@@ -138,25 +138,30 @@ void choiceUi::Update()
 			door[i].top -= 7 * i + 10;
 		}
 	}
-	//오른쪽 눌렀냐 선택 렉트 밖으로 벗어나지 않게끔 제한 설정해줌
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) &&
-		(gameStartRc[4].right <1019)) {
-		gameStartRc[4].left += 268;
-		gameStartRc[4].right += 268;
-	}
-	//왼쪽 눌렀냐 선택 렉트  밖으로 벗어나지 않게끔 제한 설정해줌
-	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) &&
-		(gameStartRc[4].left > 268)) {
-		gameStartRc[4].left -= 268;
-		gameStartRc[4].right -= 268;
-	}
-	//엔터 누를시 올라갈 렉트 선정해주기
-	//선정된 렉트 i를 _a에 넣어준다
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN)) {
-		for (int i = 0; i < 4; i++) {
-			if (_isCheck[i] == true) {
-				_a = i;
-				_goUp[_a] = true;
+
+	if (_count > 100) {
+		//오른쪽 눌렀냐 선택 렉트 밖으로 벗어나지 않게끔 제한 설정해줌
+		if (_isDown == false) {
+			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) &&
+				(gameStartRc[4].right < 1019)) {
+				gameStartRc[4].left += 268;
+				gameStartRc[4].right += 268;
+			}
+			//왼쪽 눌렀냐 선택 렉트  밖으로 벗어나지 않게끔 제한 설정해줌
+			if (KEYMANAGER->isOnceKeyDown(VK_LEFT) &&
+				(gameStartRc[4].left > 268)) {
+				gameStartRc[4].left -= 268;
+				gameStartRc[4].right -= 268;
+			}
+			//엔터 누를시 올라갈 렉트 선정해주기
+			//선정된 렉트 i를 _a에 넣어준다
+			if (KEYMANAGER->isOnceKeyDown(VK_RETURN)) {
+				for (int i = 0; i < 4; i++) {
+					if (_isCheck[i] == true) {
+						_a = i;
+						_goUp[_a] = true;
+					}
+				}
 			}
 		}
 	}
@@ -176,6 +181,8 @@ void choiceUi::Update()
 	}
 	//시간이 0으로 되면 자동으로 캐릭터 선택 되도록 만들었다
 	if (_time == 0) {
+		//자동으로 반짝거리게 만들어줌
+		gameStartRc[4] = RectMake(gameStartRc[2].left+40, gameStartRc[2].top + 50, 40,40);
 		_isDown = true;
 	}
 	//선정된 렉트를 올려줘 안에 있는 캐릭터를 보여준다
@@ -191,7 +198,7 @@ void choiceUi::Update()
 	//내려오면서 이미지 랜더 해주기
 	if (_isDown == true) {
 		_downDoorImage->setFrameY(0);
-		if (_count % 25 == 0) {
+		if (_count % 12== 0) {
 			_index++;
 			if (_index > 4) {
 				_index = 0;

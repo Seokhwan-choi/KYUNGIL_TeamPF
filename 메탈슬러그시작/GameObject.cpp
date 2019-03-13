@@ -2,6 +2,20 @@
 #include "GameObject.h"
 
 
+GameObject::GameObject(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, CAPTIVE captive, ITEM item)
+	:_name(name),_position(pos),_size(size),_pivot(pivot),_captive(captive),_item(item),_isActive(true),_isLive(true)
+{
+	// 초기화된 멤버 변수 값을 이용해서
+	// RECT를 그려준다.
+	this->UpdateRectByPivot();
+}
+
+GameObject::GameObject(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM item)
+	:_name(name),_position(pos),_size(size),_pivot(pivot),_item(item),_isActive(true),_isLive(true)
+{
+	this->UpdateRectByPivot();
+}
+
 // 게임오브젝트 생성자에서 
 // 멤버 이니셜 라이즈를 사용해서 초기화 해준다.
 GameObject::GameObject(string name, POINTFLOAT pos, POINTFLOAT size,Pivot pivot)

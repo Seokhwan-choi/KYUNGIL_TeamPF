@@ -23,6 +23,7 @@ enum class SWORD : int
 {
 	LEFTATTACK, RIGHTATTACK, IDLE //기본칼공격은 왼쪽과 오른쪽만있다 
 };
+<<<<<<< HEAD
 // =========================================
 // ############ 플레이어 무기 상태 ###########
 // =========================================
@@ -41,6 +42,9 @@ enum class WEAPON : int
 {
 	NORMAL, HEAVY, SWORD, GRENADE
 };
+=======
+
+>>>>>>> feature/UI
 
 // =========================================
 // ############ 플레이어 하체 상태 ############
@@ -139,7 +143,8 @@ public:
 	void PlayerMotionState();			//플레이어 동작 애니메이션 
 	void PlayerBulletMotion();			//총알 움직일 때
 	void Checkstate();					//플레이어 상태 확인
-
+	
+	void setWeapon(enum WEAPON weapon) { _weapon = weapon; }
 };
 
 //_frameCount++;
