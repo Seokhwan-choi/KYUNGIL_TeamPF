@@ -7,6 +7,7 @@
 #include "OldMan.h"
 #include "GameCompleteUi.h"
 #include "ItemUi.h"
+
 HRESULT StageOne::Init(void)
 {
 	_player = new Player("플레이어", { 500,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
@@ -21,18 +22,18 @@ HRESULT StageOne::Init(void)
 
 	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui);
-
+	
 	GameOverUi_2* _gameoverui2 = new GameOverUi_2("gameoverui2", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui2);
-
+	
 	stage1StartUi* _stage1startui = new stage1StartUi("stage1startui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
 	
-	//GameCompleteUi* _complete = new GameCompleteUi("complete", { WINSIZEX / 2, WINSIZEY / 2 }, { 10,10 }, GameObject::Pivot::LeftTop);
-	//OBJECTMANAGER->AddObject(ObjectType::UI, _complete);
+	GameCompleteUi* _complete = new GameCompleteUi("complete", { WINSIZEX / 2, WINSIZEY / 2 }, { 10,10 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _complete);
 
-	//Player* _player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+	Player* _player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 }, { 50, 50 }, GameObject::Pivot::Center);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 	
 	timeUi* _timeui = new timeUi("timeui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _timeui);
@@ -40,8 +41,8 @@ HRESULT StageOne::Init(void)
 	playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
 
-	//OldMan* _oldman = new OldMan("oldman", { 1100, WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
+	OldMan* _oldman = new OldMan("oldman", { 1100, WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
 
 	
 	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::HEAVY);

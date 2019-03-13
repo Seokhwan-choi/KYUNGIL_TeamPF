@@ -16,16 +16,15 @@ HRESULT MainGame::init(void)
 {
 	gameNode::init(true); 
 
-	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
 	startScene* _startscene = new startScene;
 	SCENEMANAGER->AddScene("시작화면", _startscene);
 	SCENEMANAGER->AddScene("캐릭터선택화면", new choiceScene);
-	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
+	SCENEMANAGER->AddScene("스테이지원", new StageOne);
 	SCENEMANAGER->AddScene("지하스테이지", new BaseMent);
 	SCENEMANAGER->AddScene("보스스테이지", new BossStage);
 	SCENEMANAGER->AddScene("로딩", new LoadingScene);
 	//첫 시작화면
-	SCENEMANAGER->ChangeScene("로딩");
+	SCENEMANAGER->ChangeScene("스테이지원");
 
 	SCENEMANAGER->Init();
 	return S_OK;	
