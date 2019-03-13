@@ -39,9 +39,6 @@
     <Filter Include="소스 파일\몬스터">
       <UniqueIdentifier>{bf4ab9b7-070f-4fae-aff8-a22afa66ca8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\맵">
-      <UniqueIdentifier>{debc3525-992d-44f7-8f82-386c250743ff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\보스">
       <UniqueIdentifier>{0c223f83-4b3c-44cb-832e-09bb0433c22d}</UniqueIdentifier>
     </Filter>
@@ -75,6 +72,21 @@
     <Filter Include="GameFramWork\체력바">
       <UniqueIdentifier>{0e1ba18c-2147-4b0f-9acc-5f368e0df1cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\UI/아이템\시작화면">
+      <UniqueIdentifier>{fb122cb8-c2c8-4ac4-bf20-095940703a5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\UI/아이템\플레이어데이터관련">
+      <UniqueIdentifier>{2fbdb6d0-e388-4304-8b04-6538c47e5e9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\UI/아이템\아이템">
+      <UniqueIdentifier>{96256ace-f3ad-490a-b4bc-b08385fa4b90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\UI/아이템\종료화면">
+      <UniqueIdentifier>{0475a61a-2b82-4ab0-a0b5-33023a924989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\맵">
+      <UniqueIdentifier>{debc3525-992d-44f7-8f82-386c250743ff}</UniqueIdentifier>
+    </Filter>
     <Filter Include="소스 파일\맵\지하스테이지">
       <UniqueIdentifier>{56ad1da9-2d4e-4ccb-aaf2-7403b3535082}</UniqueIdentifier>
     </Filter>
@@ -95,18 +107,6 @@
     </Filter>
     <Filter Include="소스 파일\맵\로딩화면">
       <UniqueIdentifier>{d69c63aa-6823-4e4f-bff0-f419b451792f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\UI/아이템\시작화면">
-      <UniqueIdentifier>{fb122cb8-c2c8-4ac4-bf20-095940703a5f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\UI/아이템\플레이어데이터관련">
-      <UniqueIdentifier>{2fbdb6d0-e388-4304-8b04-6538c47e5e9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\UI/아이템\아이템">
-      <UniqueIdentifier>{96256ace-f3ad-490a-b4bc-b08385fa4b90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\UI/아이템\종료화면">
-      <UniqueIdentifier>{0475a61a-2b82-4ab0-a0b5-33023a924989}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

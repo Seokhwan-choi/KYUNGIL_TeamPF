@@ -8,7 +8,6 @@ private:
 
 	image* _bgImage;			// 배경이미지 
 	image* _bgSea;				// 배경 출렁출렁
-
 	image* _bgImage2;			// 배경의 배경
 	image* _PixelImage;			// 픽셀 충돌용 이미지
 
@@ -26,6 +25,7 @@ private:
 	bool _crush;				// 박았냐?
 	RECT _wallRect;				// 막을꺼임
 
+	RECT _test;					// 
 public:
 
 	virtual HRESULT Init(void);

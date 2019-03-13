@@ -43,7 +43,7 @@ public:
 
 	//무기종류
 	enum WEAPON getWeapon() { return _weapon; }
-	void setWeapon(enum WEAPON weapon) { _weapon = weapon; }
+	void setWeapon(WEAPON weapon) { _weapon = weapon; }
 
 };
 
