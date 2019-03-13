@@ -111,7 +111,6 @@ void StageOne::Update(void)
 		_crush = !_crush;
 	}
 
-<<<<<<< HEAD
 	if (_crush) {
 		RECT _temp;
 		if (IntersectRect(&_temp, &_player->GetRect(), &_wallRect)) {
@@ -122,18 +121,6 @@ void StageOne::Update(void)
 		CAMERA->SetCamera(_player->GetPosition());
 	}
 	
-=======
-	CAMERA->SetCamera(_player->GetPosition());
-	//if (_crush) {
-	//	RECT _temp;
-	//	if (IntersectRect(&_temp, &_player->GetRect(), &_wallRect)) {
-	//		_player->SetPosition({
-	//			_wallRect.left - (_player->GetSize().x / 2.0f),
-	//			_player->GetPosition().y });
-	//	}
-	//	CAMERA->SetCamera(_player->GetPosition());
-	//}
->>>>>>> feature/Player2
 }
 
 void StageOne::Render(void)
