@@ -15,8 +15,8 @@ HRESULT LoadingScene::Init(void)
 
 void LoadingScene::Release(void)
 {
-	_loading->release();
-	SAFE_DELETE(_loading);
+	//_loading->release();
+	//SAFE_DELETE(_loading);
 }
 
 void LoadingScene::Update(void)

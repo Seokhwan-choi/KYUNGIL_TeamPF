@@ -43,7 +43,7 @@ using namespace MY_UTIL;
 #include "timeManager.h"
 #include "CommonEnemyFrame.h"
 #include "PlayerData.h"
-
+#include "enumClaas.h"
 
 
 //==============================================================//

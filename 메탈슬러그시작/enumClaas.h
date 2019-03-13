@@ -10,15 +10,16 @@ enum class WEAPON : int
 // =========================================
 // ############ 아이템 종류 ###########
 // =========================================
-enum class ITEM : int {
-	FISH, CHICKEN, FRUIT, HEAVY, GRENADE, CRAB
+enum class ITEM : int 
+{
+	FISH = 0, CHICKEN, FRUIT, HEAVY, GRENADE, CRAB
 };
 
 // =========================================
 // ############ 포로 종류 ###########
 // =========================================
 enum class CAPTIVE : int {
-	TIED, MOVE, RUMI
+	TIED = 0, MOVE, RUMI
 };
 
 // =========================================

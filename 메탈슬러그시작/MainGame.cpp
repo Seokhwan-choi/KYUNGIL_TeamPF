@@ -5,7 +5,6 @@
 #include "Enemy.h"
 #include "startScene.h"
 #include "choiceScene.h"
-#include "stage1Scene.h"
 #include "BaseMent.h"
 #include "BossStage.h"
 #include "LoadingScene.h"
@@ -20,9 +19,8 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
 	startScene* _startscene = new startScene;
 	SCENEMANAGER->AddScene("시작화면", _startscene);
-	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
+	SCENEMANAGER->AddScene("캐릭터선택화면", new choiceScene);
 	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
-	SCENEMANAGER->AddScene("스테이지1", _stage1);
 	SCENEMANAGER->AddScene("지하스테이지", new BaseMent);
 	SCENEMANAGER->AddScene("보스스테이지", new BossStage);
 	SCENEMANAGER->AddScene("로딩", new LoadingScene);

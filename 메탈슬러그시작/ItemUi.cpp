@@ -2,6 +2,7 @@
 #include "ItemUi.h"
 #include "OldMan.h"
 #include "Player.h"
+
 ItemUi::ItemUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM item)
 	:GameObject(name, pos, size, pivot, item)
 {
@@ -103,7 +104,7 @@ void ItemUi::Update(void)
 		case ITEM::GRENADE:
 			if (_isShow == true) {
 				((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->setWeapon(WEAPON::GRENADE);
-				DATA->setWeapon(WEAPON::GRENADE);
+				//DATA->setWeapon(WEAPON::GRENADE);
 			}
 			break;
 		case ITEM::CRAB:

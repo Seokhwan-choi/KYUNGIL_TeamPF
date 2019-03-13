@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BaseMent.h" />
     <ClInclude Include="BigCrab.h" />
     <ClInclude Include="BossStage.h" />
     <ClInclude Include="Bomb.h" />
@@ -162,9 +163,11 @@
     <ClInclude Include="CommonEnemyFrame.h" />
     <ClInclude Include="Crab.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="enumClaas.h" />
     <ClInclude Include="FireCannon.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Flybug.h" />
+    <ClInclude Include="GameCompleteUi.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameOverUi.h" />
@@ -172,12 +175,14 @@
     <ClInclude Include="Gizmo.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
+    <ClInclude Include="ItemUi.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="loading.h" />
     <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="oldMan.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="playerDataUi.h" />
@@ -199,6 +204,7 @@
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseMent.cpp" />
     <ClCompile Include="BigCrab.cpp" />
     <ClCompile Include="BossStage.cpp" />
     <ClCompile Include="Bomb.cpp" />
@@ -213,6 +219,7 @@
     <ClCompile Include="FireCannon.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Flybug.cpp" />
+    <ClCompile Include="GameCompleteUi.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameOverUi.cpp" />
@@ -220,12 +227,14 @@
     <ClCompile Include="Gizmo.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
+    <ClCompile Include="ItemUi.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="loading.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="oldMan.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="playerDataUi.cpp" />

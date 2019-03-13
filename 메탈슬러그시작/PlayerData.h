@@ -1,11 +1,10 @@
 #pragma once
 #include "SingletonBase.h"
+#include "enumClaas.h"
+
 class PlayerData :
 	public SingletonBase<PlayerData>
 {
-	enum class PLAYERWEAPON {
-		normal, heavy, granade
-};
 private:
 
 	int _life;				//생명
@@ -14,7 +13,7 @@ private:
 	int _score;				//점수
 	int _saveCaptive;		//구한포로수
 	
-	PLAYERWEAPON _weapon;	//무기뭐 들고 있냐?~
+	WEAPON _weapon;	//무기뭐 들고 있냐?~
 
 public:
 	PlayerData();
@@ -43,8 +42,8 @@ public:
 	int getCaptive() { return _saveCaptive; }
 
 	//무기종류
-	enum PLAYERWEAPON getWeapon() { return _weapon; }
-	void setWeapon(enum PLAYERWEAPON weapon) { _weapon = weapon; }
+	enum WEAPON getWeapon() { return _weapon; }
+	void setWeapon(enum WEAPON weapon) { _weapon = weapon; }
 
 };
 
