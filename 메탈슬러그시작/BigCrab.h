@@ -6,7 +6,7 @@ private:
 	//상태
 	STATE _state;
 	//카메라 구조체
-	CAM _cam[3];
+	CAM _cam[4];
 	//충돌 구조체
 	COL _col[4];
 	//공격처리 구조체
@@ -19,6 +19,15 @@ private:
 	bool isLeft;
 	float _angle;
 	float _dist;
+	bool _isStop;
+	int bubbleMax;
+	//거품공격
+	bool _isAttack;
+	bool _isBubbleShoot;
+	bool _isBubbleShootFinish;
+	class Bubble* _bubble;
+	int _bubbleGauge;
+	int _bubblefinishcount;
 public:
 	BigCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BigCrab();

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MainGame.h"
-#include "StageOne.h"
+#include "Scene.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "startScene.h"
@@ -16,9 +16,8 @@ HRESULT MainGame::init(void)
 {
 	gameNode::init(true); 
 
+	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
 	startScene* _startscene = new startScene;
-	choiceScene* _choicescene = new choiceScene;
-	stage1Scene* _stage1 = new stage1Scene;
 	SCENEMANAGER->AddScene("시작화면", _startscene);
 	SCENEMANAGER->AddScene("캐릭터선택화면", _choicescene);
 	SCENEMANAGER->AddScene("스테이지 원", new StageOne);
@@ -29,6 +28,7 @@ HRESULT MainGame::init(void)
 	//첫 시작화면
 	SCENEMANAGER->ChangeScene("로딩");
 
+	SCENEMANAGER->Init();
 	return S_OK;	
 }
 
@@ -51,8 +51,8 @@ void MainGame::release(void)
 void MainGame::update(void)
 {
 	gameNode::update();	
-
 	SCENEMANAGER->Update();
+	//OBJECTMANAGER->Update();
 }
 
 //==========================================================================//

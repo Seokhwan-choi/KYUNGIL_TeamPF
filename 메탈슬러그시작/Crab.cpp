@@ -37,6 +37,10 @@ HRESULT Crab::Init()
 	_angle = 0.f;
 	_isAttack = false;
 	_isAttackFinish = false;
+
+	//체력 초기화
+	_hp = 5;
+
 	//게 시체처리 렉트
 	for (int i = 0; i < 3; i++)
 	{
@@ -86,8 +90,8 @@ void Crab::Release()
 void Crab::Update()
 {
 	//마우스 좌표 담기
-	_pt.x = _ptMouse.x;
-	_pt.y = _ptMouse.y;
+	/*_pt.x = _ptMouse.x;
+	_pt.y = _ptMouse.y;*/
 
 	//이동 테스트
 	if (KEYMANAGER->isStayKeyDown('I')) {
@@ -218,8 +222,8 @@ void Crab::Update()
 		}
 	}
 
-	//플레이어 총알과 충돌 체크
-	if (KEYMANAGER->isToggleKey('R'))
+	//체력에 따른 죽음 처리
+	if (KEYMANAGER->isToggleKey('R') || _hp <= 0)
 	{
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
@@ -388,8 +392,8 @@ void Crab::Render()
 	}
 
 	//텍스트 출력
-	sprintf(msg1, "x : %d, y : %d", _pt.x, _pt.y);
-	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));
+	/*sprintf(msg1, "x : %d, y : %d", _pt.x, _pt.y);
+	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));*/
 }
 
 void Crab::crabImage()
@@ -512,7 +516,8 @@ void Crab::crabImageRender()
 	}
 	if (_state == state::L_ATTACK)
 	{
-		crabImg[2]->frameRender(getMemDC(), _rc.left -60 - CAMERA->GetCamera().left, _rc.top - 22 - CAMERA->GetCamera().top);
+		crabImg[2]->frameRender(getMemDC(), _rc.left - 60 - CAMERA->GetCamera().left, _rc.top - 22 - CAMERA->GetCamera().top);
+
 	}
 	if (_state == state::R_ATTACK)
 	{
