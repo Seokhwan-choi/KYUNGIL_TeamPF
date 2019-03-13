@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Camera.h"
+#include "Player.h"
 
 // 카메라 위치를 세팅 해준다.
 void Camera::SetCamera(POINTFLOAT pos)
@@ -10,11 +11,20 @@ void Camera::SetCamera(POINTFLOAT pos)
 
 	// 추가 예정
 	// 추가적으로 카메라의 위치를 보정해줘야 한다.
+	
+
+
+	//a = _cameraPos.x - _cameraRect.left;
 
 	if (_cameraRect.left < 0) 
 	{
 		_cameraPos.x -= _cameraRect.left;
 	}
+	else if (_cameraRect.bottom > 950)
+	{
+		_cameraPos.y =   _cameraPos.y - (_cameraRect.bottom - 950);
+	}
+
 
 	// ==========================================================
 	// ###################### 장벽 구간 ##########################

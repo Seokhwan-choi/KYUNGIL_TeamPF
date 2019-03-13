@@ -63,6 +63,11 @@ private:
 		// 총 34가지 동작
 	};
 private:
+	//##########################플레이어 이떄만 작동한다 
+	bool _lifelive;               //false일떄만 작동한다 true일떄는 실행종료 
+
+	RECT collisionplayer; //플레이어 충돌렉트 
+
 
 	//########################################구조체#############################
 	
@@ -127,13 +132,20 @@ private:
 	//RECT _InterPlayerRc; 
 	RECT check; 
 
-
+	class Crab* _crab;
 
 	//RECT _temp;
 public:
 
 	Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Player();
+
+
+	//####################################플레이어 충돌렉트 #################################
+
+	RECT GetCollisionPlayer() { return collisionplayer; }
+	void SetCollisionPlayer(RECT _collisitonplayer) { collisionplayer = _collisitonplayer;}
+
 
 	WEAPON GetWeapon() {return _weapon; }						//플레이어 무기 뭐들고잇나 상태값
 	
@@ -149,7 +161,17 @@ public:
 
 	void PlayerBoomMotion();            //플레이어폭탄상태 
 	void PixelMapCollision(); 
+	
+	Bullet1* playerbullet() { return _playerbullet; }
+	Bullet* heavybullet() { return _heavyBullet; }
 
+	bool GetIsleft() { return _isLeft; }
+	void SetIsleft(bool left) { _isLeft = left; }
 
-	void EnemyCollision();              //애너미와 플레이어총알과 충돌햇을시 
+	float GetJumppower() { return _jumppower;  }
+	void SetJumppower(float power) { _jumppower = power;  }
+
+	//	Bullet* _heavyBullet; 
+	//Bullet1*_playerbullet;
+	//void EnemyCollision();              //애너미와 플레이어총알과 충돌햇을시 
 };

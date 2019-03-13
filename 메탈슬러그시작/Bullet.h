@@ -14,6 +14,8 @@ struct tagBullet
 	float gravity; 
 	float radius;
 	bool isFire;
+
+	int att;                             //공용으로 들고있는 구조체의 공격력 
 	//int count;
 };
 
@@ -105,8 +107,8 @@ public:
 
 
 
-
-class Bullet1 :public GameObject
+// ########################기본총알상태 
+class Bullet1 :public GameObject  
 {
 private:
 	//const char* _imageName;
@@ -127,7 +129,7 @@ private:
 
 public:
 	//총알발사
-	void fire(float x, float y, float angle, float speed);
+	void fire(float x, float y, float angle, float speed );
 	void move();
 
 	Bullet1(string name);
@@ -143,67 +145,3 @@ public:
 	vector<tagBullet>::iterator getViBullet() { return _viBullet; }
 };
 
-
-
-
-//
-//
-//
-//if (_isFrameImg)//프레임 이미지냐?
-//
-//{
-//
-//	for (int i = 0; i < _vBullet.size(); i++)
-//	{
-//
-//		RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
-//		_angle = _vBullet[i].angle;//기본총알
-//
-//
-//
-//		if (_angle >= 0 && _angle <= (PI / 2))
-//		{
-//			_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, _angle / 5.29f * (180 / PI), 3);
-//		}
-//		//황금비율 5.29f
-//		else if (_angle >= (PI / 2)/* * 180/ PI */ && _angle <= PI /** (180 / PI)*/) //구지 계산식에서 angle옆에 180쓸필요가없다 
-//																					 //else if
-//		{
-//			_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, (int)((_angle / 5.29f) *(180 / PI)) - 17, 2);//존나이해안됨 
-//																																	   //100도 일떄는 5.29나누면 18 정도인데 17을빼면 1번인댁스나와야한다 
-//																																	   //180도는 34정도가 나오고 17을뺴면 17 이나와야한다 
-//		}
-//		else if (_angle >= -(PI) && _angle <= -(PI / 2))
-//		{
-//			_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, (int)(((_angle * -1) / 5.29f) * (180 / PI)) - 17, 1);
-//		}
-//		else if (_angle <= 0 && _angle >= -(PI / 2))
-//		{
-//			_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, (int)((_angle * -1) / 5.29f * (180 / PI) + 3), 0);
-//		}
-//
-//	}
-//}
-
-
-//void Boom::Update()
-//{
-//	this->move();
-//
-//
-//	for (int i = 0; i < _bulletMax; i++)
-//	{
-//		_frameCount[i]++;
-//		if (_frameCount[i] % 10 == 0)
-//		{
-//			_frameIndex[i]++;
-//
-//			if (_frameIndex[i] > 15)
-//			{
-//				_frameIndex[i] = 0;
-//			}
-//			_vBoom[i].bulletImage->setFrameY(_frameIndex[i]);
-//		}
-//	}
-//
-//}

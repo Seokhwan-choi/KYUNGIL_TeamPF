@@ -308,6 +308,7 @@ HRESULT Bullet1::Init(const char * imageName, int width, int height, int bulletM
 		tagBullet bullet;
 
 		ZeroMemory(&bullet, sizeof(tagBullet));
+		bullet.att = 1; //기본총알의 공격력은 1이다 
 		bullet.bulletImage = new image;
 		if (!_isFrameImg) {
 			bullet.bulletImage->init(imageName, width, height, true, RGB(255, 0, 255));
@@ -355,7 +356,8 @@ void Bullet1::Render()
 			RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
 			_angle = _vBullet[i].angle;//기본총알
 
-
+			//확인용 렉트 그려주기 나중에 지워줘야함 !!
+			Rectangle(getMemDC(), bulletRc);
 
 			if (_angle == 0 || _angle == PI)
 			{

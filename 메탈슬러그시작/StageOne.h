@@ -34,6 +34,8 @@ public:
 	virtual void Update(void);
 	virtual void Render(void);
 
+	void PlayerBulletCollisionEnemy();   //플레이어 총알과 적충돌  
+	void PlayerCollisionEnemy();         //몬스터와 플레이어 몸통 충돌햇을시 밀려지게 
 	StageOne() {}
 	~StageOne() {}
 };

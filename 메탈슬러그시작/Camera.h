@@ -10,6 +10,8 @@ public:
 	RECT Relative(RECT rc);
 	RECT GetCamera() { return _cameraRect; }
 
+
+	//int a; 
 	Camera() {}
 	~Camera() {}
 };
