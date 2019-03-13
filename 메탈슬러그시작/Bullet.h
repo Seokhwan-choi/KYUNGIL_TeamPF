@@ -184,26 +184,3 @@ public:
 //
 //	}
 //}
-
-
-//void Boom::Update()
-//{
-//	this->move();
-//
-//
-//	for (int i = 0; i < _bulletMax; i++)
-//	{
-//		_frameCount[i]++;
-//		if (_frameCount[i] % 10 == 0)
-//		{
-//			_frameIndex[i]++;
-//
-//			if (_frameIndex[i] > 15)
-//			{
-//				_frameIndex[i] = 0;
-//			}
-//			_vBoom[i].bulletImage->setFrameY(_frameIndex[i]);
-//		}
-//	}
-//
-//}

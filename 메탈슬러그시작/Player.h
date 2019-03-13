@@ -69,20 +69,16 @@ private:
 		// 총 34가지 동작
 	};
 private:
-
-	//########################################구조체#############################
-	
 	BULLET _bullet;						//플레이어 총알 방향 
 	SWORD _sword;						//플레이어 칼공격 왼쪽과 오른쪽일떄 enum문 
 	WEAPON _weapon;						//플레이어 무기 뭐들고잇나 상태값
 	STATE _state;						//플레이어 상태
 	WALKSTATE _wstate;					//플레이어 하체 상태
 
-
-	//######################################총알####################
-
 	Bullet1*_playerbullet;				//플레이어의 공용총알 
+
 	Bullet* _heavyBullet;         //플레이어의 해비머신건 
+
 	Boom* _playerboom;					//플레이어의 폭탄 
 
 		
@@ -133,8 +129,6 @@ private:
 	//RECT _InterPlayerRc; 
 	RECT check; 
 
-
-
 	//RECT _temp;
 public:
 
@@ -155,7 +149,36 @@ public:
 
 	void PlayerBoomMotion();            //플레이어폭탄상태 
 	void PixelMapCollision(); 
-
-
-	void EnemyCollision();              //애너미와 플레이어총알과 충돌햇을시 
+	void PlayerHeavy();                 //해비머신건 각도 
 };
+
+	//case WALKSTATE::WALK:
+	//	_frameCount--;
+	//	if (_isLeft == true)
+	//	{
+	//		IMAGEMANAGER->findImage("해비이동하며공격")->setFrameY(1);
+	//		if (_frameCount % SPEED == 0)
+	//		{
+	//			_frameIndex--;
+	//			if (_frameIndex < 0)
+	//			{
+	//				_frameIndex = 3;
+	//			}
+	//			IMAGEMANAGER->findImage("해비이동하며공격")->setFrameX(_frameIndex);
+	//			if (_frameIndex == 0)
+	//			{
+	//				_state = STATE::IDLE;
+	//				_playerbulletfire = false;
+	//			}
+	//		}
+
+	//	}
+	//	break;
+
+
+	//case STATE::WALK_UPSHOT:
+	//	IMAGEMANAGER->frameRender("해비이동업샷", getMemDC(), playerRC.left, playerRC.top);
+	//	break;
+	//case STATE::IDLE_UPSHOT:
+	//	IMAGEMANAGER->frameRender("해비가만업샷", getMemDC(), playerRC.left, playerRC.top);
+	//	break;

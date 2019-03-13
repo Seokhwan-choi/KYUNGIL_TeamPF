@@ -189,7 +189,7 @@ HRESULT Boom::Init(const char * imageName, int width, int height , int bulletMax
 	}
 	for (int i = 0; i < 10; i++)
 	{
-		_frameCount[i] = 0;     //붐카운트와 프레임 초기화 
+		_frameCount[i] = 0;
 		_frameIndex[i] = 0;
 	}
 	
@@ -229,12 +229,10 @@ void Boom::Update()
 			}
 		}	
 		// 증가된 프레임 인덱스를 이미지에 적용 시켜준다.
-		//_vBoom[i].bulletImage->setFrameX(0);            //X축고정 
 		_vBoom[i].bulletImage->setFrameX(_frameIndex[i]);
 	}
 
 }
-
 
 void Boom::Render()
 {
