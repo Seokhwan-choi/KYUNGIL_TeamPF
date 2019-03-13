@@ -17,8 +17,8 @@ protected:
 	// 상속관계에서만 사용가능
 	string _name;					// 게임오브젝트 이름
 	Pivot _pivot;					// 게임오브젝트 피벗(RECT를 그리는 기준점)
-	ITEM _item;
-	CAPTIVE _captive;
+	ITEM _item;						//아이템
+	CAPTIVE _captive;				//포로 종류
 	POINTFLOAT _position;			// 게임오브젝트 좌표
 	POINTFLOAT _size;				// 게임오브젝트 크기
 	RECT _rc;						// 게임오브젝트 RECT

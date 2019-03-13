@@ -45,6 +45,9 @@ HRESULT StageOne::Init(void)
 	OldMan* _oldman2 = new OldMan("oldman2", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::TIED, ITEM::HEAVY);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman2);
 
+	OldMan* _oldman3 = new OldMan("oldman3", { 2000, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::RUMI, ITEM::HEAVY);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _oldman3);
+
 	ItemUi* _item = new ItemUi("item", {WINSIZEX,WINSIZEY/2}, { 50,50 }, GameObject::Pivot::LeftTop, ITEM::FISH);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
 

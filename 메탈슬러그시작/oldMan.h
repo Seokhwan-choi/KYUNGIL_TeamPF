@@ -5,11 +5,14 @@ class OldMan : public GameObject
 private:
 	CAPTIVE _captive;
 	CAPTIVESTATE _state;
-	
+	RUMISTATE _rumistate;
+	RECT _tiedRc;
+	RECT _tiedcolRc;
 	//프레임 이미지 관련 변수
 	int _index;
 	int _count;
 	int _t;
+	int _time;		//묶여잇는 포로 풀기위한 시간변수
 	//움직이는 범위
 	POINTFLOAT _range;
 	//포로 관련
@@ -36,6 +39,8 @@ public:
 	virtual void Update(void);
 	virtual void Render(void);
 
+	void setShot(bool isshot) { _isShot = isshot; }
+	bool getShot() { return _isShot; }
 
 	void motion();
 	void tied();

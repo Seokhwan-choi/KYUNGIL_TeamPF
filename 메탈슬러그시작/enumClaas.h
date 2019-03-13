@@ -18,7 +18,7 @@ enum class ITEM : int {
 // ############ 포로 종류 ###########
 // =========================================
 enum class CAPTIVE : int {
-	TIED, MOVE
+	TIED, MOVE, RUMI
 };
 
 // =========================================
@@ -27,5 +27,12 @@ enum class CAPTIVE : int {
 enum class CAPTIVESTATE : int {
 	TIED, UNTIED, WALK, RUN, THANKU, ITEM 
 };
+// =========================================
+// ############ 루미 행동 ###########
+// =========================================
+enum class RUMISTATE : int {
+	WALK, RUN, SIR, CRUSH
+};
+
 
 
