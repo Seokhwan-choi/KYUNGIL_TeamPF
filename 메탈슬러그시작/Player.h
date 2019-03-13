@@ -101,8 +101,14 @@ private:
 										//============================================================
 
 	bool _playerboomFire;				//0발이하가 되면 폭탄을 사용할수가없다 
-										//나머지처리는 bullet클래스 boom fire함수에서 처리한다 
+	bool _boomfire;						//나머지처리는 bullet클래스 boom fire함수에서 처리한다 
 	bool _playerbulletfire;				//업데이트에서 총알이 발사됫냐? 
+
+
+	int _pixely;
+
+
+
 
 
 
@@ -120,6 +126,9 @@ public:
 	void PlayerMotionState();			//플레이어 동작 애니메이션 
 	void PlayerBulletMotion();			//총알 움직일 때
 	void Checkstate();					//플레이어 상태 확인
+	void PixelMapCollision();
+	void PlayerBoomMotion();
+	void EnemyCollision();
 	
 	void setWeapon(enum WEAPON weapon) { _weapon = weapon; }
 };

@@ -1577,6 +1577,8 @@ void Player::PlayerBoomMotion()
 
 }
 
+
+
 void Player::PixelMapCollision()
 {
 	//
