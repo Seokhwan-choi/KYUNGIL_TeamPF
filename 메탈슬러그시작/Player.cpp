@@ -31,12 +31,12 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 
 	// ================= 플레이어 폭탄 =============================
 	_playerboom = new Boom("플레이어 폭탄");
-	_playerboom->Init("플레이어/수류탄.bmp", 304, 38, 2,WINSIZEY);
+	_playerboom->Init("플레이어/수류탄.bmp", 764, 95, 2,WINSIZEY);
 
 	//_InterPlayerRc = RectMakeCenter(_position.x + 75, _position.y + 130, 60, 95);//충돌렉트는 항심움직인다 
 
 	_bullet = BULLET::RIGHTFIRE;					//플레이어 최초상태는 오른쪽보고 총알쏘는상태 
-	_weapon = WEAPON::NORMAL;						//플레이어의 기본 총상태는 딱총상태이다 
+	_weapon = WEAPON::HEAVY;						//플레이어의 기본 총상태는 딱총상태이다 
 	_sword = SWORD::RIGHTATTACK;					//칼은 기본적으로 오른쪽모션먼저세팅되어있다 
 	_state = STATE::IDLE;
 	PlayerRealSwordState = false;					//진짜 충돌할 칼의 bool 값 
@@ -313,7 +313,7 @@ void Player::Update()
 			}
 			else if (_state == STATE::JUMP)
 			{
-				_wstate = WALKSTATE::JUMPWALK;7
+				_wstate = WALKSTATE::JUMPWALK;
 				_state = STATE::JUMPWALK;
 			}
 			else if (_state == STATE::JUMPWALK) {
@@ -3121,7 +3121,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어가만수류탄던지기")->setFrameX(_frameIndex);
 						if (_frameIndex == 0)
 						{
-							_playerboom->fire(_position.x, _position.y, PI / 2 - 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x + 380, _position.y+ 100, PI / 2 - 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 5)
 						{
@@ -3144,7 +3144,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어가만수류탄던지기")->setFrameX(_frameIndex);
 						if (_frameIndex == 5)
 						{
-							_playerboom->fire(_position.x, _position.y, PI / 2 + 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x+360, _position.y+100, PI / 2 + 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 0)
 						{
@@ -3170,7 +3170,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어이동수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 0)
 						{
-							_playerboom->fire(_position.x, _position.y, PI / 2 - 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x+380, _position.y+100, PI / 2 - 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 5)
 						{
@@ -3193,7 +3193,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어이동수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 5)
 						{
-							_playerboom->fire(_position.x, _position.y, PI / 2 + 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x + 360, _position.y+100, PI / 2 + 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 0)
 						{
@@ -3222,7 +3222,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어가만점프수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 0)
 						{
-							_playerboom->fire(_position.x, _position.y, PI / 2 - 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x+380, _position.y+100, PI / 2 - 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 5)
 						{
@@ -3245,7 +3245,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어가만점프수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 5)
 						{
-							_playerboom->fire(_position.x, _position.y, PI / 2 + 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x+360, _position.y+100, PI / 2 + 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 0)
 						{
@@ -3290,11 +3290,11 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("해비앉아서수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 0)
 						{
-							_playerboom->fire(_position.x, _position.y, PI / 2 - 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x+370, _position.y+100, PI / 2 - 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 5)
 						{
-							_state = STATE::IDLE;
+							_state = STATE::CROUCH;
 							_boomfire = false;
 						}
 
@@ -3313,11 +3313,11 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("해비앉아서수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 5)
 						{
-							_playerboom->fire(_position.x, _position.y, PI / 2 + 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x+370, _position.y+100, PI / 2 + 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 0)
 						{
-							_state = STATE::IDLE;
+							_state = STATE::CROUCH;
 							_boomfire = false;
 						}
 					}
@@ -3371,11 +3371,14 @@ void Player::PixelMapCollision()
 		}
 	}
 
-	//_InterPlayerRc = RectMakeCenter(_position.x + 75, _position.y + 130, 60, 95);//충돌렉트는 항심움직인다 
-
 }
 
-//void Player::PlayerHeavy()
-//{
-//	if(_angle )
-//}
+void Player::EnemyCollision()      //플레이어 기본딱총 
+{
+	RECT temp; 
+	for (int i = 0; i < _playerbullet->getVBullet().size(); i++)
+	{
+		if(IntersectRect(&temp, &_playerbullet->getVBullet()[i].rc, &//몬스터 ))
+	}
+}
+
