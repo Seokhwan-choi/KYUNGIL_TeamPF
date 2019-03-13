@@ -31,7 +31,7 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 
 	// ================= 플레이어 폭탄 =============================
 	_playerboom = new Boom("플레이어 폭탄");
-	_playerboom->Init("플레이어/수류탄.bmp", 764, 95, 2,WINSIZEY);
+	_playerboom->Init("플레이어/수류탄.bmp", 720, 89, 2,WINSIZEY);
 
 	//_InterPlayerRc = RectMakeCenter(_position.x + 75, _position.y + 130, 60, 95);//충돌렉트는 항심움직인다 
 
@@ -3376,9 +3376,9 @@ void Player::PixelMapCollision()
 void Player::EnemyCollision()      //플레이어 기본딱총 
 {
 	RECT temp; 
-	for (int i = 0; i < _playerbullet->getVBullet().size(); i++)
-	{
-		if(IntersectRect(&temp, &_playerbullet->getVBullet()[i].rc, &//몬스터 ))
-	}
+	//for (int i = 0; i < _playerbullet->getVBullet().size(); i++)
+	//{
+	//	if(IntersectRect(&temp, &_playerbullet->getVBullet()[i].rc, &//몬스터 ))
+	//}
 }
 
