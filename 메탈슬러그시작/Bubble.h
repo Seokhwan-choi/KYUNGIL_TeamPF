@@ -3,7 +3,7 @@
 
 typedef struct tagBubble
 {
-	image* bubbleImage;
+	image* bubbleImage[2];
 	RECT rc;
 	float x, y;
 	float fireX, fireY;
@@ -12,9 +12,12 @@ typedef struct tagBubble
 	float gravity;
 	float radius;
 	bool isFire;
-	int count;
+	int count[3];				//카운트 0번 배열은 큰게의 거품이 터져서 사라지는 시간
+								//카운트 1, 2번 배열은 큰게의 거품을 랜더링 하는 시간
+	int index[2];
 	int upDownCount;
 	bool isDown;
+	bool ImageChange;
 }
 BUBBLE, *LBUBBLE;
 
@@ -30,14 +33,18 @@ public:
 	void fire(float x, float y, float angle, float speed);
 	//거품 움직임 처리
 	void move();
+	void move1();
+	void render();
 
 	Bubble(string name);
 	~Bubble();
 
 	virtual HRESULT Init(const char * imageName, int width, int height, int bubbleMax, float range);
+	virtual HRESULT Init2(const char * imageName, int width, int height, int FrameX, int FrameY, int bubbleMax, float range);
 	virtual void Release();
 	virtual void Update();
 	virtual void Render();
+	virtual void Render2();
 
 	//거품 벡터 get
 	vector<BUBBLE> getVBubble() { return _vBubble; }

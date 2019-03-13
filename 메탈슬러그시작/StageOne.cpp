@@ -6,13 +6,13 @@
 
 HRESULT StageOne::Init(void)
 {
+
 	//_player = new Player("플레이어", { WINSIZEX / 2,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	//_crab = new Crab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	//_crab->Init();
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
-	//>>> feature/map_test
 
 	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui);
