@@ -36,6 +36,9 @@ public:
 
 	BRIDGE getBridge(int i) { return _bridge[i]; }
 
+
+
+	void PlayerBulletCollisionBoss(); //플레이어 총알과 보스 충돌햇을시 
 	BossStage() {}
 	~BossStage() {}
 };

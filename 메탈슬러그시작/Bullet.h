@@ -53,6 +53,8 @@ public:
 	virtual void Update();
 	virtual void Render();
 
+	void SetisFire(int index, bool isfire) { _vBullet[index].isFire = isfire; }
+
 	vector<tagBullet> getVBullet() { return _vBullet; }
 	vector<tagBullet>::iterator getViBullet() { return _viBullet; }
 };
@@ -96,13 +98,16 @@ public:
 	virtual void Update();
 	virtual void Render();
 
+	//void SetisFire(int index, bool isfire) { _vBoom[index].isFire = isfire;  }
+	
+	void SetisFire(int index, bool isfire) { _vBoom[index].isFire = isfire; }
 	int GetPlayerBoomMax() { return _PlayerBoomMax; }//ÇÃ·¹ÀÌ¾î ÆøÅºÃÖ´ë°¹¼ö
 	void SetPlayerBoomMax(int PlayerBoomMax) { _PlayerBoomMax = PlayerBoomMax; }
 	vector<tagBoom> getVBoom() { return _vBoom; }
 	vector<tagBoom>::iterator getViBoom() { return _viBoom; }
 
 	
-	void SetisFire(int i, bool fire) { _vBoom[i].isFire = fire; }
+//	void SetisFire(int i, bool fire) { _vBoom[i].isFire = fire; }
 };
 
 
@@ -141,6 +146,8 @@ public:
 	virtual void Release();
 	virtual void Update();
 	virtual void Render();
+
+	void SetisFire(int index, bool isfire) { _vBullet[index].isFire = isfire; }
 
 	vector<tagBullet> getVBullet() { return _vBullet; }
 	vector<tagBullet>::iterator getViBullet() { return _viBullet; }

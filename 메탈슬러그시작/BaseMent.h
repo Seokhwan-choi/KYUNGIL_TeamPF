@@ -5,7 +5,7 @@ class BaseMent : public SceneMaker
 
 private:
 
-	class Player* _player;  
+
 	image* _bgImage;			// 배경 이미지
 	image* _pixelImage;			// 배경 픽셀 이미지
 
@@ -17,6 +17,8 @@ private:
 	int _count;					// 나오는 곳 이미지 프레임 카운트
 	int _index;					// 나오는 곳 이미지 프레임 인덱스
 
+	bool _check;				// 디버그 용
+
 public:
 
 	HRESULT Init(void);
@@ -24,6 +26,9 @@ public:
 	void Update(void);
 	void Render(void);
 
+
+
+	
 	BaseMent() {}
 	~BaseMent() {}
 };

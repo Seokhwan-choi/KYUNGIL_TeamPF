@@ -27,7 +27,7 @@ stage1StartUi::stage1StartUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot
 	
 	//이미지 
 	for (int i = 0; i < 14; i++) {
-		string num = to_string(i+1);
+		string num = to_string(i+1); //string으로 해준다  1234567찾기위해 1더한다 
 		string temp = "UI/stage1StartScene/number";
 		string end = ".bmp";
 		string name = temp + num;
