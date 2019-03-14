@@ -29,6 +29,9 @@ ItemUi::ItemUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM i
 		break;
 	case ITEM::CRAB:
 		break;
+	case ITEM::BOMB:
+
+		break;
 	default:
 		break;
 	}
@@ -47,6 +50,8 @@ ItemUi::ItemUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM i
 	IMAGEMANAGER->findImage("fish");
 	IMAGEMANAGER->findImage("chicken");
 	IMAGEMANAGER->findImage("fuit");
+	IMAGEMANAGER->findImage("cap_granade");
+
 }
 
 ItemUi::~ItemUi()
@@ -132,6 +137,12 @@ void ItemUi::Update(void)
 			break;
 		case ITEM::CRAB:
 			break;
+		case ITEM::BOMB:
+			if (_isShow == true) {
+				((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->SetWeapon(WEAPON::HEAVY);
+				DATA->setBomb(DATA->getBomb() + 10);
+			}
+			break;
 		default:
 			break;
 		}
@@ -174,6 +185,16 @@ void ItemUi::Update(void)
 			}
 			break;
 		case ITEM::CRAB:
+			break;
+		case ITEM::BOMB:
+			IMAGEMANAGER->findImage("cap_granade")->setFrameY(0);
+			if (_count % 15 == 0) {
+				_index++;
+				if (_index > 6) {
+					_index = 0;
+				}
+				IMAGEMANAGER->findImage("cap_granade")->setFrameX(_index);
+			}
 			break;
 		default:
 			break;
@@ -228,6 +249,11 @@ void ItemUi::Render(void)
 		break;
 	case ITEM::CRAB:
 		//Rectangle(getMemDC(), _rect);
+		break;
+	case ITEM::BOMB:
+		if (_isShow == true) {
+			IMAGEMANAGER->render("granade", getMemDC(), _rect.left, _rect.top);
+		}
 		break;
 	default:
 		break;
