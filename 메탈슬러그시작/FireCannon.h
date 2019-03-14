@@ -3,7 +3,7 @@
 
 typedef struct tagFireCannon
 {
-	image* fireCannonImage;
+	image* fireCannonImage[2];
 	RECT rc;
 	float x, y;
 	float fireX, fireY;
@@ -26,27 +26,36 @@ private:
 	int _fireCannonMax;								//화염포 갯수 
 	float _x, _y;									//발사 당시 플레이어 좌표
 
+	image* _bridgeImg[22];							//다리 이미지
+	int index[5];
+	int count;
+
 	vector<FIRECANNON> _vFireCannon[2];
 	vector<FIRECANNON>::iterator _viFireCannon[2];
 public:
 	FireCannon(string name);
 	~FireCannon();
 
-	virtual HRESULT Init(const char * imageName, int width, int height, int fireCannonMax, float range);
+	virtual HRESULT Init(const char * imageName, int width, int height, int FrameX, int FrameY, int fireCannonMax, float range);
 	virtual void Release();
 	virtual void Update();
 	virtual void Render();
 
-	//화염포 발사 명령
+	//왼쪽 화염포 발사 명령
 	void leftFire(float x, float y, float angle, float speed);
-	void rightFire(float x, float y, float angle, float speed);
-	//화염포 움직임 처리
+	//왼쪽 화염포 움직임 처리
 	void leftFireMove();
+	//오른쪽 화염포 발사 명령
+	void rightFire(float x, float y, float angle, float speed);
+	//오른쪽 화염포 움직임 처리
 	void rightFireMove();
+
 	//발사 당시 플레이어 좌표 입력
 	void setPosition(float x, float y) { _x = x, _y = y; }
 
+	//화염포 벡터 get
 	vector<FIRECANNON> getVFireCannon(int i) { return _vFireCannon[i]; }
+	//화염포 반복자 get
 	vector<FIRECANNON>::iterator getViFireCannon(int i) { return _viFireCannon[i]; }
 };
 

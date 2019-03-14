@@ -8,7 +8,6 @@
 #include "BaseMent.h"
 #include "BossStage.h"
 #include "LoadingScene.h"
-
 //==========================================================================//
 //						## 초기화 ## init(void)								//
 //==========================================================================//
@@ -23,7 +22,8 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->AddScene("보스스테이지", new BossStage);
 	SCENEMANAGER->AddScene("로딩", new LoadingScene);
 	//첫 시작화면
-	SCENEMANAGER->ChangeScene("스테이지원");
+	SCENEMANAGER->ChangeScene("로딩");
+
 	return S_OK;	
 }
 

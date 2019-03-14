@@ -17,9 +17,21 @@ HRESULT StageOne::Init(void)
 	_crab = new Crab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	_crab->Init();
 	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
-	//_boss = new BubbleCrab("boss", { 2060, WINSIZEY / 2 + 175 }, { 100,150 }, GameObject::Pivot::Center);
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _boss);
-	//_boss->Init();
+
+	_player = new Player("플레이어", { 500,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+
+	//_crab = new BubbleCrab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	//_crab->Init();
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
+
+
+	//잠자리 생성
+	FlyBug* _flyBug = new FlyBug("flyBug", { 1060, 200 }, { 200, 100 }, GameObject::Pivot::Center);
+	//잠자리 객체 추가하기
+	_flyBug->Init();
+	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug);
+
 
 	
 	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
@@ -155,7 +167,7 @@ void StageOne::Render(void)
 		_wallImage->frameRender(getMemDC(), 5850 - CAMERA->GetCamera().left, 0 - CAMERA->GetCamera().top);
 		_tongImage->frameRender(getMemDC(), 13000 - CAMERA->GetCamera().left - 300, -65 - CAMERA->GetCamera().top);
 	}
-	
+
 	OBJECTMANAGER->Render();
 	//RECT _WALL = CAMERA->Relative(_wallRect);
 	//Rectangle(getMemDC(), _WALL);

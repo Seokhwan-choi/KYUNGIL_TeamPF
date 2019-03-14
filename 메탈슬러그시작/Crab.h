@@ -54,14 +54,15 @@ public:
 	bool getIsKill(int i) { return _col[i].isKill; }
 	//충돌렉트 get
 	RECT getCol(int i) { return _col[i].rc; }
-
+	//공격렉트 get
+	RECT getAtt(int i) { return _att[i].rc; }
 	//체력 get
 	int getHp() { return _hp; }
 	//체력 set
 	void setHp(int hp) { _hp = hp; }
 
-	//몬스터 Damage 입는 함수
-	void Damage(int damage) { _hp -= damage; }
+	//데미지
+	void crab_damage(int damage) { _hp -= damage; }
 
 	HRESULT Init() override;
 	void Release() override;

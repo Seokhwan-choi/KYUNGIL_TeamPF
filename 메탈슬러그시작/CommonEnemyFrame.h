@@ -22,7 +22,9 @@ typedef enum class state
 	R_MOVE,						//오른쪽으로 이동 상태
 	DEATH,						//죽음 상태
 	L_DEATH,					//왼쪽 죽음 상태
-	R_DEATH						//오른쪽 죽음 상태
+	R_DEATH,					//오른쪽 죽음 상태
+	FIRECANNON_SHOOT,			//화염포 발사 상태
+	BOMB_SHOOT					//폭탄 발사 상태
 }
 STATE, *LSTATE;
 

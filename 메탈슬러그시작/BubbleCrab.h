@@ -52,12 +52,18 @@ public:
 	~BubbleCrab();
 
 	//충돌렉트 get
-	COL getCol(int i) { return _col[i]; }
-
+	RECT getCol(int i) { return _col[i].rc; }
+	//공격렉트 get
+	RECT getAtt(int i) { return _att[i].rc; }
 	//체력 get
 	int getHp() { return _hp; }
 	//체력 set
 	void setHp(int hp) { _hp = hp; }
+
+	//데미지
+	void bubbleCrab_damage(int damage) { _hp -= damage; }
+
+
 
 	//충돌여부 get
 	bool getIsCrush(int i) { return _col[i].isCrush; }
