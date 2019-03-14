@@ -37,8 +37,10 @@ private:
 
 	//RECT _test;					// 
 
-
-
+	
+    //##################################좌표테스트용 랙트
+	RECT _testRect;
+	
 
 
 
@@ -53,7 +55,9 @@ public:
 	void PlayerBulletCollisionEnemy();   //플레이어 총알과 적충돌  
 	void PlayerCollisionEnemy();         //몬스터와 플레이어 몸통 충돌햇을시 밀려지게 
 	void PlayerBoomCollisionBoom();      //플레이어 수류탄과 몬스터 충돌햇을떄 피깍기 
-	
+	void ChangeMap(); 
+
+
 	StageOne() {}
 	~StageOne() {}
 };
