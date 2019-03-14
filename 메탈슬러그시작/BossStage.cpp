@@ -8,6 +8,8 @@
 
 HRESULT BossStage::Init(void)
 {
+	SOUNDMANAGER->play("보스전시작");
+
 	_bgImage = IMAGEMANAGER->findImage("보스배경");
 	_waterground = IMAGEMANAGER->findImage("보스출렁");
 	// = IMAGEMANAGER->findImage("곧부서짐");

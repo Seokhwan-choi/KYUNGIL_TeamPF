@@ -29,6 +29,7 @@ private:
 	RECT _temp;
 	bool _touch;       //닿았냐?
 	RECT _colR;			//묶여있는 포로 충돌 렉트
+	bool _crush;	  //충돌햇냐
 
 
 public:

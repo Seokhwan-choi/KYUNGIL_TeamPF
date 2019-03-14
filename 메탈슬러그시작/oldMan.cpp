@@ -20,6 +20,7 @@ OldMan::OldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, CAPTIV
 	_touch = false;
 	_isSave = false;
 	_temp = RectMake(0, 0, 0, 0);
+	_crush = false;
 	_t = 0;
 	_captive = captive;
 	_item = item;
@@ -78,7 +79,7 @@ void OldMan::Update(void)
 		if ((r == 255 && g == 255 && b == 0))
 		{
 			_gravity = 0.0f;
-			_position.y = i- _size.y - 140;
+			_position.y = i- _size.y - 120;
 			break;
 		}
 	}
@@ -266,6 +267,7 @@ void OldMan::Update(void)
 		}
 		if (_isGo&&_t > 130 && _t < 210) {
 			_rumistate = RUMISTATE::SIR;
+			
 			_speed = 0;
 		}
 		//1.5초 이상일 때 아이템 먹고 100점 올릴 수 있음

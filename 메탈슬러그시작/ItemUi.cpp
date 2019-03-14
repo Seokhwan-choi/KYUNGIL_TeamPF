@@ -82,7 +82,7 @@ void ItemUi::Update(void)
 
 		if (r == 255 && g == 255 && b == 0) {
 			_gravity = 0.0f;
-			_position.y = i - _size.y - 140;
+			_position.y = i - _size.y - 120;
 			break;
 		}
 
@@ -100,6 +100,7 @@ void ItemUi::Update(void)
 			//점수처리
 		case ITEM::FISH:
 			if (_isTouch == true && _isShow == true) {
+				SOUNDMANAGER->play("아이템먹음");
 				DATA->setScore(DATA->getScore() + 500);
 				_isShow = false;
 				_isTouch = false;
@@ -108,6 +109,7 @@ void ItemUi::Update(void)
 			break;
 		case ITEM::CHICKEN:
 			if (_isTouch == true && _isShow == true) {
+				SOUNDMANAGER->play("아이템먹음");
 				DATA->setScore(DATA->getScore() + 500);
 				_isShow = false;
 				_isTouch = false;
@@ -116,6 +118,7 @@ void ItemUi::Update(void)
 			break;
 		case ITEM::FRUIT:
 			if (_isTouch == true && _isShow == true) {
+				SOUNDMANAGER->play("아이템먹음");
 				DATA->setScore(DATA->getScore() + 500);
 				_isShow = false;
 				_isTouch = false;

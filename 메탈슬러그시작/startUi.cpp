@@ -24,6 +24,8 @@ startUi::startUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	//========================================================
 	_count = 0;
 	_index = 0;
+
+	t = 0;
 }
 
 startUi::~startUi()
@@ -46,6 +48,7 @@ void startUi::Update()
 	_startBgImage->setFrameY(0);
 	if (_count % 30 == 0) {
 		_index++;
+
 		if (_index > 1) {
 			_index = 0;
 		}

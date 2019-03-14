@@ -219,6 +219,8 @@ void BubbleCrab::Update()
 	//발사 후 약간 앞으로 이동 처리
 	if (_isBubbleShootFinish)
 	{
+		//사운드 넣기
+		SOUNDMANAGER->play("거품공격");	
 		_moveTimer++;
 
 		if (_moveTimer % 30 == 0)

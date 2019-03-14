@@ -15,6 +15,7 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_position = pos;
 	_size = size;
 	_pivot = Pivot::LeftTop;
+	_check = false;
 	
 	//========================================================
 	//렉트 초기화 
@@ -97,7 +98,7 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_choicechaImage[1] = IMAGEMANAGER->findImage("characterchoice2");
 	_choicechaImage[2] = IMAGEMANAGER->findImage("characterchoice3");
 	_choicechaImage[3] = IMAGEMANAGER->findImage("characterchoice4");
-
+	SOUNDMANAGER->play("선택전");
 	//p1노란색 빨간색
 	_yellow = IMAGEMANAGER->findImage("yellowred");
 	//캐릭터 선택 후 문이 내려오면서 캐릭터 움직임 보여줄 이미지
@@ -134,6 +135,7 @@ void choiceUi::Update()
 	//불규칙적으로 올라가게끔 처리함
 	if (_doorUp == true) {
 		for (int i = 0; i < 4; i++) {
+			//SOUNDMANAGER->play("선택문열림");
 			door[i].bottom -= 7 * i + 10;
 			door[i].top -= 7 * i + 10;
 		}
@@ -144,12 +146,18 @@ void choiceUi::Update()
 		if (_isDown == false) {
 			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) &&
 				(gameStartRc[4].right < 1019)) {
+				//if (SOUNDMANAGER->isPlaySound("선택문열림")) {
+					//SOUNDMANAGER->stop("선택문열림");
+					SOUNDMANAGER->play("커서");
+				//}
+				
 				gameStartRc[4].left += 268;
 				gameStartRc[4].right += 268;
 			}
 			//왼쪽 눌렀냐 선택 렉트  밖으로 벗어나지 않게끔 제한 설정해줌
 			if (KEYMANAGER->isOnceKeyDown(VK_LEFT) &&
 				(gameStartRc[4].left > 268)) {
+				SOUNDMANAGER->play("커서");
 				gameStartRc[4].left -= 268;
 				gameStartRc[4].right -= 268;
 			}
@@ -206,15 +214,27 @@ void choiceUi::Update()
 			_downDoorImage->setFrameX(_index);
 		}		
 	}
+
+	if (downDoorRc.bottom >= 839 && !_check) {
+		SOUNDMANAGER->play("선택문닫힘");
+		downDoorRc.bottom = 839;
+		downDoorRc.top = 839 - 535;
+		_check = true;
+	}
 	//문이 더이상 내려가지 못하도록 막아주기
 	if (downDoorRc.bottom >= 839) {
 		downDoorRc.bottom = 839;
 		downDoorRc.top = 839 - 535;
+		_check = true;
 	}
+
 	//2초 뒤에 스테이지 1으로 가게 한다.
 	if (_isDown == true ) {
 		_t++;
 		if(_t == 250) {
+			if (SOUNDMANAGER->isPlaySound("선택전")) {
+				SOUNDMANAGER->stop("선택전");
+			}
 			SCENEMANAGER->ChangeScene("스테이지원");
 		}		
 	}
