@@ -8,6 +8,7 @@ private:
 	image* _pixelImage;			// 배경 픽셀 이미지
 
 	class BigCrab* _bigCrab;
+	class Player* _player;
 
 
 	image* _Out;				// 나오는 곳 이미지

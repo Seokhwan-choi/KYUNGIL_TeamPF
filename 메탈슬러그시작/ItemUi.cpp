@@ -177,16 +177,16 @@ void ItemUi::Update(void)
 				IMAGEMANAGER->findImage("chicken")->setFrameX(_index);
 			}
 			break;
-		case ITEM::FRUIT:
-			IMAGEMANAGER->findImage("fruit")->setFrameY(0);
-			if (_count % 15 == 0) {
-				_index++;
-				if (_index > 11) {
-					_index = 0;
-				}
-				IMAGEMANAGER->findImage("fruit")->setFrameX(_index);
-			}
-			break;
+		//case ITEM::FRUIT:
+		//	IMAGEMANAGER->findImage("fruit")->setFrameY(0);
+		//	if (_count % 15 == 0) {
+		//		_index++;
+		//		if (_index > 11) {
+		//			_index = 0;
+		//		}
+		//		IMAGEMANAGER->findImage("fruit")->setFrameX(_index);
+		//	}
+		//	break;
 		case ITEM::CRAB:
 			break;
 		case ITEM::BOMB:

@@ -120,6 +120,8 @@ HRESULT StageOne::Init(void)
 	//_bigCrab->Init();
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bigCrab);
 
+	ItemUi* _item = new ItemUi("item", { WINSIZEX,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop, ITEM::FISH);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
 
 	//잠자리 생성
 	FlyBug* _flyBug = new FlyBug("flyBug", { 15000, 200 }, { 200, 100 }, GameObject::Pivot::Center);
@@ -157,8 +159,7 @@ HRESULT StageOne::Init(void)
 	OldMan* _oldman3 = new OldMan("oldman3", { 2000, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::RUMI, ITEM::HEAVY);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _oldman3);
 
-	ItemUi* _item = new ItemUi("item", {WINSIZEX,WINSIZEY/2}, { 50,50 }, GameObject::Pivot::LeftTop, ITEM::FISH);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
+	
 
 	//totalScore* _total = new totalScore("total", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	//OBJECTMANAGER->AddObject(ObjectType::UI, _total);
@@ -432,8 +433,8 @@ void StageOne::ChangeMap()
 	{
 		if (KEYMANAGER->isToggleKey(VK_DOWN))
 		{
-			_fadeout = true;
-			if ( _alpha > 240)
+			//_fadeout = true;
+			//if ( _alpha > 240)
 				SCENEMANAGER->ChangeScene("지하스테이지");
 			
 		}

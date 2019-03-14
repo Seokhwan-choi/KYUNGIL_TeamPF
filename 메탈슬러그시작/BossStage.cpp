@@ -14,7 +14,7 @@ HRESULT BossStage::Init(void)
 	_waterground = IMAGEMANAGER->findImage("º¸½ºÃâ··");
 	// = IMAGEMANAGER->findImage("°ðºÎ¼­Áü");
 
-	CAMERA->SetCamera({ WINSIZEX / 2, WINSIZEY / 2 });
+	//CAMERA->SetCamera({ WINSIZEX / 2, WINSIZEY / 2 });
 
 	for (int i = 0; i < 22; ++i) 
 	{
@@ -194,6 +194,7 @@ void BossStage::PlayerBulletCollisionBoss()
 			{
      			_boss->boss_damge(1);
 				_player->playerbullet()->SetisFire(i, false);
+				cout << "Ãæµ¹" << endl;
 				break;
 			}
 		
@@ -202,11 +203,12 @@ void BossStage::PlayerBulletCollisionBoss()
 	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
 	{
 		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
-
+		
 			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_boss->getCol()))
 			{
 				_boss->boss_damge(1);
 				_player->heavybullet()->SetisFire(i, false);
+				cout << "Ãæµ¹" << endl;
 				break;
 			}
 	}

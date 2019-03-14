@@ -32,7 +32,7 @@ void LoadingScene::Update(void)
 	_loading->update();
 	if (_loading->loadingDone())
 	{
-		SCENEMANAGER->ChangeScene("스테이지원"); //스테이지원, 지하스테이지, 보스스테이지
+		SCENEMANAGER->ChangeScene("지하스테이지"); //스테이지원, 지하스테이지, 보스스테이지
 	}
 }
 
@@ -49,7 +49,7 @@ void LoadingScene::LoadingImage()
 	// ===============================================================================================
 	_loading->loadFrameImage("배경출렁", "Background/배경출렁2.bmp", 19568, 278, 8, 1);
 	_loading->loadFrameImage("맵장벽", "Background/맵장벽.bmp", 5400, 960, 6, 1, true, RGB(255, 0, 255));
-	_loading->loadFrameImage("통", "Background/통나옴.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("통들어감", "Background/통들어감.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
 	_loading->loadImage("배경", "Background/배경.bmp", 14070, 1150, true, RGB(255, 0, 255));
 	_loading->loadImage("배경의배경", "Background/배경의배경.bmp", 9562, 1200, true, RGB(255, 0, 255));
 	_loading->loadImage("배경픽셀", "Background/배경픽셀.bmp", 14070, 1150, true, RGB(255, 0, 255));
@@ -65,8 +65,8 @@ void LoadingScene::LoadingImage()
 	// ################# 지하 스테이지 이미지 ###########################################################
 	// ===============================================================================================
 
-	_loading->loadImage("지하배경", "BackGround/지하베이스.bmp", 6774, 958);
-	_loading->loadImage("지하베이스픽셀", "BackGround/지하베이스픽셀.bmp", 6774, 958);
+	_loading->loadImage("지하배경", "BackGround/지하배경.bmp", 6774, 958);
+	_loading->loadImage("지하배경픽셀", "BackGround/지하배경픽셀.bmp", 6774, 958);
 	_loading->loadFrameImage("통나옴", "BackGround/통나옴.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
 
 	//IMAGEMANAGER->addImage("지하배경", "BackGround/지하베이스.bmp", 6774, 958);
