@@ -10,7 +10,7 @@
 
 HRESULT StageOne::Init(void)
 {
-	_player = new Player("플레이어", { 500,WINSIZEY / 2 -150 }, { 50, 50 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { 400,0 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 		
 	_crab = new Crab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
@@ -49,13 +49,13 @@ HRESULT StageOne::Init(void)
 	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
 
 
-	_test = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 250, 250);
+	//_test = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 250, 250);
 	_bgImage = IMAGEMANAGER->addImage("배경", "Background/배경.bmp", 14070, 1150, true , RGB(255,0,255));
 	_bgSea = IMAGEMANAGER->addFrameImage("배경출렁", "Background/배경출렁2.bmp", 19568, 278, 8, 1);
 	_wallImage = IMAGEMANAGER->addFrameImage("맵장벽", "Background/맵장벽.bmp", 5400, 960, 6, 1, true, RGB(255, 0, 255));
 	_bgImage2 = IMAGEMANAGER->addImage("배경의배경", "Background/배경의배경.bmp", 9562, 1200, true, RGB(255, 0, 255));
 	_PixelImage = IMAGEMANAGER->addImage("배경픽셀", "Background/배경픽셀.bmp", 14070, 1150, true, RGB(255, 0, 255));
-
+	_tongImage = IMAGEMANAGER->addFrameImage("통", "Background/통나옴.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
 	_PixelCheck = false;
 
 	_wallRect = RectMakeCenter(6750, WINSIZEY/2, 50, 1500);
@@ -65,6 +65,9 @@ HRESULT StageOne::Init(void)
 
 	_index2 = 0;
 	_count2 = 0;
+
+	_index3 = 0;
+	_count3 = 0;
 
 	_crush = false;
 
@@ -79,6 +82,7 @@ void StageOne::Release(void)
 void StageOne::Update(void)
 {
 	OBJECTMANAGER->Update();
+
 	_count++;
 	if (_count % 10 == 0) {
 		_index++;
@@ -97,7 +101,6 @@ void StageOne::Update(void)
 	//	IMAGEMANAGER->findImage("맵장벽")->setFrameX(_index2);
 	//}
 
-
 	if (_player->GetCollisionPlayer().right > 6200)
 	{
 		_count2++; //6000 정도 도달하면 뭄이 열리게 하면된다  
@@ -110,11 +113,6 @@ void StageOne::Update(void)
 			IMAGEMANAGER->findImage("맵장벽")->setFrameX(_index2);
 			}
 		}
-
-
-
-
-
 
 	// F1 눌러서 픽셀좀 보쟝 
 	if (KEYMANAGER->isOnceKeyDown(VK_F1)) 
@@ -136,17 +134,19 @@ void StageOne::Update(void)
 	}
 	this->PlayerBulletCollisionEnemy(); //플레이어 총알과 몬스터 충돌시 
 	this->PlayerCollisionEnemy(); //플레이어 몸통과 애너미 충돌시 
+	this->PlayerBoomCollisionBoom(); //플레이어 수류탄과  애너미 충돌시 
 }
 
 void StageOne::Render(void)
 {
 	_bgImage2->render(getMemDC(), 0 - (CAMERA->GetCamera().left / 2), -310 - CAMERA->GetCamera().top);
-	_bgImage->render(getMemDC(), 0 - CAMERA->GetCamera().left, -135 - CAMERA->GetCamera().top);
-	_bgSea->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left, WINSIZEY - 278 - CAMERA->GetCamera().top);
+	_bgImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, -135 - CAMERA->GetCamera().top);
+	_bgSea->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left - 300, WINSIZEY - 278 - CAMERA->GetCamera().top);
 	
 	if (_PixelCheck) {
-		_PixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left, -135 - CAMERA->GetCamera().top);
+		_PixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, -135 - CAMERA->GetCamera().top);
 		_wallImage->frameRender(getMemDC(), 5850 - CAMERA->GetCamera().left, 0 - CAMERA->GetCamera().top);
+		_tongImage->frameRender(getMemDC(), 13000 - CAMERA->GetCamera().left - 300, -65 - CAMERA->GetCamera().top);
 	}
 	
 	OBJECTMANAGER->Render();
@@ -293,6 +293,60 @@ void StageOne::PlayerCollisionEnemy()//플레이어 몸통과 애너미 몸통과 충돌햇을시
 	}
 	//else if(IntersectRect(&temp, &_player->GetCollisionPlayer(),&_crab->getCol))
 
+
+}
+
+void StageOne::PlayerBoomCollisionBoom()
+{
+	RECT temp; 
+	for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
+	{
+		if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
+		if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_crab->getCol(2)))
+		{
+			_crab->Damage(1);
+			_player->playerboom()->SetisFire(i, false);
+			cout << "박음" << endl;
+			cout << &_player->playerboom()->getVBoom()[i].rc.right << endl;
+			break;
+		}
+	}
+	for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
+	{
+		if (_player->playerboom()->getVBoom()[i].isFire == false) continue;
+		if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_crab->getCol(3))) 
+		{
+			_crab->Damage(1);
+			_player->playerboom()->SetisFire(i, false);
+			cout << &_player->playerboom()->getVBoom()[i].rc.right << endl;
+			break;
+		}
+	}
+
+	//for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
+	//{
+	//	if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
+	//	if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_crab->getCol(1)))
+	//	{
+	//		_crab->Damage(1);
+	//		//_player->playerbullet()->getVBullet()[i].isFire = false;
+	//	//	_player->SetBoomredner(true);
+	//	//	cout << "충돌" << endl;
+	//		break;
+	//	}
+	//}
+	//for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
+	//{
+	//	if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
+	//	if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_crab->getCol(3)))
+	//	{
+	//		_crab->Damage(1);
+	//		//_player->playerbullet()->getVBullet()[i].isFire = false;
+	//
+	//		//_player->SetBoomredner(true);
+	//		break;
+	//	}
+	//}
 
 }
 

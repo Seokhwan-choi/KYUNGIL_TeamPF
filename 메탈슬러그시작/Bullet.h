@@ -102,6 +102,8 @@ public:
 	vector<tagBoom> getVBoom() { return _vBoom; }
 	vector<tagBoom>::iterator getViBoom() { return _viBoom; }
 
+	
+	void SetisFire(int i, bool fire) { _vBoom[i].isFire = fire; }
 };
 
 

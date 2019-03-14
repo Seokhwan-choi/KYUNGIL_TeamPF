@@ -210,7 +210,6 @@ void Boom::Release()
 void Boom::Update()
 {
 	this->move(); 
-	
 
 	for (int i = 0; i < _bulletMax; i++)
 	{ 
@@ -240,6 +239,7 @@ void Boom::Render()
 {
 	for (int i = 0; i < _vBoom.size(); i++)
 	{
+		if (!_vBoom[i].isFire)continue;
 		RECT bulletRc = CAMERA->Relative(_vBoom[i].rc);
 		_vBoom[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top);
 	}
@@ -253,7 +253,7 @@ void Boom::fire(float x, float y, float angle, float gravity ,float speed)
 		_vBoom[i].x = _vBoom[i].fireX= x; 
 		_vBoom[i].y = _vBoom[i].fireY = y;
 		_vBoom[i].rc = RectMakeCenter(_vBoom[i].x, _vBoom[i].y,
-			_vBoom[i].bulletImage->getWidth(), _vBoom[i].bulletImage->getHeight());
+			_vBoom[i].bulletImage->getFrameWidth(), _vBoom[i].bulletImage->getFrameHeight());
 		_vBoom[i].speed = speed; 
 		_vBoom[i].angle = angle; 
 		_vBoom[i].gravity = gravity; 
@@ -266,13 +266,13 @@ void Boom::move()
 {
 	for (int i = 0; i < _vBoom.size(); i++)
 	{
-		if (!_vBoom[i].isFire)continue;
+		if (!_vBoom[i].isFire) continue;
 		_vBoom[i].gravity += 0.5f;
 		_vBoom[i].x += cosf(_vBoom[i].angle) * _vBoom[i].speed  ; 
 		_vBoom[i].y += -sinf(_vBoom[i].angle) * _vBoom[i].speed + _vBoom[i].gravity;
 
 		_vBoom[i].rc = RectMakeCenter(_vBoom[i].x, _vBoom[i].y,
-			_vBoom[i].bulletImage->getWidth(), _vBoom[i].bulletImage->getHeight());
+			_vBoom[i].bulletImage->getFrameWidth(), _vBoom[i].bulletImage->getFrameHeight());
 
 		float distance = GetDistance(_vBoom[i].fireX, _vBoom[i].fireY,
 			_vBoom[i].x, _vBoom[i].y);
@@ -357,7 +357,7 @@ void Bullet1::Render()
 			_angle = _vBullet[i].angle;//기본총알
 
 			//확인용 렉트 그려주기 나중에 지워줘야함 !!
-			Rectangle(getMemDC(), bulletRc);
+		//	Rectangle(getMemDC(), bulletRc);
 
 			if (_angle == 0 || _angle == PI)
 			{

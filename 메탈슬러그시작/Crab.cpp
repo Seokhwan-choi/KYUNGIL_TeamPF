@@ -347,7 +347,6 @@ void Crab::Update()
 		if (_position.y + _size.y / 2 >= 730.f)
 		{
 			_deathTimer++;
-
 			if (_deathTimer % 150 == 0)
 			{
 				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "crab"));
@@ -365,7 +364,7 @@ void Crab::Update()
 void Crab::Render()
 {
 	//카메라 렉트 그리기
-	Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
+	//Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
 
 	//렉트 그리기
 	Rectangle(getMemDC(), CAMERA->Relative(_rc));
@@ -508,11 +507,11 @@ void Crab::crabImageRender()
 {
 	if ((_state == state::L_IDLE || _state == state::L_MOVE || _state == state::L_ATTACK_MOVE) && !(_state == state::L_ATTACK_FINISH))
 	{
-		crabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
+		crabImg[0]->frameRender(getMemDC(), CAMERA->Relative(_rc).left, CAMERA->Relative(_rc).top);
 	}
 	if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE)
 	{
-		crabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
+		crabImg[1]->frameRender(getMemDC(), CAMERA->Relative(_rc).left, CAMERA->Relative(_rc).top);
 	}
 	if (_state == state::L_ATTACK)
 	{

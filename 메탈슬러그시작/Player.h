@@ -42,6 +42,7 @@ private:
 		// 기본, 기본_총, 기본_업샷, 기본_칼질, 기본_폭탄, 기본_위보기 ( 6가지 )
 		IDLE, IDLE_SHOT, IDLE_UPSHOT, IDLE_SWORD, IDLE_BOOM, IDLE_UPSTARE,
 	
+		FLY,
 
 		// 걷기, 걷기_총, 걷기_업샷, 걷기_칼질, 걷기_폭탄, 걷기_위보기 ( 6가지 )
 		WALK, WALK_SHOT, WALK_UPSHOT, WALK_SWORD, WALK_BOOM, WLAK_UPSTARE,
@@ -118,6 +119,7 @@ private:
 										//============================================================
 
 
+	bool _boomrender;                  //애는 flase상태이고 true가되면 안보여준다 
 	bool _boomfire;                      //d눌러서 발사됫냐??
 	bool _playerboomFire;				//0발이하가 되면 폭탄을 사용할수가없다 
 										//나머지처리는 bullet클래스 boom fire함수에서 처리한다 
@@ -127,10 +129,13 @@ private:
 
 	//==========================픽셀용//////////////////
 	float _pixely;//플레이어픽셀용 y값
-
+	float _pixelx; 
 	//==========================실제충돌할렉트 ==========================
 	//RECT _InterPlayerRc; 
 	RECT check; 
+
+	RECT _colb;
+	RECT _colr;		
 
 	class Crab* _crab;
 
@@ -139,7 +144,8 @@ public:
 
 	Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Player();
-
+	//############boom render get set 
+	void SetBoomredner(bool _boom) { _boomrender = _boom; }
 
 	//####################################플레이어 충돌렉트 #################################
 
@@ -164,7 +170,7 @@ public:
 	
 	Bullet1* playerbullet() { return _playerbullet; }
 	Bullet* heavybullet() { return _heavyBullet; }
-
+	Boom* playerboom() { return _playerboom; }
 	bool GetIsleft() { return _isLeft; }
 	void SetIsleft(bool left) { _isLeft = left; }
 
