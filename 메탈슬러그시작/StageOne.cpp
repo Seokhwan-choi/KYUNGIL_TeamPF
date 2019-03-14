@@ -88,16 +88,16 @@ HRESULT StageOne::Init(void)
 	}
 
 	//잠자리 수
-	_flyBugCount = 6;
+	_flyBugCount = 2;
 	//잠자리 초기화
 	for (int i = 0; i < _flyBugCount; i++)
 	{
 		string num = to_string(i);
 		string name = "_flyBug" + num;
-
-		_flyBug[i] = new FlyBug(name, { 1500.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-
-		if (i == 2)
+		
+		_flyBug[i] = new FlyBug(name, { 1500.f, 130.f }, { 200, 100 }, GameObject::Pivot::Center);
+		
+		/*if (i == 2)
 		{
 			_flyBug[i] = new FlyBug(name, { 15500.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
 		}
@@ -112,7 +112,7 @@ HRESULT StageOne::Init(void)
 		else if (i == 5)
 		{
 			_flyBug[i] = new FlyBug(name, { 16000.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-		}
+		}*/
 		_flyBug[i]->Init();
 
 		OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug[i]);

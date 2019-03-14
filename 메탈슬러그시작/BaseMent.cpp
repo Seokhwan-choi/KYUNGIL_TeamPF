@@ -8,14 +8,69 @@ HRESULT BaseMent::Init(void)
 	_player = new Player("플레이어", { 406,633 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
-	//큰게 생성
-	BigCrab* _bigCrab = new BigCrab("bigCrab", { 500 ,WINSIZEY / 2 + 110 }, { 200,280 }, GameObject::Pivot::Center);
-	//큰게 객체 추가하기
-	_bigCrab->Init();
-	OBJECTMANAGER->AddObject(ObjectType::ENEMY, _bigCrab);
+	//물고기 생성
+	_fish = new Fish("Fish", { 1500 , WINSIZEY - 250 }, { 200,280 }, GameObject::Pivot::Center);
+	_fish->Init();
+	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _fish);
 
-	
-	
+	//거품게 수
+	_bubbleCrabCount = 10;
+	//거품게 초기화
+	for (int i = 0; i < _bubbleCrabCount; i++)
+	{
+		string num = to_string(i);
+		string name = "bubbleCrab" + num;
+
+		if (i < 3)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 2500.f + (i * 100.f), WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 3)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 3700.f, WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 4)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 3900.f, WINSIZEY / 2 + 195.f }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 5)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 4200.f, WINSIZEY / 2 + 195.f }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 6)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 4500.f, WINSIZEY / 2 + 195.f }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 7)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 5300.f, WINSIZEY / 2 + 195.f }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 8)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 5600.f, WINSIZEY / 2 + 195.f }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 9)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 6200.f, WINSIZEY / 2 + 195.f }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+
+		_bubbleCrab[i]->Init();
+		OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab[i]);
+	}
+
+	//큰게 수
+	_bigCrabCount = 3;
+	//큰게 초기화
+	for (int i = 0; i < _bigCrabCount; i++)
+	{
+		string num = to_string(i);
+		string name = "bigCrab" + num;
+
+		_bigCrab[i] = new BigCrab("bigCrab", { 3500.f + (i * 1000.f), WINSIZEY / 2 + 110 }, { 200,280 }, GameObject::Pivot::Center);
+		_bigCrab[i]->Init();
+		OBJECTMANAGER->AddObject(ObjectType::ENEMY, _bigCrab[i]);
+	}
+
 	_bgImage = IMAGEMANAGER->addImage("지하배경", "BackGround/지하베이스.bmp", 6774, 958);
 	_pixelImage = IMAGEMANAGER->addImage("지하배경픽셀", "BackGround/지하베이스픽셀.bmo", 6774, 958);
 	_Out = IMAGEMANAGER->addFrameImage("통나옴", "BackGround/통나옴.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));

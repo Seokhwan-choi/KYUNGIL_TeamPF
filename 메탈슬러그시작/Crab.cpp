@@ -395,7 +395,7 @@ void Crab::Render()
 	//Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
 
 	//렉트 그리기
-	Rectangle(getMemDC(), CAMERA->Relative(_rc));
+	//Rectangle(getMemDC(), CAMERA->Relative(_rc));
 
 	//게 이미지 그리기
 	this->crabImageRender();
@@ -424,7 +424,7 @@ void Crab::Render()
 	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));*/
 
 	//렉트 그리기
-	Rectangle(getMemDC(), CAMERA->Relative(_rc));
+	//Rectangle(getMemDC(), CAMERA->Relative(_rc));
 }
 
 void Crab::crabImage()

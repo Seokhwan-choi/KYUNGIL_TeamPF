@@ -274,7 +274,7 @@ void Fish::Update()
 void Fish::Render()
 {
 	//카메라 렉트 그리기
-	Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
+	//Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
 	//렉트 그리기
 	Rectangle(getMemDC(), CAMERA->Relative(_rc));
 	//물고기 렉트 그리기
@@ -282,12 +282,12 @@ void Fish::Render()
 	{
 		if (fish_rc[i]._fish_state == state::L_MOVE && fish_rc[i].isFish == true && fish_rc[i].Imgchange == false && !(fish_rc[i]._fish_state == state::L_DEATH))
 		{
-			Rectangle(getMemDC(), fish_rc[i].Fish_Rc);
+			//Rectangle(getMemDC(), fish_rc[i].Fish_Rc);
 			fishImg[0]->frameRender(getMemDC(), fish_rc[i].Fish_Rc.left - 5 - CAMERA->GetCamera().left - 300, fish_rc[i].Fish_Rc.top - 5 - CAMERA->GetCamera().top,fish_rc[i].Imgindex[0],1);
 		}
 		if (fish_rc[i]._fish_state == state::L_MOVE && fish_rc[i].isFish == true && fish_rc[i].Imgchange == true && !(fish_rc[i]._fish_state == state::L_DEATH))
 		{
-			Rectangle(getMemDC(), fish_rc[i].Fish_Rc);
+			//Rectangle(getMemDC(), fish_rc[i].Fish_Rc);
 			fishImg[1]->frameRender(getMemDC(), fish_rc[i].Fish_Rc.left - 8 - CAMERA->GetCamera().left - 300, fish_rc[i].Fish_Rc.top - 8 - CAMERA->GetCamera().top, fish_rc[i].Imgindex[1], 1);
 		}
 		if (fish_rc[i]._fish_state == state::L_DEATH && fish_rc[i].fish_death <= 40)
