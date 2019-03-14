@@ -9,6 +9,12 @@ HRESULT LoadingScene::Init(void)
 	_loading = new loading;
 	_loading->init();
 
+	stage1StartUi* _stage1startui = new stage1StartUi("stage1startui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
+
+	GameCompleteUi* _gamecompleteui = new GameCompleteUi("gamecompleteui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _gamecompleteui);
+
 	this->LoadingSound();
 	this->LoadingImage();
 

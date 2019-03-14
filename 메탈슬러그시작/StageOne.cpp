@@ -14,7 +14,7 @@ HRESULT StageOne::Init(void)
 	_player = new Player("플레이어", { 400,0 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 		
-	_crab = new Crab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	_crab = new BubbleCrab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
 	_crab->Init();
 	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
 
@@ -40,17 +40,14 @@ HRESULT StageOne::Init(void)
 	GameOverUi_2* _gameoverui2 = new GameOverUi_2("gameoverui2", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui2);
 	//
-	//stage1StartUi* _stage1startui = new stage1StartUi("stage1startui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	//OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
+	
 	//
 	timeUi* _timeui = new timeUi("timeui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _timeui);
 	//
 	playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
-
-	//GameCompleteUi* _gamecompleteui = new GameCompleteUi("gamecompleteui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	//OBJECTMANAGER->AddObject(ObjectType::UI, _gamecompleteui);
+	
 
 
 	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::HEAVY);
@@ -186,7 +183,7 @@ void StageOne::PlayerBulletCollisionEnemy()
 		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
 		if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab->getCol(2)  ))
 		{
-			_crab->Damage(1);
+			_crab->bubbleCrab_damage(1);
 			_player->playerbullet()->getVBullet()[i].isFire = false;
 			break; 
 		}
@@ -197,7 +194,7 @@ void StageOne::PlayerBulletCollisionEnemy()
 		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
 		if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab->getCol(2)))
 		{
-			_crab->Damage(1);
+			_crab->bubbleCrab_damage(1);
 			_player->heavybullet()->getVBullet()[i].isFire = false; 
 			break; 
 		}
@@ -211,7 +208,7 @@ void StageOne::PlayerBulletCollisionEnemy()
 		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
 		if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab->getCol(1)))
 		{
-			_crab->Damage(1);
+			_crab->bubbleCrab_damage(1);
 			_player->playerbullet()->getVBullet()[i].isFire = false;
 			break;
 		}
@@ -222,7 +219,7 @@ void StageOne::PlayerBulletCollisionEnemy()
 		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
 		if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab->getCol(1)))
 		{
-			_crab->Damage(1);
+			_crab->bubbleCrab_damage(1);
 			_player->heavybullet()->getVBullet()[i].isFire = false;
 			break;
 		}
@@ -236,7 +233,7 @@ void StageOne::PlayerBulletCollisionEnemy()
 		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
 		if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab->getCol(3)))
 		{
-			_crab->Damage(1);
+			_crab->bubbleCrab_damage(1);
 			_player->playerbullet()->getVBullet()[i].isFire = false;
 			break;
 		}
@@ -247,7 +244,7 @@ void StageOne::PlayerBulletCollisionEnemy()
 		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
 		if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab->getCol(3)))
 		{
-			_crab->Damage(1);
+			_crab->bubbleCrab_damage(1);
 			_player->heavybullet()->getVBullet()[i].isFire = false;
 			break;
 		}
@@ -262,7 +259,7 @@ void StageOne::PlayerBulletCollisionEnemy()
 		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
 		if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab->getCol(4)))
 		{
-			_crab->Damage(1);
+			_crab->bubbleCrab_damage(1);
 			_player->playerbullet()->getVBullet()[i].isFire = false;
 			break;
 		}
@@ -273,7 +270,7 @@ void StageOne::PlayerBulletCollisionEnemy()
 		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
 		if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab->getCol(4)))
 		{
-			_crab->Damage(1);
+			_crab->bubbleCrab_damage(1);
 			_player->heavybullet()->getVBullet()[i].isFire = false;
 			break;
 		}
@@ -323,7 +320,7 @@ void StageOne::PlayerBoomCollisionBoom()
 		if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
 		if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_crab->getCol(2)))
 		{
-			_crab->Damage(1);
+			_crab->bubbleCrab_damage(1);
 			_player->playerboom()->SetisFire(i, false);
 			cout << "박음" << endl;
 			cout << &_player->playerboom()->getVBoom()[i].rc.right << endl;
@@ -335,7 +332,7 @@ void StageOne::PlayerBoomCollisionBoom()
 		if (_player->playerboom()->getVBoom()[i].isFire == false) continue;
 		if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_crab->getCol(3))) 
 		{
-			_crab->Damage(1);
+			_crab->bubbleCrab_damage(1);
 			_player->playerboom()->SetisFire(i, false);
 			cout << &_player->playerboom()->getVBoom()[i].rc.right << endl;
 			break;

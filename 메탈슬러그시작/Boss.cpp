@@ -555,6 +555,7 @@ void Boss::Render()
 		&& (_isBuffStartEnd)
 		&& _state == state::BOMB_SHOOT)
 	{
+
 		_BoassImg[4]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[4], 0);
 	}
 	if (_state == state::DEATH)

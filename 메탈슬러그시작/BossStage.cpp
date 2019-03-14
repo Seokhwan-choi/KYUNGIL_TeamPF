@@ -8,7 +8,7 @@ HRESULT BossStage::Init(void)
 {
 	_bgImage = IMAGEMANAGER->findImage("º¸½º¹è°æ");
 	_waterground = IMAGEMANAGER->findImage("º¸½ºÃâ··");
-	_breakImage = IMAGEMANAGER->findImage("°ğºÎ¼­Áü");
+	// = IMAGEMANAGER->findImage("°ğºÎ¼­Áü");
 
 
 	for (int i = 0; i < 22; ++i) 
