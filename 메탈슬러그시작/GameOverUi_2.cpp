@@ -7,7 +7,7 @@
 GameOverUi_2::GameOverUi_2(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	:GameObject(name, pos, size, pivot)
 {
-	_gameOverImage = IMAGEMANAGER->addFrameImage("gameover", "UI/gameOverScene/gameOverScene.bmp", 2560, 960, 2, 1, true, RGB(255, 0, 255));
+	_gameOverImage = IMAGEMANAGER->findImage("gameover");
 	//========================================================
 	//이미지 변수 int형 선언
 	//========================================================

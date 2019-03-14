@@ -11,7 +11,7 @@ enum class WEAPON : int
 // ############ 아이템 종류 ###########
 // =========================================
 enum class ITEM : int {
-	FISH, CHICKEN, FRUIT, HEAVY, GRENADE, CRAB
+	FISH, CHICKEN, FRUIT, HEAVY, GRENADE, CRAB,BOMB
 };
 
 // =========================================

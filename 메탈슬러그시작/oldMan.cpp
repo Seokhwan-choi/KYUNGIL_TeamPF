@@ -12,7 +12,6 @@ OldMan::OldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, CAPTIV
 	_range = { _position.x - 100,_position.x + 200 };
 	_speed = 3.f;
 	_tiedRc = RectMake(_position.x,_position.y, _size.x, _size.y);
-
 	_gravity = 2.3f;
 	//_gravity = 0.0f;
 	_isRight = true;
@@ -26,17 +25,17 @@ OldMan::OldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, CAPTIV
 	_item = item;
 	_coly = _position.y + _size.y ;
 	//포로
-	IMAGEMANAGER->addFrameImage("tied", "UI/item/captive_tied.bmp", 1872, 150, 9, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("untied", "UI/item/captive_untied.bmp", 2080, 150,10, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("walk", "UI/item/captive_walk.bmp", 2500, 300, 12, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("run", "UI/item/captive_run.bmp", 1666, 150, 8, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("sir", "UI/item/captive_sir.bmp", 2916, 150, 14, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("item", "UI/item/captive_item.bmp", 2288, 150, 11, 1, true, RGB(255, 0, 255));
-	//루미
-	IMAGEMANAGER->addFrameImage("rumi_walk", "UI/item/rumi_walk.bmp", 3328, 150, 16, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("rumi_run", "UI/item/rumi_run.bmp", 1872, 150, 9, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("rumi_sir", "UI/item/rumi_sir.bmp",832,150, 4, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("rumi_crush", "UI/item/rumi_crush.bmp", 2288, 150,11,1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->findImage("tied");
+	IMAGEMANAGER->findImage("untied");
+	IMAGEMANAGER->findImage("walk");
+	IMAGEMANAGER->findImage("run");
+	IMAGEMANAGER->findImage("sir");
+	IMAGEMANAGER->findImage("item");
+	//루미		
+	IMAGEMANAGER->findImage("rumi_walk");
+	IMAGEMANAGER->findImage("rumi_run");
+	IMAGEMANAGER->findImage("rumi_sir");
+	IMAGEMANAGER->findImage("rumi_crush");
 
 }
 
@@ -431,6 +430,7 @@ void OldMan::Update(void)
 	default:
 		break;
 	}
+	//루미 행동 모션
 	switch (_rumistate)
 	{
 	case RUMISTATE::WALK:
@@ -459,21 +459,20 @@ void OldMan::Update(void)
 		IMAGEMANAGER->findImage("rumi_sir")->setFrameY(0);
 		_count++;
 		if (_count % 20 == 0) {
-			_index++;
-			if (_index > 3) {
-				_index = 3;
+			_index--;
+			if (_index < 0) {
+				_index = 0;
 			}
 			IMAGEMANAGER->findImage("rumi_sir")->setFrameX(_index);
 		}
 		break;
 	case RUMISTATE::CRUSH:
 		IMAGEMANAGER->findImage("rumi_crush")->setFrameY(0);
-		_count++;
-	
+		_count++;	
 		if (_count % 13 == 0) {
 			_index--;
 			if (_index < 0) {
-				_index = 10;
+				_index = 0;
 			}
 			IMAGEMANAGER->findImage("rumi_crush")->setFrameX(_index);
 		}
@@ -519,7 +518,6 @@ void OldMan::Render(void)
 		for (int i = 0; i < 2; i++) {
 			Rectangle(getMemDC(), _rect1[i]);
 		}
-
 	}
 	//랜더 부분
 	switch (_state)
@@ -563,7 +561,6 @@ void OldMan::Render(void)
 	default:
 		break;
 	}
-
 }
 
 

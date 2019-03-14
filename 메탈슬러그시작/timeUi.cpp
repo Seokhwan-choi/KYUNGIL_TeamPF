@@ -11,7 +11,7 @@ timeUi::timeUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_count = 0;
 
 	//이미지 초기화
-	_timeImg = IMAGEMANAGER->addFrameImage("제한시간", "UI/timenumber.bmp", 510, 69, 10.1, true, RGB(255, 0, 255));
+	_timeImg = IMAGEMANAGER->findImage("제한시간");
 	//불변수 초기화
 	_isShow = true;
 }

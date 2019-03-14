@@ -300,6 +300,59 @@ void LoadingScene::LoadingImage()
 	//	## Monster end##
 	//=============================================================
 #pragma endregion
+
+#pragma region player
+
+	// ========================================== 플레이어 이미지 =======================================================
+	_loading->loadFrameImage("플레이어가만", "플레이어/플레이어가만.bmp", 1280, 805, 4, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어딱총공격", "플레이어/기본딱총공격.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어이동", "플레이어/플레이어이동.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어위딱총공격", "플레이어/위기본딱총공격.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어기본점프", "플레이어/플레이어기본점프.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어가만위보기", "플레이어/플레이어가만위보기.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어쭈그려", "플레이어/플레이어쭈그려.bmp", 1280, 805, 4, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어쭈그려서이동", "플레이어/플레이어쭈그려서이동.bmp", 2240, 805, 7, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어쭈그려공격", "플레이어/플레이어쭈그려공격.bmp", 3200, 805, 10, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어좌우이동하며점프", "플레이어/플레이어좌우이동하며점프.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어이동하며공격", "플레이어/플레이어이동하며공격.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어가만점프공격", "플레이어/플레이어가만점프공격.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어이동하면서점프하고위에발사", "플레이어/플레이어이동하면서점프하고위에모션.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));//발사하는것 
+	_loading->loadFrameImage("플레이어점프하면서공격", "플레이어/플레이어점프하면서공격.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어점프중위공격", "플레이어/플레이어점프중위공격.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어이동하며위에공격", "플레이어/플레이어이동하며위에공격.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어가만점프중아래공격", "플레이어/플레이어가만점프중아래공격.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어이동점프중아래공격", "플레이어/플레이어이동점프중아래공격.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+
+	//수류탄
+	_loading->loadFrameImage("플레이어이동수류탄", "플레이어/플레이어이동수류탄.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어가만수류탄던지기", "플레이어/플레이어가만수류탄던지기.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("플레이어가만점프수류탄", "플레이어/플레이어가만점프수류탄.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+
+
+	//해비머신건   // 160으로 고정한다 
+	_loading->loadFrameImage("해비가만", "플레이어/해비가만.bmp", 1280, 804, 4, 2, true, RGB(255, 0, 255));//아직안씀 render에 적긴적음 
+	_loading->loadFrameImage("해비이동하며공격", "플레이어/해비이동하며공격.bmp", 1280, 804, 4, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비가만점프공격", "플레이어/해비가만점프공격.bmp", 1280, 804, 4, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비가만공격", "플레이어/해비가만공격.bmp", 1280, 804, 4, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비이동점프공격", "플레이어/해비이동점프공격.bmp", 1280, 804, 4, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비가만점프", "플레이어/해비가만점프.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비아래공격", "플레이어/해비아래공격.bmp", 1280, 804, 4, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비아래가만", "플레이어/해비아래가만.bmp", 1280, 804, 4, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비아래이동", "플레이어/해비아래이동.bmp", 2240, 805, 7, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비이동하며점프", "플레이어/해비이동하며점프.bmp", 1600, 805, 5, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비이동", "플레이어/해비이동.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비이동업샷", "플레이어/해비이동업샷.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비가만업샷", "플레이어/해비가만업샷.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비고정용", "플레이어/해비고정용.bmp", 1280, 804, 4, 2, true, RGB(255, 0, 255));
+
+	_loading->loadFrameImage("해비가만아래점프공격", "플레이어/해비가만아래점프공격.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비점프중아래보고가만", "플레이어/해비점프중아래보고가만.bmp", 1920, 402, 6, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("해비앉아서수류탄", "플레이어/해비앉아서수류탄.bmp", 1920, 805, 6, 2, true, RGB(255, 0, 255));
+
+	_loading->loadImage("낙하산", "플레이어/낙하산.bmp", 320, 403, true, RGB(255, 0, 255));
+
+#pragma endregion
+
 }
 
 void LoadingScene::LoadingSound()

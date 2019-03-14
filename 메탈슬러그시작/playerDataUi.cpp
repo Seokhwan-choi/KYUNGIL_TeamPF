@@ -18,18 +18,18 @@ playerDataUi::playerDataUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot p
 		_saveRc[i] = RectMake(68+_center.x *i , 888, _center.x,_center.y);
 		_isShow[i] = false;
 	}
-	_bombarmsImg = IMAGEMANAGER->addImage("bombarms", "UI/PlayerStateRegardingPicture/armsbomb.bmp", 261, 72, true, RGB(255, 0, 255));
-	_guageImg = IMAGEMANAGER->addImage("guagebar", "UI/PlayerStateRegardingPicture/guageBar.bmp", 222, 35, true, RGB(255, 0, 255));
-	_1upImg = IMAGEMANAGER->addImage("1up", "UI/PlayerStateRegardingPicture/1up=.bmp", 123, 36, true, RGB(255, 0, 255));
-	_infiniteImg = IMAGEMANAGER->addImage("infinite", "UI/infinite.bmp", 80, 30, true, RGB(255, 0, 255));
+	_bombarmsImg = IMAGEMANAGER->findImage("bombarms");
+	_guageImg = IMAGEMANAGER->findImage("guagebar");
+	_1upImg = IMAGEMANAGER->findImage("1up");
+	_infiniteImg = IMAGEMANAGER->findImage("infinite");
 
-	_lifeImg = IMAGEMANAGER->addFrameImage("lifescore", "UI/playerlife.bmp", 380, 36, 10, 1, true, RGB(255, 0, 255));
-	_scoreImg = IMAGEMANAGER->addFrameImage("score", "UI/PlayerStateRegardingPicture/점수 숫자.bmp", 340, 34, 10, 1, true, RGB(255, 0, 255));
-	_bombImg = IMAGEMANAGER->addFrameImage("bombscore", "UI/playerlife.bmp", 380, 30, 10, 1, true, RGB(255, 0, 255));
-	_armsImg = IMAGEMANAGER->addFrameImage("armsImg", "UI/playerlife.bmp", 380, 30, 10, 1, true, RGB(255, 0, 255));
+	_lifeImg = IMAGEMANAGER->findImage("lifescore");
+	_scoreImg = IMAGEMANAGER->findImage("score");
+	_bombImg = IMAGEMANAGER->findImage("bombscore");
+	_armsImg = IMAGEMANAGER->findImage("armsImg");
 
-	IMAGEMANAGER->addImage("보스체력바", "UI/bossbar.bmp", 201,19);
-	IMAGEMANAGER->addImage("만세", "UI/save.bmp", 30, 30, true, RGB(255, 0, 255));
+	IMAGEMANAGER->findImage("보스체력바");
+	IMAGEMANAGER->findImage("만세");
 
 	//불변수 초기화
 	_isMeet = false;	//만나지 않았다
