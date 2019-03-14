@@ -65,7 +65,7 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->AddScene("지하스테이지", new BaseMent);
 	SCENEMANAGER->AddScene("보스스테이지", new BossStage);
 	
-	SCENEMANAGER->ChangeScene("보스스테이지");
+	SCENEMANAGER->ChangeScene("지하스테이지");
 
 	//첫 시작화면
 	//SCENEMANAGER->ChangeScene("지하스테이지");

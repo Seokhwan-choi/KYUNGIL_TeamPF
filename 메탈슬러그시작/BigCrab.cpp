@@ -73,6 +73,8 @@ HRESULT BigCrab::Init()
 	_bigCrabImg[1] = IMAGEMANAGER->addFrameImage("bigcrab2", "Enemy/붉은게이동.bmp", 5992, 850, 12, 2, true, RGB(255, 0, 255));
 	_bigCrabImg[2] = IMAGEMANAGER->addFrameImage("bigcrab3", "Enemy/붉은게공격.bmp", 3000, 850, 6, 2, true, RGB(255, 0, 255));
 	_bigCrabImg[3] = IMAGEMANAGER->addFrameImage("bigcrab4", "Enemy/붉은게거품공격.bmp", 4500, 850, 9, 2, true, RGB(255, 0, 255));
+	_bigCrabImg[4] = IMAGEMANAGER->addFrameImage("bigcrab5", "Enemy/붉은게죽음.bmp", 6000, 850, 12, 2, true, RGB(255, 0, 255));
+	_bigCrabImg[5] = IMAGEMANAGER->addFrameImage("bigcrab6", "Enemy/붉은게사라짐.bmp", 11500, 850, 23, 2, true, RGB(255, 0, 255));
 	
 	
 	for (int i = 0; i < 2; i++)
@@ -80,15 +82,20 @@ HRESULT BigCrab::Init()
 		_imgCount[i] = 0;
 	}
 	_hp = 20;
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		index[i] = 0;
 		countImg[i] = 1;
 	}
 	_gauge = 1;
-
+	index[8] = 11;
+	countImg[8] = 1;
+	index[9] = 22;
+	countImg[9] = 1;
 	_probeY = _position.y + (_size.y / 2);
 	_pixelImage = IMAGEMANAGER->findImage("배경픽셀");
+
+	_deathTimer = 1;
 
 	return S_OK;
 }
@@ -100,7 +107,8 @@ void BigCrab::Release()
 void BigCrab::Update()
 {
 	this->rectmove();
-
+	_bubble->move1();
+	_bubble->render();
 	_position.y += 5.f;
 
 	//픽셀충돌 변수
@@ -125,13 +133,22 @@ void BigCrab::Update()
 	//거리 체크
 	_dist = GetDistance(_position.x, _position.y, player->GetPosition().x, player->GetPosition().y);
 	//이동 테스트
-	if (KEYMANAGER->isStayKeyDown('I')) {
+	if (KEYMANAGER->isStayKeyDown('I')) 
+	{
 		_position.x -= 5.f;
 	}
-	if (KEYMANAGER->isStayKeyDown('P')) {
+	if (KEYMANAGER->isStayKeyDown('P')) 
+	{
 		_position.x += 5.f;
 	}
-	
+	if (KEYMANAGER->isStayKeyDown('O'))
+	{
+		_position.y -= 5.f;
+	}
+	if (KEYMANAGER->isToggleKey('Q'))
+	{
+		_state = state::DEATH;
+	}
 	this->Attcol();
 	this->Crabpattern();
 
@@ -144,8 +161,7 @@ void BigCrab::Update()
 			index[0] = 0;
 		}
 	}
-	_bubble->move1();
-	_bubble->render();
+	
 }
 
 void BigCrab::Render()
@@ -158,37 +174,63 @@ void BigCrab::Render()
 	//큰게 렉트 그리기
 	Rectangle(getMemDC(), CAMERA->Relative(_rc));
 	//큰게 이미지 그리기
-	if (_state == state::L_IDLE && !(_state == state::L_MOVE) && !(_state == state::L_ATTACK))
+	if (_state == state::L_IDLE && !(_state == state::L_MOVE) && !(_state == state::L_ATTACK) && !(_state == state::DEATH))
 	{
 		_bigCrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[0] , 0);
 	}
-	if (_state == state::R_IDLE && !(_state == state::R_MOVE) && !(_state == state::R_ATTACK))
+	if (_state == state::R_IDLE && !(_state == state::R_MOVE) && !(_state == state::R_ATTACK) && !(_state == state::DEATH))
 	{
 		_bigCrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[0], 1);
 	}
-	if (_state == state::L_MOVE && !(_state == state::L_ATTACK))
+	if (_state == state::L_MOVE && !(_state == state::L_ATTACK) && !(_state == state::DEATH))
 	{
 		_bigCrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[1], 0);
 	}
-	if (_state == state::R_MOVE && !(_state == state::R_ATTACK))
+	if (_state == state::R_MOVE && !(_state == state::R_ATTACK) && !(_state == state::DEATH))
 	{
 		_bigCrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[1], 1);
 	}
-	if (_state == state::L_ATTACK && !(_state == state::L_BUBBLE_SHOOT_MOVE))
+	if (_state == state::L_ATTACK && !(_state == state::L_BUBBLE_SHOOT_MOVE) && !(_state == state::DEATH))
 	{
 		_bigCrabImg[2]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[2], 0);
 	}
-	if (_state == state::R_ATTACK && !(_state == state::R_BUBBLE_SHOOT_MOVE))
+	if (_state == state::R_ATTACK && !(_state == state::R_BUBBLE_SHOOT_MOVE) && !(_state == state::DEATH))
 	{
 		_bigCrabImg[2]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[3], 1);
 	}
-	if (_state == state::L_BUBBLE_SHOOT_MOVE)
+	if (_state == state::L_BUBBLE_SHOOT_MOVE && !(_state == state::DEATH))
 	{
 		_bigCrabImg[3]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[4], 0);
 	}
-	if (_state == state::R_BUBBLE_SHOOT_MOVE)
+	if (_state == state::R_BUBBLE_SHOOT_MOVE && !(_state == state::DEATH))
 	{
 		_bigCrabImg[3]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[5], 1);
+	}
+	if (_state == state::DEATH)
+	{
+		if (_angle <= PI + PI / 2 && _angle > PI / 2)
+		{
+			if (index[6] < 11)
+			{
+				_bigCrabImg[4]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[6], 0);
+			}
+			if (index[6] == 11)
+			{
+				_bigCrabImg[5]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[7], 0);
+			}
+		}
+		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
+		{
+			if (index[8] > 0)
+			{
+				_bigCrabImg[4]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[8], 1);
+			}
+			if (index[8] == 0)
+			{
+				_bigCrabImg[5]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[9], 1);
+			}
+		}
+		
 	}
 	
 
@@ -289,10 +331,10 @@ void BigCrab::rectmove()
 
 void BigCrab::Crabpattern()
 {
-	if (!_cam[0].isCrush && !_cam[1].isCrush && !_cam[2].isCrush && !_cam[3].isCrush)
-	{
-		_state = state::L_IDLE;
-	}
+	//if (!_cam[0].isCrush && !_cam[1].isCrush && !_cam[2].isCrush && !_cam[3].isCrush)
+	//{
+	//	_state = state::L_IDLE;
+	//}
 	if (_cam[0].isCrush == true && _isStop == false)
 	{
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
@@ -515,5 +557,76 @@ void BigCrab::Crabpattern()
 	if (index[4] == 8)
 	{
 		index[4] = 0;
+	}
+	if (_state == state::DEATH)
+	{
+		//충돌 렉트 없애기
+		for (int i = 0; i < 4; i++)
+		{
+			_col[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+		}
+		//공격 렉트 없애기
+		for (int i = 0; i < 2; i++)
+		{
+			_att[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+		}
+
+		countImg[6]++;
+		if (countImg[6] % 10 == 0)
+		{
+			index[6]++;
+			if (index[6] > 11)
+			{
+				index[6] = 11;
+			}
+
+		}
+		if (index[6] == 11)
+		{
+			countImg[7]++;
+			if (countImg[7] % 10 == 0)
+			{
+				index[7]++;
+				if (index[7] > 22)
+				{
+					index[7] = 22;
+				}
+			}
+		}
+
+		countImg[8]++;
+		if (countImg[8] % 10 == 0)
+		{
+			index[8]--;
+			if (index[8] < 0)
+			{
+				index[8] = 0;
+			}
+
+		}
+		if (index[8] == 0)
+		{
+			countImg[9]++;
+			if (countImg[9] % 10 == 0)
+			{
+				index[9]--;
+				if (index[9] < 0)
+				{
+					index[9] = 0;
+				}
+			}
+		}
+
+		_deathTimer++;
+		if (_deathTimer % 150 == 0)
+		{
+			_rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+
+		}
+		if (_bubble->getVBubble()[5].isFire == false)
+		{
+			OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "bigCrab"));
+		}
+
 	}
 }

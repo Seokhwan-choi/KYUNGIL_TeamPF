@@ -21,6 +21,7 @@ private:
 	float _dist;
 	bool _isStop;
 	int bubbleMax;
+	int _deathTimer;
 	//거품공격
 	bool _isAttack;
 	bool _isBubbleShoot;
@@ -31,9 +32,9 @@ private:
 	//이미지랑 맞추기 위한 카운트 
 	int _imgCount[2];
 	//이미지
-	image* _bigCrabImg[4];
-	int index[6];
-	int countImg[6];
+	image* _bigCrabImg[6];
+	int index[10];
+	int countImg[10];
 	int _hp;
 	int _gauge;
 	int _probeY;
