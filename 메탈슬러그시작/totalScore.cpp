@@ -19,12 +19,12 @@ totalScore::totalScore(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot
 	_xRc = RectMake(409, 380, 24, 24);
 	//이름 렉트
 	_nameRc = RectMake(110, 616, 442, 228);
-	IMAGEMANAGER->addImage("점수틀", "UI/점수틀.bmp", 555, 656, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("모두의이름", "UI/모두의 이름.bmp", 490, 228, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("포로오른쪽", "UI/item/captive_sirR.bmp", 2916, 150,14,1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("x", "UI/x.bmp", 24, 24, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("만", "UI/10000.bmp", 161, 35, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("구한포로수", "UI/playerlife.bmp",660,60,10,1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->findImage("점수틀");
+	IMAGEMANAGER->findImage("모두의이름");
+	IMAGEMANAGER->findImage("포로오른쪽");
+	IMAGEMANAGER->findImage("x");
+	IMAGEMANAGER->findImage("만");
+	IMAGEMANAGER->findImage("구한포로수");
 	
 
 	//프레임 이미지 관련 변수 초기화

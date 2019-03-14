@@ -36,7 +36,7 @@ public:
 	//점수
 	void setScore(int score) { _score = score; }
 	int getScore() { return _score; }
-	
+
 	//구한포로수
 	void setCaptive(int captive) { _saveCaptive = captive; }
 	int getCaptive() { return _saveCaptive; }
@@ -45,6 +45,11 @@ public:
 	enum WEAPON getWeapon() { return _weapon; }
 	void setWeapon(WEAPON weapon) { _weapon = weapon; }
 
+	//세이브 포인터
+	POINTFLOAT getCheckPt() { return _savePt; }
+	void setCheckPt(POINTFLOAT pt) { _savePt = pt; }
+
+	void CheckPoint();
 };
 
 

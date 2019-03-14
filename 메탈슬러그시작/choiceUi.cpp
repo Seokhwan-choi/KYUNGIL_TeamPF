@@ -76,32 +76,32 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	// 이미지 관련 변수 초기화
 	//========================================================
 	_index = 0;
-	_background = IMAGEMANAGER->addImage("choiceimage", "UI/choiceScene/character_main.bmp", 1280, 960, true, RGB(255,0,255));
-	_timeImage = IMAGEMANAGER->addFrameImage("timenumber", "UI/choiceScene/scoreNumber.bmp", 500, 48, 10, 1, true, RGB(0, 248, 0));
-	_doorImage = IMAGEMANAGER->addImage("door", "UI/choiceScene/door.bmp", 271, 535, true, RGB(255, 0, 255));
+	_background = IMAGEMANAGER->findImage("choiceimage");
+	_timeImage = IMAGEMANAGER->findImage("timenumber");
+	_doorImage = IMAGEMANAGER->findImage("door");
 	
 	//캐릭터 선택 되지 않았을 시  나오는 이미지 선언
-	_characterImage[0] = IMAGEMANAGER->addImage("characterblack1", "UI/choiceScene/marco_black.bmp", 271, 535);
-	_characterImage[1] = IMAGEMANAGER->addImage("characterblack2", "UI/choiceScene/eri_black.bmp", 271, 535);
-	_characterImage[2] = IMAGEMANAGER->addImage("characterblack3", "UI/choiceScene/tarma_black.bmp", 271, 535);
-	_characterImage[3] = IMAGEMANAGER->addImage("characterblack4", "UI/choiceScene/pio_black.bmp", 271, 535);
+	_characterImage[0] = IMAGEMANAGER->findImage("characterblack1");
+	_characterImage[1] = IMAGEMANAGER->findImage("characterblack2");
+	_characterImage[2] = IMAGEMANAGER->findImage("characterblack3");
+	_characterImage[3] = IMAGEMANAGER->findImage("characterblack4");
 
 	//버튼으로 캐릭터 선택창 이미지 바뀌는것 선언
-	_colorchaImage[0] = IMAGEMANAGER->addImage("charactercolor1", "UI/choiceScene/marco_color.bmp", 271, 535);
-	_colorchaImage[1] = IMAGEMANAGER->addImage("charactercolor2", "UI/choiceScene/eri_color.bmp", 271, 535);
-	_colorchaImage[2] = IMAGEMANAGER->addImage("charactercolor3", "UI/choiceScene/tarma_color.bmp", 271, 535);
-	_colorchaImage[3] = IMAGEMANAGER->addImage("charactercolor4", "UI/choiceScene/pio_color.bmp", 271, 535);
+	_colorchaImage[0] = IMAGEMANAGER->findImage("charactercolor1");
+	_colorchaImage[1] = IMAGEMANAGER->findImage("charactercolor2");
+	_colorchaImage[2] = IMAGEMANAGER->findImage("charactercolor3");
+	_colorchaImage[3] = IMAGEMANAGER->findImage("charactercolor4");
 
 	//선택된 캐릭터 이미지 선언해주기 - 테스트
-	_choicechaImage[0] = IMAGEMANAGER->addImage("characterchoice1", "UI/choiceScene/marco_choice.bmp", 271, 514);
-	_choicechaImage[1] = IMAGEMANAGER->addImage("characterchoice2", "UI/choiceScene/eri_choice.bmp", 271, 514);
-	_choicechaImage[2] = IMAGEMANAGER->addImage("characterchoice3", "UI/choiceScene/tarma_choice.bmp", 271, 514);
-	_choicechaImage[3] = IMAGEMANAGER->addImage("characterchoice4", "UI/choiceScene/pio_choice.bmp", 271, 514);
+	_choicechaImage[0] = IMAGEMANAGER->findImage("characterchoice1");
+	_choicechaImage[1] = IMAGEMANAGER->findImage("characterchoice2");
+	_choicechaImage[2] = IMAGEMANAGER->findImage("characterchoice3");
+	_choicechaImage[3] = IMAGEMANAGER->findImage("characterchoice4");
 
 	//p1노란색 빨간색
-	_yellow = IMAGEMANAGER->addFrameImage("yellowred", "UI/choiceScene/yellow_p2.bmp", 244, 77, 2,1, true, RGB(255,0,255));
+	_yellow = IMAGEMANAGER->findImage("yellowred");
 	//캐릭터 선택 후 문이 내려오면서 캐릭터 움직임 보여줄 이미지
-	_downDoorImage = IMAGEMANAGER->addFrameImage("downcharacter", "UI/choiceScene/down_tarma.bmp", 1084, 535, 4, 1, true, RGB(255, 0, 255));
+	_downDoorImage = IMAGEMANAGER->findImage("downcharacter");
 }	
 
 choiceUi::~choiceUi()

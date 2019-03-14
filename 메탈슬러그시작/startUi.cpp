@@ -17,7 +17,7 @@ startUi::startUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	//========================================================
 	// 오프닝씬 이미지 초기화( size : 1280x960 )
 	//========================================================
-	_startBgImage = IMAGEMANAGER->addFrameImage("startScene", "UI/startScene/MetalSlugMainSceneImg.bmp", 2560, 960, 2, 1);
+	_startBgImage = IMAGEMANAGER->findImage("startScene");
 	
 	//========================================================
 	// 프레임 선택 순서 초기화( size : 1280x960 )

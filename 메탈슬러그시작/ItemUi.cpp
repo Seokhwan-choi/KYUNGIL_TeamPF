@@ -38,15 +38,15 @@ ItemUi::ItemUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM i
 	_gravity = 3.3f;
 	//_gravity = 0.0f;
 	//플레이어와 닿기 전
-	IMAGEMANAGER->addFrameImage("cap_granade", "UI/item/item_1.bmp", 7, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("heavy", "UI/item/item_2.bmp", 50, 50, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("granade", "UI/item/item_3.bmp", 50, 50, true, RGB(255, 0, 255));
+	IMAGEMANAGER->findImage("cap_granade");
+	IMAGEMANAGER->findImage("heavy");
+	IMAGEMANAGER->findImage("granade");
 
 	//플레이어와 닿은 후 사라지도록 만들어야함
-	IMAGEMANAGER->addFrameImage("heavy_dis", "UI/item/item_4.bmp", 100, 20, 4, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("fish", "UI/item/item_5.bmp", 540, 60, 6, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("chicken", "UI/item/item_6.bmp", 341, 32, 11, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("fuit", "UI/item/item_7.bmp", 389, 38, 12, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->findImage("heavy_dis");
+	IMAGEMANAGER->findImage("fish");
+	IMAGEMANAGER->findImage("chicken");
+	IMAGEMANAGER->findImage("fuit");
 }
 
 ItemUi::~ItemUi()
