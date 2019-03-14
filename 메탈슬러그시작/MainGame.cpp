@@ -3,11 +3,6 @@
 #include "Scene.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "startScene.h"
-#include "choiceScene.h"
-#include "BaseMent.h"
-#include "BossStage.h"
-#include "LoadingScene.h"
 //==========================================================================//
 //						## √ ±‚»≠ ## init(void)								//
 //==========================================================================//

@@ -32,7 +32,7 @@ void LoadingScene::Update(void)
 	_loading->update();
 	if (_loading->loadingDone())
 	{
-		SCENEMANAGER->ChangeScene("시작화면");
+		SCENEMANAGER->ChangeScene("지하스테이지");
 	}
 }
 
@@ -47,10 +47,12 @@ void LoadingScene::LoadingImage()
 	// ===============================================================================================
 	// ################# 지상 스테이지 이미지 ###########################################################
 	// ===============================================================================================
-
-
-
-
+	_loading->loadFrameImage("배경출렁", "Background/배경출렁2.bmp", 19568, 278, 8, 1);
+	_loading->loadFrameImage("맵장벽", "Background/맵장벽.bmp", 5400, 960, 6, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("통", "Background/통나옴.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
+	_loading->loadImage("배경", "Background/배경.bmp", 14070, 1150, true, RGB(255, 0, 255));
+	_loading->loadImage("배경의배경", "Background/배경의배경.bmp", 9562, 1200, true, RGB(255, 0, 255));
+	_loading->loadImage("배경픽셀", "Background/배경픽셀.bmp", 14070, 1150, true, RGB(255, 0, 255));
 	// ===============================================================================================
 	// ###############################################################################################
 	// ===============================================================================================
@@ -232,6 +234,70 @@ void LoadingScene::LoadingImage()
 
 	//=============================================================
 	//	## UI end##
+	//=============================================================
+
+	//=============================================================
+	//	## Monster start##
+	//=============================================================
+
+	//=============================================================
+	//	##잠자리##
+	//=============================================================
+	_loading->loadFrameImage("flybug", "Enemy/잠자리기본.bmp", 8400, 400, 24, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("flybug1", "Enemy/잠자리덮치기.bmp", 9450, 400, 27, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("flybug2", "Enemy/잠자리죽음.bmp", 10500, 200, 30, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("flybug3", "Enemy/잠자리날개파편.bmp", 1560, 120, 13, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("flybug4", "Enemy/잠자리날개파편2.bmp", 1560, 120, 13, 1, true, RGB(255, 0, 255));
+
+	//=============================================================
+	//	##물고기##
+	//=============================================================
+	_loading->loadFrameImage("fish", "Enemy/물고기-1.bmp", 1200, 60, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("fish1", "Enemy/물고기-2.bmp", 2400, 60, 24, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("fish2", "Enemy/물고기-3.bmp", 1300, 60, 13, 1, true, RGB(255, 0, 255));
+	//=============================================================
+	//	##근접게##
+	//=============================================================
+	_loading->loadFrameImage("crab", "Enemy/몬스터(게)-2.bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("crab1", "Enemy/몬스터(게)-2(오른쪽).bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("crab2", "Enemy/몬스터(게)-3.bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("crab3", "Enemy/몬스터(게)-3(오른쪽).bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("crab4", "Enemy/몬스터(게)-6.bmp", 3300, 194, 22, 1, true, RGB(250, 2, 250));
+	_loading->loadFrameImage("crab5", "Enemy/몬스터(게)-6(오른쪽).bmp", 3300, 194, 22, 1, true, RGB(255, 0, 255));
+	//=============================================================
+	//	##거품게##
+	//=============================================================
+	_loading->loadFrameImage("bubblecrab", "Enemy/몬스터(게)-2.bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("bubblecrab2", "Enemy/몬스터(게)-2(오른쪽).bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("bubblecrab3", "Enemy/몬스터(게)-3.bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("bubblecrab4", "Enemy/몬스터(게)-3(오른쪽).bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("bubblecrab5", "Enemy/몬스터(게)-6.bmp", 3300, 194, 22, 1, true, RGB(250, 2, 250));
+	_loading->loadFrameImage("bubblecrab6", "Enemy/몬스터(게)-6(오른쪽).bmp", 3300, 194, 22, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("bubblecrab7", "Enemy/몬스터(게)-4.bmp", 1808, 150, 13, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("bubblecrab8", "Enemy/몬스터(게)-4(오른쪽).bmp", 1808, 150, 13, 1, true, RGB(255, 0, 255));
+	//=============================================================
+	//	##큰게##
+	//=============================================================
+	_loading->loadFrameImage("bigcrab", "Enemy/붉은게기본.bmp", 3500, 850, 7, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("bigcrab2", "Enemy/붉은게이동.bmp", 5992, 850, 12, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("bigcrab3", "Enemy/붉은게공격.bmp", 3000, 850, 6, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("bigcrab4", "Enemy/붉은게거품공격.bmp", 4500, 850, 9, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("bigcrab5", "Enemy/붉은게죽음.bmp", 6000, 850, 12, 2, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("bigcrab6", "Enemy/붉은게사라짐.bmp", 11500, 850, 23, 2, true, RGB(255, 0, 255));
+	//=============================================================
+	//	##보스##
+	//=============================================================
+	_loading->loadFrameImage("boss", "Enemy/보스기본.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("boss1", "Enemy/보스불주먹.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("boss2", "Enemy/보스변신.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("boss3", "Enemy/보스변신후기본.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("boss4", "Enemy/보스변신후불주먹.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("boss5", "Enemy/보스죽어욧.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("boss6", "Enemy/보스터져욧.bmp", 15840, 1060, 24, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("deathwater", "Enemy/물보라.bmp", 2600, 400, 26, 1, true, RGB(255, 0, 255));
+
+	//=============================================================
+	//	## Monster end##
 	//=============================================================
 #pragma endregion
 }

@@ -77,11 +77,11 @@ void Bubble::Render()
 		if (!_vBubble[i].isFire) continue;
 		if (_vBubble[i].ImageChange == false)
 		{
-			_vBubble[i].bubbleImage[0]->frameRender(getMemDC(), _vBubble[i].rc.left + 30 - CAMERA->GetCamera().left, _vBubble[i].rc.top - CAMERA->GetCamera().top, _vBubble[i].index[0], 1);
+			_vBubble[i].bubbleImage[0]->frameRender(getMemDC(), _vBubble[i].rc.left + 30 - CAMERA->GetCamera().left - 300, _vBubble[i].rc.top - CAMERA->GetCamera().top, _vBubble[i].index[0], 1);
 		}
 		if (_vBubble[i].ImageChange == true)
 		{
-			_vBubble[i].bubbleImage[1]->frameRender(getMemDC(), _vBubble[i].rc.left + 30 - CAMERA->GetCamera().left, _vBubble[i].rc.top - CAMERA->GetCamera().top, _vBubble[i].index[1], 1);
+			_vBubble[i].bubbleImage[1]->frameRender(getMemDC(), _vBubble[i].rc.left + 30 - CAMERA->GetCamera().left - 300, _vBubble[i].rc.top - CAMERA->GetCamera().top, _vBubble[i].index[1], 1);
 		}
 	}
 }
@@ -91,7 +91,7 @@ void Bubble::Render2()
 	for (int i = 0; i < _vBubble.size(); i++)
 	{
 		if (!_vBubble[i].isFire) continue;
-		_vBubble[i].bubbleImage[0]->frameRender(getMemDC(), _vBubble[i].rc.left + 30 - CAMERA->GetCamera().left, _vBubble[i].rc.top - CAMERA->GetCamera().top, _vBubble[i].index[0], 1);
+		_vBubble[i].bubbleImage[0]->frameRender(getMemDC(), _vBubble[i].rc.left + 30 - CAMERA->GetCamera().left - 300, _vBubble[i].rc.top - CAMERA->GetCamera().top, _vBubble[i].index[0], 1);
 		
 	}
 }

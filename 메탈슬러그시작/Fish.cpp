@@ -40,9 +40,9 @@ HRESULT Fish::Init()
 	count_death = 1;
 	boxhp = 10;
 	//이미지 초기화
-	fishImg[0] = IMAGEMANAGER->addFrameImage("fish", "Enemy/물고기-1.bmp", 1200, 60, 12, 1, true, RGB(255, 0, 255));
-	fishImg[1] = IMAGEMANAGER->addFrameImage("fish1", "Enemy/물고기-2.bmp", 2400, 60, 24, 1, true, RGB(255, 0, 255));
-	fishImg[2] = IMAGEMANAGER->addFrameImage("fish2", "Enemy/물고기-3.bmp", 1300, 60, 13, 1, true, RGB(255, 0, 255));
+	fishImg[0] = IMAGEMANAGER->findImage("fish");
+	fishImg[1] = IMAGEMANAGER->findImage("fish1");
+	fishImg[2] = IMAGEMANAGER->findImage("fish2");
 	
 	return S_OK;
 }
@@ -283,16 +283,16 @@ void Fish::Render()
 		if (fish_rc[i]._fish_state == state::L_MOVE && fish_rc[i].isFish == true && fish_rc[i].Imgchange == false && !(fish_rc[i]._fish_state == state::L_DEATH))
 		{
 			Rectangle(getMemDC(), fish_rc[i].Fish_Rc);
-			fishImg[0]->frameRender(getMemDC(), fish_rc[i].Fish_Rc.left - 5 - CAMERA->GetCamera().left, fish_rc[i].Fish_Rc.top - 5 - CAMERA->GetCamera().top,fish_rc[i].Imgindex[0],1);
+			fishImg[0]->frameRender(getMemDC(), fish_rc[i].Fish_Rc.left - 5 - CAMERA->GetCamera().left - 300, fish_rc[i].Fish_Rc.top - 5 - CAMERA->GetCamera().top,fish_rc[i].Imgindex[0],1);
 		}
 		if (fish_rc[i]._fish_state == state::L_MOVE && fish_rc[i].isFish == true && fish_rc[i].Imgchange == true && !(fish_rc[i]._fish_state == state::L_DEATH))
 		{
 			Rectangle(getMemDC(), fish_rc[i].Fish_Rc);
-			fishImg[1]->frameRender(getMemDC(), fish_rc[i].Fish_Rc.left - 8 - CAMERA->GetCamera().left, fish_rc[i].Fish_Rc.top - 8 - CAMERA->GetCamera().top, fish_rc[i].Imgindex[1], 1);
+			fishImg[1]->frameRender(getMemDC(), fish_rc[i].Fish_Rc.left - 8 - CAMERA->GetCamera().left - 300, fish_rc[i].Fish_Rc.top - 8 - CAMERA->GetCamera().top, fish_rc[i].Imgindex[1], 1);
 		}
 		if (fish_rc[i]._fish_state == state::L_DEATH && fish_rc[i].fish_death <= 40)
 		{
-			fishImg[2]->frameRender(getMemDC(), fish_rc[i].Fish_Rc.left - 5 - CAMERA->GetCamera().left, fish_rc[i].Fish_Rc.top - 5 - CAMERA->GetCamera().top, fish_rc[i].Imgindex[2], 1);
+			fishImg[2]->frameRender(getMemDC(), fish_rc[i].Fish_Rc.left - 5 - CAMERA->GetCamera().left - 300, fish_rc[i].Fish_Rc.top - 5 - CAMERA->GetCamera().top, fish_rc[i].Imgindex[2], 1);
 		}
 	}
 }

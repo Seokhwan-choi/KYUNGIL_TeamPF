@@ -37,9 +37,7 @@ private:
 	float _dist;
 	//체력
 	int _hp;
-	////마우스 좌표 텍스트
-	//char msg1[128];
-	//POINT _pt;
+
 	//플레이어 클래스
 	class Player* _player;
 public:

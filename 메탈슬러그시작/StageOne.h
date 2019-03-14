@@ -5,7 +5,8 @@ class StageOne : public SceneMaker
 private:
 
 	class Player* _player;
-	class BubbleCrab* _crab;
+	class Crab* _crab[9];
+	class BubbleCrab* _bubbleCrab[3];
 	class Fish* _fish;
 	class BigCrab* _bigCrab;
 
@@ -30,6 +31,9 @@ private:
 
 	bool _crush;				// 박았냐?
 	RECT _wallRect;				// 막을꺼임
+
+	int _crabCount;				//작은게 수
+	int _bubbleCount;			//거품게 수
 
 	//RECT _test;					// 
 

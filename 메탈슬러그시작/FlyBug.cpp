@@ -43,12 +43,12 @@ HRESULT FlyBug::Init()
 	_col.pt = { _position.x, _position.y };
 	_col.rc = RectMakeCenter(_col.pt.x + _size.y / 2, _col.pt.y, _size.x, _size.y / 2);
 	//잠자리 이미지 초기화
-	_flyBugImg[0] = IMAGEMANAGER->addFrameImage("flybug", "Enemy/잠자리기본.bmp", 8400, 400, 24, 2, true, RGB(255, 0, 255));
-	_flyBugImg[1] = IMAGEMANAGER->addFrameImage("flybug1", "Enemy/잠자리덮치기.bmp", 9450, 400, 27, 2, true, RGB(255, 0, 255));
-	_flyBugImg[2] = IMAGEMANAGER->addFrameImage("flybug2", "Enemy/잠자리죽음.bmp", 10500, 200, 30, 1, true, RGB(255, 0, 255));
-	_flyBugImg[3] = IMAGEMANAGER->addFrameImage("flybug3", "Enemy/잠자리날개파편.bmp", 1560, 120, 13, 1, true, RGB(255, 0, 255));
-	_flyBugImg[4] = IMAGEMANAGER->addFrameImage("flybug4", "Enemy/잠자리날개파편2.bmp", 1560, 120, 13, 1, true, RGB(255, 0, 255));
-	
+	_flyBugImg[0] = IMAGEMANAGER->findImage("flybug");
+	_flyBugImg[1] = IMAGEMANAGER->findImage("flybug1");
+	_flyBugImg[2] = IMAGEMANAGER->findImage("flybug2");
+	_flyBugImg[3] = IMAGEMANAGER->findImage("flybug3");
+	_flyBugImg[4] = IMAGEMANAGER->findImage("flybug4");
+
 	for (int i = 0; i < 5; i++)
 	{
 		_index[i] = 0;
@@ -330,21 +330,20 @@ void FlyBug::Render()
 	Rectangle(getMemDC(), CAMERA->Relative(_rc));
 	if (((_state == state::IDLE && _angle > PI / 180 * 270) || _state == state::L_MOVE) && !(_state == state::ATTACK) && !(_state == state::DEATH))
 	{
-		_flyBugImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top, _index[0], 0);
+		_flyBugImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, _index[0], 0);
 	}
 	if (((_state == state::IDLE && _angle < PI / 180 * 270) || _state == state::R_MOVE) && !(_state == state::ATTACK))
 	{
-		_flyBugImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top, _index[0], 1);
+		_flyBugImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, _index[0], 1);
 	}
 	if (_state == state::ATTACK && _angle > PI / 180 * 270)
 	{
-		_flyBugImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top, _index[1], 0);
+		_flyBugImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, _index[1], 0);
 	}
 	if (_state == state::ATTACK && _angle < PI / 180 * 270)
 	{
-		_flyBugImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top, _index[1], 1);
+		_flyBugImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, _index[1], 1);
 	}
-	
 
 	//충돌렉트 그리기
 	Rectangle(getMemDC(), CAMERA->Relative(_col.rc));
@@ -354,13 +353,9 @@ void FlyBug::Render()
 		Rectangle(getMemDC(), CAMERA->Relative(_part[i].rc));
 		if (_state == state::DEATH)
 		{
-			//_flyBugImg[2]->frameRender(getMemDC(),_part[1].rc.left - CAMERA->GetCamera().left, _part[1].rc.top - CAMERA->GetCamera().top, _index[2], 0);
-			_flyBugImg[2]->alphaFrameRender(getMemDC(), _part[1].rc.left - CAMERA->GetCamera().left, _part[1].rc.top - CAMERA->GetCamera().top, _index[2], 0, _alpha[1]);
-			_flyBugImg[3]->alphaFrameRender(getMemDC(), _part[2].rc.left + 80 - CAMERA->GetCamera().left, _part[2].rc.top + 20 - CAMERA->GetCamera().top, _index[3], 0, _alpha[0]);
-			_flyBugImg[4]->alphaFrameRender(getMemDC(), _part[0].rc.left + 130 - CAMERA->GetCamera().left, _part[0].rc.top + 20 - CAMERA->GetCamera().top, _index[4], 0, _alpha[2]);
+			_flyBugImg[2]->alphaFrameRender(getMemDC(), _part[1].rc.left - CAMERA->GetCamera().left - 300, _part[1].rc.top - CAMERA->GetCamera().top, _index[2], 0, _alpha[1]);
+			_flyBugImg[3]->alphaFrameRender(getMemDC(), _part[2].rc.left + 80 - CAMERA->GetCamera().left - 300, _part[2].rc.top + 20 - CAMERA->GetCamera().top, _index[3], 0, _alpha[0]);
+			_flyBugImg[4]->alphaFrameRender(getMemDC(), _part[0].rc.left + 130 - CAMERA->GetCamera().left - 300, _part[0].rc.top + 20 - CAMERA->GetCamera().top, _index[4], 0, _alpha[2]);
 		}
 	}
-	//텍스트 출력
-	/*sprintf(msg1, "x : %d, y : %d", _pt.x, _pt.y);
-	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));*/
 }

@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+#include "CommonEnemyFrame.h"
+
 class BigCrab : public GameObject
 {
 private:
@@ -48,6 +50,8 @@ public:
 	RECT getCol(int i) { return _col[i].rc; }
 	//공격렉트 get
 	RECT getAtt(int i) { return _att[i].rc; }
+	//거품렉트 get
+	//RECT getbubble(int i) { return _bubble->getVBubble()[i].rc; }
 	//데미지
 	void bigCrab_damage(int damage) { _hp = damage; }
 

@@ -55,6 +55,8 @@ public:
 	RECT getCol(int i) { return _col[i].rc; }
 	//공격렉트 get
 	RECT getAtt(int i) { return _att[i].rc; }
+	//거품렉트 get
+	//RECT getbubble(int i) { return _bubble->getVBubble()[i].rc; }
 	//체력 get
 	int getHp() { return _hp; }
 	//체력 set
