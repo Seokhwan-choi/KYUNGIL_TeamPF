@@ -5,10 +5,9 @@ class StageOne : public SceneMaker
 private:
 
 	class Player* _player;
-	class Crab* _crab[9];
-	class BubbleCrab* _bubbleCrab[3];
-	class Fish* _fish;
-	class BigCrab* _bigCrab;
+	class Crab* _crab[11];
+	class BubbleCrab* _bubbleCrab[8];
+	class FlyBug* _flyBug[6];
 
 	image* _bgImage;			// 배경이미지 
 	image* _bgSea;				// 배경 출렁출렁
@@ -35,7 +34,8 @@ private:
 	RECT _wallRect;				// 막을꺼임
 
 	int _crabCount;				//작은게 수
-	int _bubbleCount;			//거품게 수
+	int _bubbleCrabCount;		//거품게 수
+	int _flyBugCount;			//잠자리 수
 
 	//RECT _test;					// 
 

@@ -147,7 +147,7 @@ public:
 	virtual void Update();
 	virtual void Render();
 
-	void SetisFire(int index, bool isfire) { _vBullet[index].isFire = isfire; }
+	void SetisFire(int index, bool isFire) { _vBullet[index].isFire = isFire; }
 
 	vector<tagBullet> getVBullet() { return _vBullet; }
 	vector<tagBullet>::iterator getViBullet() { return _viBullet; }

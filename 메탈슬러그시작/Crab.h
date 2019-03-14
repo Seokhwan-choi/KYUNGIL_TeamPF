@@ -37,7 +37,11 @@ private:
 	float _dist;
 	//체력
 	int _hp;
-
+	//픽셀 충돌
+	int _probeY;
+	image* _pixelImage;
+	int _pixelGravity;
+	RECT _pixelrc;
 	//플레이어 클래스
 	class Player* _player;
 public:

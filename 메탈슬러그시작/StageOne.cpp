@@ -10,7 +10,7 @@ HRESULT StageOne::Init(void)
 	_player = new Player("플레이어", { 500,0 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 	//작은게 수
-	_crabCount = 9;
+	_crabCount = 11;
 	//작은게 초기화
 	for (int i = 0; i < _crabCount; i++)
 	{
@@ -20,11 +20,11 @@ HRESULT StageOne::Init(void)
 		_crab[i] = new Crab(name, { 2000.f + (i * 350.f), WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
 		if (i == 4)
 		{
-			_crab[i] = new Crab(name, { 4500.f, WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
+			_crab[i] = new Crab(name, { 4500.f, WINSIZEY / 2 - 50.f}, { 100, 150 }, GameObject::Pivot::Center);
 		}
 		else if (i == 5)
 		{
-			_crab[i] = new Crab(name, { 4700.f, WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
+			_crab[i] = new Crab(name, { 4700.f, WINSIZEY / 2 - 50.f }, { 100, 150 }, GameObject::Pivot::Center);
 		}
 		else if (i == 6)
 		{
@@ -38,24 +38,84 @@ HRESULT StageOne::Init(void)
 		{
 			_crab[i] = new Crab(name, { 5600.f, WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
 		}
+		else if (i == 9)
+		{
+			_crab[i] = new Crab(name, { 10300.f, WINSIZEY / 2 + 150.f }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 10)
+		{
+			_crab[i] = new Crab(name, { 10500.f, WINSIZEY / 2 + 150.f }, { 100, 150 }, GameObject::Pivot::Center);
+		}
 
 		_crab[i]->Init();
 		OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab[i]);
 	}
 
 	//거품게 수
-	_bubbleCount = 3;
+	_bubbleCrabCount = 8;
 	//거품게 초기화
-	for (int i = 0; i < _bubbleCount; i++)
+	for (int i = 0; i < _bubbleCrabCount; i++)
 	{
 		string num = to_string(i);
 		string name = "bubbleCrab" + num;
 
 		_bubbleCrab[i] = new BubbleCrab(name, { 3400.f + (i * 100.f), WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
+
+		if (i == 3)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 7400.f + (i * 100.f), WINSIZEY / 2 - 250 }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 4)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 7600.f + (i * 100.f), WINSIZEY / 2 - 250 }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 5)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 8200.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 6)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 9000.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 7)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 9200.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+
 		_bubbleCrab[i]->Init();
 		OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab[i]);
 	}
 
+	//잠자리 수
+	_flyBugCount = 6;
+	//잠자리 초기화
+	for (int i = 0; i < _flyBugCount; i++)
+	{
+		string num = to_string(i);
+		string name = "_flyBug" + num;
+
+		_flyBug[i] = new FlyBug(name, { 1500.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
+
+		if (i == 2)
+		{
+			_flyBug[i] = new FlyBug(name, { 15500.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
+		}
+		else if (i == 3)
+		{
+			_flyBug[i] = new FlyBug(name, { 15500.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
+		}
+		else if (i == 4)
+		{
+			_flyBug[i] = new FlyBug(name, { 16000.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
+		}
+		else if (i == 5)
+		{
+			_flyBug[i] = new FlyBug(name, { 16000.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
+		}
+		_flyBug[i]->Init();
+
+		OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug[i]);
+	}
 	//_bigCrab = new BigCrab("crab", { 2060, WINSIZEY / 2 + 110 }, { 200, 280 }, GameObject::Pivot::Center);
 	//_bigCrab->Init();
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bigCrab);
@@ -268,6 +328,7 @@ void StageOne::PlayerBulletCollisionEnemy()
 					_player->playerbullet()->SetisFire(i, false);
 					break;
 				}
+
 			}
 		}
 	}
@@ -289,6 +350,7 @@ void StageOne::PlayerBulletCollisionEnemy()
 			}
 		}
 	}
+
 }
 
 void StageOne::PlayerCollisionEnemy()//플레이어 몸통과 애너미 몸통과 충돌햇을시 
@@ -333,7 +395,7 @@ void StageOne::PlayerBoomCollisionBoom()
 	RECT temp; 
 	for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
 	{
-		if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
+		if (_player->playerboom()->getVBoom()[i].isFire == false) continue;
 
 		for (int j = 0; j < _crabCount; j++)
 		{

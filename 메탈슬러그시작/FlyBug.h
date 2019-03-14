@@ -36,6 +36,10 @@ private:
 	int _index[5];
 	int _countImg[5];
 	int _alpha[3];
+	//플레이어와 거리 계산
+	int _dist;
+	//처음 생성좌표와 거리 계산
+	int _tempDist;
 public:
 	FlyBug(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~FlyBug();
