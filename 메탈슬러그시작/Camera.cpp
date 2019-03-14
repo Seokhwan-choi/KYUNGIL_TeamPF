@@ -20,16 +20,6 @@ void Camera::SetCamera(POINTFLOAT pos)
 		_cameraPos.x = _cameraPos.x + (wall - _cameraRect.left);
 	}
 
-	//wall = wall - _cameraRect.left; 
-
-	//a = _cameraPos.x - _cameraRect.left;
-
-	/*if (_cameraRect.left < 0)
-	{
-		_cameraPos.x -= _cameraRect.left;
-	}*/
-
-
 	 if (_cameraRect.bottom > 958)
 	{
 		_cameraPos.y -= (_cameraRect.bottom - 958);
@@ -66,6 +56,44 @@ void Camera::SetCamera(POINTFLOAT pos)
 	}
 
 	_cameraRect = RectMakeCenter(_cameraPos.x, _cameraPos.y, WINSIZEX, WINSIZEY);
+}
+
+void Camera::SetCamera2(POINTFLOAT pos)
+{
+	_cameraPos = pos; 
+	_cameraRect = RectMakeCenter(_cameraPos.x,_cameraPos.y,WINSIZEX,WINSIZEY);
+
+	
+
+	if (_cameraRect.left < wall)
+	{
+		_cameraPos.x = _cameraPos.x + ( wall - _cameraRect.left);
+	}
+	// 6774 x 958 
+
+	if (_cameraRect.bottom > 958)
+	{
+		_cameraPos.y -= (_cameraRect.bottom - 958); 
+	}
+	if (_cameraRect.top <= 0)
+	{
+		_cameraPos.y = _cameraPos.y + (0 - _cameraRect.top);
+	}
+
+	if (_cameraRect.right > 6474)
+	{                    //6700              //7000     
+		_cameraPos.x -= (_cameraRect.right - 6474);   
+	}
+	else 
+	{
+		if (_cameraRect.left >= wall)
+		{
+			wall = _cameraRect.left;
+		}
+	}
+
+	_cameraRect = RectMakeCenter(_cameraPos.x, _cameraPos.y, WINSIZEX, WINSIZEY); 
+
 }
 
 // 상대 좌표를 계산 해준다.

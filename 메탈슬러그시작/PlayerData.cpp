@@ -19,7 +19,7 @@ HRESULT PlayerData::Init()
 	_bomb = 10;
 	_score = 0;
 	_saveCaptive = 0;
-	_weapon = WEAPON::NORMAL;
+	_weapon = WEAPON::HEAVY;
 	
 
 

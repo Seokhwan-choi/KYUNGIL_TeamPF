@@ -10,7 +10,6 @@ struct tagBullet
 	float fireX, fireY; 
 	float speed; 
 	float angle; 
-	//float angle1; 
 	float gravity; 
 	float radius;
 	bool isFire;
@@ -30,7 +29,7 @@ private:
 	bool _isFrameImg;
 
 	float _range; //ÃÑ¾Ë°Å¸® 
-	int _bulletMax; //ÃÑ¾Ë°¹¼ö 
+
 	vector<tagBullet> _vBullet;
 	vector<tagBullet>::iterator _viBullet; 
 
@@ -48,7 +47,7 @@ public:
 	Bullet(string name);
 	~Bullet();
 
-	virtual HRESULT Init(const char * imageName, int width, int height, int bulletMax, float range,bool frameimage);
+	virtual HRESULT Init( float range);
 	//virtual HRESULT Init(const char * imageName, int width, int height, int bulletMax, float range);
 	virtual void Release();
 	virtual void Update();
@@ -119,7 +118,7 @@ private:
 	bool _isFrameImg;
 
 	float _range; //ÃÑ¾Ë°Å¸® 
-	int _bulletMax; //ÃÑ¾Ë°¹¼ö 
+	
 	vector<tagBullet> _vBullet;
 	vector<tagBullet>::iterator _viBullet;
 
@@ -137,7 +136,7 @@ public:
 	Bullet1(string name);
 	~Bullet1();
 
-	virtual HRESULT Init(const char * imageName, int width, int height, int bulletMax, float range, bool frameimage);
+	virtual HRESULT Init(float range);
 	//virtual HRESULT Init(const char * imageName, int width, int height, int bulletMax, float range);
 	virtual void Release();
 	virtual void Update();
@@ -146,4 +145,15 @@ public:
 	vector<tagBullet> getVBullet() { return _vBullet; }
 	vector<tagBullet>::iterator getViBullet() { return _viBullet; }
 };
+
+
+
+
+
+
+//###################################################
+
+
+
+
 

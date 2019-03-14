@@ -4,6 +4,8 @@ class BaseMent : public SceneMaker
 {
 
 private:
+
+	class Player* _player;  
 	image* _bgImage;			// 배경 이미지
 	image* _pixelImage;			// 배경 픽셀 이미지
 

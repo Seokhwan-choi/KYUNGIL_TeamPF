@@ -66,10 +66,15 @@ HRESULT StageOne::Init(void)
 	_index2 = 0;
 	_count2 = 0;
 
-	_index3 = 0;
+	_index3 = 0; 
 	_count3 = 0;
 
 	_crush = false;
+
+
+	//#####################################테스트용랙트 
+
+	_testRect = RectMake(13095, 260, 160, 50);
 
 	return S_OK;
 }
@@ -82,7 +87,8 @@ void StageOne::Release(void)
 void StageOne::Update(void)
 {
 	OBJECTMANAGER->Update();
-
+	CAMERA->SetCamera(_player->GetPosition());
+	
 	_count++;
 	if (_count % 10 == 0) {
 		_index++;
@@ -121,7 +127,7 @@ void StageOne::Update(void)
 		_crush = !_crush;
 	}
 
-	CAMERA->SetCamera(_player->GetPosition());
+	//CAMERA->SetCamera(_player->GetPosition());
 
 	if (_crush) {
 		RECT _temp;
@@ -130,11 +136,12 @@ void StageOne::Update(void)
 				_wallRect.left - (_player->GetSize().x / 2.0f),
 				_player->GetPosition().y });
 		}
-		CAMERA->SetCamera(_player->GetPosition());
+		//CAMERA->SetCamera(_player->GetPosition());
 	}
 	this->PlayerBulletCollisionEnemy(); //플레이어 총알과 몬스터 충돌시 
 	this->PlayerCollisionEnemy(); //플레이어 몸통과 애너미 충돌시 
 	this->PlayerBoomCollisionBoom(); //플레이어 수류탄과  애너미 충돌시 
+	this->ChangeMap(); 
 }
 
 void StageOne::Render(void)
@@ -149,6 +156,11 @@ void StageOne::Render(void)
 		_tongImage->frameRender(getMemDC(), 13000 - CAMERA->GetCamera().left - 300, -65 - CAMERA->GetCamera().top);
 	}
 	
+
+	//#################################테스트###############33
+	RECT test = CAMERA->Relative(_testRect);
+	Rectangle(getMemDC(), test);
+
 	OBJECTMANAGER->Render();
 	//RECT _WALL = CAMERA->Relative(_wallRect);
 	//Rectangle(getMemDC(), _WALL);
@@ -348,5 +360,18 @@ void StageOne::PlayerBoomCollisionBoom()
 	//	}
 	//}
 
+}
+
+void StageOne::ChangeMap()
+{
+	if (_player->GetCollisionPlayer().right > _testRect.left &&
+		_player->GetCollisionPlayer().left < _testRect.right &&
+		_player->GetCollisionPlayer().top < _testRect.bottom)
+	{
+		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
+		{
+			SCENEMANAGER->ChangeScene("지하스테이지");
+		}
+	}
 }
 

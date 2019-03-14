@@ -22,12 +22,12 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 
 	// ================= 플레이어 총알 ============================= 
 	_playerbullet = new Bullet1("플레이어 공용총알");
-	_playerbullet->Init("플레이어/기본총알.bmp", 100, 40, 30, 1200,true);//프레임이미지 
+	_playerbullet->Init(800);//프레임이미지 range거리만 쓴다 
 
 	
 	//===============해비머신건 
 	_heavyBullet = new Bullet("플레이어 해비");
-	_heavyBullet->Init("플레이어/헤비머신건총알.bmp", 1500, 353, 30, 30000,true);
+	_heavyBullet->Init(800);
 
 	//====================플레이어 픽셀=============================
     _pixely = _position.y + 190;//맨아래쪽 플레이어y축 충돌렉트 
@@ -116,7 +116,14 @@ HRESULT Player::Init()
 
 void Player::Release()
 {
-
+	//_playerboom->release();
+	//SAFE_DELETE(_playerboom);
+	//
+	//_heavyBullet->release();
+	//SAFE_DELETE(_heavyBullet);
+	//
+	//_playerbullet->release();
+	//SAFE_DELETE(_playerbullet);
 }
 //점프업샷을하고 walk_shot을 하면 이상 
 void Player::Update()
@@ -376,7 +383,7 @@ void Player::Update()
 
 					/*	_wstate = WALKSTATE::JUMPWALK;
 					_state = STATE::JUMPWALK;*/
-					_position.x += 3.0f;
+					_position.x += 13.0f;
 				}
 				else if (_state == STATE::CROUCHWALK)
 				{
@@ -410,7 +417,7 @@ void Player::Update()
 						_wstate = WALKSTATE::WALK;
 						_state = STATE::WALK;
 					}
-					_position.x += 13.0f;
+					_position.x += 3.0f;
 				}
 				//_wstate = WALKSTATE::WALK;				//플레이어 상태 걷기(WALK)
 				//	_state = STATE::WALK;
@@ -856,10 +863,10 @@ void Player::Update()
 					switch (_bullet)
 					{
 					case BULLET::LEFTFIRE://왼쪽만 가는 헤비머신건 
-						_heavyBullet->fire(_position.x + 700, RND->range(_position.y + 330, _position.y + 355) /*_position.y*/, _angle, 12.5f);  //20정도의 오차 
+						_heavyBullet->fire(_position.x + 530, RND->range(_position.y +146, _position.y + 166) /*_position.y*/, _angle, 12.5f);  //20정도의 오차 
 						break;
 					case BULLET::RIGHTFIRE://오른쪽만 가는 헤비머신건 
-						_heavyBullet->fire(_position.x + 935, RND->range(_position.y + 330, _position.y + 355), _angle, 12.5f);
+						_heavyBullet->fire(_position.x + 900, RND->range(_position.y +146, _position.y+166 ), _angle, 12.5f);
 						break;
 					case BULLET::UPFIRE://위에보면서 좌르륵가는거 
 
@@ -868,23 +875,23 @@ void Player::Update()
 						case STATE::WALK_UPSHOT:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 770, _position.x + 790), _position.y + 270, _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 675, _position.x +695), _position.y+100 , _angle, 12.5f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 880, _position.x + 900), _position.y + 270, _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 695, _position.x + 715), _position.y+100 , _angle, 12.5f);
 							}
 							break;
 						case STATE::WLAK_UPSTARE:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 840, _position.x + 860), _position.y + 185, _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 695, _position.x + 715), _position.y-15 , _angle, 12.5f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 830, _position.x + 850), _position.y + 185, _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 690, _position.x + 710), _position.y-15, _angle, 12.5f);
 							}
 							break;
 						}
@@ -896,23 +903,23 @@ void Player::Update()
 						case STATE::JUMP_DOWNSHOT:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 800, _position.x + 820), _position.y + 390, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 675, _position.x + 695), _position.y + 270, _angle1, 12.5f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 820, _position.x + 840), _position.y + 390, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 700, _position.x + 720), _position.y + 270, _angle1, 12.5f);
 							}
 							break;
 						case STATE::JUMPWALK_DOWNSHOT:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 800, _position.x + 820), _position.y + 390, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 675, _position.x + 695), _position.y + 270, _angle1, 12.5f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 820, _position.x + 840), _position.y + 390, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 700, _position.x + 720), _position.y + 270, _angle1, 12.5f);
 							}
 							break;
 						}
@@ -922,10 +929,10 @@ void Player::Update()
 
 						if (!_isLeft)
 						{
-							_heavyBullet->fire(_position.x + 1000, RND->range(_position.y + 330, _position.y + 350), _angle, 12.5f);
+							_heavyBullet->fire(_position.x + 890, RND->range(_position.y + 160, _position.y+180 ), _angle, 12.5f);
 						}
 						else {
-							_heavyBullet->fire(_position.x + 700, RND->range(_position.y + 330, _position.y + 350), _angle, 12.5f);
+							_heavyBullet->fire(_position.x + 510, RND->range(_position.y + 160, _position.y+180 ), _angle, 12.5f);
 						}
 					case BULLET::IDLE:
 						break;
@@ -1164,9 +1171,8 @@ void Player::Update()
 			_playerboomFire = true;//true가 되면 던질수가없다 
 		}
 
+
 		check = RectMakeCenter(_position.x, _position.y + 52, 30, 30);
-
-
 		this->UpdateRectByPivot();//렉트를 다시그려주는거 즉 업데이트에서 항시움직일려고  
 
 
@@ -1985,7 +1991,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어이동하며공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 0)
 							{
-								_playerbullet->fire(_position.x+ 183, _position.y+180, 0, 12.5f);
+								_playerbullet->fire(_position.x+ 183, _position.y , 0, 12.5f);
 							}
 							if (_frameIndex == 5)
 							{
@@ -2012,7 +2018,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어딱총공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 0)
 							{
-								_playerbullet->fire(_position.x+ 183, _position.y+ 195, 0, 12.5f);
+								_playerbullet->fire(_position.x+ 183, _position.y+15, 0, 12.5f);
 							}
 							if (_frameIndex == 5)
 							{
@@ -2038,7 +2044,7 @@ void Player::PlayerBulletMotion()
 								IMAGEMANAGER->findImage("플레이어가만점프공격")->setFrameX(_frameIndex);
 								if (_frameIndex == 0)
 								{
-									_playerbullet->fire(_position.x + 183, _position.y + 180, 0, 12.5f);
+									_playerbullet->fire(_position.x + 183, _position.y , 0, 12.5f);
 								}
 								if (_frameIndex == 5)
 								{
@@ -2071,7 +2077,7 @@ void Player::PlayerBulletMotion()
 						IMAGEMANAGER->findImage("플레이어점프하면서공격")->setFrameX(_frameIndex);
 						if (_frameIndex == 0)
 						{
-							_playerbullet->fire(_position.x + 183, _position.y + 195, 0, 12.5f);
+							_playerbullet->fire(_position.x + 183, _position.y , 0, 12.5f);
 						}
 						if (_frameIndex == 5)
 						{
@@ -2104,7 +2110,7 @@ void Player::PlayerBulletMotion()
 						IMAGEMANAGER->findImage("플레이어점프하면서공격")->setFrameX(_frameIndex);
 						if (_frameIndex == 5)
 						{
-							_playerbullet->fire(_position.x+15, _position.y+185, PI, 12.5f);
+							_playerbullet->fire(_position.x- 120, _position.y+ 15, PI, 12.5f);
 						}
 						if (_frameIndex == 0)
 						{
@@ -2129,7 +2135,7 @@ void Player::PlayerBulletMotion()
 						IMAGEMANAGER->findImage("플레이어딱총공격")->setFrameX(_frameIndex);
 						if (_frameIndex == 5)
 						{
-							_playerbullet->fire(_position.x + 15, _position.y+ 185, PI, 12.5f);
+							_playerbullet->fire(_position.x-120 , _position.y+15, PI, 12.5f);
 						}
 						if (_frameIndex == 0)
 						{
@@ -2153,7 +2159,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어이동하며공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 5)
 							{
-								_playerbullet->fire(_position.x + 15, _position.y+ 185, PI, 12.5f);
+								_playerbullet->fire(_position.x- 120, _position.y+ 15, PI, 12.5f);
 							}
 							if (_frameIndex == 0)
 							{
@@ -2180,7 +2186,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어가만점프공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 5)
 							{
-								_playerbullet->fire(_position.x + 15, _position.y+ 185, PI, 12.5f);
+								_playerbullet->fire(_position.x -120, _position.y+ 15, PI, 12.5f);
 							}
 							if (_frameIndex == 0)
 							{
@@ -2214,7 +2220,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어이동하며위에공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 0)
 							{
-								_playerbullet->fire(_position.x+ 165, _position.y-20, PI / 2, 12.5f);
+								_playerbullet->fire(_position.x+ 30, _position.y-180, PI / 2, 12.5f);
 							}
 							if (_frameIndex == 5)
 							{
@@ -2237,7 +2243,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어이동하며위에공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 5)
 							{
-								_playerbullet->fire(_position.x+ 165, _position.y-20, PI / 2, 12.5f);
+								_playerbullet->fire(_position.x+ 30, _position.y-180, PI / 2, 12.5f);
 							}
 							if (_frameIndex == 0)
 							{
@@ -2264,7 +2270,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어위딱총공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 0)
 							{
-								_playerbullet->fire(_position.x + 165, _position.y - 20, PI / 2, 12.5f);
+								_playerbullet->fire(_position.x+30 , _position.y - 180, PI / 2, 12.5f);
 							}
 							if (_frameIndex == 5)
 							{
@@ -2287,7 +2293,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어위딱총공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 5)
 							{
-								_playerbullet->fire(_position.x + 165, _position.y - 20, PI / 2, 12.5f);
+								_playerbullet->fire(_position.x + 30, _position.y - 180, PI / 2, 12.5f);
 							}
 							if (_frameIndex == 0)
 							{
@@ -2317,7 +2323,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어점프중위공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 0)
 							{
-								_playerbullet->fire(_position.x + 165, _position.y - 20, PI / 2, 12.5f);
+								_playerbullet->fire(_position.x + 30, _position.y - 180, PI / 2, 12.5f);
 							}
 							if (_frameIndex == 5)
 							{
@@ -2340,7 +2346,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어점프중위공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 5)
 							{
-								_playerbullet->fire(_position.x + 165, _position.y - 20, PI / 2, 12.5f);
+								_playerbullet->fire(_position.x + 30, _position.y -180, PI / 2, 12.5f);
 							}
 							if (_frameIndex == 0)
 							{
@@ -2370,7 +2376,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어이동하면서점프하고위에발사")->setFrameX(_frameIndex);
 							if (_frameIndex == 0)
 							{
-								_playerbullet->fire(_position.x + 165, _position.y - 20, PI / 2, 12.5f);
+								_playerbullet->fire(_position.x + 30, _position.y - 180, PI / 2, 12.5f);
 							}
 							if (_frameIndex == 5)
 							{
@@ -2392,7 +2398,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어이동하면서점프하고위에발사")->setFrameX(_frameIndex);
 							if (_frameIndex == 5)
 							{
-								_playerbullet->fire(_position.x + 165, _position.y - 20, PI / 2, 12.5f);
+								_playerbullet->fire(_position.x + 30, _position.y - 180, PI / 2, 12.5f);
 						   }
 							if (_frameIndex == 0)
 							{
@@ -2424,7 +2430,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어가만점프중아래공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 0)
 							{
-								_playerbullet->fire(_position.x+ 155, _position.y+270, PI2 - (PI / 2), 12.5f);
+								_playerbullet->fire(_position.x+ 30, _position.y+100, PI2 - (PI / 2), 12.5f);
 							}
 							if (_frameIndex == 5)
 							{
@@ -2446,7 +2452,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어가만점프중아래공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 5)
 							{
-								_playerbullet->fire(_position.x + 155, _position.y + 270, PI2 - (PI / 2), 12.5f);
+								_playerbullet->fire(_position.x + 22, _position.y + 120, PI2 - (PI / 2), 12.5f);
 							}
 							if (_frameIndex == 0)
 							{
@@ -2475,7 +2481,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어이동점프중아래공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 0)
 							{
-								_playerbullet->fire(_position.x + 155, _position.y + 270, PI2 - (PI / 2), 12.5f);
+								_playerbullet->fire(_position.x + 41, _position.y + 100, PI2 - (PI / 2), 12.5f);
 							}
 							if (_frameIndex == 5)
 							{
@@ -2497,7 +2503,7 @@ void Player::PlayerBulletMotion()
 							IMAGEMANAGER->findImage("플레이어이동점프중아래공격")->setFrameX(_frameIndex);
 							if (_frameIndex == 5)
 							{
-								_playerbullet->fire(_position.x + 155, _position.y + 270, PI2 - (PI / 2), 12.5f);
+								_playerbullet->fire(_position.x + 11, _position.y + 100, PI2 - (PI / 2), 12.5f);
 							}
 							if (_frameIndex == 0)
 							{
@@ -2528,7 +2534,7 @@ void Player::PlayerBulletMotion()
 						IMAGEMANAGER->findImage("플레이어쭈그려공격")->setFrameX(_frameIndex);
 						if (_frameIndex == 0)
 						{
-							_playerbullet->fire(_position.x+280, _position.y + 225, 0, 12.5f);
+							_playerbullet->fire(_position.x+150, _position.y+45 , 0, 12.5f);
 						}
 						if (_frameIndex == 9)
 						{
@@ -2551,7 +2557,7 @@ void Player::PlayerBulletMotion()
 						IMAGEMANAGER->findImage("플레이어쭈그려공격")->setFrameX(_frameIndex);
 						if (_frameIndex == 9)
 						{
-							_playerbullet->fire(_position.x+200 , _position.y + 225, PI, 12.5f);
+							_playerbullet->fire(_position.x-110, _position.y + 45, PI, 12.5f);
 						}
 						if (_frameIndex == 0)
 						{

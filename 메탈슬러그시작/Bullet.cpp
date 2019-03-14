@@ -12,29 +12,12 @@ Bullet::~Bullet()
 {
 }
 
-HRESULT Bullet::Init(const char * imageName, int width, int height, int bulletMax, float range, bool frameimage)
+HRESULT Bullet::Init(float range) 
 {
-	_isFrameImg = frameimage; 
-	_bulletMax = bulletMax;
+	
 	_range = range;
-	for (int i = 0; i < bulletMax; i++)
-	{
-		tagBullet bullet;
-
-		ZeroMemory(&bullet, sizeof(tagBullet));
-		bullet.bulletImage = new image;
-		if (!_isFrameImg) {
-			bullet.bulletImage->init(imageName, width, height, true, RGB(255, 0, 255));
-		}
-		else
-		{
-			bullet.bulletImage->init(imageName, width, height, 17, 4, true, RGB(255, 0, 255));
-		}
-		bullet.isFire = false;
-
-		_vBullet.push_back(bullet);
-	}
-	_angle=0.0f;
+	
+	
 	
 	
 	return S_OK;
@@ -54,6 +37,15 @@ void Bullet::Release()
 void Bullet::Update()
 {
 	this->move(); 
+
+	for (int i = 0; i < _vBullet.size(); i++)
+	{
+		if (_vBullet[i].isFire == false)
+		{
+			_vBullet.erase(_vBullet.begin() + i);
+			break; 
+		}
+	}
 }
 //if (_angle == 0 || _angle == PI)
 //{
@@ -101,34 +93,49 @@ void Bullet::Render()
 
 		}
 	}
-	else
-	{
-		for (int i = 0; i < _vBullet.size(); i++)
-		{
-			RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
-			if (!_vBullet[i].isFire)continue;
-			_vBullet[i].bulletImage->render(getMemDC(), bulletRc.left, bulletRc.top);
-		}
-	}
+	//else
+	//{
+	//	for (int i = 0; i < _vBullet.size(); i++)
+	//	{
+	//		RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
+	//		if (!_vBullet[i].isFire)continue;
+	//		_vBullet[i].bulletImage->render(getMemDC(), bulletRc.left, bulletRc.top);
+	//	}
+	//}
 	
 
 }
 void Bullet::fire(float x, float y, float angle, float speed)
 {
-	for (int i = 0; i < _vBullet.size(); i++)
-	{
-		if (_vBullet[i].isFire) continue;
 
-		_vBullet[i].isFire = true;
-		_vBullet[i].x = _vBullet[i].fireX = x;
-		_vBullet[i].y = _vBullet[i].fireY = y;
-		_vBullet[i].rc = RectMakeCenter(_vBullet[i].x, _vBullet[i].y,
-			_vBullet[i].bulletImage->getWidth(), _vBullet[i].bulletImage->getHeight());
-		_vBullet[i].speed = speed;
-		_vBullet[i].angle = angle;
-		//_vBullet[i].angle1 = angle;
-		break;
-	}
+
+	_angle = angle;
+
+	tagBullet bullet; 
+	ZeroMemory(&bullet, sizeof(tagBullet));
+	bullet.bulletImage = new image;
+	bullet.bulletImage->init("플레이어/헤비머신건총알.bmp", 1500, 353, 17, 4, true, RGB(255, 0, 255));
+	bullet.speed = speed;
+	bullet.isFire = true;
+	bullet.x = bullet.fireX = x;
+	bullet.y = bullet.fireY = y;
+	bullet.rc = RectMakeCenter(bullet.x, bullet.y, bullet.bulletImage->getFrameWidth(), bullet.bulletImage->getFrameHeight());
+	bullet.angle = angle;
+	_vBullet.push_back(bullet);
+	//for (int i = 0; i < _vBullet.size(); i++)
+	//{
+	//	if (_vBullet[i].isFire) continue;
+
+	//	_vBullet[i].isFire = true;
+	//	_vBullet[i].x = _vBullet[i].fireX = x;
+	//	_vBullet[i].y = _vBullet[i].fireY = y;
+	//	_vBullet[i].rc = RectMakeCenter(_vBullet[i].x, _vBullet[i].y,
+	//		_vBullet[i].bulletImage->getWidth(), _vBullet[i].bulletImage->getHeight());
+	//	_vBullet[i].speed = speed;
+	//	_vBullet[i].angle = angle;
+	//	//_vBullet[i].angle1 = angle;
+	//	break;
+	//}
 }
 
 void Bullet::move()
@@ -141,8 +148,8 @@ void Bullet::move()
 		_vBullet[i].y -= sinf(_vBullet[i].angle)*_vBullet[i].speed;
 
 		_vBullet[i].rc = RectMakeCenter(_vBullet[i].x, _vBullet[i].y,
-			_vBullet[i].bulletImage->getWidth(),
-			_vBullet[i].bulletImage->getHeight());
+			_vBullet[i].bulletImage->getFrameWidth(),
+			_vBullet[i].bulletImage->getFrameHeight());
 
 		float distance = GetDistance(_vBullet[i].fireX, _vBullet[i].fireY,
 			_vBullet[i].x, _vBullet[i].y);
@@ -150,6 +157,8 @@ void Bullet::move()
 		if (_range < distance)
 		{
 			_vBullet[i].isFire = false;
+			_vBullet.erase(_vBullet.begin() +i);
+			break; 
 		}
 	}
 }
@@ -291,6 +300,7 @@ void Boom::move()
 Bullet1::Bullet1(string name) : GameObject(name)
 {
 	_name = name;				// 클래스 이름 설정 해준
+	
 }
 
 
@@ -298,32 +308,11 @@ Bullet1::~Bullet1()
 {
 }
 
-HRESULT Bullet1::Init(const char * imageName, int width, int height, int bulletMax, float range, bool frameimage)
+HRESULT Bullet1::Init(float range)
 {
-	_isFrameImg = frameimage;
-	_bulletMax = bulletMax;
-	_range = range;
-	for (int i = 0; i < bulletMax; i++)
-	{
-		tagBullet bullet;
 
-		ZeroMemory(&bullet, sizeof(tagBullet));
-		bullet.att = 1; //기본총알의 공격력은 1이다 
-		bullet.bulletImage = new image;
-		if (!_isFrameImg) {
-			bullet.bulletImage->init(imageName, width, height, true, RGB(255, 0, 255));
-		}
-		else
-		{
-			bullet.bulletImage->init(imageName, width, height, 2, 1, true, RGB(255, 0, 255));
-		}
-		bullet.isFire = false;
-
-		_vBullet.push_back(bullet);
-	}
-	_angle = 0.0f;
-
-
+	_range = range; 
+	_isFrameImg = true;
 	return S_OK;
 }
 
@@ -341,6 +330,14 @@ void Bullet1::Release()
 void Bullet1::Update()
 {
 	this->move();
+
+	for (int i = 0; i < _vBullet.size(); ++i) 
+	{
+		if (_vBullet[i].isFire == false) {
+			_vBullet.erase(_vBullet.begin() + i);
+			break;
+		}
+	}
 }
 
 void Bullet1::Render()
@@ -359,16 +356,22 @@ void Bullet1::Render()
 			//확인용 렉트 그려주기 나중에 지워줘야함 !!
 		//	Rectangle(getMemDC(), bulletRc);
 
-			if (_angle == 0 || _angle == PI)
+			if (_angle == 0 )
 			{
 				_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, 0, 0);
 			}
-			else if (_angle == PI / 2 || _angle == PI + PI / 2)
+			else if ( _angle == PI)
+			{
+				_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, 0, 0);
+			}
+			else if (_angle == PI / 2 )
 			{
 				_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, 1, 0);
 			}
-
-
+			else if (_angle == PI + PI / 2)
+			{
+				_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, 1, 0);
+			}
 
 			//((Player*)OBJECTMANAGER->FindObject(ObjectType::Enum::PLAYER, "플레이어"))->SetWeapon(((Player*)OBJECTMANAGER->FindObject(ObjectType::Enum::PLAYER, "플레이어"))->GetWeapon());
 
@@ -394,7 +397,7 @@ void Bullet1::Render()
 
 		}
 	}
-	else
+	/*else
 	{
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
@@ -403,25 +406,42 @@ void Bullet1::Render()
 			_vBullet[i].bulletImage->render(getMemDC(), bulletRc.left, bulletRc.top);
 		}
 	}
-
+*/
 
 }
 void Bullet1::fire(float x, float y, float angle, float speed)
 {
-	for (int i = 0; i < _vBullet.size(); i++)
-	{
-		if (_vBullet[i].isFire) continue;
 
-		_vBullet[i].isFire = true;
-		_vBullet[i].x = _vBullet[i].fireX = x;
-		_vBullet[i].y = _vBullet[i].fireY = y;
-		_vBullet[i].rc = RectMakeCenter(_vBullet[i].x, _vBullet[i].y,
-			_vBullet[i].bulletImage->getWidth(), _vBullet[i].bulletImage->getHeight());
-		_vBullet[i].speed = speed;
-		_vBullet[i].angle = angle;
-		//_vBullet[i].angle1 = angle;
-		break;
-	}
+	_angle = angle; 
+	
+	tagBullet bullet; 
+	ZeroMemory(&bullet, sizeof(tagBullet)); 
+	bullet.bulletImage = new image; 
+	bullet.bulletImage->init("플레이어/기본총알.bmp", 100, 40,2,1,true,RGB(255,0,255) );
+	bullet.speed = speed;
+	bullet.isFire = true;
+	bullet.x = bullet.fireX = x;
+	bullet.y = bullet.fireY = y;
+	bullet.rc = RectMakeCenter(bullet.x, bullet.y, bullet.bulletImage->getFrameWidth(), bullet.bulletImage->getFrameHeight());
+	bullet.angle = angle;
+	_vBullet.push_back(bullet); 
+
+	
+
+	//for (int i = 0; i < _vBullet.size(); i++)
+	//{
+	//	if (_vBullet[i].isFire) continue;
+
+	//	_vBullet[i].isFire = true;
+	//	_vBullet[i].x = _vBullet[i].fireX = x;
+	//	_vBullet[i].y = _vBullet[i].fireY = y;
+	//	_vBullet[i].rc = RectMakeCenter(_vBullet[i].x, _vBullet[i].y,
+	//		_vBullet[i].bulletImage->getWidth(), _vBullet[i].bulletImage->getHeight());
+	//	_vBullet[i].speed = speed;
+	//	_vBullet[i].angle = angle;
+	//	//_vBullet[i].angle1 = angle;
+	//	break;
+	//}
 }
 
 void Bullet1::move()
@@ -434,16 +454,21 @@ void Bullet1::move()
 		_vBullet[i].y -= sinf(_vBullet[i].angle)*_vBullet[i].speed;
 
 		_vBullet[i].rc = RectMakeCenter(_vBullet[i].x, _vBullet[i].y,
-			_vBullet[i].bulletImage->getWidth(),
-			_vBullet[i].bulletImage->getHeight());
+			_vBullet[i].bulletImage->getFrameWidth(),
+			_vBullet[i].bulletImage->getFrameHeight());
 
 		float distance = GetDistance(_vBullet[i].fireX, _vBullet[i].fireY,
 			_vBullet[i].x, _vBullet[i].y);
 
-		if (_range < distance)
+		if (_range < distance)   //만약에 erase쓰면 빠져나온다고 생각하자 break로 
 		{
-			_vBullet[i].isFire = false;
+			_vBullet[i].isFire = false; 
+			_vBullet.erase(_vBullet.begin() + i);
+			break;
 		}
+		
 	}
 }
+
+
 
