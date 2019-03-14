@@ -47,6 +47,17 @@ private:
 	char msg1[128];
 	POINT _pt;
 
+	image* _BoassImg[7];
+	int _index[7];
+	int _deathWaterIndex[5];
+	int _countImg[7];
+	int speed;
+	int _alpha[2];
+
+	image* _deathWater;
+	bool _isdeathWaterEnd;
+
+
 public:
 	Boss(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Boss();

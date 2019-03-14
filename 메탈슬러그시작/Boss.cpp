@@ -80,11 +80,11 @@ HRESULT Boss::Init()
 
 	//화염포 클래스 초기화
 	_fireCannon = new FireCannon("화염포");
-	_fireCannon->Init("입술.bmp", 30, 30, 5, 1200);
+	_fireCannon->Init("Enemy/화염포.bmp", 100, 100, 4, 1, 5, 1200);
 
 	//폭탄 클래스 초기화
 	_bomb = new Bomb("미사일폭탄");
-	_bomb->Init("입술.bmp", 30, 30, 1, 1200);
+	_bomb->Init("Enemy/대포.bmp", 1650, 200, 11, 1, 1, 1200);
 
 	//다리 이미지 초기화
 	for (int i = 0; i < 22; i++)
@@ -95,6 +95,28 @@ HRESULT Boss::Init()
 		_bridgeImg[i] = IMAGEMANAGER->findImage(key);
 	}
 
+	for (int i = 0; i < 7; i++)
+	{
+		_index[i] = 0;
+		_countImg[i] = 0;
+	}
+	_deathWaterIndex[0] = 0;
+	_deathWaterIndex[1] = 6;
+	_deathWaterIndex[2] = 12;
+	_deathWaterIndex[3] = 8;
+	_deathWaterIndex[4] = 24;
+	speed = 6;
+	_BoassImg[0] = IMAGEMANAGER->addFrameImage("boss", "Enemy/보스기본.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_BoassImg[1] = IMAGEMANAGER->addFrameImage("boss1", "Enemy/보스불주먹.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_BoassImg[2] = IMAGEMANAGER->addFrameImage("boss2", "Enemy/보스변신.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_BoassImg[3] = IMAGEMANAGER->addFrameImage("boss3", "Enemy/보스변신후기본.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_BoassImg[4] = IMAGEMANAGER->addFrameImage("boss4", "Enemy/보스변신후불주먹.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_BoassImg[5] = IMAGEMANAGER->addFrameImage("boss5", "Enemy/보스죽어욧.bmp", 7920, 1060, 12, 1, true, RGB(255, 0, 255));
+	_BoassImg[6] = IMAGEMANAGER->addFrameImage("boss6", "Enemy/보스터져욧.bmp", 15840, 1060, 24, 1, true, RGB(255, 0, 255));
+	_deathWater = IMAGEMANAGER->addFrameImage("deathwater", "Enemy/물보라.bmp", 2600, 400, 26, 1, true, RGB(255, 0, 255));
+	_alpha[0] = 255;
+	_alpha[1] = 255;
+	_isdeathWaterEnd = false;
 	return S_OK;
 }
 
@@ -182,6 +204,8 @@ void Boss::Update()
 		//화염포 발사 명령
 		if (_attTimer % 110 == 0 && _state != STATE::BACK_MOVE)
 		{
+			_state = STATE::FIRECANNON_SHOOT;
+			_index[1] = 0;
 			for (int i = 0; i < 5; i++)
 			{
 				this->fireShoot();
@@ -201,6 +225,8 @@ void Boss::Update()
 		//체력에 따른 발사 명령
 		if (_attTimer % 60 == 0 && _state != STATE::BACK_MOVE)
 		{
+			_state = STATE::BOMB_SHOOT;
+			_index[4] = 0;
 			this->fireBomb();
 		}
 
@@ -234,8 +260,9 @@ void Boss::Update()
 	{
 		_position.x = -WINSIZEX / 4;
 		_isBuffStart = true;
+		_attTimer = 0;
 	}
-	else if (_hp < 150 && _hp > 0)
+	else if (_hp <= 150 && _hp > 0)
 	{
 		_isBuff = true;
 		_stopDelay = 30;
@@ -246,11 +273,47 @@ void Boss::Update()
 		_hp = 0;
 		_state = STATE::DEATH;
 	}
-
+	if (!_isBuff)
+	{
+		_countImg[0]++;
+		if (_countImg[0] % speed == 0)
+		{
+			_index[0]++;
+			if (_index[0] > 11)
+			{
+				_index[0] = 0;
+			}
+		}
+	}
+	if (_isBuffStart)
+	{
+		_countImg[2]++;
+		if (_countImg[2] % speed == 0)
+		{
+			_index[2]++;
+			if (_index[2] > 11)
+			{
+				_index[2] = 11;
+			}
+		}
+	}
+	if (_index[2] == 11)
+	{
+		_countImg[3]++;
+		if (_countImg[3] % speed == 0)
+		{
+			_index[3]++;
+			if (_index[3] > 11)
+			{
+				_index[3] = 0;
+			}
+		}
+	}
 	//상태에 따른 움직임 처리
 	switch (_state)
 	{
 	case STATE::BACK_MOVE:
+		speed = 6;
 		if (_rc.right > 100.f)
 		{
 			if (!_isBuff)
@@ -270,6 +333,7 @@ void Boss::Update()
 		break;
 	case STATE::ATTACK:
 		//앞으로 이동 공격
+		speed = 3;
 		if (_rc.right < WINSIZEX / 2 - 50)
 		{
 			//체력에 따른 공격 속도 수정
@@ -288,6 +352,7 @@ void Boss::Update()
 		//화면 중앙에서 대기 상태일 때
 		if (_rc.right >= WINSIZEX / 2 - 50)
 		{
+			speed = 6;
 			//체력에 따른 공격 딜레이 수정
 			if (!_isBuff)
 			{
@@ -300,12 +365,92 @@ void Boss::Update()
 			_isAttack = false;
 		}
 		break;
+	case STATE::FIRECANNON_SHOOT:
+		_countImg[1]++;
+		if (_countImg[1] % 10 == 0)
+		{
+			_index[1]++;
+			if (_index[1] > 11)
+			{
+				_index[1] = 0;
+			}
+		}
+		break;
+	case STATE::BOMB_SHOOT:
+		_countImg[4]++;
+		if (_countImg[4] % 10 == 0)
+		{
+			_index[4]++;
+			if (_index[4] > 11)
+			{
+				_index[4] = 0;
+			}
+		}
+		break;
 	case STATE::DEATH:
+		_countImg[5]++;
+		if (_countImg[5] % 10 == 0)
+		{
+			_index[5]++;
+			if (_index[5] > 23)
+			{
+				_index[5] = 0;
+			}
+		}
+		
+		_alpha[0] -= 200;
+		if (_alpha[0] < 0)
+		{
+			_alpha[0] = 255;
+		}
 		if (_rc.top < WINSIZEY + 50)
 		{
 			_position.y += 2.5f;
+			_countImg[6]++;
+			if (_countImg[6] % 2 == 0)
+			{
+				for (int i = 0; i < 5; i++)
+				{
+					_deathWaterIndex[i]++;
+					if (_deathWaterIndex[i] > 25)
+					{
+						_deathWaterIndex[i] = 0;
+					}
+				}
+			}
 		}
+		if (_rc.top >= WINSIZEY + 50)
+		{
+			_countImg[6]++;
+			if (_countImg[6] % 2 == 0)
+			{
+				for (int i = 0; i < 5; i++)
+				{
+					_deathWaterIndex[i]++;
+					if (_deathWaterIndex[i] > 25)
+					{
+						_deathWaterIndex[i] = 25;
+					}
+				}
+			}
 
+			if (_deathWaterIndex[0] == 25
+				&& _deathWaterIndex[1] == 25
+				&& _deathWaterIndex[2] == 25
+				&& _deathWaterIndex[3] == 25
+				&& _deathWaterIndex[4] == 25)
+			{
+				_alpha[1] -= 10;
+				if (_alpha[1] < 0)
+				{
+					_alpha[1] = 0;
+				}
+			}
+		}
+		if (_alpha[1] == 0)
+		{
+			_isdeathWaterEnd = true;
+		}
 		break;
 	}
 
@@ -315,7 +460,9 @@ void Boss::Update()
 		|| _attTimer % _attDelay == 2
 		|| _attTimer % _attDelay == 3
 		|| _attTimer % _attDelay == 4
-		|| _attTimer % _attDelay == 5)
+		//|| _attTimer % _attDelay == 5
+		) 
+		
 	{
 		_att.rc.left += 410.f;
 		_att.rc.right += 410.f;
@@ -372,28 +519,83 @@ void Boss::Update()
 void Boss::Render()
 {
 	//보스 렉트 그리기
-	Rectangle(getMemDC(), _rc);
+	//Rectangle(getMemDC(), _rc);
 
 	//충돌 렉트 그리기
-	Rectangle(getMemDC(), _col.rc);
+	//Rectangle(getMemDC(), _col.rc);
 
-	//화염포 대포 렉트 그리기
-	for (int i = 0; i < 2; i++)
+	if ((_state == state::IDLE || _state == state::BACK_MOVE || _state == state::ATTACK)
+		&& !_isBuff
+		&& !(_state == state::FIRECANNON_SHOOT) 
+		&& !(_state == state::BOMB_SHOOT)
+		&& !_isBuffStart
+		&& !(_state == state::DEATH))
 	{
-		Rectangle(getMemDC(), _fShoot[i].rc);
+		_BoassImg[0]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[0], 0);
 	}
+	if (!(_state == state::BACK_MOVE) 
+		&& !_isBuff
+		&& _state == state::FIRECANNON_SHOOT)
+	{
+		_BoassImg[1]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[1], 0);
+	}
+	if (_isBuffStart && !_isBuffStartEnd)
+	{
+		_BoassImg[2]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[2], 0);
+	}
+	if ((_state == state::IDLE || _state == state::BACK_MOVE || _state == state::ATTACK)
+		&& !(_state == state::FIRECANNON_SHOOT)
+		&& !(_state == state::BOMB_SHOOT)
+		&& (_isBuffStartEnd)
+		&& !(_state == state::DEATH))
+	{
+		_BoassImg[3]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[3], 0);
+	}
+	if (!(_state == state::BACK_MOVE)
+		&& (_isBuffStartEnd)
+		&& _state == state::BOMB_SHOOT)
+	{
+		_BoassImg[4]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[4], 0);
+	}
+	if (_state == state::DEATH)
+	{
+		//_BoassImg[6]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[5], 0);
+		_BoassImg[6]->alphaFrameRender(getMemDC(), _rc.left, _rc.top - 100, _index[5], 0, _alpha[0]);
+		RECT rc[5];
+		rc[0] = RectMakeCenter(60, WINSIZEY - 200, 100, 400);
+		rc[1] = RectMakeCenter(180, WINSIZEY - 200, 100, 400);
+		rc[2] = RectMakeCenter(300, WINSIZEY - 200, 100, 400);
+		rc[3] = RectMakeCenter(420, WINSIZEY - 200, 100, 400);
+		rc[4] = RectMakeCenter(540, WINSIZEY - 200, 100, 400);
+		
+		for (int i = 0; i < 5; i++)
+		{
+			if (_isdeathWaterEnd == false)
+			{
+				//_deathWater->frameRender(getMemDC(), rc[i].left, rc[i].top, _deathWaterIndex[i], 0);
+				_deathWater->alphaFrameRender(getMemDC(), rc[i].left, rc[i].top, _deathWaterIndex[i], 0, _alpha[1]);
+			}
+		}
+		
+		
+	}
+	//화염포 대포 렉트 그리기
+	//for (int i = 0; i < 2; i++)
+	//{
+	//	Rectangle(getMemDC(), _fShoot[i].rc);
+	//}
 
 	//화염포 그리기
 	_fireCannon->Render();
 
 	//폭탄 공격 처리 렉트 그리기
-	Rectangle(getMemDC(), _bShoot.rc);
+	//Rectangle(getMemDC(), _bShoot.rc);
 
 	//미사일 폭탄 그리기
 	_bomb->Render();
 
 	//근접 공격 처리 렉트 그리기
-	Rectangle(getMemDC(), _att.rc);
+	//Rectangle(getMemDC(), _att.rc);
 
 	//텍스트 출력
 	//sprintf(msg1, "_fireDist : %f", _fireDist);
@@ -417,7 +619,7 @@ void Boss::fireShoot()
 			//발사할 당시의 플레이어 좌표
 			_fireCannon->setPosition(_player->GetPosition().x, _player->GetPosition().y);
 
-			_fireCannon->rightFire(centerX, centerY, PI / 180 * 30, 15.f);
+			_fireCannon->rightFire(centerX - 100, centerY + 50, PI / 180 * 30, 15.f);
 		}
 	}
 }
@@ -431,5 +633,5 @@ void Boss::fireBomb()
 	//발사할 당시의 플레이어 좌표
 	_bomb->setPosition(_player->GetPosition().x, _player->GetPosition().y);
 
-	_bomb->fire(centerX, centerY, PI / 180 * 20, 15.f);
+	_bomb->fire(centerX + 30, centerY + 30, PI / 180 * 20, 15.f);
 }

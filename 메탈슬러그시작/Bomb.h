@@ -27,13 +27,15 @@ private:
 
 	image* _bridgeImg[22];				//다리 이미지
 
+	int index, count;
+
 	vector<BOMB> _vBomb;
 	vector<BOMB>::iterator _viBomb;
 public:
 	Bomb(string name);
 	~Bomb();
 
-	virtual HRESULT Init(const char * imageName, int width, int height, int bombMax, float range);
+	virtual HRESULT Init(const char * imageName, int width, int height, int FrameX, int FrameY, int bombMax, float range);
 	virtual void Release();
 	virtual void Update();
 	virtual void Render();

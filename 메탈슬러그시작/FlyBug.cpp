@@ -42,7 +42,22 @@ HRESULT FlyBug::Init()
 	//잠자리 충돌 렉트(항상 몸 중앙을 따라 다닌다.)
 	_col.pt = { _position.x, _position.y };
 	_col.rc = RectMakeCenter(_col.pt.x + _size.y / 2, _col.pt.y, _size.x, _size.y / 2);
-
+	//잠자리 이미지 초기화
+	_flyBugImg[0] = IMAGEMANAGER->addFrameImage("flybug", "Enemy/잠자리기본.bmp", 8400, 400, 24, 2, true, RGB(255, 0, 255));
+	_flyBugImg[1] = IMAGEMANAGER->addFrameImage("flybug1", "Enemy/잠자리덮치기.bmp", 9450, 400, 27, 2, true, RGB(255, 0, 255));
+	_flyBugImg[2] = IMAGEMANAGER->addFrameImage("flybug2", "Enemy/잠자리죽음.bmp", 10500, 200, 30, 1, true, RGB(255, 0, 255));
+	_flyBugImg[3] = IMAGEMANAGER->addFrameImage("flybug3", "Enemy/잠자리날개파편.bmp", 1560, 120, 13, 1, true, RGB(255, 0, 255));
+	_flyBugImg[4] = IMAGEMANAGER->addFrameImage("flybug4", "Enemy/잠자리날개파편2.bmp", 1560, 120, 13, 1, true, RGB(255, 0, 255));
+	
+	for (int i = 0; i < 5; i++)
+	{
+		_index[i] = 0;
+		_countImg[i] = 0;
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		_alpha[i] = 255;
+	}
 	return S_OK;
 }
 
@@ -55,6 +70,16 @@ void FlyBug::Update()
 	//마우스 좌표 담기
 	//_pt.x = _ptMouse.x;
 	//_pt.y = _ptMouse.y;
+	
+	_countImg[0]++;
+	if (_countImg[0] % 1 == 0)
+	{
+		_index[0]++;
+		if (_index[0] > 23)
+		{
+			_index[0] = 0;
+		}
+	}
 
 	//잠자리 렉트
 	_rc = RectMakeCenter(_position.x, _position.y, _size.x, _size.y);
@@ -62,7 +87,7 @@ void FlyBug::Update()
 	//잠자리 시체처리 렉트
 	for (int i = 0; i < 3; i++)
 	{
-		_part[i].pt = { _position.x + _size.x / 2 * (i - 1), _position.y };
+		_part[i].pt = { _position.x + 50 * (i -1), _position.y};
 		_part[i].rc = RectMakeCenter(_part[i].pt.x, _part[i].pt.y, 50, 10);
 	}
 
@@ -80,12 +105,14 @@ void FlyBug::Update()
 	if (_cam.rc.left <= 50 || _cam.rc.right >= WINSIZEX - 50)
 	{
 		_state = state::IDLE;
+		
 	}
 
 	//270도보다 크면 왼쪽으로 이동
 	if (_angle > PI / 180 * 270 && _cam.rc.left > 50)
 	{
 		_state = state::L_MOVE;
+		
 	}
 	//270도 보다 작으면 오른쪽으로 이동
 	else if (_angle < PI / 180 * 270 && _cam.rc.right < WINSIZEX - 50)
@@ -124,6 +151,7 @@ void FlyBug::Update()
 	{
 		//대기 상태
 	case state::IDLE:
+
 		//아래로 이동
 		if (!_isUp)
 		{
@@ -149,6 +177,17 @@ void FlyBug::Update()
 		break;
 		//공격 상태
 	case state::ATTACK:
+		
+		_countImg[1]++;
+		if (_countImg[1] % 1 == 0)
+		{
+			_index[1]++;
+			if (_index[1] > 26)
+			{
+				_index[1] = 0;
+			}
+		}
+
 		if (!_isAttack)
 		{
 			//플레이어를 공격 할 각도 설정
@@ -205,6 +244,42 @@ void FlyBug::Update()
 		break;
 		//죽음 상태
 	case state::DEATH:
+
+		_countImg[2]++;
+		if (_countImg[2] % 5 == 0)
+		{
+			_index[2]++;
+			if (_index[2] > 29)
+			{
+				_index[2] = 29;
+			}
+		}
+		if (_index[2] == 29)
+		{
+			_alpha[1]-= 3;
+			if (_alpha[1] <= 0)
+			{
+				_alpha[1] = 0;
+			}
+		}
+		_countImg[3]++;
+		if (_countImg[3] % 5 == 0)
+		{
+			_index[3]++;
+			if (_index[3] > 12)
+			{
+				_index[3] = 0;
+			}
+		}
+		_countImg[4]++;
+		if (_countImg[4] % 5 == 0)
+		{
+			_index[4]++;
+			if (_index[4] > 12)
+			{
+				_index[4] = 0;
+			}
+		}
 		//충돌 렉트 없애기
 		_col.rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
 
@@ -216,6 +291,24 @@ void FlyBug::Update()
 		//땅에 도착했을 때
 		if (_position.y + _size.y / 2 >= WINSIZEY)
 		{
+			_index[3] = 12;
+			if (_index[3] == 12)
+			{
+				_alpha[0] -= 50;
+				if (_alpha[0] <= 0)
+				{
+					_alpha[0] = 255;
+				}
+			}
+			_index[4] = 12;
+			if (_index[4] == 12)
+			{
+				_alpha[2] -= 50;
+				if (_alpha[2] <= 0)
+				{
+					_alpha[2] = 255;
+				}
+			}
 			_deathTimer++;
 
 			if (_deathTimer % 100 == 0)
@@ -232,15 +325,40 @@ void FlyBug::Update()
 void FlyBug::Render()
 {
 	//카메라 렉트 그리기
-	Rectangle(getMemDC(), _cam.rc);
+	Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
 	//렉트 그리기
-	Rectangle(getMemDC(), _rc);
+	Rectangle(getMemDC(), CAMERA->Relative(_rc));
+	if (((_state == state::IDLE && _angle > PI / 180 * 270) || _state == state::L_MOVE) && !(_state == state::ATTACK) && !(_state == state::DEATH))
+	{
+		_flyBugImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top, _index[0], 0);
+	}
+	if (((_state == state::IDLE && _angle < PI / 180 * 270) || _state == state::R_MOVE) && !(_state == state::ATTACK))
+	{
+		_flyBugImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top, _index[0], 1);
+	}
+	if (_state == state::ATTACK && _angle > PI / 180 * 270)
+	{
+		_flyBugImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top, _index[1], 0);
+	}
+	if (_state == state::ATTACK && _angle < PI / 180 * 270)
+	{
+		_flyBugImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top, _index[1], 1);
+	}
+	
+
 	//충돌렉트 그리기
-	Rectangle(getMemDC(), _col.rc);
+	Rectangle(getMemDC(), CAMERA->Relative(_col.rc));
 	//시체처리렉트 그리기
 	for (int i = 0; i < 3; i++)
 	{
-		Rectangle(getMemDC(), _part[i].rc);
+		Rectangle(getMemDC(), CAMERA->Relative(_part[i].rc));
+		if (_state == state::DEATH)
+		{
+			//_flyBugImg[2]->frameRender(getMemDC(),_part[1].rc.left - CAMERA->GetCamera().left, _part[1].rc.top - CAMERA->GetCamera().top, _index[2], 0);
+			_flyBugImg[2]->alphaFrameRender(getMemDC(), _part[1].rc.left - CAMERA->GetCamera().left, _part[1].rc.top - CAMERA->GetCamera().top, _index[2], 0, _alpha[1]);
+			_flyBugImg[3]->alphaFrameRender(getMemDC(), _part[2].rc.left + 80 - CAMERA->GetCamera().left, _part[2].rc.top + 20 - CAMERA->GetCamera().top, _index[3], 0, _alpha[0]);
+			_flyBugImg[4]->alphaFrameRender(getMemDC(), _part[0].rc.left + 130 - CAMERA->GetCamera().left, _part[0].rc.top + 20 - CAMERA->GetCamera().top, _index[4], 0, _alpha[2]);
+		}
 	}
 	//텍스트 출력
 	/*sprintf(msg1, "x : %d, y : %d", _pt.x, _pt.y);

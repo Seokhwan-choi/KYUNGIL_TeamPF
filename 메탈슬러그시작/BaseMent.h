@@ -6,6 +6,8 @@ class BaseMent : public SceneMaker
 private:
 	image* _bgImage;			// 배경 이미지
 	image* _pixelImage;			// 배경 픽셀 이미지
+	class Player* _player;
+	class BigCrab* _bigCrab;
 
 	image* _Out;				// 나오는 곳 이미지
 	int _count;					// 나오는 곳 이미지 프레임 카운트

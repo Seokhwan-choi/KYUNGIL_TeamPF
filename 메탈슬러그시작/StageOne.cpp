@@ -7,18 +7,25 @@
 HRESULT StageOne::Init(void)
 {
 
-	_player = new Player("플레이어", { 1560,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { 500,WINSIZEY / 2 + 175}, { 50, 50 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
-//   _crab = new BubbleCrab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
-//   _crab->Init();
-//   OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
+	//_crab = new BubbleCrab("crab", { 2060, WINSIZEY / 2 + 175 }, { 100, 150 }, GameObject::Pivot::Center);
+	//_crab->Init();
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab);
+
+
+	//잠자리 생성
+	FlyBug* _flyBug = new FlyBug("flyBug", { 1060, 200 }, { 200, 100 }, GameObject::Pivot::Center);
+	//잠자리 객체 추가하기
+	_flyBug->Init();
+	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug);
 
 	//큰게 생성
-	BigCrab* _bigCrab = new BigCrab("bigCrab", { 500 ,WINSIZEY / 2 + 110}, { 200,280 }, GameObject::Pivot::Center);
+	//BigCrab* _bigCrab = new BigCrab("bigCrab", { 500 ,0}, { 200,280 }, GameObject::Pivot::Center);
 	//큰게 객체 추가하기
-	_bigCrab->Init();
-	OBJECTMANAGER->AddObject(ObjectType::ENEMY, _bigCrab);
+	//_bigCrab->Init();
+	//OBJECTMANAGER->AddObject(ObjectType::ENEMY, _bigCrab);
 
 	//물고기 생성
 	//_fish = new Fish("fish", { 1460 ,WINSIZEY / 2 + 175}, { 100,150 }, GameObject::Pivot::Center);
@@ -91,16 +98,16 @@ void StageOne::Update(void)
 		_PixelCheck = !_PixelCheck;
 		_crush = !_crush;
 	}
-
-	if (_crush) {
-		RECT _temp;
-		if (IntersectRect(&_temp, &_player->GetRect(), &_wallRect)) {
-			_player->SetPosition({
-				_wallRect.left - (_player->GetSize().x / 2.0f),
-				_player->GetPosition().y });
-		}
-		CAMERA->SetCamera(_player->GetPosition());
-	}
+	CAMERA->SetCamera(_player->GetPosition());
+	//if (_crush) {
+	//	RECT _temp;
+	//	if (IntersectRect(&_temp, &_player->GetRect(), &_wallRect)) {
+	//		_player->SetPosition({
+	//			_wallRect.left - (_player->GetSize().x / 2.0f),
+	//			_player->GetPosition().y });
+	//	}
+	//	CAMERA->SetCamera(_player->GetPosition());
+	//}
 	
 }
 
@@ -109,9 +116,10 @@ void StageOne::Render(void)
 	_bgImage2->render(getMemDC(), 0 - (CAMERA->GetCamera().left / 2), -310 - CAMERA->GetCamera().top);
 	_bgImage->render(getMemDC(), 0 - CAMERA->GetCamera().left, -135 - CAMERA->GetCamera().top);
 	_bgSea->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left, WINSIZEY - 278 - CAMERA->GetCamera().top);
+	_PixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left, -135 - CAMERA->GetCamera().top);
 	
 	if (_PixelCheck) {
-		_PixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left, -135 - CAMERA->GetCamera().top);
+		
 		_wallImage->frameRender(getMemDC(), 5850 - CAMERA->GetCamera().left, 0 - CAMERA->GetCamera().top);
 	}
 

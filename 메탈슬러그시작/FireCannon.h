@@ -3,7 +3,7 @@
 
 typedef struct tagFireCannon
 {
-	image* fireCannonImage;
+	image* fireCannonImage[2];
 	RECT rc;
 	float x, y;
 	float fireX, fireY;
@@ -27,6 +27,8 @@ private:
 	float _x, _y;									//발사 당시 플레이어 좌표
 
 	image* _bridgeImg[22];							//다리 이미지
+	int index[5];
+	int count;
 
 	vector<FIRECANNON> _vFireCannon[2];
 	vector<FIRECANNON>::iterator _viFireCannon[2];
@@ -34,7 +36,7 @@ public:
 	FireCannon(string name);
 	~FireCannon();
 
-	virtual HRESULT Init(const char * imageName, int width, int height, int fireCannonMax, float range);
+	virtual HRESULT Init(const char * imageName, int width, int height, int FrameX, int FrameY, int fireCannonMax, float range);
 	virtual void Release();
 	virtual void Update();
 	virtual void Render();

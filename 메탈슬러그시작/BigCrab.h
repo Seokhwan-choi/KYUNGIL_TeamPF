@@ -36,6 +36,9 @@ private:
 	int countImg[6];
 	int _hp;
 	int _gauge;
+	int _probeY;
+	image* _pixelImage;
+	RECT _pixelrc;
 public:
 	BigCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BigCrab();

@@ -86,6 +86,10 @@ HRESULT BigCrab::Init()
 		countImg[i] = 1;
 	}
 	_gauge = 1;
+
+	_probeY = _position.y + (_size.y / 2);
+	_pixelImage = IMAGEMANAGER->findImage("배경픽셀");
+
 	return S_OK;
 }
 
@@ -95,6 +99,27 @@ void BigCrab::Release()
 
 void BigCrab::Update()
 {
+	this->rectmove();
+
+	_position.y += 5.f;
+
+	//픽셀충돌 변수
+	_probeY = _position.y + (_size.y / 2) - 30;
+
+	for (int i = _probeY - 150; i < _probeY + 150; i++)
+	{
+		COLORREF color = GetPixel(_pixelImage->getMemDC(), _position.x, i);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if ((r == 255 && g == 255 && b == 0))
+		{
+			_position.y = i - _size.y / 2 + 50;
+			break;
+		}
+		
+	}
 	//각도 체크
 	_angle = GetAngle(_position.x, _position.y, player->GetPosition().x, player->GetPosition().y);
 	//거리 체크
@@ -106,7 +131,7 @@ void BigCrab::Update()
 	if (KEYMANAGER->isStayKeyDown('P')) {
 		_position.x += 5.f;
 	}
-	this->rectmove();
+	
 	this->Attcol();
 	this->Crabpattern();
 
@@ -119,12 +144,6 @@ void BigCrab::Update()
 			index[0] = 0;
 		}
 	}
-	
-	
-	
-	
-	
-	
 	_bubble->move1();
 	_bubble->render();
 }
@@ -171,6 +190,9 @@ void BigCrab::Render()
 	{
 		_bigCrabImg[3]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 150 - CAMERA->GetCamera().top, index[5], 1);
 	}
+	
+
+	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc));
 	//큰게 충돌렉트 그리기
 	//for (int i = 0; i < 4; i++)
 	//{
@@ -228,6 +250,8 @@ void BigCrab::rectmove()
 {
 	//큰게 렉트
 	_rc = RectMakeCenter(_position.x, _position.y, _size.x, _size.y);
+	//픽셀 렉트
+	_pixelrc = RectMakeCenter(_position.x, _probeY, 50, 50);
 	//카메라 렉트 게 중심으로 따라다니게 하기
 	for (int i = 0; i < 3; i++)
 	{

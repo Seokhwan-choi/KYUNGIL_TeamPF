@@ -78,7 +78,7 @@ void BossStage::Update(void)
 		}
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_F1)) 
+	if (KEYMANAGER->isOnceKeyDown('Q')) 
 	{
 		_start = !_start;
 	}
