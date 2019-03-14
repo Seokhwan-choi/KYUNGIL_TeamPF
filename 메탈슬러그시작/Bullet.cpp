@@ -122,6 +122,15 @@ void Bullet::fire(float x, float y, float angle, float speed)
 	bullet.rc = RectMakeCenter(bullet.x, bullet.y, bullet.bulletImage->getFrameWidth(), bullet.bulletImage->getFrameHeight());
 	bullet.angle = angle;
 	_vBullet.push_back(bullet);
+
+	DATA->setArms(DATA->getArms() - 1);  
+
+	if (DATA->getArms() <= 0)
+	{
+		DATA->setWeapon(WEAPON::NORMAL);
+		((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->SetWeapon(WEAPON::NORMAL);
+		//무기바꿀때는 data와 player는 다르니 같이 바까줘야한다 
+	}
 	//for (int i = 0; i < _vBullet.size(); i++)
 	//{
 	//	if (_vBullet[i].isFire) continue;
@@ -202,7 +211,7 @@ HRESULT Boom::Init(const char * imageName, int width, int height , int bulletMax
 		_frameIndex[i] = 0;
 	}
 	
-	_PlayerBoomMax = 10; 
+	_PlayerBoomMax = DATA->getBomb(); 
 
 	return S_OK;
 }
@@ -257,6 +266,11 @@ void Boom::fire(float x, float y, float angle, float gravity ,float speed)
 {
 	for (int i = 0; i < _vBoom.size(); i++)
 	{
+		DATA->setBomb(DATA->getBomb() - 1);
+		if (DATA->getBomb() < 0)
+		{
+			DATA->setBomb(0);
+		}
 		if (_vBoom[i].isFire)continue;
 		_vBoom[i].isFire = true; 
 		_vBoom[i].x = _vBoom[i].fireX= x; 
@@ -291,6 +305,7 @@ void Boom::move()
 			_vBoom[i].isFire = false;
 		}
 	}
+
 }
 
 
@@ -338,6 +353,7 @@ void Bullet1::Update()
 			break;
 		}
 	}
+
 }
 
 void Bullet1::Render()

@@ -90,8 +90,6 @@ HRESULT StageOne::Init(void)
 	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::HEAVY);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
 
-	//OldMan* _oldman2 = new OldMan("oldman2", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::TIED, ITEM::HEAVY);
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman2);
 
 	OldMan* _oldman3 = new OldMan("oldman3", { 2000, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::RUMI, ITEM::HEAVY);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _oldman3);
@@ -285,7 +283,6 @@ void StageOne::PlayerBulletCollisionEnemy()
 			}
 		}
 	}
-
 }
 
 void StageOne::PlayerCollisionEnemy()//플레이어 몸통과 애너미 몸통과 충돌햇을시 

@@ -2,6 +2,9 @@
 #include "BaseMent.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "playerDataUi.h"
+#include "oldMan.h"
+#include "ItemUi.h"
 HRESULT BaseMent::Init(void)
 {
 	_bgImage = IMAGEMANAGER->addImage("지하배경", "BackGround/지하베이스.bmp", 6774, 958);
@@ -10,6 +13,19 @@ HRESULT BaseMent::Init(void)
 
 	_player = new Player("플레이어", { 406,633 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+
+	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::HEAVY);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
+
+	playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
+
+	
+	
+	//OldMan* _oldman2 = new OldMan("oldman2", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::TIED, ITEM::HEAVY);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman2);
+
+	
 
 	//큰게 생성
 	BigCrab* _bigCrab = new BigCrab("bigCrab", { 500 ,WINSIZEY / 2 + 110 }, { 200,280 }, GameObject::Pivot::Center);
@@ -21,6 +37,7 @@ HRESULT BaseMent::Init(void)
 	CAMERA->SetWall(0);  //씬이 바뀌엇기떄문에 싱글톤 생성자가 초기화되야한다 
 	_index = 0;	
 	_count = 0;
+	_check = false;
 
 	return S_OK;
 }
@@ -49,7 +66,21 @@ void BaseMent::Update(void)
 			_index--;
 		}
 	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_F1)) {
+		_check = !_check;
+	}
 	
+
+	//#################################씬보스로 전환##################3
+	if (_player->GetCollisionPlayer().right > 6000 )
+
+	{
+		
+		SCENEMANAGER->ChangeScene("보스스테이지");
+		
+	}
+
 }
 
 void BaseMent::Render(void)
@@ -64,8 +95,13 @@ void BaseMent::Render(void)
 	char str[128]; 
 	sprintf_s(str,"%d,%d", _ptMouse.x,_ptMouse.y);
 	TextOut(getMemDC(),15,15,str,strlen(str));
+
+	if (!_check) {
+		_pixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, 0 - CAMERA->GetCamera().top);
+	}
 	
 	OBJECTMANAGER->Render();
 
 	//_Out->frameRender(getMemDC(), 500 - CAMERA->GetCamera().left, 500 - CAMERA->GetCamera().right);
 }
+

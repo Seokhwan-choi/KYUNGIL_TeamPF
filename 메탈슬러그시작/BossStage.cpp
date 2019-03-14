@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "UI.h"
+#include "Boss.h"
+
 
 HRESULT BossStage::Init(void)
 {
@@ -10,6 +12,7 @@ HRESULT BossStage::Init(void)
 	_waterground = IMAGEMANAGER->findImage("보스출렁");
 	// = IMAGEMANAGER->findImage("곧부서짐");
 
+	CAMERA->SetCamera({ WINSIZEX / 2, WINSIZEY / 2 });
 
 	for (int i = 0; i < 22; ++i) 
 	{
@@ -30,7 +33,7 @@ HRESULT BossStage::Init(void)
 		_reset[i] = false;
 	}
 
-	_player = new Player("플레이어", { WINSIZEX / 2 + 200, WINSIZEY / 2 + 175 }, { 50, 50 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { WINSIZEX - 100, WINSIZEY / 2  }, { 50, 50 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	_boss = new Boss("boss", { -WINSIZEX / 4, WINSIZEY / 2 + 100 }, { WINSIZEX / 2, WINSIZEY }, GameObject::Pivot::Center);
@@ -146,6 +149,8 @@ void BossStage::Update(void)
 
 		_reset[1] = false;
 	}
+
+	this->PlayerBulletCollisionBoss(); 
 }
 
 void BossStage::Render(void)
@@ -170,4 +175,53 @@ void BossStage::Render(void)
 	}
 
 	OBJECTMANAGER->Render();
+}
+
+void BossStage::PlayerBulletCollisionBoss()
+{
+	RECT temp;
+
+
+	//############################################애너미 2번쨰 랙트랑충돌
+	//#######################일반총알 
+	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
+	{
+		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
+
+			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_boss->getCol())  ) /*_crab[i]->getCol(2)*/  
+			{
+     			_boss->boss_damge(1);
+				_player->playerbullet()->SetisFire(i, false);
+				break;
+			}
+		
+	}
+	//###########################해비머신건 총알 
+	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
+	{
+		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
+
+			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_boss->getCol()))
+			{
+				_boss->boss_damge(1);
+				_player->heavybullet()->SetisFire(i, false);
+				break;
+			}
+	}
+
+	//###########################수류탄 충돌 
+	for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
+	{
+		if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
+
+		if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_boss->getCol()))
+		{
+			_boss->boss_damge(1);
+			_player->playerboom()->SetisFire(i, false);
+			break;
+		}
+	}
+
+
+
 }

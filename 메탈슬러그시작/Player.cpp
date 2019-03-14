@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Monster.h"
 #include "Crab.h"
+#include "oldMan.h"
 #define SPEED 6
 
 Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
@@ -110,6 +111,8 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 Player::~Player()
 {
 }
+
+
 
 HRESULT Player::Init()
 {
@@ -637,8 +640,16 @@ void Player::Update()
 			if (KEYMANAGER->isOnceKeyDown('A'))//A키를 눌럿을떄 
 			{
 				_playerbulletfire = true;// 동작을 랜더하겟다 
+
+				//################################ㄲ
+
+			    
+
+
 				if (_weapon == WEAPON::HEAVY)
 				{
+				
+
 					_hfire = true;
 				}
 
@@ -865,10 +876,10 @@ void Player::Update()
 					switch (_bullet)
 					{
 					case BULLET::LEFTFIRE://왼쪽만 가는 헤비머신건 
-						_heavyBullet->fire(_position.x + 530, RND->range(_position.y +146, _position.y + 166) /*_position.y*/, _angle, 12.5f);  //20정도의 오차 
+						_heavyBullet->fire(_position.x-190 , RND->range(_position.y +20, _position.y + 40) /*_position.y*/, _angle, 15.0f);  //20정도의 오차 
 						break;
 					case BULLET::RIGHTFIRE://오른쪽만 가는 헤비머신건 
-						_heavyBullet->fire(_position.x + 900, RND->range(_position.y +146, _position.y+166 ), _angle, 12.5f);
+						_heavyBullet->fire(_position.x +170, RND->range(_position.y +20, _position.y+40 ), _angle, 15.0f);
 						break;
 					case BULLET::UPFIRE://위에보면서 좌르륵가는거 
 
@@ -877,23 +888,23 @@ void Player::Update()
 						case STATE::WALK_UPSHOT:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 675, _position.x +695), _position.y+100 , _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x -90, _position.x -70), _position.y , _angle, 15.0f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 695, _position.x + 715), _position.y+100 , _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 70, _position.x + 90), _position.y , _angle, 15.0f);
 							}
 							break;
 						case STATE::WLAK_UPSTARE:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 695, _position.x + 715), _position.y-15 , _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x , _position.x -20), _position.y-170 , _angle, 15.0f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 690, _position.x + 710), _position.y-15, _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x , _position.x -20), _position.y-170, _angle, 15.0f);
 							}
 							break;
 						}
@@ -905,23 +916,23 @@ void Player::Update()
 						case STATE::JUMP_DOWNSHOT:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 675, _position.x + 695), _position.y + 270, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x+10, _position.x -10), _position.y +200, _angle1, 15.0f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 700, _position.x + 720), _position.y + 270, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x+10 , _position.x -10), _position.y + 200, _angle1, 15.0f);
 							}
 							break;
 						case STATE::JUMPWALK_DOWNSHOT:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 675, _position.x + 695), _position.y + 270, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x -30, _position.x -50), _position.y+100 , _angle1, 15.0f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 700, _position.x + 720), _position.y + 270, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x -10, _position.x +10), _position.y+100, _angle1, 15.0f);
 							}
 							break;
 						}
@@ -931,10 +942,10 @@ void Player::Update()
 
 						if (!_isLeft)
 						{
-							_heavyBullet->fire(_position.x + 890, RND->range(_position.y + 160, _position.y+180 ), _angle, 12.5f);
+							_heavyBullet->fire(_position.x+160 , RND->range(_position.y+35 , _position.y+55 ), _angle, 15.0f);
 						}
 						else {
-							_heavyBullet->fire(_position.x + 510, RND->range(_position.y + 160, _position.y+180 ), _angle, 12.5f);
+							_heavyBullet->fire(_position.x -170, RND->range(_position.y +35, _position.y+55 ), _angle, 15.0f);
 						}
 					case BULLET::IDLE:
 						break;
@@ -1182,11 +1193,25 @@ void Player::Update()
 								  //PlayerRightSword = RectMake(_rc.right, _rc.top, 20, 20);//안보이지만 실제 애랑충돌되면 weaponstate가 칼로바뀐다
 
 
+		if (SCENEMANAGER->FindScene("스테이지원"))
+		{
+			this->PixelMapCollision();
+		}
+		if (SCENEMANAGER->FindScene("지하스테이지"))
+		{
+			this->PixelUnderMapCollision();
+		}
+		if (SCENEMANAGER->FindScene("보스스테이지"))
+		{
+			this->PixelBossMapCollision(); 
+		}
+
 								  //==============이미지
 		this->PlayerMotionState();
 		this->PlayerBulletMotion();
 		this->PlayerBoomMotion();
-		this->PixelMapCollision();
+		//this->PoroSave(); 
+
 		_playerbullet->move();//플레이어 총알은 항시 움직이고 
 		// 처음에는 _playerboom->move() 였다.
 		// 인덱스 변하는건 Update()에 있어서
@@ -1410,9 +1435,12 @@ void Player::Render()
 			if (_weapon == WEAPON::NORMAL)
 			{
 				_weapon = WEAPON::HEAVY;
+				DATA->setArms(200);
+				DATA->setWeapon(WEAPON::HEAVY);
 			}
 			else {
 				_weapon = WEAPON::NORMAL;
+				DATA->setWeapon(WEAPON::NORMAL);
 			}
 		}
 		// =====================================================================
@@ -3188,7 +3216,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어가만수류탄던지기")->setFrameX(_frameIndex);
 						if (_frameIndex == 0)
 						{
-							_playerboom->fire(_position.x + 170, _position.y+ 150, PI / 2 - 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x+30 , _position.y, PI / 2 - 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 5)
 						{
@@ -3211,7 +3239,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어가만수류탄던지기")->setFrameX(_frameIndex);
 						if (_frameIndex == 5)
 						{
-							_playerboom->fire(_position.x+70, _position.y+150, PI / 2 + 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x-30, _position.y, PI / 2 + 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 0)
 						{
@@ -3237,7 +3265,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어이동수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 0)
 						{
-							_playerboom->fire(_position.x+ 170, _position.y+150, PI / 2 - 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x+ 30, _position.y, PI / 2 - 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 5)
 						{
@@ -3260,7 +3288,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어이동수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 5)
 						{
-							_playerboom->fire(_position.x + 70, _position.y+150, PI / 2 + 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x - 30, _position.y, PI / 2 + 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 0)
 						{
@@ -3289,7 +3317,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어가만점프수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 0)
 						{
-							_playerboom->fire(_position.x+ 170, _position.y+150, PI / 2 - 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x+ 30, _position.y, PI / 2 - 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 5)
 						{
@@ -3312,7 +3340,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("플레이어가만점프수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 5)
 						{
-							_playerboom->fire(_position.x+70, _position.y+150, PI / 2 + 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x-30, _position.y, PI / 2 + 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 0)
 						{
@@ -3357,7 +3385,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("해비앉아서수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 0)
 						{
-							_playerboom->fire(_position.x+170, _position.y+180, PI / 2 - 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x+30, _position.y+20, PI / 2 - 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 5)
 						{
@@ -3380,7 +3408,7 @@ void Player::PlayerBoomMotion()
 						IMAGEMANAGER->findImage("해비앉아서수류탄")->setFrameX(_frameIndex);
 						if (_frameIndex == 5)
 						{
-							_playerboom->fire(_position.x+70, _position.y+180, PI / 2 + 1.1f, 0.05f, 12.5f);
+							_playerboom->fire(_position.x-30, _position.y+20, PI / 2 + 1.1f, 0.05f, 12.5f);
 						}
 						if (_frameIndex == 0)
 						{
@@ -3455,3 +3483,95 @@ void Player::PixelMapCollision()
 	
 	}
 }
+
+void Player::PixelUnderMapCollision()
+{
+	_pixely = _colb.bottom; //여기가 애니메이션 맨아래부분 
+
+	for (int i = _pixely-30; i < _pixely + 30; i++)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("지하배경픽셀")->getMemDC(), _position.x, i);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+		if ((r == 255 && g == 255 && b == 0) && _jumppower <= 0)
+		{
+			_jumppower = 0.0f;
+			_position.y = i - 110;
+
+
+			if ((_isJump) || _state == STATE::FLY)
+			{
+				_wstate = WALKSTATE::IDLE;
+				_state = STATE::IDLE;
+				_isJump = false;
+				//_gravity = 0.0f; //픽셀충돌시에는 gravity는  0.0f가된다 
+			}
+			break;
+		}
+
+	}
+
+}
+
+void Player::PixelBossMapCollision()//보스 수정해야한다 
+{
+	_pixely = _colb.bottom; //여기가 애니메이션 맨아래부분 
+
+	for (int i = _pixely - 30; i < _pixely + 30; i++)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("지하배경픽셀")->getMemDC(), _position.x, i);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+		if ((r == 255 && g == 255 && b == 0) && _jumppower <= 0)
+		{
+			_jumppower = 0.0f;
+			_position.y = i - 110;
+
+
+			if ((_isJump) || _state == STATE::FLY)
+			{
+				_wstate = WALKSTATE::IDLE;
+				_state = STATE::IDLE;
+				_isJump = false;
+				//_gravity = 0.0f; //픽셀충돌시에는 gravity는  0.0f가된다 
+			}
+			break;
+		}
+
+	}
+}
+
+//void Player::EnemyCollision()      //플레이어 기본딱총 
+//{
+//	RECT temp; 
+//	for (int i = 0; i < _playerbullet->getVBullet().size(); i++)
+//	{
+//		cout << "ㅎㅎ " << endl;
+//		if (IntersectRect(&temp, &_playerbullet->getVBullet()[i].rc, &_crab->getCol(2)  ) )//몬스터 ))
+//		{//만약에 플레이어 기본총알과  애너미가 충돌햇을시 
+//			//buulet1 기본총알의 공격력은 1인상태 
+//			//((Crab*)OBJECTMANAGER->FindObject(ObjectType::Enum::ENEMY, "crab"))->setHp(((Crab*)OBJECTMANAGER->FindObject(ObjectType::Enum::ENEMY, "crab"))->getHp() - 1);
+//
+//			//exit(0);
+//			//&((Crab*)OBJECTMANAGER->FindObject(ObjectType::Enum::ENEMY, "crab")).
+//		}
+//	}
+//}
+//
+
+
+//void Player::PoroSave()
+//{
+//	RECT temp; 
+//	for (int i = 0; i < _playerbullet->getVBullet().size(); i++)
+//	{
+//		if (IntersectRect(&temp, &_playerbullet->getVBullet()[i].rc,&((OldMan*)(OBJECTMANAGER->FindObject(ObjectType::Enum::UI,"oldman2")))->getRect()))
+//		{
+//			((OldMan*)(OBJECTMANAGER)->FindObject(ObjectType::Enum::UI, "oldman1"))->setShot(true);
+//		//	((OldMan*)(OBJECTMANAGER)->FindObject(ObjectType::Enum::UI, "oldman2"))->SetRect({ 0, 0, 0, 0 });
+//		}
+//	}
+//
+//}

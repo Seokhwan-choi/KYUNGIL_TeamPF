@@ -217,7 +217,7 @@ void LoadingScene::LoadingImage()
 		string temp = "UI/stage1StartScene/number";
 		string end = ".bmp";
 		string name = temp + num;
-		string fullName = name + end;
+		string fullName = name + end;//템프는 저장장소 파일 이름 .12355.bmp
 		_loading->loadImage(name, fullName.c_str(),((stage1StartUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "stage1startui"))->getSite()[i].x,
 			((stage1StartUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "stage1startui"))->getSite()[i].y, 79, 109, true, RGB(255, 0, 255));
 	}

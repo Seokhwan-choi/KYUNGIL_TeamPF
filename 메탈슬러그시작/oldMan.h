@@ -28,7 +28,7 @@ private:
 	bool _isSave;		//구했냐?
 	RECT _temp;
 	bool _touch;       //닿았냐?
-	
+	RECT _colR;			//묶여있는 포로 충돌 렉트
 
 
 public:
@@ -43,6 +43,10 @@ public:
 	void setShot(bool isshot) { _isShot = isshot; }
 	bool getShot() { return _isShot; }
 
+	//RECT* getRect() { return _colRc; }
+	//void setRect(int index,RECT _RC) { _colRc[index] = _RC; }
+	RECT getRect() { return _colR; }
+	void SetRect(RECT colr) { _colR = colr; }
 	void motion();
 	void tied();
 	void move();
