@@ -5,7 +5,7 @@
 HRESULT BaseMent::Init(void)
 {
 	
-	_player = new Player("플레이어", { 1560,WINSIZEY / 2 + 175 }, { 50, 50 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { 406,633 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	//큰게 생성
@@ -19,10 +19,6 @@ HRESULT BaseMent::Init(void)
 	_bgImage = IMAGEMANAGER->addImage("지하배경", "BackGround/지하베이스.bmp", 6774, 958);
 	_pixelImage = IMAGEMANAGER->addImage("지하배경픽셀", "BackGround/지하베이스픽셀.bmo", 6774, 958);
 	_Out = IMAGEMANAGER->addFrameImage("통나옴", "BackGround/통나옴.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
-
-	_player = new Player("플레이어", { 406,633 }, { 320, 403 }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
-
 
 	CAMERA->SetWall(0);  //씬이 바뀌엇기떄문에 싱글톤 생성자가 초기화되야한다 
 	_index = 0;	

@@ -81,6 +81,11 @@ HRESULT Crab::Init()
 	//플레이어와의 각도 초기화
 	_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
 
+	_probeY = _position.y + _size.y/2;
+
+	_pixelImage = IMAGEMANAGER->findImage("배경픽셀");
+	_pixelGravity = 1.f;
+
 	return S_OK;
 }
 
@@ -91,13 +96,38 @@ void Crab::Release()
 void Crab::Update()
 {
 	//이동 테스트
-	if (KEYMANAGER->isStayKeyDown('I')) {
+	/*if (KEYMANAGER->isStayKeyDown('I')) {
 		_position.x -= 5.f;
 	}
 	if (KEYMANAGER->isStayKeyDown('P')) {
 		_position.x += 5.f;
+	}*/
+
+	//항시 중력 적용
+	_position.y += _pixelGravity;
+
+	//아래쪽 충돌렉트 위치 좌표 업데이트
+	_probeY = _position.y + _size.y/2;
+
+	//픽셀 충돌 처리
+	for (int i = _probeY - 60; i < _probeY + 60; i++)
+	{
+		COLORREF color = GetPixel(_pixelImage->getMemDC(), _position.x, i);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if ((r == 255 && g == 255 && b == 0))
+		{
+			_pixelGravity = 0.f;
+			_position.y = i - _size.y/2 - 140;
+
+			break;
+		}
 	}
 
+	//픽셀 렉트
+	_pixelrc = RectMakeCenter(_position.x, _probeY, 50, 50);
 	//게 렉트
 	_rc = RectMakeCenter(_position.x, _position.y, _size.x, _size.y);
 
@@ -365,7 +395,7 @@ void Crab::Render()
 	//Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
 
 	//렉트 그리기
-	//Rectangle(getMemDC(), CAMERA->Relative(_rc));
+	Rectangle(getMemDC(), CAMERA->Relative(_rc));
 
 	//게 이미지 그리기
 	this->crabImageRender();
@@ -387,10 +417,14 @@ void Crab::Render()
 	{
 		//Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
 	}
-
+	//픽셀 감지 렉트 그리기
+	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc));
 	//텍스트 출력
 	/*sprintf(msg1, "x : %d, y : %d", _pt.x, _pt.y);
 	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));*/
+
+	//렉트 그리기
+	Rectangle(getMemDC(), CAMERA->Relative(_rc));
 }
 
 void Crab::crabImage()

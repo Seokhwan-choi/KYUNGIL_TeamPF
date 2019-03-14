@@ -81,7 +81,7 @@ HRESULT BigCrab::Init()
 	{
 		_imgCount[i] = 0;
 	}
-	_hp = 20;
+
 	for (int i = 0; i < 8; i++)
 	{
 		index[i] = 0;
@@ -93,9 +93,12 @@ HRESULT BigCrab::Init()
 	index[9] = 22;
 	countImg[9] = 1;
 	_probeY = _position.y + (_size.y / 2);
-	_pixelImage = IMAGEMANAGER->findImage("배경픽셀");
+	_pixelImage = IMAGEMANAGER->findImage("지하배경픽셀");
 
 	_deathTimer = 1;
+
+	//체력 초기화
+	_hp = 20;
 
 	return S_OK;
 }
@@ -109,9 +112,11 @@ void BigCrab::Update()
 	this->rectmove();
 	_bubble->move1();
 	_bubble->render();
+
+	//항시 중력 적용
 	_position.y += 5.f;
 
-	//픽셀충돌 변수
+	//픽셀 충돌 처리
 	_probeY = _position.y + (_size.y / 2) - 30;
 
 	for (int i = _probeY - 150; i < _probeY + 150; i++)
@@ -128,12 +133,13 @@ void BigCrab::Update()
 		}
 
 	}
+
 	//각도 체크
 	_angle = GetAngle(_position.x, _position.y, player->GetPosition().x, player->GetPosition().y);
 	//거리 체크
 	_dist = GetDistance(_position.x, _position.y, player->GetPosition().x, player->GetPosition().y);
 	//이동 테스트
-	if (KEYMANAGER->isStayKeyDown('I'))
+	/*if (KEYMANAGER->isStayKeyDown('I'))
 	{
 		_position.x -= 5.f;
 	}
@@ -144,11 +150,14 @@ void BigCrab::Update()
 	if (KEYMANAGER->isStayKeyDown('O'))
 	{
 		_position.y -= 5.f;
-	}
-	if (KEYMANAGER->isToggleKey('Q'))
+	}*/
+
+	//체력이 0일 경우 죽음 상태로 변경
+	if (_hp <= 0 || KEYMANAGER->isOnceKeyDown('P'))
 	{
 		_state = state::DEATH;
 	}
+
 	this->Attcol();
 	this->Crabpattern();
 
@@ -625,7 +634,7 @@ void BigCrab::Crabpattern()
 		}
 		if (_bubble->getVBubble()[5].isFire == false)
 		{
-			OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "bigCrab"));
+			_isActive = false;
 		}
 
 	}

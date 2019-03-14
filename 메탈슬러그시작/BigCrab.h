@@ -39,6 +39,7 @@ private:
 	int countImg[10];
 	int _hp;
 	int _gauge;
+	//ÇÈ¼¿ Ãæµ¹
 	int _probeY;
 	image* _pixelImage;
 	RECT _pixelrc;

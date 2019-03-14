@@ -34,7 +34,7 @@ HRESULT FlyBug::Init()
 	_deathTimer = 0;
 	//잠자리 카메라 렉트(항상 몸 중앙을 따라 다닌다.)
 	_cam.pt = { _position.x, _position.y };
-	_cam.rc = RectMakeCenter(_cam.pt.x, _cam.pt.y, _size.x * 3.f, _size.y * 2.f);
+	_cam.rc = RectMakeCenter(_cam.pt.x, _cam.pt.y, CAMERA->GetCamera().right - CAMERA->GetCamera().left, CAMERA->GetCamera().top - CAMERA->GetCamera().bottom);
 	//플레이어 클래스 초기화
 	_player = (Player*)OBJECTMANAGER->FindObject(ObjectType::Enum::PLAYER, "플레이어");
 	//플레이어와의 각도 초기화
@@ -58,6 +58,14 @@ HRESULT FlyBug::Init()
 	{
 		_alpha[i] = 255;
 	}
+
+	//플레이어와 거리 계산
+	_dist = GetDistance(_cam.pt.x, _cam.pt.y, _player->GetPosition().x, _player->GetPosition().y);
+
+	//다시 돌아갈 위치 설정
+	_tempPt = { _position.x, _position.y };
+	//처음 생성좌표와 거리 계산
+	_tempDist = GetDistance(_position.x, _position.y, _tempPt.x, _tempPt.y);
 	return S_OK;
 }
 
@@ -70,7 +78,9 @@ void FlyBug::Update()
 	//마우스 좌표 담기
 	//_pt.x = _ptMouse.x;
 	//_pt.y = _ptMouse.y;
-	
+	//처음 생성좌표와 거리 계산
+	_tempDist = GetDistance(_position.x, _position.y, _tempPt.x, _tempPt.y);
+
 	_countImg[0]++;
 	if (_countImg[0] % 1 == 0)
 	{
@@ -87,7 +97,7 @@ void FlyBug::Update()
 	//잠자리 시체처리 렉트
 	for (int i = 0; i < 3; i++)
 	{
-		_part[i].pt = { _position.x + 50 * (i -1), _position.y};
+		_part[i].pt = { _position.x + 50 * (i - 1), _position.y };
 		_part[i].rc = RectMakeCenter(_part[i].pt.x, _part[i].pt.y, 50, 10);
 	}
 
@@ -102,26 +112,29 @@ void FlyBug::Update()
 	//플레이어와 각도 체크
 	_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
 
-	if (_cam.rc.left <= 50 || _cam.rc.right >= WINSIZEX - 50)
+	if (_cam.rc.left > CAMERA->GetCamera().left + 100
+		|| _cam.rc.right < CAMERA->GetCamera().right - 100)
 	{
 		_state = state::IDLE;
-		
+
 	}
 
 	//270도보다 크면 왼쪽으로 이동
-	if (_angle > PI / 180 * 270 && _cam.rc.left > 50)
+	if (_angle > PI / 180 * 270 
+		&& _cam.rc.left > CAMERA->GetCamera().left + 100 )
 	{
 		_state = state::L_MOVE;
-		
+
 	}
 	//270도 보다 작으면 오른쪽으로 이동
-	else if (_angle < PI / 180 * 270 && _cam.rc.right < WINSIZEX - 50)
+	else if (_angle < PI / 180 * 270 
+		&& _cam.rc.right < CAMERA->GetCamera().right - 100 )
 	{
 		_state = state::R_MOVE;
 	}
 
 	//공격 게이지 10번 모으면 그때 공격 상태로 변경
-	if (_gauge % 10 == 0)
+	if (_gauge % 10 == 0 && _dist <= CAMERA->GetCamera().right - CAMERA->GetCamera().left)
 	{
 		_state = state::ATTACK;
 	}
@@ -140,11 +153,11 @@ void FlyBug::Update()
 
 	//이동 테스트
 	/*if (KEYMANAGER->isStayKeyDown(VK_LEFT)) {
-		_position.x -= 5.f;
+	   _position.x -= 5.f;
 	}
 
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) {
-		_position.x += 5.f;
+	   _position.x += 5.f;
 	}*/
 	//상태 따른 움직임 처리
 	switch (_state)
@@ -158,6 +171,7 @@ void FlyBug::Update()
 			//_position.x += 2.f;
 			_position.y += 4.f;
 			_move += 1;
+			//cout << _move << endl;
 		}
 		//위로 이동
 		else
@@ -174,10 +188,11 @@ void FlyBug::Update()
 			_isUp = !_isUp;
 			_gauge++;
 		}
+
 		break;
 		//공격 상태
 	case state::ATTACK:
-		
+
 		_countImg[1]++;
 		if (_countImg[1] % 1 == 0)
 		{
@@ -200,7 +215,16 @@ void FlyBug::Update()
 		//플레이어와 충돌 처리 되면 다시 원위치
 		if (_isAttack)
 		{
-			_attackAngle = GetAngle(_position.x, _position.y, _tempPt.x, _tempPt.y);
+			if (_angle < 270)
+			{
+				_attackAngle = GetAngle(_position.x, _position.y, CAMERA->GetCamera().right - 100, CAMERA->GetCamera().top + 100);
+
+			}
+			else if (_angle > 270)
+			{
+				_attackAngle = GetAngle(_position.x, _position.y, CAMERA->GetCamera().left + 100, CAMERA->GetCamera().top + 100);
+			}
+
 			_position.x += cosf(_attackAngle) * 5.f;
 			_position.y += -sinf(_attackAngle) * 5.f;
 			_gauge = 1;
@@ -211,35 +235,35 @@ void FlyBug::Update()
 		//왼쪽으로 이동 상태
 	case state::L_MOVE:
 		//270도보다 크면 왼쪽으로 이동
-		if (_cam.rc.left > 50)
+		if (GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y) > PI / 180 * 270)
 		{
-			_position.x -= 12.f;
-		}
+			if (_cam.rc.left > CAMERA->GetCamera().left + 50)
+			{
+				_position.x -= 12.f;
+			}
 
-		if (_cam.rc.top > 150)
-		{
-			_position.y -= 5.f;
+			if (_cam.rc.top > CAMERA->GetCamera().top + 100)
+			{
+				_position.y -= 5.f;
+			}
 		}
-
-		//다시 돌아갈 위치 설정
-		_tempPt = { _position.x, _position.y };
 
 		break;
 		//오른쪽으로 이동 상태
 	case state::R_MOVE:
 		//270도 보다 작으면 오른쪽으로 이동
-		if (_cam.rc.right < WINSIZEX - 50)
+		if (GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y) < PI / 180 * 270)
 		{
-			_position.x += 12.f;
-		}
+			if (_cam.rc.right < CAMERA->GetCamera().right - 50)
+			{
+				_position.x += 12.f;
+			}
 
-		if (_cam.rc.top > 150)
-		{
-			_position.y -= 5.f;
+			if (_cam.rc.top > CAMERA->GetCamera().top + 100)
+			{
+				_position.y -= 5.f;
+			}
 		}
-
-		//다시 돌아갈 위치 설정
-		_tempPt = { _position.x, _position.y };
 
 		break;
 		//죽음 상태
@@ -256,7 +280,7 @@ void FlyBug::Update()
 		}
 		if (_index[2] == 29)
 		{
-			_alpha[1]-= 3;
+			_alpha[1] -= 3;
 			if (_alpha[1] <= 0)
 			{
 				_alpha[1] = 0;
