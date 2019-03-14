@@ -5,17 +5,16 @@
 GameCompleteUi::GameCompleteUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	:GameObject(name, pos, size, pivot)
 {
-	
+
 	_y = { 256,462 };		//위 y, 아래y
 	_wh = { 79,109 };		//너비 높이
-	//위렉트 위치 좌표
 	//위렉트 위치 좌표
 	_site[0] = { 349,_y.x };			_site[1] = { 428, _y.x };			_site[2] = { 472, _y.x };
 	_site[3] = { 550,_y.x };			_site[4] = { 630, _y.x };			_site[5] = { 676, _y.x };
 	_site[6] = { 754,_y.x };			_site[7] = { 893, _y.x };
 	//아래렉트 위치 좌표
 	for (int i = 8; i < 17; i++) {
-		_site[i] = { 216.f + 79.f * (i - 8) };
+		_site[i] = { 216.f + 79.f * (i - 7) , _y.y };
 	}
 
 	for (int i = 0; i < 17; i++) {
@@ -32,12 +31,11 @@ GameCompleteUi::GameCompleteUi(string name, POINTFLOAT pos, POINTFLOAT size, Piv
 		_textImg[i] = IMAGEMANAGER->addImage(name, fullName.c_str(), _site[i].x, _site[i].y, _wh.x, _wh.y, true, RGB(255, 0, 255));
 	}
 
-	//움직임
-	_angle = PI + 3 / 4;
+	//움직임을 위한 변수
+	_angle = PI * 3 / 4;
 	_speed = 14.4f;
 	_count = 0;
 	_isMove = false;
-	
 
 }
 
@@ -66,8 +64,8 @@ void GameCompleteUi::Update()
 			_site[i].y -= sinf(_angle - (PI / 12 * i))*_speed;
 		}
 		for (int i = 8; i < 17; i++) {
-			_site[i].x += cosf(PI + (PI / 10 * (i - 8)))*_speed;
-			_site[i].y -= sinf(PI + (PI / 6 * (i - 8)))*_speed;
+			_site[i].x += cosf(PI + (PI / 10 * (i - 7)))*_speed;
+			_site[i].y -= sinf(PI + (PI / 10 * (i - 7)))*_speed;
 		}
 	}
 	for (int i = 0; i < 17; i++) {

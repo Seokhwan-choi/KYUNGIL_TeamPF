@@ -26,6 +26,9 @@ private:
 public:
 	GameCompleteUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~GameCompleteUi();
+	
+	POINTFLOAT* getSite() { return _site; }
+	
 
 	HRESULT Init();
 	void Release();

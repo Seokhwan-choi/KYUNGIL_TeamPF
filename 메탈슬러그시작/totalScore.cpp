@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "totalScore.h"
-
+#include "playerDataUi.h"
 
 totalScore::totalScore(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	:GameObject(name, pos, size, pivot)
@@ -75,6 +75,17 @@ void totalScore::Update()
 			break;
 		}
 	}
+	//하나씩 올려버려야함
+	if (DATA->getCaptive() > 0) {
+		((playerDataUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "playerdataui"))->setRect({ 300.f,WINSIZEY / 2 });
+	}
+
+	//5초 뒤  다시 시작화면으로돌려준다
+	//if (_count == 1000) {
+	//	DATA->Init();
+	//	SCENEMANAGER->ChangeScene("시작화면");
+	//}
+
 
 }
 
@@ -103,5 +114,5 @@ void totalScore::Render()
 		IMAGEMANAGER->frameRender("구한포로수", getMemDC(), _ScoreRc.left + _num * 4, _ScoreRc.top, 0, 0);
 	}
 
-
+	
 }

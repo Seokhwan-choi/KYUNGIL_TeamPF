@@ -15,7 +15,7 @@
 HRESULT MainGame::init(void)
 {
 	gameNode::init(true); 
-
+	
 	SCENEMANAGER->AddScene("시작화면", new startScene);
 	SCENEMANAGER->AddScene("캐릭터선택화면", new choiceScene);
 	SCENEMANAGER->AddScene("스테이지원", new StageOne);

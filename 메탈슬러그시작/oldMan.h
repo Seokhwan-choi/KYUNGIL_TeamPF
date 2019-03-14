@@ -25,6 +25,7 @@ private:
 	bool _isCrush;		//부딪혓냐?
 	bool _isGo;			//왼쪽으로 달려나간다
 	bool _isShot;		//쐇냐?
+	bool _isSave;		//구했냐?
 	RECT _temp;
 	bool _touch;       //닿았냐?
 	

@@ -12,7 +12,7 @@ private:
 	int _arms;				//총알갯수
 	int _score;				//점수
 	int _saveCaptive;		//구한포로수
-	
+	POINTFLOAT _savePt;		//세이브포인터
 	WEAPON _weapon;	//무기뭐 들고 있냐?~
 
 public:

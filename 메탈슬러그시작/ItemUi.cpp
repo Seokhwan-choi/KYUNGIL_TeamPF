@@ -35,8 +35,8 @@ ItemUi::ItemUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM i
 	//픽셀 충돌
 	_coly = _position.y + _size.y;
 	_botRc = RectMake(_position.x, _position.y, _size.x, _size.y);
-	//_gravity = 3.3f;
-	_gravity = 0.0f;
+	_gravity = 3.3f;
+	//_gravity = 0.0f;
 	//플레이어와 닿기 전
 	IMAGEMANAGER->addFrameImage("cap_granade", "UI/item/item_1.bmp", 7, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("heavy", "UI/item/item_2.bmp", 50, 50, true, RGB(255, 0, 255));
