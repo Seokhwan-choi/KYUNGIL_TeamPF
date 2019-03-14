@@ -21,6 +21,7 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->AddScene("지하스테이지", new BaseMent);
 	SCENEMANAGER->AddScene("보스스테이지", new BossStage);
 	SCENEMANAGER->AddScene("로딩", new LoadingScene);
+
 	//첫 시작화면
 	SCENEMANAGER->ChangeScene("로딩");
 
