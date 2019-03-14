@@ -28,6 +28,8 @@ private:
 	int _index3;
 	int _count3;
 
+	bool _check;
+
 
 	bool _crush;				// 박았냐?
 	RECT _wallRect;				// 막을꺼임

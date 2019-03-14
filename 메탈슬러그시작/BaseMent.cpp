@@ -2,10 +2,17 @@
 #include "BaseMent.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "ItemUi.h"
+#include "playerDataUi.h"
+#include "timeUi.h"
+#include "oldMan.h"
 HRESULT BaseMent::Init(void)
 {
-	
-	_player = new Player("플레이어", { 1560,WINSIZEY / 2 + 175 }, { 50, 50 }, GameObject::Pivot::Center);
+	SOUNDMANAGER->play("지하시작");
+
+	//_player = new Player("플레이어", { 1560,WINSIZEY / 2 + 175 }, { 50, 50 }, GameObject::Pivot::Center);
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+	_player = new Player("플레이어", { 406,633 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	//큰게 생성
@@ -13,15 +20,24 @@ HRESULT BaseMent::Init(void)
 	//큰게 객체 추가하기
 	_bigCrab->Init();
 	OBJECTMANAGER->AddObject(ObjectType::ENEMY, _bigCrab);
+	//아이템
+	ItemUi* _item = new ItemUi("item", { WINSIZEX * 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop, ITEM::FISH);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
+	//플레이어 관련 데이터 
+	playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
 
-	
+	timeUi* _timeui2 = new timeUi("timeui2", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _timeui2);
+
+	OldMan* _oldman3 = new OldMan("oldman3", { WINSIZEX*3, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::HEAVY);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman3);
+
 	
 	_bgImage = IMAGEMANAGER->addImage("지하배경", "BackGround/지하베이스.bmp", 6774, 958);
 	_pixelImage = IMAGEMANAGER->addImage("지하배경픽셀", "BackGround/지하베이스픽셀.bmo", 6774, 958);
 	_Out = IMAGEMANAGER->addFrameImage("통나옴", "BackGround/통나옴.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
 
-	_player = new Player("플레이어", { 406,633 }, { 320, 403 }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 
 	CAMERA->SetWall(0);  //씬이 바뀌엇기떄문에 싱글톤 생성자가 초기화되야한다 
@@ -38,6 +54,7 @@ void BaseMent::Release(void)
 
 void BaseMent::Update(void)
 {
+	//사운드
 	CAMERA->SetCamera2(_player->GetPosition());             //씬이 바뀌어서 싱글톤 초기화되서 여기서 카메라는 플레이어로 잡는다 
 	OBJECTMANAGER->Update();
 	_count++;

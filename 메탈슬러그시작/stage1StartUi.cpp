@@ -24,7 +24,7 @@ stage1StartUi::stage1StartUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot
 	for (int i = 0; i < 14; i++) {
 		startRc[i] = RectMake(_site[i].x, _site[i].y, _wh.x, _wh.y);
 	}
-	
+
 	//이미지 
 	for (int i = 0; i < 14; i++) {
 		string num = to_string(i+1);
@@ -39,7 +39,7 @@ stage1StartUi::stage1StartUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot
 	_speed = 14.4f;
 	_count = 0;
 	_isMove = false;
-		
+	_check = true;
 }
 
 stage1StartUi::~stage1StartUi()
@@ -48,7 +48,7 @@ stage1StartUi::~stage1StartUi()
 
 HRESULT stage1StartUi::Init()
 {
-	
+
 	return S_OK;
 }
 
@@ -63,6 +63,7 @@ void stage1StartUi::Update()
 		_isMove = true;
 	}
 	if (_isMove == true) {
+
 		for (int i = 0; i < 8; i++) {
 			_site[i].x += cosf(_angle - (PI/12* i))*_speed;
 			_site[i].y -= sinf(_angle - (PI/12 * i))*_speed;
@@ -76,10 +77,12 @@ void stage1StartUi::Update()
 		startRc[i] = RectMake(_site[i].x, _site[i].y, _wh.x, _wh.y);
 	}
 
+
 }
 
 void stage1StartUi::Render()
 {
+
 	//렉트 보여줄 토글키
 	if(KEYMANAGER->isToggleKey('A')) {
 		for (int i = 0; i < 14; i++) {

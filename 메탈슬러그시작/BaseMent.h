@@ -9,7 +9,6 @@ private:
 	image* _bgImage;			// 배경 이미지
 	image* _pixelImage;			// 배경 픽셀 이미지
 
-	class Player* _player;
 	class BigCrab* _bigCrab;
 
 

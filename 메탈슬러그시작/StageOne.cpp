@@ -10,6 +10,7 @@ HRESULT StageOne::Init(void)
 	_player = new Player("플레이어", { 500,0 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
+
 	//작은게 수
 	_crabCount = 9;
 	//작은게 초기화
@@ -68,6 +69,7 @@ HRESULT StageOne::Init(void)
 	//_flyBug->Init();
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug);
 
+	SOUNDMANAGER->play("스테이지시작");
 
 	
 	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
@@ -84,13 +86,15 @@ HRESULT StageOne::Init(void)
 	playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
 	
+	stage1StartUi* _stage1startui = new stage1StartUi("stage1startui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
 
 
 	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::HEAVY);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
 
-	//OldMan* _oldman2 = new OldMan("oldman2", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::TIED, ITEM::HEAVY);
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman2);
+	OldMan* _oldman2 = new OldMan("oldman2", { 2500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::TIED, ITEM::FRUIT);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman2);
 
 	OldMan* _oldman3 = new OldMan("oldman3", { 2000, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::RUMI, ITEM::HEAVY);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _oldman3);
@@ -121,7 +125,9 @@ HRESULT StageOne::Init(void)
 	_count3 = 0;
 
 	_crush = false;
+	_check = false;
 
+	//SOUNDMANAGER->play("스테이지시작");
 
 	//#####################################테스트용랙트 
 
@@ -137,9 +143,10 @@ void StageOne::Release(void)
 
 void StageOne::Update(void)
 {
+	//사운드
 	OBJECTMANAGER->Update();
 	CAMERA->SetCamera(_player->GetPosition());
-	
+
 	_count++;
 	if (_count % 10 == 0) {
 		_index++;

@@ -32,7 +32,7 @@ void LoadingScene::Update(void)
 	_loading->update();
 	if (_loading->loadingDone())
 	{
-		SCENEMANAGER->ChangeScene("지하스테이지");
+		SCENEMANAGER->ChangeScene("시작화면");
 	}
 }
 
@@ -365,6 +365,7 @@ void LoadingScene::LoadingSound()
 	_loading->loadSound("포로떙큐", "SOUND/포로/포로땡큐.mp3", false, false);		// 포로 감사
 	_loading->loadSound("포로충성", "SOUND/포로/포로감사.mp3", false, false);		// 포로 충성
 	_loading->loadSound("가방포로", "SOUND/포로/가방포로.mp3", false, false);		// 가방포로(유미) 감사
+	_loading->loadSound("오케이", "SOUND/오케이.mp3", false, false);
 
 	// ===============================================================================================
 	// ################################### 선택 사운드 삽입 ############################################
@@ -413,5 +414,11 @@ void LoadingScene::LoadingSound()
 	_loading->loadSound("선택전", "SOUND/브금/선택전.mp3", true, true);
 	_loading->loadSound("스테이지시작", "SOUND/브금/스테이지시작.mp3", true, true);
 	_loading->loadSound("지하시작", "SOUND/브금/지하시작.mp3", true, true);
+
+	// ===============================================================================================
+	// #################################### 커서 ###########################################
+	// ===============================================================================================
+	_loading->loadSound("커서", "SOUND/cursor.wav", false, false);
+
 	
 }

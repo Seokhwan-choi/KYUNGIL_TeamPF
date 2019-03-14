@@ -28,7 +28,7 @@ private:
 	bool _isSave;		//구했냐?
 	RECT _temp;
 	bool _touch;       //닿았냐?
-	
+	bool _crush;	  //충돌햇냐
 
 
 public:

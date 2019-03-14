@@ -59,6 +59,7 @@ void GameCompleteUi::Update()
 		_isMove = true;
 	}
 	if (_isMove == true) {
+		SOUNDMANAGER->play("미션클리어");
 		for (int i = 0; i < 8; i++) {
 			_site[i].x += cosf(_angle - (PI / 12 * i))*_speed;
 			_site[i].y -= sinf(_angle - (PI / 12 * i))*_speed;
@@ -71,6 +72,8 @@ void GameCompleteUi::Update()
 	for (int i = 0; i < 17; i++) {
 		completeRc[i] = RectMake(_site[i].x, _site[i].y, _wh.x, _wh.y);
 	}
+
+	
 }
 
 void GameCompleteUi::Render()
@@ -92,5 +95,6 @@ void GameCompleteUi::Render()
 			_textImg[i]->render(getMemDC(), completeRc[i].left, completeRc[i].top);
 		}
 	}
+	//7초뒤 토탈 스코어 나오게끔 처리해줘야함
 
 }
