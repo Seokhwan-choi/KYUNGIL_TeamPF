@@ -385,7 +385,7 @@ void Player::Update()
 
 					/*	_wstate = WALKSTATE::JUMPWALK;
 					_state = STATE::JUMPWALK;*/
-					_position.x += 13.0f;
+					_position.x += 25.0f;
 				}
 				else if (_state == STATE::CROUCHWALK)
 				{
@@ -3455,21 +3455,3 @@ void Player::PixelMapCollision()
 	
 	}
 }
-
-//void Player::EnemyCollision()      //플레이어 기본딱총 
-//{
-//	RECT temp; 
-//	for (int i = 0; i < _playerbullet->getVBullet().size(); i++)
-//	{
-//		cout << "ㅎㅎ " << endl;
-//		if (IntersectRect(&temp, &_playerbullet->getVBullet()[i].rc, &_crab->getCol(2)  ) )//몬스터 ))
-//		{//만약에 플레이어 기본총알과  애너미가 충돌햇을시 
-//			//buulet1 기본총알의 공격력은 1인상태 
-//			//((Crab*)OBJECTMANAGER->FindObject(ObjectType::Enum::ENEMY, "crab"))->setHp(((Crab*)OBJECTMANAGER->FindObject(ObjectType::Enum::ENEMY, "crab"))->getHp() - 1);
-//
-//			//exit(0);
-//			//&((Crab*)OBJECTMANAGER->FindObject(ObjectType::Enum::ENEMY, "crab")).
-//		}
-//	}
-//}
-//

@@ -64,7 +64,7 @@ void Bullet::Render()
 		
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
-
+			if (!_vBullet[i].isFire) continue;
 			RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
 			_angle = _vBullet[i].angle;//±âº»ÃÑ¾Ë
 
@@ -349,7 +349,7 @@ void Bullet1::Render()
 
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
-
+			if (!_vBullet[i].isFire) continue;
 			RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
 			_angle = _vBullet[i].angle;//±âº»ÃÑ¾Ë
 

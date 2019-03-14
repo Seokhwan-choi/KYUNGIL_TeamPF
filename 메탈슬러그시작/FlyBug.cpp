@@ -158,6 +158,7 @@ void FlyBug::Update()
 			//_position.x += 2.f;
 			_position.y += 4.f;
 			_move += 1;
+			cout << _move << endl;
 		}
 		//위로 이동
 		else

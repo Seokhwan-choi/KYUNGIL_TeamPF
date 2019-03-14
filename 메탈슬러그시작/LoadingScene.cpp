@@ -32,7 +32,7 @@ void LoadingScene::Update(void)
 	_loading->update();
 	if (_loading->loadingDone())
 	{
-		SCENEMANAGER->ChangeScene("지하스테이지");
+		SCENEMANAGER->ChangeScene("스테이지원");
 	}
 }
 
@@ -53,6 +53,7 @@ void LoadingScene::LoadingImage()
 	_loading->loadImage("배경", "Background/배경.bmp", 14070, 1150, true, RGB(255, 0, 255));
 	_loading->loadImage("배경의배경", "Background/배경의배경.bmp", 9562, 1200, true, RGB(255, 0, 255));
 	_loading->loadImage("배경픽셀", "Background/배경픽셀.bmp", 14070, 1150, true, RGB(255, 0, 255));
+	_loading->loadImage("검정", "검정.bmp", 1280, 958);
 	// ===============================================================================================
 	// ###############################################################################################
 	// ===============================================================================================
@@ -65,7 +66,7 @@ void LoadingScene::LoadingImage()
 	// ===============================================================================================
 
 	_loading->loadImage("지하배경", "BackGround/지하베이스.bmp", 6774, 958);
-	_loading->loadImage("지하배경픽셀", "BackGround/지하베이스픽셀.bmp", 6774, 958);
+	_loading->loadImage("지하베이스픽셀", "BackGround/지하베이스픽셀.bmp", 6774, 958);
 	_loading->loadFrameImage("통나옴", "BackGround/통나옴.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
 
 	//IMAGEMANAGER->addImage("지하배경", "BackGround/지하베이스.bmp", 6774, 958);
@@ -378,7 +379,7 @@ void LoadingScene::LoadingSound()
 	// ################################### effect 사운드 삽입 ##########################################
 	// ===============================================================================================
 
-	_loading->loadSound("동전넣기", "SOUND/이펙트/동전넣기.mp3", false, false);
+	_loading->loadSound("동전", "SOUND/이펙트/동전.mp3", false, false);
 	_loading->loadSound("딱총", "SOUND/이펙트/딱총.mp3", false, false);
 	_loading->loadSound("미션1시작", "SOUND/이펙트/미션1시작.mp3", false, false);
 	_loading->loadSound("미션클리어", "SOUND/이펙트/미션클리어.mp3", false, false);
