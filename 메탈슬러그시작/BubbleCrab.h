@@ -47,6 +47,13 @@ private:
 	image* BubblecrabImg[8];
 	//이미지 랜더용 변수
 	int indexImg[6], countImg[6];
+
+	//픽셀 충돌
+	int _probeY;
+	image* _pixelImage[2];
+	int _pixelGravity;
+	RECT _pixelrc;
+
 public:
 	BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BubbleCrab();

@@ -40,6 +40,8 @@ private:
 	int _dist;
 	//처음 생성좌표와 거리 계산
 	int _tempDist;
+	int count;
+
 public:
 	FlyBug(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~FlyBug();

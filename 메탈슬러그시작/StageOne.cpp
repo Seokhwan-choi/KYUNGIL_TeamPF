@@ -94,8 +94,7 @@ HRESULT StageOne::Init(void)
 	{
 		string num = to_string(i);
 		string name = "_flyBug" + num;
-		
-		_flyBug[i] = new FlyBug(name, { 1500.f, 130.f }, { 200, 100 }, GameObject::Pivot::Center);
+		_flyBug[i] = new FlyBug(name, { 11500, 130.f }, { 200, 100 }, GameObject::Pivot::Center);
 		
 		/*if (i == 2)
 		{
@@ -341,14 +340,14 @@ void StageOne::PlayerCollisionEnemy()//플레이어 몸통과 애너미 몸통과 충돌햇을시
 		if (IntersectRect(&temp, &_player->GetCollisionPlayer(), &_crab[i]->getCol(2)))// && _player->GetCollisionPlayer().right <=_crab->getCol(2).left )
 		{//100 140사이즈크기 플레이어 
 		 // Crab  left와비교 
-			cout << "충돌" << endl;
+			//cout << "충돌" << endl;
 			_player->SetPosition({ (float)_crab[i]->getCol(2).left - 180, (float)_player->GetPosition().y });
 
 		}
 		else if (IntersectRect(&temp, &_player->GetCollisionPlayer(), &_crab[i]->getCol(3)))// && _player->GetCollisionPlayer().right <=_crab->getCol(2).left )
 		{//100 140사이즈크기 플레이어 
 		//Crab right와 비교 
-			cout << "충돌" << endl;
+			//cout << "충돌" << endl;
 			_player->SetPosition({ (float)_crab[i]->getCol(2).right + 170, (float)_player->GetPosition().y });
 		}
 		//만약에 크랩의 맨위와 플레이어가 충돌햇을시 

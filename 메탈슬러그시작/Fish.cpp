@@ -40,9 +40,9 @@ HRESULT Fish::Init()
 	count_death = 1;
 	boxhp = 10;
 	//이미지 초기화
-	fishImg[0] = IMAGEMANAGER->findImage("fish");
-	fishImg[1] = IMAGEMANAGER->findImage("fish1");
-	fishImg[2] = IMAGEMANAGER->findImage("fish2");
+	fishImg[0] = IMAGEMANAGER->findImage("fish1");
+	fishImg[1] = IMAGEMANAGER->findImage("fish2");
+	fishImg[2] = IMAGEMANAGER->findImage("fish3");
 	
 	return S_OK;
 }
