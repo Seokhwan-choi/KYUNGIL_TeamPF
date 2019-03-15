@@ -69,9 +69,9 @@ void Camera::SetCamera2(POINTFLOAT pos)
 
 	
 
-	if (_cameraRect.left < wall)
+	if (_cameraRect.left < _wall)
 	{
-		_cameraPos.x = _cameraPos.x + ( wall - _cameraRect.left);
+		_cameraPos.x = _cameraPos.x + (_wall - _cameraRect.left);
 	}
 	// 6774 x 958 
 
@@ -90,9 +90,9 @@ void Camera::SetCamera2(POINTFLOAT pos)
 	}
 	else 
 	{
-		if (_cameraRect.left >= wall)
+		if (_cameraRect.left >= _wall)
 		{
-			wall = _cameraRect.left;
+			_wall = _cameraRect.left;
 		}
 	}
 

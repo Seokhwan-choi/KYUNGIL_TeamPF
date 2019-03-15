@@ -7,7 +7,7 @@
 
 HRESULT StageOne::Init(void)
 {
-	_player = new Player("플레이어", { 11000,0 }, { 320, 403 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { 250,0 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	//작은게 수
@@ -146,15 +146,8 @@ HRESULT StageOne::Init(void)
 	stage1StartUi* _stage1startui = new stage1StartUi("stage1startui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
 
-
-<<<<<<< HEAD
-	_player = new Player("플레이어", { 500,WINSIZEY / 2 + 175 }, { 320, 402 }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
-	
-	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::HEAVY);
-=======
 	OldMan* _oldman = new OldMan("oldman1", { 4000, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::FRUIT);
->>>>>>> befd24c80715b2650d496809e7f6072052d5b079
+
 	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
 
 	OldMan* _oldman2 = new OldMan("oldman2", { 5000, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::TIED, ITEM::HEAVY);

@@ -6,7 +6,7 @@ private:
 	RECT _cameraRect;				// 카메라 RECT
 	RECT _wallRect;					// 카메라 막기 RECT
 	POINTFLOAT _cameraPos;			// 카메라 중점 좌표
-	int wall;                       //우리가 뒤로못 지나가게하는 벽??
+	int _wall;                       //우리가 뒤로못 지나가게하는 벽??
 public:
 
 	void SetCamera(POINTFLOAT pos);           //카메라의 중점  
@@ -15,13 +15,13 @@ public:
 	RECT GetCamera() { return _cameraRect; }  //카메라 RECT를 반환하는함수   배경에서 빼줄려고 보통쓴다 
 	                                          //보통 배경할떄 
 
-	void SetWall(int w) { wall = w; }         //WALL은 0??맨왼쪽이다??
-	int GetWall() { return wall; }
+	void SetWall(int w) { _wall = w; }         //WALL은 0??맨왼쪽이다??
+	int GetWall() { return _wall; }
 
 
 	Camera()
 	{ 
-		wall = 0; //생성자가 클래스가 호출될떄 딱한번 호출되서 
+		_wall = 0; //생성자가 클래스가 호출될떄 딱한번 호출되서 
 		         //씬이바뀌면 싱글톤은 항상 쓸꺼는 다시 초기화해야한다 
 	}
 	~Camera() {}
