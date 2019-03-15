@@ -12,6 +12,19 @@ Crab::~Crab()
 
 }
 
+void Crab::death()
+{
+	RECT temp;
+	for (int i = 0; i < 2; i++)
+	{
+		if (IntersectRect(&temp, &_att[i].rc, &_player->GetCollisionPlayer()))
+		{
+			cout << "kill" << endl;
+		}
+	}
+	
+}
+
 HRESULT Crab::Init()
 {
 	//상태 초기화
@@ -81,8 +94,8 @@ HRESULT Crab::Init()
 	//플레이어와의 각도 초기화
 	_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
 
-	_probeY = _position.y + _size.y/2;
-
+	_probeY = _position.y + _size.y / 2;
+	_probeX = _position.x + _size.x / 2;
 	_pixelImage = IMAGEMANAGER->findImage("배경픽셀");
 	_pixelGravity = 1.f;
 
@@ -95,6 +108,7 @@ void Crab::Release()
 
 void Crab::Update()
 {
+	this->death();
 	//이동 테스트
 	/*if (KEYMANAGER->isStayKeyDown('I')) {
 		_position.x -= 5.f;
@@ -108,11 +122,28 @@ void Crab::Update()
 
 	//아래쪽 충돌렉트 위치 좌표 업데이트
 	_probeY = _position.y + _size.y/2;
-
+	_probeX = _position.x + _size.x/2;
 	//픽셀 충돌 처리
-	for (int i = _probeY - 60; i < _probeY + 60; i++)
+	
+	for (int i = _probeY; i < _probeY + 360; i++)
 	{
 		COLORREF color = GetPixel(_pixelImage->getMemDC(), _position.x, i);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+	
+		if ((r == 255 && g == 255 && b == 0))
+		{
+			_pixelGravity = 0.f;
+			_position.y = i - _size.y / 2 - 140;
+	
+			break;
+		}
+	}
+
+	for (int i = _probeX; i < _probeX + 50; i++)
+	{
+		COLORREF color = GetPixel(_pixelImage->getMemDC(), i, _position.y);
 		int r = GetRValue(color);
 		int g = GetGValue(color);
 		int b = GetBValue(color);
@@ -120,14 +151,16 @@ void Crab::Update()
 		if ((r == 255 && g == 255 && b == 0))
 		{
 			_pixelGravity = 0.f;
-			_position.y = i - _size.y/2 - 140;
+			_position.x = i - _size.x / 2 - 140;
 
 			break;
 		}
 	}
-
+	
+	
 	//픽셀 렉트
-	_pixelrc = RectMakeCenter(_position.x, _probeY, 50, 50);
+	_pixelrc[0] = RectMakeCenter(_position.x, _probeY, 10, 10);
+	_pixelrc[1] = RectMakeCenter(_probeX, _position.y, 10, 10);
 	//게 렉트
 	_rc = RectMakeCenter(_position.x, _position.y, _size.x, _size.y);
 
@@ -391,40 +424,40 @@ void Crab::Update()
 
 void Crab::Render()
 {
-	//카메라 렉트 그리기
-	//Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
-
-	//렉트 그리기
-	//Rectangle(getMemDC(), CAMERA->Relative(_rc));
-
 	//게 이미지 그리기
 	this->crabImageRender();
 
-	//충돌렉트 그리기
-	for (int i = 0; i < 4; i++)
-	{
-		//Rectangle(getMemDC(), CAMERA->Relative(_col[i].rc));
-	}
-
-	//시체처리렉트 그리기
-	for (int i = 0; i < 3; i++)
-	{
-		//Rectangle(getMemDC(), CAMERA->Relative(_part[i].rc));
-	}
-
-	//공격처리렉트 그리기
-	for (int i = 0; i < 2; i++)
-	{
-		//Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
-	}
 	//픽셀 감지 렉트 그리기
-	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc));
-	//텍스트 출력
-	/*sprintf(msg1, "x : %d, y : %d", _pt.x, _pt.y);
-	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));*/
+	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc[0]));
+	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc[1]));
+	//렉트 보기
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		//카메라 렉트 그리기
+		Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
 
-	//렉트 그리기
-	//Rectangle(getMemDC(), CAMERA->Relative(_rc));
+		//렉트 그리기
+		Rectangle(getMemDC(), CAMERA->Relative(_rc));
+
+		//충돌렉트 그리기
+		for (int i = 0; i < 4; i++)
+		{
+			//Rectangle(getMemDC(), CAMERA->Relative(_col[i].rc));
+		}
+
+		//시체처리렉트 그리기
+		for (int i = 0; i < 3; i++)
+		{
+			Rectangle(getMemDC(), CAMERA->Relative(_part[i].rc));
+		}
+		//공격처리렉트 그리기
+		for (int i = 0; i < 2; i++)
+		{
+			Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
+		}
+		//렉트 그리기
+		Rectangle(getMemDC(), CAMERA->Relative(_rc));
+	}
 }
 
 void Crab::crabImage()

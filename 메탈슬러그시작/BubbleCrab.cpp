@@ -85,6 +85,13 @@ HRESULT BubbleCrab::Init()
 	_bubble = new Bubble("거품");
 	_bubble->Init2("Enemy/거품.bmp", 420, 60, 7, 1, 3, 1280);
 
+
+	_probeY = _position.y + _size.y / 2;
+
+	_pixelImage[0] = IMAGEMANAGER->findImage("배경픽셀");
+	_pixelImage[1] = IMAGEMANAGER->findImage("지하배경픽셀");
+	_pixelGravity = 1.f;
+
 	return S_OK;
 }
 
@@ -96,6 +103,51 @@ void BubbleCrab::Release()
 
 void BubbleCrab::Update()
 {
+	//항시 중력 적용
+	_position.y += _pixelGravity;
+
+	//아래쪽 충돌렉트 위치 좌표 업데이트
+	_probeY = _position.y + _size.y / 2;
+	if (SCENEMANAGER->FindScene("스테이지원") == true)
+	{
+		//픽셀 충돌 처리
+		for (int i = _probeY - 20; i < _probeY + 360; i++)
+		{
+			COLORREF color = GetPixel(_pixelImage[0]->getMemDC(), _position.x, i);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+	
+			if ((r == 255 && g == 255 && b == 0))
+			{
+				_pixelGravity = 0.f;
+				_position.y = i - _size.y / 2 - 140;
+	
+				break;
+			}
+		}
+	}
+	if (SCENEMANAGER->FindScene("지하스테이지") == true)
+	{
+		//픽셀 충돌 처리
+		for (int i = _probeY - 20; i < _probeY + 1060; i++)
+		{
+			COLORREF color = GetPixel(_pixelImage[1]->getMemDC(), _position.x, i);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+
+			if ((r == 255 && g == 255 && b == 0))
+			{
+				_pixelGravity = 0.f;
+				_position.y = i - _size.y / 2;
+
+				break;
+			}
+		}
+	}
+	
+
 	//거품게 렉트
 	_rc = RectMakeCenter(_position.x, _position.y, _size.x, _size.y);
 

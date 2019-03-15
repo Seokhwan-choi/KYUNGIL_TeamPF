@@ -112,7 +112,7 @@ void BigCrab::Update()
 	this->rectmove();
 	_bubble->move1();
 	_bubble->render();
-
+	this->Attcol();
 	//항시 중력 적용
 	_position.y += 5.f;
 
@@ -158,7 +158,6 @@ void BigCrab::Update()
 		_state = state::DEATH;
 	}
 
-	this->Attcol();
 	this->Crabpattern();
 
 	countImg[0]++;
@@ -178,10 +177,10 @@ void BigCrab::Render()
 	//카메라 렉트 그리기
 	for (int i = 0; i < 4; i++)
 	{
-		//Rectangle(getMemDC(), CAMERA->Relative(_cam[i].rc));
+		Rectangle(getMemDC(), CAMERA->Relative(_cam[i].rc));
 	}
 	//큰게 렉트 그리기
-	//Rectangle(getMemDC(), CAMERA->Relative(_rc));
+	Rectangle(getMemDC(), CAMERA->Relative(_rc));
 	//큰게 이미지 그리기
 	if (_state == state::L_IDLE && !(_state == state::L_MOVE) && !(_state == state::L_ATTACK) && !(_state == state::DEATH))
 	{
@@ -340,10 +339,6 @@ void BigCrab::rectmove()
 
 void BigCrab::Crabpattern()
 {
-	//if (!_cam[0].isCrush && !_cam[1].isCrush && !_cam[2].isCrush && !_cam[3].isCrush)
-	//{
-	//	_state = state::L_IDLE;
-	//}
 	if (_cam[0].isCrush == true && _isStop == false)
 	{
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
@@ -383,7 +378,7 @@ void BigCrab::Crabpattern()
 			_gauge = 1;
 		}
 	}
-	if (_cam[3].isCrush && _isAttack == false)
+	if (_cam[3].isCrush && _isAttack == false && !(_state == state::DEATH))
 	{
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
@@ -579,7 +574,7 @@ void BigCrab::Crabpattern()
 		{
 			_att[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
 		}
-
+		
 		countImg[6]++;
 		if (countImg[6] % 10 == 0)
 		{
@@ -625,17 +620,18 @@ void BigCrab::Crabpattern()
 				}
 			}
 		}
-
+		
 		_deathTimer++;
-		if (_deathTimer % 150 == 0)
+		if (_deathTimer % 200 == 0)
 		{
 			_rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+			if (_bubble->getVBubble()[5].isFire == false)
+			{
+				_isActive = false;
+			}
 
 		}
-		if (_bubble->getVBubble()[5].isFire == false)
-		{
-			_isActive = false;
-		}
+		
 
 	}
 }

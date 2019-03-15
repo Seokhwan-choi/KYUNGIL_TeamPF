@@ -117,7 +117,7 @@ void BaseMent::Render(void)
 	//두좌표만 잇을때는 이런식으로 쓴다 
 	_bgImage->render(getMemDC(), 0 - CAMERA->GetCamera().left -300, 0 -  CAMERA->GetCamera().top);// , 0 - CAMERA->GetCamera().top);
 	_Out->frameRender(getMemDC(), 250 - CAMERA->GetCamera().left - 300, 390 - CAMERA->GetCamera().top);
-	
+	_pixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, 0 - CAMERA->GetCamera().top);
 	char str[128]; 
 	sprintf_s(str,"%d,%d", _ptMouse.x,_ptMouse.y);
 	TextOut(getMemDC(),15,15,str,strlen(str));

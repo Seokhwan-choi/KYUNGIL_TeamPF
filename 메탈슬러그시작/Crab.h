@@ -39,9 +39,10 @@ private:
 	int _hp;
 	//픽셀 충돌
 	int _probeY;
+	int _probeX;
 	image* _pixelImage;
 	int _pixelGravity;
-	RECT _pixelrc;
+	RECT _pixelrc[2];
 	//플레이어 클래스
 	class Player* _player;
 public:
@@ -66,6 +67,7 @@ public:
 	//데미지
 	void crab_damage(int damage) { _hp -= damage; }
 
+	void death();
 	HRESULT Init() override;
 	void Release() override;
 	void Update() override;
