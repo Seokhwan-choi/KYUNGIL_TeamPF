@@ -759,7 +759,7 @@ void Player::Update()
 						break;
 					}
 
-					break;
+					
 
 
 					// 나중에 추가하시면 댐
@@ -1241,7 +1241,8 @@ void Player::Render()
 		RECT playercehck= CAMERA->Relative(collisionplayer);
 		Rectangle(getMemDC(), CHEK);
 		Rectangle(getMemDC(), CAMERA->Relative(_colb));
-		Rectangle(getMemDC(), CAMERA->Relative(_colr));
+		Rectangle(getMemDC(), CAMERA->Relative(
+			_colr));
 		//플레이어 충돌랙트 
 		Rectangle(getMemDC(), playercehck);
 
