@@ -9,7 +9,6 @@ HRESULT BossStage::Init(void)
 	_bgImage = IMAGEMANAGER->findImage("보스배경");
 	_waterground = IMAGEMANAGER->findImage("보스출렁");
 	// = IMAGEMANAGER->findImage("곧부서짐");
-	CAMERA->SetCamera({ WINSIZEX / 2, WINSIZEY / 2 });
 
 
 	for (int i = 0; i < 22; ++i) 
@@ -107,7 +106,6 @@ void BossStage::Update(void)
 		_start = !_start;
 	}
 
-	this->PlayerBulletCollisionBoss();
 	OBJECTMANAGER->Update();
 
 	// =========================================================
@@ -179,7 +177,7 @@ void BossStage::Render(void)
 	// ============== 배경바닥 출렁출렁 시킨다. =================
 	_waterground->frameRender(getMemDC(), 0, WINSIZEY - 100);
 	// ======================================================
-	Rectangle(getMemDC(), _boss->getCol());
+
 	//다리 이미지 그리기
 	for (int i = 0; i < 22; ++i)
 	{	
@@ -193,50 +191,4 @@ void BossStage::Render(void)
 	}
 
 	OBJECTMANAGER->Render();
-}
-
-void BossStage::PlayerBulletCollisionBoss()
-{
-	RECT temp;
-	//############################################애너미 2번쨰 랙트랑충돌
-	//#######################일반총알 
-	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
-	{
-		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
-		if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_boss->getCol())) /*_crab[i]->getCol(2)*/  
-		{
-     		_boss->boss_damge(1);
-			_player->playerbullet()->SetisFire(i, false);
-			cout << "충돌" << endl;
-			break;
-		}
-	}
-	//###########################해비머신건 총알 
-	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
-	{
-		if (_player->heavybullet()->getVBullet()[i].isFire == false) continue;
-		if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_boss->getCol()))
-		{
-			_boss->boss_damge(1);
-			_player->heavybullet()->SetisFire(i, false);
-			cout << "충돌" << endl;
-			break;
-		}
-	}
-	//
-	////###########################수류탄 충돌 
-	//for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
-	//{
-	//	if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
-	//	cout << "들어옴 " << endl;
-	//	if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_boss->getCol()))
-	//	{
-	//		_boss->boss_damge(1);
-	//		_player->playerboom()->SetisFire(i, false);
-	//		break;
-	//	}
-	//}
-
-
-
 }
