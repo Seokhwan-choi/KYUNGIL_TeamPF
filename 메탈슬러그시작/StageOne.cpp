@@ -33,7 +33,7 @@ HRESULT StageOne::Init(void)
 	OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
 
 
-	_player = new Player("플레이어", { 500,WINSIZEY / 2 + 175 }, { 50, 50 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { 500,WINSIZEY / 2 + 175 }, { 320, 402 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 	
 	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::HEAVY);
@@ -104,8 +104,6 @@ void StageOne::Update(void)
 		_crush = !_crush;
 	}
 
-	CAMERA->SetCamera(_player->GetPosition());
-
 	if (_crush) {
 		RECT _temp;
 		if (IntersectRect(&_temp, &_player->GetRect(), &_wallRect)) {
@@ -113,7 +111,6 @@ void StageOne::Update(void)
 				_wallRect.left - (_player->GetSize().x / 2.0f),
 				_player->GetPosition().y });
 		}
-		CAMERA->SetCamera(_player->GetPosition());
 	}
 	
 }

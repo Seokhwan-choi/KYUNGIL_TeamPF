@@ -8,12 +8,18 @@ void Camera::SetCamera(POINTFLOAT pos)
 	_cameraPos = pos;
 	_cameraRect = RectMakeCenter(_cameraPos.x, _cameraPos.y, WINSIZEX, WINSIZEY);
 
+
+	if (_cameraRect.left >= _wall)
+	{
+		_wall = _cameraRect.left;
+	}
+
 	// 추가 예정
 	// 추가적으로 카메라의 위치를 보정해줘야 한다.
 
-	if (_cameraRect.left < 0) 
+	if (_cameraRect.left < _wall)// && _cameraRect.left > 0) 
 	{
-		_cameraPos.x -= _cameraRect.left;
+		_cameraPos.x += _wall - _cameraRect.left;
 	}
 
 	// ==========================================================

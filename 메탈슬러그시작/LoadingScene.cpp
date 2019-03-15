@@ -7,7 +7,7 @@ HRESULT LoadingScene::Init(void)
 	_loading = new loading;
 	_loading->init();
 
-	this->LoadingSound();
+	//this->LoadingSound();
 	this->LoadingImage();
 
 	return S_OK;

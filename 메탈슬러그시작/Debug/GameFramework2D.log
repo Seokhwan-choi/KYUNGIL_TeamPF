@@ -1,2 +1,31 @@
-﻿  StageOne.cpp
-  GameFramework2D.vcxproj -> D:\팀포폴\메탈슬러그시작\Debug\WindowAPI.exe
+﻿  Player.cpp
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(826): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(826): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(829): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(829): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(838): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(838): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(843): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(843): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(849): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(849): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(854): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(854): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(866): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(866): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(871): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(871): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(877): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(877): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(882): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(882): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(892): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(892): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(895): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(895): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(1132): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(3355): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(3357): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(3364): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\앙기무찌\메탈슬러그시작\player.cpp(3381): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
+  GameFramework2D.vcxproj -> C:\Users\user\Desktop\앙기무찌\메탈슬러그시작\Debug\WindowAPI.exe

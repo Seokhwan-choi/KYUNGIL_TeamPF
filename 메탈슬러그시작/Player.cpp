@@ -13,9 +13,8 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_time = 0;										//항상update되고 해비머신건발사시 4발정도 간격을 주기위하여 
 	_count = 0;										//해비머신건이 발사됫을시 count가 4가되면 fire를 false로 만들기 위하여 
 	_hfire = false;									//키를 누르면 true가되고 해비머신건이 발사가된다 
-
-	
-													
+		
+		
 	// ================= 플레이어 총알 ============================= 
 	_playerbullet = new Bullet1("플레이어 공용총알");
 	_playerbullet->Init("플레이어/기본총알.bmp", 100, 40, 1000, 1200,true);//프레임이미지 
@@ -1135,12 +1134,17 @@ void Player::Update()
 
 	this->UpdateRectByPivot();//렉트를 다시그려주는거 즉 업데이트에서 항시움직일려고  
 
+	if ( _rc.left < CAMERA->GetWall() + 175) 
+	{
+		_position.x += CAMERA->GetWall() + 175 - _rc.left;
+	}
 
 							  //PlayerLeftSword = RectMake(_rc.left - 20, _rc.top, 20, 20);//안보이지만 실제 애랑충돌되면 weaponstate가 칼로바뀐다
 							  //PlayerRightSword = RectMake(_rc.right, _rc.top, 20, 20);//안보이지만 실제 애랑충돌되면 weaponstate가 칼로바뀐다
 
 
 							  //==============이미지
+	CAMERA->SetCamera(_position);
 	this->PlayerMotionState();
 	this->PlayerBulletMotion();
 	this->PlayerBoomMotion(); 
