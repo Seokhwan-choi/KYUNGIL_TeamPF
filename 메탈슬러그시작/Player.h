@@ -126,15 +126,12 @@ private:
 	bool _playerbulletfire;				//업데이트에서 총알이 발사됫냐? 
 
 
-
+	//==========================픽셀용//////////////////
+	float _pixely;//플레이어픽셀용 y값
+	float _pixelx; 
 	//==========================실제충돌할렉트 ==========================
 	//RECT _InterPlayerRc; 
 	RECT check; 
-
-
-	//==========================픽셀용//////////////////
-	float _pixely;//플레이어픽셀용 y값
-	float _pixelx;
 
 	RECT _colb;
 	RECT _colr;		
@@ -148,8 +145,6 @@ public:
 	~Player();
 	//############boom render get set 
 	void SetBoomredner(bool _boom) { _boomrender = _boom; }
-
-	void PoroSave();                    //포로구하기
 
 	//####################################플레이어 충돌렉트 #################################
 
@@ -171,10 +166,7 @@ public:
 
 	void PlayerBoomMotion();            //플레이어폭탄상태 
 	void PixelMapCollision(); 
-	void PixelUnderMapCollision();      //지하스테이지일떄 
-	void PixelBossMapCollision();      //지하스테이지일떄 
-
-
+	
 	Bullet1* playerbullet() { return _playerbullet; }
 	Bullet* heavybullet() { return _heavyBullet; }
 	Boom* playerboom() { return _playerboom; }
@@ -183,8 +175,6 @@ public:
 
 	float GetJumppower() { return _jumppower;  }
 	void SetJumppower(float power) { _jumppower = power;  }
-
-
 
 	//	Bullet* _heavyBullet; 
 	//Bullet1*_playerbullet;

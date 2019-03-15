@@ -38,11 +38,6 @@ private:
 	image* _choicechaImage[4];		//캐릭터 선택시 나오는 이미지 선언
 	image* _yellow;					//옐로 -> 레드
 	image* _downDoorImage;			//캐릭터 선택 후 내려오는 문 이미지
-
-
-
-
-	bool _check;	
 public:
 	choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~choiceUi();

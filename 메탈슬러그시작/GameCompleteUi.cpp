@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameCompleteUi.h"
-
+#include "Boss.h"
+#include "totalScore.h"
 
 GameCompleteUi::GameCompleteUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	:GameObject(name, pos, size, pivot)
@@ -36,6 +37,7 @@ GameCompleteUi::GameCompleteUi(string name, POINTFLOAT pos, POINTFLOAT size, Piv
 	_speed = 14.4f;
 	_count = 0;
 	_isMove = false;
+	
 
 }
 
@@ -54,47 +56,51 @@ void GameCompleteUi::Release()
 
 void GameCompleteUi::Update()
 {
-	_count++;
-	if (_count == 130) {
-		_isMove = true;
-	}
-	if (_isMove == true) {
-		SOUNDMANAGER->play("미션클리어");
-		for (int i = 0; i < 8; i++) {
-			_site[i].x += cosf(_angle - (PI / 12 * i))*_speed;
-			_site[i].y -= sinf(_angle - (PI / 12 * i))*_speed;
+	if (((Boss*)(OBJECTMANAGER->FindObject(ObjectType::BOSS, "boss")))->getHp() == 300) {
+		_count++;
+		if (_count == 130) {
+			_isMove = true;
 		}
-		for (int i = 8; i < 17; i++) {
-			_site[i].x += cosf(PI + (PI / 10 * (i - 7)))*_speed;
-			_site[i].y -= sinf(PI + (PI / 10 * (i - 7)))*_speed;
+		if (_isMove == true) {
+			for (int i = 0; i < 8; i++) {
+				_site[i].x += cosf(_angle - (PI / 12 * i))*_speed;
+				_site[i].y -= sinf(_angle - (PI / 12 * i))*_speed;
+			}
+			for (int i = 8; i < 17; i++) {
+				_site[i].x += cosf(PI + (PI / 10 * (i - 7)))*_speed;
+				_site[i].y -= sinf(PI + (PI / 10 * (i - 7)))*_speed;
+			}
+		}
+		for (int i = 0; i < 17; i++) {
+			completeRc[i] = RectMake(_site[i].x, _site[i].y, _wh.x, _wh.y);
 		}
 	}
-	for (int i = 0; i < 17; i++) {
-		completeRc[i] = RectMake(_site[i].x, _site[i].y, _wh.x, _wh.y);
+	if (_count == 380) {
+		((totalScore*)(OBJECTMANAGER->FindObject(ObjectType::UI, "totalscore")))->setIsShow(true);
 	}
-
 	
 }
 
 void GameCompleteUi::Render()
 {
-	if (KEYMANAGER->isToggleKey('A')) {
-		for (int i = 0; i < 17; i++) {
-			Rectangle(getMemDC(), completeRc[i]);
-		}
-	}
-	//이미지
-	//알파	
-	if ((_count > 80 && _count < 95) || (_count > 110 && _count < 125)) {
-		for (int i = 0; i < 17; i++) {
-			_textImg[i]->alphaRender(getMemDC(), completeRc[i].left, completeRc[i].top, 0);
-		}
-	}
-	else {
-		for (int i = 0; i < 17; i++) {
-			_textImg[i]->render(getMemDC(), completeRc[i].left, completeRc[i].top);
-		}
-	}
-	//7초뒤 토탈 스코어 나오게끔 처리해줘야함
+	if (((Boss*)(OBJECTMANAGER->FindObject(ObjectType::BOSS, "boss")))->getHp() == 300) {
 
+		if (KEYMANAGER->isToggleKey('A')) {
+			for (int i = 0; i < 17; i++) {
+				Rectangle(getMemDC(), completeRc[i]);
+			}
+		}
+		//이미지
+		//알파	
+		if ((_count > 80 && _count < 95) || (_count > 110 && _count < 125)) {
+			for (int i = 0; i < 17; i++) {
+				_textImg[i]->alphaRender(getMemDC(), completeRc[i].left, completeRc[i].top, 0);
+			}
+		}
+		else {
+			for (int i = 0; i < 17; i++) {
+				_textImg[i]->render(getMemDC(), completeRc[i].left, completeRc[i].top);
+			}
+		}
+	}
 }

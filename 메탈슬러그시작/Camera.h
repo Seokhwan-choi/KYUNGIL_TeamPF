@@ -9,10 +9,7 @@ private:
 public:
 
 	void SetCamera(POINTFLOAT pos);           //카메라의 중점  
-	void SetCamera2(POINTFLOAT pos);          //지하스테이지 
-	void SetCamera3(POINTFLOAT pos);          //보스스테이지
-
-
+	void SetCamera2(POINTFLOAT pos);
 	RECT Relative(RECT rc);                   //카메라의 상대좌표를 계산해주는녀석 
 	RECT GetCamera() { return _cameraRect; }  //카메라 RECT를 반환하는함수   배경에서 빼줄려고 보통쓴다 
 	                                          //보통 배경할떄 

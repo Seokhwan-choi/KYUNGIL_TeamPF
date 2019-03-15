@@ -9,6 +9,8 @@ OldMan::OldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, CAPTIV
 	_index = 0;
 	_count = 0;
 	_time = 0;
+	_count1 = 0;
+	_index1 = 0;
 	_range = { _position.x - 100,_position.x + 200 };
 	_speed = 3.f;
 	_tiedRc = RectMake(_position.x,_position.y, _size.x, _size.y);
@@ -20,15 +22,10 @@ OldMan::OldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, CAPTIV
 	_touch = false;
 	_isSave = false;
 	_temp = RectMake(0, 0, 0, 0);
-	_crush = false;
 	_t = 0;
 	_captive = captive;
 	_item = item;
 	_coly = _position.y + _size.y ;
-
-	ItemUi* _item = new ItemUi("item", { WINSIZEX,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop, item);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
-
 	//포로
 	IMAGEMANAGER->findImage("tied");
 	IMAGEMANAGER->findImage("untied");
@@ -61,7 +58,6 @@ void OldMan::Release(void)
 void OldMan::Update(void)
 {
 	
-	
 	RECT temp;
 	//항시중력값을 준다
 	_position.y += _gravity;
@@ -69,20 +65,39 @@ void OldMan::Update(void)
 	//아래쪽 충돌렉트 위치 좌표 업데이트
 	_coly = _position.y + _size.y ;
 	//아래쪽 픽셀 충돌
-	for (int i = _coly - 60; i < _coly + 60; i++)
-	{
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("배경픽셀")->getMemDC(), _position.x, i);
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
-	
-		if ((r == 255 && g == 255 && b == 0))
+	if (SCENEMANAGER->FindScene("스테이지원")) {
+		for (int i = _coly - 60; i < _coly + 400; i++)
 		{
-			_gravity = 0.0f;
-			_position.y = i- _size.y - 120;
-			break;
+			COLORREF color = GetPixel(IMAGEMANAGER->findImage("배경픽셀")->getMemDC(), _position.x, i);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+
+			if ((r == 255 && g == 255 && b == 0))
+			{
+				_gravity = 0.0f;
+				_position.y = i - _size.y - 140;
+				break;
+			}
 		}
 	}
+	if (SCENEMANAGER->FindScene("지하스테이지")) {
+		for (int i = _coly - 60; i < _coly + 400; i++)
+		{
+			COLORREF color = GetPixel(IMAGEMANAGER->findImage("지하배경픽셀")->getMemDC(), _position.x, i);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+
+			if ((r == 255 && g == 255 && b == 0))
+			{
+				_gravity = 0.0f;
+				_position.y = i - _size.y;
+				break;
+			}
+		}
+	}
+
 	switch (_captive)
 	{
 		// ==================================================================================
@@ -100,15 +115,15 @@ void OldMan::Update(void)
 			if (_time < 100) {
 				_state = CAPTIVESTATE::UNTIED;
 			}			
-			if (_time > 100) {
+			if (_time > 10) {
 				_position.x -= _speed;
 				_state = CAPTIVESTATE::WALK;
 				_isRight = false;
 			}
 			//충돌시
 			//구한 포로 수 하나  올려주기
-			if (IntersectRect(&temp, &_colR,
-				&OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect())) {
+			if (IntersectRect(&temp, &_colRc[0],
+				&((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer())) {
 				_isCrush = true;
 				_touch = false;
 				if (_isSave == false) {
@@ -145,7 +160,7 @@ void OldMan::Update(void)
 			if (_isGo && _t > 270) {
 				_state = CAPTIVESTATE::RUN;
 				_position.x -= 6.f;
-				if (IntersectRect(&temp, &OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect(),
+				if (IntersectRect(&temp, &((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer(),
 					&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect())) {
 					_touch = true;
 					if (_touch == true && ((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->getShow() == true) {
@@ -216,8 +231,8 @@ void OldMan::Update(void)
 		if (_isGo && _t > 270) {
 			_state = CAPTIVESTATE::RUN;
 			_position.x -= 6.f;
-			if (((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer(),
-				&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect()) {
+			if (IntersectRect(&temp, &((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer(),
+				&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect())) {
 				_touch = true;
 				if (_touch == true && ((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->getShow() == true) {
 					DATA->setScore(DATA->getScore() + 100);
@@ -240,7 +255,7 @@ void OldMan::Update(void)
 		//충돌시
 		//구한 포로 수 하나  올려주기
 		if (IntersectRect(&temp, &_colRc[0],
-			&((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer())) {
+			&OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect())) {
 			_isCrush = true;
 			_touch = false;
 			if (_isSave == false) {
@@ -267,15 +282,14 @@ void OldMan::Update(void)
 		}
 		if (_isGo&&_t > 130 && _t < 210) {
 			_rumistate = RUMISTATE::SIR;
-			
 			_speed = 0;
 		}
 		//1.5초 이상일 때 아이템 먹고 100점 올릴 수 있음
 		if (_isGo && _t > 210) {
 			_rumistate = RUMISTATE::RUN;
 			_position.x -= 6.f;
-			if (((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer(),
-				&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect()) {
+			if (IntersectRect(&temp, &OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect(),
+				&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect())) {
 				_touch = true;
 				if (_touch == true && ((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->getShow() == true) {
 					DATA->setScore(DATA->getScore() + 100);
@@ -298,7 +312,7 @@ void OldMan::Update(void)
 		//충돌시
 		//구한 포로 수 하나  올려주기
 		if (IntersectRect(&temp, &_colRc[0],
-			&((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer())) {
+			&OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect())) {
 			_isCrush = true;
 			_touch = false;
 			if (_isSave == false) {
@@ -334,8 +348,8 @@ void OldMan::Update(void)
 		if (_isGo && _t > 270) {
 			_state = CAPTIVESTATE::RUN;
 			_position.x -= 6.f;
-			if (((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer(),
-				&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect()) {
+			if (IntersectRect(&temp, &OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect(),
+				&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect())) {
 				_touch = true;
 				if (_touch == true && ((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->getShow() == true) {
 					DATA->setScore(DATA->getScore() + 100);
@@ -360,18 +374,18 @@ void OldMan::Update(void)
 		if (_count % 15 == 0) {
 			_index++;
 			if (_index > 7) {
-				_index = 0;
+				_index = 8;
 			}
 			IMAGEMANAGER->findImage("tied")->setFrameX(_index);
 		}
 		break;
 	case CAPTIVESTATE::UNTIED:
 		IMAGEMANAGER->findImage("untied")->setFrameY(0);
-		_count++;
-		if (_count % 15 == 0) {
-			_index++;
-			if (_index > 9) {
-				_index = 10;
+		_count1++;
+		if (_count1 % 10 == 0) {
+			_index1++;
+			if (_index1 > 9) {
+				_index1 = 10;
 			}
 			IMAGEMANAGER->findImage("untied")->setFrameX(_index);
 		}
@@ -493,28 +507,12 @@ void OldMan::Update(void)
 
 	//좌
 	_colRc[0] = RectMake(_position.x + _size.x/2, _position.y + 20, 10, 100);
-
-	_colR = RectMake(_position.x + _size.x / 2, _position.y + 20, 10, 100);
-
 	//우
 	_colRc[1] = RectMake(_position.x + _size.x - 10, _position.y + 20, 10, 10);
 	//하
 	_colRc[2] = RectMake(_position.x + _size.x / 2, _coly, 10, 10);
 	_tiedcolRc = RectMake(_position.x + _size.x / 2, _coly, 10, 10);
 	_tiedRc = RectMake(_position.x, _position.y, _size.x, _size.y);
-
-	RECT _temp;
-	for (int i = 0; i < ((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER,
-		"플레이어"))->playerbullet()->getVBullet().size(); ++i)
-	{
-		if (IntersectRect(&_temp, &_colR, &((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER,
-			"플레이어"))->playerbullet()->getVBullet()[i].rc))
-		{
-			_isShot = true;
-		}
-	}
-
-	
 
 }
 

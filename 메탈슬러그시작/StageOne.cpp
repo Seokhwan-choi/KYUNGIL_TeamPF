@@ -9,6 +9,7 @@ HRESULT StageOne::Init(void)
 {
 	_player = new Player("플레이어", { 500,0 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
+
 	//작은게 수
 	_crabCount = 11;
 	//작은게 초기화
@@ -87,16 +88,16 @@ HRESULT StageOne::Init(void)
 	}
 
 	//잠자리 수
-	_flyBugCount = 6;
+	_flyBugCount = 2;
 	//잠자리 초기화
 	for (int i = 0; i < _flyBugCount; i++)
 	{
 		string num = to_string(i);
 		string name = "_flyBug" + num;
-
-		_flyBug[i] = new FlyBug(name, { 1500.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-
-		if (i == 2)
+		
+		_flyBug[i] = new FlyBug(name, { 1500.f, 130.f }, { 200, 100 }, GameObject::Pivot::Center);
+		
+		/*if (i == 2)
 		{
 			_flyBug[i] = new FlyBug(name, { 15500.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
 		}
@@ -111,7 +112,7 @@ HRESULT StageOne::Init(void)
 		else if (i == 5)
 		{
 			_flyBug[i] = new FlyBug(name, { 16000.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-		}
+		}*/
 		_flyBug[i]->Init();
 
 		OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug[i]);
@@ -120,16 +121,13 @@ HRESULT StageOne::Init(void)
 	//_bigCrab->Init();
 	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bigCrab);
 
-	ItemUi* _item = new ItemUi("item", { WINSIZEX,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop, ITEM::FISH);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
 
 	//잠자리 생성
-	FlyBug* _flyBug = new FlyBug("flyBug", { 15000, 200 }, { 200, 100 }, GameObject::Pivot::Center);
+	//FlyBug* _flyBug = new FlyBug("flyBug", { 1060, 200 }, { 200, 100 }, GameObject::Pivot::Center);
 	//잠자리 객체 추가하기
-	_flyBug->Init();
-	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug);
+	//_flyBug->Init();
+	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug);
 
-	SOUNDMANAGER->play("스테이지시작");
 
 	
 	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
@@ -150,16 +148,22 @@ HRESULT StageOne::Init(void)
 	OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
 
 
-	OldMan* _oldman = new OldMan("oldman1", { 1500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::HEAVY);
+	OldMan* _oldman = new OldMan("oldman1", { 4000, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::MOVE, ITEM::FRUIT);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman);
 
-	OldMan* _oldman2 = new OldMan("oldman2", { 2500, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::TIED, ITEM::FRUIT);
+	OldMan* _oldman2 = new OldMan("oldman2", { 5000, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::TIED, ITEM::HEAVY);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::UI, _oldman2);
 
-	OldMan* _oldman3 = new OldMan("oldman3", { 2000, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::RUMI, ITEM::HEAVY);
+	OldMan* _oldman3 = new OldMan("oldman3", { 8000, WINSIZEY / 2 }, { 150,150 }, GameObject::Pivot::LeftTop, CAPTIVE::RUMI, ITEM::BOMB);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _oldman3);
 
-	
+	ItemUi* _item = new ItemUi("item", {WINSIZEX * 3,WINSIZEY/2}, { 50,50 }, GameObject::Pivot::LeftTop, ITEM::FISH);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _item);
+
+	ItemUi* _item4 = new ItemUi("item", { WINSIZEX * 2 + 1000,200 }, { 50,50 }, GameObject::Pivot::LeftTop, ITEM::CHICKEN);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _item4);
+
+
 
 	//totalScore* _total = new totalScore("total", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	//OBJECTMANAGER->AddObject(ObjectType::UI, _total);
@@ -171,7 +175,6 @@ HRESULT StageOne::Init(void)
 	_bgImage2 = IMAGEMANAGER->findImage("배경의배경");
 	_PixelImage = IMAGEMANAGER->findImage("배경픽셀");
 	_tongImage = IMAGEMANAGER->findImage("통");
-	_fade = IMAGEMANAGER->findImage("검정");
 
 	_wallRect = RectMakeCenter(6750, WINSIZEY/2, 50, 1500);
 
@@ -185,17 +188,11 @@ HRESULT StageOne::Init(void)
 	_count3 = 0;
 
 	_crush = false;
-	_check = false;
 
-	//SOUNDMANAGER->play("스테이지시작");
 
 	//#####################################테스트용랙트 
 
 	_testRect = RectMake(13095, 260, 160, 50);
-	_fadecount = 0;
-	_alpha = 255;
-	_fadein = true;
-	_fadeout = false;
 
 	return S_OK;
 }
@@ -207,10 +204,9 @@ void StageOne::Release(void)
 
 void StageOne::Update(void)
 {
-	//사운드
 	OBJECTMANAGER->Update();
 	CAMERA->SetCamera(_player->GetPosition());
-
+	
 	_count++;
 	if (_count % 10 == 0) {
 		_index++;
@@ -239,11 +235,11 @@ void StageOne::Update(void)
 				_index2 = 5;
 			}
 			IMAGEMANAGER->findImage("맵장벽")->setFrameX(_index2);
+			}
 		}
-	}
 
 	// F1 눌러서 픽셀좀 보쟝 
-	if (KEYMANAGER->isOnceKeyDown(VK_F1))
+	if (KEYMANAGER->isOnceKeyDown(VK_F1)) 
 	{
 		_PixelCheck = !_PixelCheck;
 		_crush = !_crush;
@@ -263,29 +259,7 @@ void StageOne::Update(void)
 	this->PlayerBulletCollisionEnemy(); //플레이어 총알과 몬스터 충돌시 
 	this->PlayerCollisionEnemy(); //플레이어 몸통과 애너미 충돌시 
 	this->PlayerBoomCollisionBoom(); //플레이어 수류탄과  애너미 충돌시 
-	this->ChangeMap();
-	
-	//if (_fadein) 
-	//{
-	//	_fadecount++;
-	//	if (_fadecount % 5 == 0) {
-	//		_alpha -= 15;
-	//		if (_alpha < 5) {
-	//			_fadein = false;
-	//			_alpha = 0;
-	//		}
-	//	}
-	//}
-	//if ( _fadeout)
-	//{
-	//	_fadecount++;
-	//	if (_fadecount % 5 == 0) {
-	//		_alpha += 15;
-	//		if (_alpha > 240) {
-	//			_alpha = 255;
-	//		}
-	//	}
-	//}	
+	this->ChangeMap(); 
 }
 
 void StageOne::Render(void)
@@ -293,19 +267,21 @@ void StageOne::Render(void)
 	_bgImage2->render(getMemDC(), 0 - (CAMERA->GetCamera().left / 2), -310 - CAMERA->GetCamera().top);
 	_bgImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, -135 - CAMERA->GetCamera().top);
 	_bgSea->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left - 300, WINSIZEY - 278 - CAMERA->GetCamera().top);
-
+	
 	if (_PixelCheck) {
 		_PixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, -135 - CAMERA->GetCamera().top);
 		_wallImage->frameRender(getMemDC(), 5850 - CAMERA->GetCamera().left, 0 - CAMERA->GetCamera().top);
 		_tongImage->frameRender(getMemDC(), 13000 - CAMERA->GetCamera().left - 300, -65 - CAMERA->GetCamera().top);
 	}
+
+	
+
 	//#################################테스트###############33
 	RECT test = CAMERA->Relative(_testRect);
 	Rectangle(getMemDC(), test);
+
+
 	OBJECTMANAGER->Render();
-	//_fade->alphaRender(getMemDC(), _alpha);
-	
-	
 	//RECT _WALL = CAMERA->Relative(_wallRect);
 	//Rectangle(getMemDC(), _WALL);
 }
@@ -314,6 +290,8 @@ void StageOne::PlayerBulletCollisionEnemy()
 {
 	// _player _crab 
 	RECT temp; 
+
+
 	//############################################애너미 2번쨰 랙트랑충돌
 	//#######################일반총알 
 	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
@@ -322,14 +300,11 @@ void StageOne::PlayerBulletCollisionEnemy()
 
 		for (int j = 0; j < _crabCount; j++)
 		{
-			for (int k = 0; k < 4; ++k) {
-				if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab[j]->getCol(k)))
-				{
-					_crab[j]->crab_damage(1);
-					_player->playerbullet()->SetisFire(i, false);
-					break;
-				}
-
+			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab[j]->getCol(2)))
+			{
+				_crab[j]->crab_damage(1);
+				_player->playerbullet()->SetisFire(i, false);
+				break;
 			}
 		}
 	}
@@ -340,17 +315,115 @@ void StageOne::PlayerBulletCollisionEnemy()
 
 		for (int j = 0; j < _crabCount; j++)
 		{
-			for (int k = 0; k < 4; ++k) 
+			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab[j]->getCol(2)))
 			{
-				if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab[j]->getCol(k)))
-				{
-					_crab[j]->crab_damage(1);
-					_player->heavybullet()->SetisFire(i, false);
-					break;
-				}
+				_crab[j]->crab_damage(1);
+				_player->playerbullet()->SetisFire(i, false);
+				break;
 			}
 		}
 	}
+	
+
+	//############################################애너미 1번쨰 랙트랑충돌
+	//#######################일반총알 
+	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
+	{
+		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
+
+		for (int j = 0; j < _crabCount; j++)
+		{
+			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab[j]->getCol(1)))
+			{
+				_crab[j]->crab_damage(1);
+				_player->playerbullet()->SetisFire(i, false);
+				break;
+			}
+		}
+	}
+	//###########################해비머신건 총알 
+	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
+	{
+		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
+
+		for (int j = 0; j < _crabCount; j++)
+		{
+			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab[j]->getCol(1)))
+			{
+				_crab[j]->crab_damage(1);
+				_player->playerbullet()->SetisFire(i, false);
+				break;
+			}
+		}
+	}
+
+
+	//############################################애너미 3번쨰 랙트랑충돌
+	//#######################일반총알 
+	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
+	{
+		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
+
+		for (int j = 0; j < _crabCount; j++)
+		{
+			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab[j]->getCol(3)))
+			{
+				_crab[j]->crab_damage(1);
+				_player->playerbullet()->SetisFire(i, false);
+				break;
+			}
+		}
+	}
+	//###########################해비머신건 총알 
+	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
+	{
+		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
+
+		for (int j = 0; j < _crabCount; j++)
+		{
+			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab[j]->getCol(3)))
+			{
+				_crab[j]->crab_damage(1);
+				_player->playerbullet()->SetisFire(i, false);
+				break;
+			}
+		}
+	}
+
+
+
+	//############################################애너미 4번쨰 랙트랑충돌
+	//#######################일반총알 
+	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
+	{
+		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
+
+		for (int j = 0; j < _crabCount; j++)
+		{
+			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab[j]->getCol(4)))
+			{
+				_crab[j]->crab_damage(1);
+				_player->playerbullet()->SetisFire(i, false);
+				break;
+			}
+		}
+	}
+	//###########################해비머신건 총알 
+	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
+	{
+		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
+
+		for (int j = 0; j < _crabCount; j++)
+		{
+			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab[j]->getCol(4)))
+			{
+				_crab[j]->crab_damage(1);
+				_player->playerbullet()->SetisFire(i, false);
+				break;
+			}
+		}
+	}
+
 
 }
 
@@ -404,6 +477,8 @@ void StageOne::PlayerBoomCollisionBoom()
 			{
 				_crab[j]->crab_damage(1);
 				_player->playerboom()->SetisFire(i, false);
+				cout << "박음" << endl;
+				cout << &_player->playerboom()->getVBoom()[i].rc.right << endl;
 				break;
 			}
 		}
@@ -411,17 +486,43 @@ void StageOne::PlayerBoomCollisionBoom()
 	for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
 	{
 		if (_player->playerboom()->getVBoom()[i].isFire == false) continue;
+
 		for (int j = 0; j < _crabCount; j++)
 		{
 			if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_crab[j]->getCol(3)))
 			{
 				_crab[j]->crab_damage(1);
 				_player->playerboom()->SetisFire(i, false);
+				cout << &_player->playerboom()->getVBoom()[i].rc.right << endl;
 				break;
 			}
 		}
 	}
 
+	//for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
+	//{
+	//	if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
+	//	if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_crab->getCol(1)))
+	//	{
+	//		_crab->Damage(1);
+	//		//_player->playerbullet()->getVBullet()[i].isFire = false;
+	//	//	_player->SetBoomredner(true);
+	//	//	cout << "충돌" << endl;
+	//		break;
+	//	}
+	//}
+	//for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
+	//{
+	//	if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
+	//	if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_crab->getCol(3)))
+	//	{
+	//		_crab->Damage(1);
+	//		//_player->playerbullet()->getVBullet()[i].isFire = false;
+	//
+	//		//_player->SetBoomredner(true);
+	//		break;
+	//	}
+	//}
 
 }
 
@@ -431,12 +532,9 @@ void StageOne::ChangeMap()
 		_player->GetCollisionPlayer().left < _testRect.right &&
 		_player->GetCollisionPlayer().top < _testRect.bottom)
 	{
-		if (KEYMANAGER->isToggleKey(VK_DOWN))
+		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
 		{
-			//_fadeout = true;
-			//if ( _alpha > 240)
-				SCENEMANAGER->ChangeScene("지하스테이지");
-			
+			SCENEMANAGER->ChangeScene("지하스테이지");
 		}
 	}
 }

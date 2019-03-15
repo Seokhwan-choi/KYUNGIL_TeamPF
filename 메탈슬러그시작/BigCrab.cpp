@@ -178,10 +178,10 @@ void BigCrab::Render()
 	//카메라 렉트 그리기
 	for (int i = 0; i < 4; i++)
 	{
-		Rectangle(getMemDC(), CAMERA->Relative(_cam[i].rc));
+		//Rectangle(getMemDC(), CAMERA->Relative(_cam[i].rc));
 	}
 	//큰게 렉트 그리기
-	Rectangle(getMemDC(), CAMERA->Relative(_rc));
+	//Rectangle(getMemDC(), CAMERA->Relative(_rc));
 	//큰게 이미지 그리기
 	if (_state == state::L_IDLE && !(_state == state::L_MOVE) && !(_state == state::L_ATTACK) && !(_state == state::DEATH))
 	{
@@ -243,7 +243,7 @@ void BigCrab::Render()
 	}
 
 
-	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc));
+	//Rectangle(getMemDC(), CAMERA->Relative(_pixelrc));
 	//큰게 충돌렉트 그리기
 	//for (int i = 0; i < 4; i++)
 	//{

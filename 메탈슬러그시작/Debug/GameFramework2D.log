@@ -1,9 +1,0 @@
-﻿  BossStage.cpp
-d:\teampf_metalslug3\메탈슬러그시작\bossstage.cpp(24): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\teampf_metalslug3\메탈슬러그시작\bossstage.cpp(22): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
-d:\teampf_metalslug3\메탈슬러그시작\bossstage.cpp(171): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\teampf_metalslug3\메탈슬러그시작\bossstage.cpp(189): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-d:\teampf_metalslug3\메탈슬러그시작\bossstage.cpp(203): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-d:\teampf_metalslug3\메탈슬러그시작\bossstage.cpp(217): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  GameFramework2D.vcxproj -> D:\TeamPF_metalslug3\메탈슬러그시작\Debug\WindowAPI.exe
