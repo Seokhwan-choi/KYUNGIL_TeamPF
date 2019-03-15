@@ -64,12 +64,9 @@ void Bullet::Render()
 		
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
-
+			if (_vBullet[i].isFire == false) continue;
 			RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
 			_angle = _vBullet[i].angle;//기본총알
-
-			
-
 				if (_angle >= 0 && _angle <= (PI / 2) )
 				{
 					_vBullet[i].bulletImage->frameRender(getMemDC(), bulletRc.left, bulletRc.top, _angle / 5.29f * (180 / PI), 3);
@@ -268,6 +265,11 @@ void Boom::fire(float x, float y, float angle, float gravity ,float speed)
 {
 	for (int i = 0; i < _vBoom.size(); i++)
 	{
+		DATA->setBomb(DATA->getBomb() - 1);
+		if (DATA->getBomb() < 0)
+		{
+			DATA->setBomb(0);
+		}
 		if (_vBoom[i].isFire)continue;
 		_vBoom[i].isFire = true; 
 		_vBoom[i].x = _vBoom[i].fireX= x; 
@@ -362,12 +364,11 @@ void Bullet1::Render()
 {
 	//RECT playerRC = CAMERA->Relative(_rc);
 	if (_isFrameImg)//프레임 이미지냐?
-
 	{
-
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
 
+			if (_vBullet[i].isFire == false) continue;
 			RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
 			_angle = _vBullet[i].angle;//기본총알
 

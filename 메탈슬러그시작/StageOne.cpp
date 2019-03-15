@@ -300,11 +300,13 @@ void StageOne::PlayerBulletCollisionEnemy()
 
 		for (int j = 0; j < _crabCount; j++)
 		{
-			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab[j]->getCol(2)))
-			{
-				_crab[j]->crab_damage(1);
-				_player->playerbullet()->SetisFire(i, false);
-				break;
+			for (int k = 0; k < 4; ++k) {
+				if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab[j]->getCol(k)))
+				{
+					_crab[j]->crab_damage(1);
+					_player->playerbullet()->SetisFire(i, false);
+					break;
+				}
 			}
 		}
 	}
@@ -315,112 +317,15 @@ void StageOne::PlayerBulletCollisionEnemy()
 
 		for (int j = 0; j < _crabCount; j++)
 		{
-			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab[j]->getCol(2)))
-			{
-				_crab[j]->crab_damage(1);
-				_player->playerbullet()->SetisFire(i, false);
-				break;
+			for (int k = 0; k < 4; ++k) {
+				if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab[j]->getCol(k)))
+				{
+					_crab[j]->crab_damage(1);
+					_player->heavybullet()->SetisFire(i, false);
+					break;
+				}
 			}
-		}
-	}
-	
-
-	//############################################애너미 1번쨰 랙트랑충돌
-	//#######################일반총알 
-	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
-	{
-		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
-
-		for (int j = 0; j < _crabCount; j++)
-		{
-			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab[j]->getCol(1)))
-			{
-				_crab[j]->crab_damage(1);
-				_player->playerbullet()->SetisFire(i, false);
-				break;
-			}
-		}
-	}
-	//###########################해비머신건 총알 
-	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
-	{
-		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
-
-		for (int j = 0; j < _crabCount; j++)
-		{
-			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab[j]->getCol(1)))
-			{
-				_crab[j]->crab_damage(1);
-				_player->playerbullet()->SetisFire(i, false);
-				break;
-			}
-		}
-	}
-
-
-	//############################################애너미 3번쨰 랙트랑충돌
-	//#######################일반총알 
-	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
-	{
-		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
-
-		for (int j = 0; j < _crabCount; j++)
-		{
-			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab[j]->getCol(3)))
-			{
-				_crab[j]->crab_damage(1);
-				_player->playerbullet()->SetisFire(i, false);
-				break;
-			}
-		}
-	}
-	//###########################해비머신건 총알 
-	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
-	{
-		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
-
-		for (int j = 0; j < _crabCount; j++)
-		{
-			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab[j]->getCol(3)))
-			{
-				_crab[j]->crab_damage(1);
-				_player->playerbullet()->SetisFire(i, false);
-				break;
-			}
-		}
-	}
-
-
-
-	//############################################애너미 4번쨰 랙트랑충돌
-	//#######################일반총알 
-	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
-	{
-		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
-
-		for (int j = 0; j < _crabCount; j++)
-		{
-			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_crab[j]->getCol(4)))
-			{
-				_crab[j]->crab_damage(1);
-				_player->playerbullet()->SetisFire(i, false);
-				break;
-			}
-		}
-	}
-	//###########################해비머신건 총알 
-	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
-	{
-		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
-
-		for (int j = 0; j < _crabCount; j++)
-		{
-			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_crab[j]->getCol(4)))
-			{
-				_crab[j]->crab_damage(1);
-				_player->playerbullet()->SetisFire(i, false);
-				break;
-			}
+			
 		}
 	}
 
@@ -477,8 +382,6 @@ void StageOne::PlayerBoomCollisionBoom()
 			{
 				_crab[j]->crab_damage(1);
 				_player->playerboom()->SetisFire(i, false);
-				cout << "박음" << endl;
-				cout << &_player->playerboom()->getVBoom()[i].rc.right << endl;
 				break;
 			}
 		}
@@ -493,36 +396,11 @@ void StageOne::PlayerBoomCollisionBoom()
 			{
 				_crab[j]->crab_damage(1);
 				_player->playerboom()->SetisFire(i, false);
-				cout << &_player->playerboom()->getVBoom()[i].rc.right << endl;
 				break;
 			}
 		}
 	}
 
-	//for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
-	//{
-	//	if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
-	//	if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_crab->getCol(1)))
-	//	{
-	//		_crab->Damage(1);
-	//		//_player->playerbullet()->getVBullet()[i].isFire = false;
-	//	//	_player->SetBoomredner(true);
-	//	//	cout << "충돌" << endl;
-	//		break;
-	//	}
-	//}
-	//for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
-	//{
-	//	if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
-	//	if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_crab->getCol(3)))
-	//	{
-	//		_crab->Damage(1);
-	//		//_player->playerbullet()->getVBullet()[i].isFire = false;
-	//
-	//		//_player->SetBoomredner(true);
-	//		break;
-	//	}
-	//}
 
 }
 
