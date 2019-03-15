@@ -103,6 +103,22 @@ void BubbleCrab::Release()
 
 void BubbleCrab::Update()
 {
+
+	RECT temp;
+	for (int i = 0; i < 2; i++)
+	{
+		if (IntersectRect(&temp, &_player->GetRect(), &_att[i].rc))
+		{
+			//exit(0);
+		}
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		if (IntersectRect(&temp, &_player->GetRect(), &_bubble->getVBubble()[i].rc))
+		{
+			//exit(0);
+		}
+	}
 	//항시 중력 적용
 	_position.y += _pixelGravity;
 

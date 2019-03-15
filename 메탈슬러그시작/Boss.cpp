@@ -497,7 +497,22 @@ void Boss::Update()
 	//미사일 폭탄 움직임 처리
 	_bomb->Update();
 
-
+	RECT temp;
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (IntersectRect(&temp, &_player->GetRect(), &_fireCannon->getVFireCannon(i)[j].rc))
+			{
+				//exit(0);
+			}
+		}
+		
+	}
+	if (IntersectRect(&temp, &_player->GetRect(), &_bomb->getVBomb()[0].rc))
+	{
+		//exit(0);
+	}
 	//좌우 움직임 테스트
 	/*if (KEYMANAGER->isStayKeyDown('T'))
 	{

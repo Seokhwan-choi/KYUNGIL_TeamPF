@@ -36,24 +36,24 @@ HRESULT BossStage::Init(void)
 	_boss = new Boss("boss", { -WINSIZEX / 4, WINSIZEY / 2 + 100 }, { WINSIZEX / 2, WINSIZEY }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::BOSS, _boss);
 
-	GameCompleteUi* _gamecompleteui = new GameCompleteUi("gamecompleteui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _gamecompleteui);
-
-	totalScore* _totalscore = new totalScore("totalscore", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _totalscore);
-
-
-	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui);
+	//GameCompleteUi* _gamecompleteui = new GameCompleteUi("gamecompleteui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	//OBJECTMANAGER->AddObject(ObjectType::UI, _gamecompleteui);
 	//
-	GameOverUi_2* _gameoverui2 = new GameOverUi_2("gameoverui2", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui2);
+	//totalScore* _totalscore = new totalScore("totalscore", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	//OBJECTMANAGER->AddObject(ObjectType::UI, _totalscore);
 	//
-	timeUi* _timeui = new timeUi("timeui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _timeui);
-
-	playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
+	//
+	//GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	//OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui);
+	////
+	//GameOverUi_2* _gameoverui2 = new GameOverUi_2("gameoverui2", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	//OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui2);
+	////
+	//timeUi* _timeui = new timeUi("timeui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	//OBJECTMANAGER->AddObject(ObjectType::UI, _timeui);
+	//
+	//playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
+	//OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
 
 
 

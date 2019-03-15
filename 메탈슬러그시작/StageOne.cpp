@@ -7,7 +7,7 @@
 
 HRESULT StageOne::Init(void)
 {
-	_player = new Player("플레이어", { 500,0 }, { 320, 403 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { 11000,0 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	//작은게 수

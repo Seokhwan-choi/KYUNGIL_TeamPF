@@ -53,6 +53,15 @@ void Fish::Release()
 
 void Fish::Update()
 {
+	RECT temp;
+	for (int i = 0; i < 8; i++)
+	{
+		if (IntersectRect(&temp, &player->GetRect(), &fish_rc[i].Fish_Rc))
+		{
+			//exit(0);
+		}
+	}
+	
 	if (_rc_on == true)
 	{
 		if (is == true)

@@ -19,7 +19,7 @@ void Crab::death()
 	{
 		if (IntersectRect(&temp, &_att[i].rc, &_player->GetCollisionPlayer()))
 		{
-			cout << "kill" << endl;
+			//exit(0);
 		}
 	}
 	

@@ -76,6 +76,11 @@ void FlyBug::Release()
 
 void FlyBug::Update()
 {
+	RECT temp;
+	if (IntersectRect(&temp, &_player->GetRect(), &_rc))
+	{
+		//exit(0);
+	}
 	//마우스 좌표 담기
 	//_pt.x = _ptMouse.x;
 	//_pt.y = _ptMouse.y;
