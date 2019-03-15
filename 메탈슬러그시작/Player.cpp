@@ -865,10 +865,10 @@ void Player::Update()
 					switch (_bullet)
 					{
 					case BULLET::LEFTFIRE://왼쪽만 가는 헤비머신건 
-						_heavyBullet->fire(_position.x + 530, RND->range(_position.y +146, _position.y + 166) /*_position.y*/, _angle, 12.5f);  //20정도의 오차 
+						_heavyBullet->fire(_position.x - 190, RND->range(_position.y + 20, _position.y + 40) /*_position.y*/, _angle, 15.0f);  //20정도의 오차 
 						break;
 					case BULLET::RIGHTFIRE://오른쪽만 가는 헤비머신건 
-						_heavyBullet->fire(_position.x + 900, RND->range(_position.y +146, _position.y+166 ), _angle, 12.5f);
+						_heavyBullet->fire(_position.x + 170, RND->range(_position.y + 20, _position.y + 40), _angle, 15.0f);
 						break;
 					case BULLET::UPFIRE://위에보면서 좌르륵가는거 
 
@@ -877,23 +877,23 @@ void Player::Update()
 						case STATE::WALK_UPSHOT:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 675, _position.x +695), _position.y+100 , _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x - 90, _position.x - 70), _position.y, _angle, 15.0f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 695, _position.x + 715), _position.y+100 , _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 70, _position.x + 90), _position.y, _angle, 15.0f);
 							}
 							break;
 						case STATE::WLAK_UPSTARE:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 695, _position.x + 715), _position.y-15 , _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x, _position.x - 20), _position.y - 170, _angle, 15.0f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 690, _position.x + 710), _position.y-15, _angle, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x, _position.x - 20), _position.y - 170, _angle, 15.0f);
 							}
 							break;
 						}
@@ -905,23 +905,23 @@ void Player::Update()
 						case STATE::JUMP_DOWNSHOT:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 675, _position.x + 695), _position.y + 270, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 10, _position.x - 10), _position.y + 200, _angle1, 15.0f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 700, _position.x + 720), _position.y + 270, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x + 10, _position.x - 10), _position.y + 200, _angle1, 15.0f);
 							}
 							break;
 						case STATE::JUMPWALK_DOWNSHOT:
 							if (_isLeft)
 							{
-								_heavyBullet->fire(RND->range(_position.x + 675, _position.x + 695), _position.y + 270, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x - 30, _position.x - 50), _position.y + 100, _angle1, 15.0f);
 							}
 							else if (!_isLeft)
 							{
 
-								_heavyBullet->fire(RND->range(_position.x + 700, _position.x + 720), _position.y + 270, _angle1, 12.5f);
+								_heavyBullet->fire(RND->range(_position.x - 10, _position.x + 10), _position.y + 100, _angle1, 15.0f);
 							}
 							break;
 						}
@@ -931,10 +931,10 @@ void Player::Update()
 
 						if (!_isLeft)
 						{
-							_heavyBullet->fire(_position.x + 890, RND->range(_position.y + 160, _position.y+180 ), _angle, 12.5f);
+							_heavyBullet->fire(_position.x + 160, RND->range(_position.y + 35, _position.y + 55), _angle, 15.0f);
 						}
 						else {
-							_heavyBullet->fire(_position.x + 510, RND->range(_position.y + 160, _position.y+180 ), _angle, 12.5f);
+							_heavyBullet->fire(_position.x - 170, RND->range(_position.y + 35, _position.y + 55), _angle, 15.0f);
 						}
 					case BULLET::IDLE:
 						break;

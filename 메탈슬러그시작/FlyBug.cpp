@@ -123,26 +123,26 @@ void FlyBug::Update()
 	}
 
 	//270도보다 크면 왼쪽으로 이동
-	if (_angle > PI / 180 * 270 
-		&& _cam.rc.left > _player->GetPosition().x -600)
+	if (_angle > PI / 180 * 270
+		&& _cam.rc.left > _player->GetPosition().x - 600)
 	{
 		_state = state::L_MOVE;
-		
+
 
 	}
 	//270도 보다 작으면 오른쪽으로 이동
-	else if (_angle < PI / 180 * 270 
+	else if (_angle < PI / 180 * 270
 		&& _cam.rc.right < _player->GetPosition().x + 600)
 	{
 		_state = state::R_MOVE;
-		
+
 	}
 
 	//공격 게이지 5번 모으면 그때 공격 상태로 변경
-	if (_gauge % 5 == 0 
+	if (_gauge % 5 == 0)
 	{
 		_state = state::ATTACK;
-		
+
 	}
 
 	//플레이어와 충돌 체크
@@ -169,16 +169,14 @@ void FlyBug::Update()
 	//상태 따른 움직임 처리
 	switch (_state)
 	{
-	//대기 상태
+		//대기 상태
 	case state::IDLE:
-
 		//아래로 이동
 		if (!_isUp)
 		{
 			//_position.x += 2.f;
 			_position.y += 5.f;
 			_move += 1;
-			//cout << _move << endl;
 		}
 		//위로 이동
 		else
@@ -194,9 +192,7 @@ void FlyBug::Update()
 			_move = 0;
 			_isUp = !_isUp;
 			_gauge++;
-			cout << _gauge << endl;
 		}
-
 		break;
 		//공격 상태
 	case state::ATTACK:
@@ -215,7 +211,7 @@ void FlyBug::Update()
 		{
 			//플레이어를 공격 할 각도 설정
 			_attackAngle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
-			
+
 			_position.x += cosf(_attackAngle) * 10.f;
 			_position.y += -sinf(_attackAngle) * 10.f;
 
@@ -245,8 +241,8 @@ void FlyBug::Update()
 				_gauge = 1;
 				_isAttack = false;
 			}
-			
-			
+
+
 
 		}
 
@@ -285,7 +281,7 @@ void FlyBug::Update()
 				_position.y -= 5.f;
 			}
 		}
-		
+
 		break;
 		//죽음 상태
 	case state::DEATH:
@@ -361,11 +357,13 @@ void FlyBug::Update()
 				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "flyBug"));
 			}
 		}
-
 		break;
 	}
-
 }
+		
+		
+
+
 
 void FlyBug::Render()
 {
