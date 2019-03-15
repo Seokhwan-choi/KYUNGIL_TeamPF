@@ -24,7 +24,6 @@ enum class SWORD : int
 	LEFTATTACK, RIGHTATTACK, IDLE //기본칼공격은 왼쪽과 오른쪽만있다 
 };
 
-
 // =========================================
 // ############ 플레이어 하체 상태 ############
 // =========================================
@@ -42,6 +41,7 @@ private:
 		// 기본, 기본_총, 기본_업샷, 기본_칼질, 기본_폭탄, 기본_위보기 ( 6가지 )
 		IDLE, IDLE_SHOT, IDLE_UPSHOT, IDLE_SWORD, IDLE_BOOM, IDLE_UPSTARE,
 	
+		FLY,
 
 		// 걷기, 걷기_총, 걷기_업샷, 걷기_칼질, 걷기_폭탄, 걷기_위보기 ( 6가지 )
 		WALK, WALK_SHOT, WALK_UPSHOT, WALK_SWORD, WALK_BOOM, WLAK_UPSTARE,
@@ -63,6 +63,11 @@ private:
 		// 총 34가지 동작
 	};
 private:
+	//##########################플레이어 이떄만 작동한다 
+	bool _lifelive;               //false일떄만 작동한다 true일떄는 실행종료 
+
+	RECT collisionplayer; //플레이어 충돌렉트 
+
 
 	//########################################구조체#############################
 	
@@ -113,6 +118,7 @@ private:
 										//============================================================
 
 
+	bool _boomrender;                  //애는 flase상태이고 true가되면 안보여준다 
 	bool _boomfire;                      //d눌러서 발사됫냐??
 	bool _playerboomFire;				//0발이하가 되면 폭탄을 사용할수가없다 
 										//나머지처리는 bullet클래스 boom fire함수에서 처리한다 
@@ -122,18 +128,29 @@ private:
 
 	//==========================픽셀용//////////////////
 	float _pixely;//플레이어픽셀용 y값
-
+	float _pixelx; 
 	//==========================실제충돌할렉트 ==========================
 	//RECT _InterPlayerRc; 
 	RECT check; 
 
+	RECT _colb;
+	RECT _colr;		
 
+	class Crab* _crab;
 
 	//RECT _temp;
 public:
 
 	Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Player();
+	//############boom render get set 
+	void SetBoomredner(bool _boom) { _boomrender = _boom; }
+
+	//####################################플레이어 충돌렉트 #################################
+
+	RECT GetCollisionPlayer() { return collisionplayer; }
+	void SetCollisionPlayer(RECT _collisitonplayer) { collisionplayer = _collisitonplayer;}
+
 
 	WEAPON GetWeapon() {return _weapon; }						//플레이어 무기 뭐들고잇나 상태값
 	
@@ -149,7 +166,17 @@ public:
 
 	void PlayerBoomMotion();            //플레이어폭탄상태 
 	void PixelMapCollision(); 
+	
+	Bullet1* playerbullet() { return _playerbullet; }
+	Bullet* heavybullet() { return _heavyBullet; }
+	Boom* playerboom() { return _playerboom; }
+	bool GetIsleft() { return _isLeft; }
+	void SetIsleft(bool left) { _isLeft = left; }
 
+	float GetJumppower() { return _jumppower;  }
+	void SetJumppower(float power) { _jumppower = power;  }
 
-	void EnemyCollision();              //애너미와 플레이어총알과 충돌햇을시 
+	//	Bullet* _heavyBullet; 
+	//Bullet1*_playerbullet;
+	//void EnemyCollision();              //애너미와 플레이어총알과 충돌햇을시 
 };

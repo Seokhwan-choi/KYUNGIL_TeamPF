@@ -3,27 +3,23 @@
 #include "Scene.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "startScene.h"
-#include "choiceScene.h"
-#include "BaseMent.h"
-#include "BossStage.h"
-#include "LoadingScene.h"
-
 //==========================================================================//
 //						## 초기화 ## init(void)								//
 //==========================================================================//
 HRESULT MainGame::init(void)
 {
 	gameNode::init(true); 
-
+	
 	SCENEMANAGER->AddScene("시작화면", new startScene);
 	SCENEMANAGER->AddScene("캐릭터선택화면", new choiceScene);
 	SCENEMANAGER->AddScene("스테이지원", new StageOne);
 	SCENEMANAGER->AddScene("지하스테이지", new BaseMent);
 	SCENEMANAGER->AddScene("보스스테이지", new BossStage);
 	SCENEMANAGER->AddScene("로딩", new LoadingScene);
+
 	//첫 시작화면
-	SCENEMANAGER->ChangeScene("스테이지원");
+	SCENEMANAGER->ChangeScene("로딩");
+
 	return S_OK;	
 }
 

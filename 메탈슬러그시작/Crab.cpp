@@ -9,6 +9,20 @@ Crab::Crab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot) : GameObje
 
 Crab::~Crab()
 {
+
+}
+
+void Crab::death()
+{
+	RECT temp;
+	for (int i = 0; i < 2; i++)
+	{
+		if (IntersectRect(&temp, &_att[i].rc, &_player->GetCollisionPlayer()))
+		{
+			//exit(0);
+		}
+	}
+	
 }
 
 HRESULT Crab::Init()
@@ -17,12 +31,12 @@ HRESULT Crab::Init()
 	_state = state::IDLE;
 
 	//이미지 초기화
-	crabImg[0] = IMAGEMANAGER->addFrameImage("crab", "Enemy/몬스터(게)-2.bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
-	crabImg[1] = IMAGEMANAGER->addFrameImage("crab1", "Enemy/몬스터(게)-2(오른쪽).bmp", 1800, 150, 12, 1, true, RGB(255, 0, 255));
-	crabImg[2] = IMAGEMANAGER->addFrameImage("crab2", "Enemy/몬스터(게)-3.bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
-	crabImg[3] = IMAGEMANAGER->addFrameImage("crab3", "Enemy/몬스터(게)-3(오른쪽).bmp", 2448, 172, 12, 1, true, RGB(255, 0, 255));
-	crabImg[4] = IMAGEMANAGER->addFrameImage("crab4", "Enemy/몬스터(게)-6.bmp", 3300, 194, 22, 1, true, RGB(250, 2, 250));
-	crabImg[5] = IMAGEMANAGER->addFrameImage("crab5", "Enemy/몬스터(게)-6(오른쪽).bmp", 3300, 194, 22, 1, true, RGB(255, 0, 255));
+	crabImg[0] = IMAGEMANAGER->findImage("crab");
+	crabImg[1] = IMAGEMANAGER->findImage("crab1");
+	crabImg[2] = IMAGEMANAGER->findImage("crab2");
+	crabImg[3] = IMAGEMANAGER->findImage("crab3");
+	crabImg[4] = IMAGEMANAGER->findImage("crab4");
+	crabImg[5] = IMAGEMANAGER->findImage("crab5");
 	//이미지 랜더용 변수 초기화
 	for (int i = 0; i < 4; i++)
 	{
@@ -80,6 +94,11 @@ HRESULT Crab::Init()
 	//플레이어와의 각도 초기화
 	_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
 
+	_probeY = _position.y + _size.y / 2;
+	_probeX = _position.x + _size.x / 2;
+	_pixelImage = IMAGEMANAGER->findImage("배경픽셀");
+	_pixelGravity = 1.f;
+
 	return S_OK;
 }
 
@@ -89,18 +108,59 @@ void Crab::Release()
 
 void Crab::Update()
 {
-	//마우스 좌표 담기
-	/*_pt.x = _ptMouse.x;
-	_pt.y = _ptMouse.y;*/
-
+	this->death();
 	//이동 테스트
-	if (KEYMANAGER->isStayKeyDown('I')) {
+	/*if (KEYMANAGER->isStayKeyDown('I')) {
 		_position.x -= 5.f;
 	}
 	if (KEYMANAGER->isStayKeyDown('P')) {
 		_position.x += 5.f;
+	}*/
+
+	//항시 중력 적용
+	_position.y += _pixelGravity;
+
+	//아래쪽 충돌렉트 위치 좌표 업데이트
+	_probeY = _position.y + _size.y/2;
+	_probeX = _position.x + _size.x/2;
+	//픽셀 충돌 처리
+	
+	for (int i = _probeY; i < _probeY + 360; i++)
+	{
+		COLORREF color = GetPixel(_pixelImage->getMemDC(), _position.x, i);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+	
+		if ((r == 255 && g == 255 && b == 0))
+		{
+			_pixelGravity = 0.f;
+			_position.y = i - _size.y / 2 - 140;
+	
+			break;
+		}
 	}
 
+	for (int i = _probeX; i < _probeX + 50; i++)
+	{
+		COLORREF color = GetPixel(_pixelImage->getMemDC(), i, _position.y);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if ((r == 255 && g == 255 && b == 0))
+		{
+			_pixelGravity = 0.f;
+			_position.x = i - _size.x / 2 - 140;
+
+			break;
+		}
+	}
+	
+	
+	//픽셀 렉트
+	_pixelrc[0] = RectMakeCenter(_position.x, _probeY, 10, 10);
+	_pixelrc[1] = RectMakeCenter(_probeX, _position.y, 10, 10);
 	//게 렉트
 	_rc = RectMakeCenter(_position.x, _position.y, _size.x, _size.y);
 
@@ -225,6 +285,7 @@ void Crab::Update()
 	//체력에 따른 죽음 처리
 	if (KEYMANAGER->isToggleKey('R') || _hp <= 0)
 	{
+		
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_state = state::L_DEATH;
@@ -319,7 +380,7 @@ void Crab::Update()
 
 			if (_deathTimer % 150 == 0)
 			{
-				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "crab"));
+				_isActive = false;
 			}
 		}
 
@@ -347,10 +408,9 @@ void Crab::Update()
 		if (_position.y + _size.y / 2 >= 730.f)
 		{
 			_deathTimer++;
-
 			if (_deathTimer % 150 == 0)
 			{
-				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "crab"));
+				_isActive = false;
 			}
 		}
 
@@ -364,36 +424,40 @@ void Crab::Update()
 
 void Crab::Render()
 {
-	//카메라 렉트 그리기
-	Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
-
-	//렉트 그리기
-	Rectangle(getMemDC(), CAMERA->Relative(_rc));
-
 	//게 이미지 그리기
 	this->crabImageRender();
 
-	//충돌렉트 그리기
-	for (int i = 0; i < 4; i++)
+	//픽셀 감지 렉트 그리기
+	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc[0]));
+	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc[1]));
+	//렉트 보기
+	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
-		Rectangle(getMemDC(), CAMERA->Relative(_col[i].rc));
-	}
+		//카메라 렉트 그리기
+		Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
 
-	//시체처리렉트 그리기
-	for (int i = 0; i < 3; i++)
-	{
-		Rectangle(getMemDC(), CAMERA->Relative(_part[i].rc));
-	}
+		//렉트 그리기
+		Rectangle(getMemDC(), CAMERA->Relative(_rc));
 
-	//공격처리렉트 그리기
-	for (int i = 0; i < 2; i++)
-	{
-		Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
-	}
+		//충돌렉트 그리기
+		for (int i = 0; i < 4; i++)
+		{
+			//Rectangle(getMemDC(), CAMERA->Relative(_col[i].rc));
+		}
 
-	//텍스트 출력
-	/*sprintf(msg1, "x : %d, y : %d", _pt.x, _pt.y);
-	TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));*/
+		//시체처리렉트 그리기
+		for (int i = 0; i < 3; i++)
+		{
+			Rectangle(getMemDC(), CAMERA->Relative(_part[i].rc));
+		}
+		//공격처리렉트 그리기
+		for (int i = 0; i < 2; i++)
+		{
+			Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
+		}
+		//렉트 그리기
+		Rectangle(getMemDC(), CAMERA->Relative(_rc));
+	}
 }
 
 void Crab::crabImage()
@@ -508,35 +572,35 @@ void Crab::crabImageRender()
 {
 	if ((_state == state::L_IDLE || _state == state::L_MOVE || _state == state::L_ATTACK_MOVE) && !(_state == state::L_ATTACK_FINISH))
 	{
-		crabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
+		crabImg[0]->frameRender(getMemDC(), CAMERA->Relative(_rc).left, CAMERA->Relative(_rc).top, indexImg[0], 0);
 	}
 	if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE)
 	{
-		crabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
+		crabImg[1]->frameRender(getMemDC(), CAMERA->Relative(_rc).left, CAMERA->Relative(_rc).top, indexImg[0], 0);
 	}
 	if (_state == state::L_ATTACK)
 	{
-		crabImg[2]->frameRender(getMemDC(), _rc.left - 60 - CAMERA->GetCamera().left, _rc.top - 22 - CAMERA->GetCamera().top);
+		crabImg[2]->frameRender(getMemDC(), _rc.left - 60 - CAMERA->GetCamera().left -300, _rc.top - 22 - CAMERA->GetCamera().top, indexImg[1], 0);
 
 	}
 	if (_state == state::R_ATTACK)
 	{
-		crabImg[3]->frameRender(getMemDC(), _rc.left + 10 - CAMERA->GetCamera().left, _rc.top - 22 - CAMERA->GetCamera().top);
+		crabImg[3]->frameRender(getMemDC(), _rc.left + 10 - CAMERA->GetCamera().left - 300, _rc.top - 22 - CAMERA->GetCamera().top, indexImg[1], 0);
 	}
 	if (_state == state::L_ATTACK_FINISH)
 	{
-		crabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
+		crabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[2], 0);
 	}
 	if (_state == state::R_ATTACK_FINISH)
 	{
-		crabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - CAMERA->GetCamera().top);
+		crabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[2], 0);
 	}
 	if (_state == state::L_DEATH)
 	{
-		crabImg[4]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 44 - CAMERA->GetCamera().top);
+		crabImg[4]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 44 - CAMERA->GetCamera().top, indexImg[3], 0);
 	}
 	if (_state == state::R_DEATH)
 	{
-		crabImg[5]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left, _rc.top - 44 - CAMERA->GetCamera().top);
+		crabImg[5]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 44 - CAMERA->GetCamera().top, indexImg[4], 0);
 	}
 }

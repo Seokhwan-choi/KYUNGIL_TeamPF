@@ -26,9 +26,9 @@ GameOverUi::GameOverUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot
 	//이미지 초기화 
 	//========================================================
 	//중앙 컨티뉴 이미지
-	_continueImage = IMAGEMANAGER->addImage("continue", "UI/gameOverScene/continue.bmp", 653, 79, true, RGB(255, 0, 255));
-	_numberImage = IMAGEMANAGER->addFrameImage("number", "UI/gameOverScene/gameOverNumberCenter.bmp", 2120, 234, 10, 1, true, RGB(0, 248, 0));
-	_gameOverImage = IMAGEMANAGER->addFrameImage("gameover", "UI/gameOverScene/gameOverScene.bmp", 2560, 960,2,1, true, RGB(255, 0, 255));
+	_continueImage = IMAGEMANAGER->findImage("continue");
+	_numberImage = IMAGEMANAGER->findImage("number");
+	_gameOverImage = IMAGEMANAGER->findImage("gameover");
 	
 	//========================================================
 	//이미지 변수 int형 선언

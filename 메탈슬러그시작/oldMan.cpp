@@ -9,33 +9,35 @@ OldMan::OldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, CAPTIV
 	_index = 0;
 	_count = 0;
 	_time = 0;
+	_count1 = 0;
+	_index1 = 0;
 	_range = { _position.x - 100,_position.x + 200 };
 	_speed = 3.f;
 	_tiedRc = RectMake(_position.x,_position.y, _size.x, _size.y);
-
 	_gravity = 2.3f;
 	//_gravity = 0.0f;
 	_isRight = true;
 	_isCrush = false;
 	_isShot = false;
 	_touch = false;
+	_isSave = false;
 	_temp = RectMake(0, 0, 0, 0);
 	_t = 0;
 	_captive = captive;
 	_item = item;
 	_coly = _position.y + _size.y ;
 	//포로
-	IMAGEMANAGER->addFrameImage("tied", "UI/item/captive_tied.bmp", 1872, 150, 9, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("untied", "UI/item/captive_untied.bmp", 2080, 150,10, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("walk", "UI/item/captive_walk.bmp", 2500, 300, 12, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("run", "UI/item/captive_run.bmp", 1666, 150, 8, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("sir", "UI/item/captive_sir.bmp", 2916, 150, 14, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("item", "UI/item/captive_item.bmp", 2288, 150, 11, 1, true, RGB(255, 0, 255));
-	//루미
-	IMAGEMANAGER->addFrameImage("rumi_walk", "UI/item/rumi_walk.bmp", 3328, 150, 16, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("rumi_run", "UI/item/rumi_run.bmp", 1872, 150, 9, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("rumi_sir", "UI/item/rumi_sir.bmp",832,150, 4, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("rumi_crush", "UI/item/rumi_crush.bmp", 2288, 150,11,1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->findImage("tied");
+	IMAGEMANAGER->findImage("untied");
+	IMAGEMANAGER->findImage("walk");
+	IMAGEMANAGER->findImage("run");
+	IMAGEMANAGER->findImage("sir");
+	IMAGEMANAGER->findImage("item");
+	//루미		
+	IMAGEMANAGER->findImage("rumi_walk");
+	IMAGEMANAGER->findImage("rumi_run");
+	IMAGEMANAGER->findImage("rumi_sir");
+	IMAGEMANAGER->findImage("rumi_crush");
 
 }
 
@@ -55,6 +57,7 @@ void OldMan::Release(void)
 
 void OldMan::Update(void)
 {
+	
 	RECT temp;
 	//항시중력값을 준다
 	_position.y += _gravity;
@@ -62,20 +65,39 @@ void OldMan::Update(void)
 	//아래쪽 충돌렉트 위치 좌표 업데이트
 	_coly = _position.y + _size.y ;
 	//아래쪽 픽셀 충돌
-	for (int i = _coly - 60; i < _coly + 60; i++)
-	{
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("배경픽셀")->getMemDC(), _position.x, i);
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
-	
-		if ((r == 255 && g == 255 && b == 0))
+	if (SCENEMANAGER->FindScene("스테이지원")) {
+		for (int i = _coly - 60; i < _coly + 400; i++)
 		{
-			_gravity = 0.0f;
-			_position.y = i- _size.y - 140;
-			break;
+			COLORREF color = GetPixel(IMAGEMANAGER->findImage("배경픽셀")->getMemDC(), _position.x, i);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+
+			if ((r == 255 && g == 255 && b == 0))
+			{
+				_gravity = 0.0f;
+				_position.y = i - _size.y - 140;
+				break;
+			}
 		}
 	}
+	if (SCENEMANAGER->FindScene("지하스테이지")) {
+		for (int i = _coly - 60; i < _coly + 400; i++)
+		{
+			COLORREF color = GetPixel(IMAGEMANAGER->findImage("지하배경픽셀")->getMemDC(), _position.x, i);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+
+			if ((r == 255 && g == 255 && b == 0))
+			{
+				_gravity = 0.0f;
+				_position.y = i - _size.y;
+				break;
+			}
+		}
+	}
+
 	switch (_captive)
 	{
 		// ==================================================================================
@@ -93,16 +115,22 @@ void OldMan::Update(void)
 			if (_time < 100) {
 				_state = CAPTIVESTATE::UNTIED;
 			}			
-			if (_time > 100) {
+			if (_time > 10) {
 				_position.x -= _speed;
 				_state = CAPTIVESTATE::WALK;
 				_isRight = false;
 			}
 			//충돌시
+			//구한 포로 수 하나  올려주기
 			if (IntersectRect(&temp, &_colRc[0],
-				&OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect())) {
+				&((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer())) {
 				_isCrush = true;
 				_touch = false;
+				if (_isSave == false) {
+					DATA->setCaptive(DATA->getCaptive() + 1);
+					_isSave = true;
+					break;
+				}
 			}
 			if (_isCrush == true) {
 				_speed = 0;
@@ -132,7 +160,7 @@ void OldMan::Update(void)
 			if (_isGo && _t > 270) {
 				_state = CAPTIVESTATE::RUN;
 				_position.x -= 6.f;
-				if (IntersectRect(&temp, &OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect(),
+				if (IntersectRect(&temp, &((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer(),
 					&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect())) {
 					_touch = true;
 					if (_touch == true && ((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->getShow() == true) {
@@ -144,11 +172,10 @@ void OldMan::Update(void)
 				}
 			}
 		}
-		break;
+		break;		
 	// ==================================================================================
 	// ############################ 좌우 왔다갔다 하는 포로 #######################
 	// ==================================================================================
-
 	case CAPTIVE::MOVE:
 		//좌우 왔다갔다 하도록 함
 		if (_isRight) {
@@ -166,10 +193,16 @@ void OldMan::Update(void)
 		}
 		//좌
 		//충돌시
-		if (IntersectRect(&temp, &_colRc[0], 
-			&OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect())) {
+		//구한 포로 수 하나  올려주기
+		if (IntersectRect(&temp, &_colRc[0],
+			&((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer())) {
 			_isCrush = true;
 			_touch = false;
+			if (_isSave == false) {
+				DATA->setCaptive(DATA->getCaptive() + 1);
+				_isSave = true;
+				break;
+			}
 		}
 		if (_isCrush == true) {
 			_speed = 0;
@@ -198,6 +231,63 @@ void OldMan::Update(void)
 		if (_isGo && _t > 270) {
 			_state = CAPTIVESTATE::RUN;
 			_position.x -= 6.f;
+			if (IntersectRect(&temp, &((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer(),
+				&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect())) {
+				_touch = true;
+				if (_touch == true && ((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->getShow() == true) {
+					DATA->setScore(DATA->getScore() + 100);
+					((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->setShow(false);
+					_touch = false;
+					break;
+				}
+			}
+		}
+		break;
+		
+		// ==================================================================================
+		// ############################ 루미 #######################
+		// ==================================================================================
+	case CAPTIVE::RUMI:
+		_position.x -= _speed;
+		_rumistate = RUMISTATE::WALK;
+		_isRight = false;
+		//좌
+		//충돌시
+		//구한 포로 수 하나  올려주기
+		if (IntersectRect(&temp, &_colRc[0],
+			&OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect())) {
+			_isCrush = true;
+			_touch = false;
+			if (_isSave == false) {
+				DATA->setCaptive(DATA->getCaptive() + 1);
+				_isSave = true;
+				break;
+			}
+		}
+		if (_isCrush == true) {
+			_speed = 0;
+			_isGo = true;
+			_t++;
+		}
+		
+		//.5~1.5 가만히 있게끔
+		if (_isGo&&_t > 0 && _t < 130) {
+			_rumistate = RUMISTATE::CRUSH;
+			_speed = 0;
+		}
+		if (_isGo&&_t == 60) {
+			((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->SetPosition({ _position.x + _size.x - 5, _position.y + _size.y - 50 });
+			((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->setShow(true);
+			((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->setItem(_item);
+		}
+		if (_isGo&&_t > 130 && _t < 210) {
+			_rumistate = RUMISTATE::SIR;
+			_speed = 0;
+		}
+		//1.5초 이상일 때 아이템 먹고 100점 올릴 수 있음
+		if (_isGo && _t > 210) {
+			_rumistate = RUMISTATE::RUN;
+			_position.x -= 6.f;
 			if (IntersectRect(&temp, &OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect(),
 				&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect())) {
 				_touch = true;
@@ -210,20 +300,26 @@ void OldMan::Update(void)
 			}
 		}
 		break;
+
 		// ==================================================================================
-		// ############################ 루미 #######################
+		// ############################ 보스전에 걸어오는 포로 #######################
 		// ==================================================================================
-	case CAPTIVE::RUMI:
+	case CAPTIVE::RUN:
 		_position.x -= _speed;
-		_rumistate = RUMISTATE::WALK;
+		_state = CAPTIVESTATE::WALK;
 		_isRight = false;
 		//좌
 		//충돌시
-
+		//구한 포로 수 하나  올려주기
 		if (IntersectRect(&temp, &_colRc[0],
 			&OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect())) {
 			_isCrush = true;
 			_touch = false;
+			if (_isSave == false) {
+				DATA->setCaptive(DATA->getCaptive() + 1);
+				_isSave = true;
+				break;
+			}
 		}
 		if (_isCrush == true) {
 			_speed = 0;
@@ -235,22 +331,22 @@ void OldMan::Update(void)
 			_position.x += 2.0f;
 		}
 		//.5~1.5 가만히 있게끔
-		if (_isGo&&_t > 50 && _t < 180) {
-			_rumistate = RUMISTATE::CRUSH;
+		if (_isGo&&_t > 50 && _t < 160) {
+			_state = CAPTIVESTATE::ITEM;
 			_speed = 0;
 		}
-		if (_isGo&&_t == 110) {
-			((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->SetPosition({ _position.x + _size.x - 5, _position.y + _size.y - 50 });
+		if (_isGo&&_t == 125) {
+			((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->SetPosition({ _position.x + 10, _position.y + _size.y - 50 });
 			((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->setShow(true);
 			((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->setItem(_item);
 		}
-		if (_isGo&&_t > 180 && _t < 230) {
-			_rumistate = RUMISTATE::SIR;
+		if (_isGo&&_t > 160 && _t < 270) {
+			_state = CAPTIVESTATE::THANKU;
 			_speed = 0;
 		}
 		//1.5초 이상일 때 아이템 먹고 100점 올릴 수 있음
-		if (_isGo && _t > 230) {
-			_rumistate = RUMISTATE::RUN;
+		if (_isGo && _t > 270) {
+			_state = CAPTIVESTATE::RUN;
 			_position.x -= 6.f;
 			if (IntersectRect(&temp, &OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect(),
 				&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect())) {
@@ -278,18 +374,18 @@ void OldMan::Update(void)
 		if (_count % 15 == 0) {
 			_index++;
 			if (_index > 7) {
-				_index = 0;
+				_index = 8;
 			}
 			IMAGEMANAGER->findImage("tied")->setFrameX(_index);
 		}
 		break;
 	case CAPTIVESTATE::UNTIED:
 		IMAGEMANAGER->findImage("untied")->setFrameY(0);
-		_count++;
-		if (_count % 15 == 0) {
-			_index++;
-			if (_index > 9) {
-				_index = 10;
+		_count1++;
+		if (_count1 % 10 == 0) {
+			_index1++;
+			if (_index1 > 9) {
+				_index1 = 10;
 			}
 			IMAGEMANAGER->findImage("untied")->setFrameX(_index);
 		}
@@ -354,15 +450,16 @@ void OldMan::Update(void)
 	default:
 		break;
 	}
+	//루미 행동 모션
 	switch (_rumistate)
 	{
 	case RUMISTATE::WALK:
 		IMAGEMANAGER->findImage("rumi_walk")->setFrameY(0);
 		_count++;
 		if (_count % 8 == 0) {
-			_index++;
-			if (_index > 15) {
-				_index = 0;
+			_index--;
+			if (_index < 0) {
+				_index = 15;
 			}
 			IMAGEMANAGER->findImage("rumi_walk")->setFrameX(_index);
 		}
@@ -381,9 +478,9 @@ void OldMan::Update(void)
 	case RUMISTATE::SIR:
 		IMAGEMANAGER->findImage("rumi_sir")->setFrameY(0);
 		_count++;
-		if (_count % 10 == 0) {
-			_index++;
-			if (_index > 3) {
+		if (_count % 20 == 0) {
+			_index--;
+			if (_index < 0) {
 				_index = 0;
 			}
 			IMAGEMANAGER->findImage("rumi_sir")->setFrameX(_index);
@@ -391,11 +488,11 @@ void OldMan::Update(void)
 		break;
 	case RUMISTATE::CRUSH:
 		IMAGEMANAGER->findImage("rumi_crush")->setFrameY(0);
-		_count++;
+		_count++;	
 		if (_count % 13 == 0) {
 			_index--;
 			if (_index < 0) {
-				_index = 10;
+				_index = 0;
 			}
 			IMAGEMANAGER->findImage("rumi_crush")->setFrameX(_index);
 		}
@@ -409,7 +506,7 @@ void OldMan::Update(void)
 	// ==================================================================================
 
 	//좌
-	_colRc[0] = RectMake(_position.x, _position.y + 20, 10, 10);
+	_colRc[0] = RectMake(_position.x + _size.x/2, _position.y + 20, 10, 100);
 	//우
 	_colRc[1] = RectMake(_position.x + _size.x - 10, _position.y + 20, 10, 10);
 	//하
@@ -434,12 +531,13 @@ void OldMan::Render(void)
 	}
 	//렉트 보여주는 곳
 	if (KEYMANAGER->isToggleKey(VK_F1)) {
-		for (int i = 0; i < 2; i++) {
-			Rectangle(getMemDC(), _rect1[i]);
-		}
 		Rectangle(getMemDC(), _colrect);
 		Rectangle(getMemDC(), _rect);
 		Rectangle(getMemDC(), _tied);
+		//충돌렉트
+		for (int i = 0; i < 2; i++) {
+			Rectangle(getMemDC(), _rect1[i]);
+		}
 	}
 	//랜더 부분
 	switch (_state)
@@ -483,7 +581,6 @@ void OldMan::Render(void)
 	default:
 		break;
 	}
-
 }
 
 

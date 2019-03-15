@@ -47,17 +47,32 @@ private:
 	image* BubblecrabImg[8];
 	//이미지 랜더용 변수
 	int indexImg[6], countImg[6];
+
+	//픽셀 충돌
+	int _probeY;
+	image* _pixelImage[2];
+	int _pixelGravity;
+	RECT _pixelrc;
+
 public:
 	BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BubbleCrab();
 
 	//충돌렉트 get
-	COL getCol(int i) { return _col[i]; }
-
+	RECT getCol(int i) { return _col[i].rc; }
+	//공격렉트 get
+	RECT getAtt(int i) { return _att[i].rc; }
+	//거품렉트 get
+	//RECT getbubble(int i) { return _bubble->getVBubble()[i].rc; }
 	//체력 get
 	int getHp() { return _hp; }
 	//체력 set
 	void setHp(int hp) { _hp = hp; }
+
+	//데미지
+	void bubbleCrab_damage(int damage) { _hp -= damage; }
+
+
 
 	//충돌여부 get
 	bool getIsCrush(int i) { return _col[i].isCrush; }

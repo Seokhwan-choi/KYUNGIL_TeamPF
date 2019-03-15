@@ -150,9 +150,9 @@
   <ItemGroup>
     <ClInclude Include="BaseMent.h" />
     <ClInclude Include="BigCrab.h" />
-    <ClInclude Include="BossStage.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossStage.h" />
     <ClInclude Include="Bubble.h" />
     <ClInclude Include="BubbleCrab.h" />
     <ClInclude Include="Bullet.h" />
@@ -200,15 +200,16 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timeUi.h" />
+    <ClInclude Include="totalScore.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseMent.cpp" />
     <ClCompile Include="BigCrab.cpp" />
-    <ClCompile Include="BossStage.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossStage.cpp" />
     <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="BubbleCrab.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -249,6 +250,7 @@
     <ClCompile Include="startUi.cpp" />
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timeUi.cpp" />
+    <ClCompile Include="totalScore.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="winMain.cpp" />
     <ClCompile Include="stdafx.cpp">

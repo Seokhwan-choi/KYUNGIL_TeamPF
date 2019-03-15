@@ -25,6 +25,8 @@ public:
 	stage1StartUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~stage1StartUi();
 
+	POINTFLOAT* getSite() { return _site; }
+
 	HRESULT Init();
 	void Release();
 	void Update();

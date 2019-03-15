@@ -12,7 +12,7 @@ private:
 	int _arms;				//총알갯수
 	int _score;				//점수
 	int _saveCaptive;		//구한포로수
-	
+	POINTFLOAT _savePt;		//세이브포인터
 	WEAPON _weapon;	//무기뭐 들고 있냐?~
 
 public:
@@ -36,7 +36,7 @@ public:
 	//점수
 	void setScore(int score) { _score = score; }
 	int getScore() { return _score; }
-	
+
 	//구한포로수
 	void setCaptive(int captive) { _saveCaptive = captive; }
 	int getCaptive() { return _saveCaptive; }
@@ -45,6 +45,11 @@ public:
 	enum WEAPON getWeapon() { return _weapon; }
 	void setWeapon(WEAPON weapon) { _weapon = weapon; }
 
+	//세이브 포인터
+	POINTFLOAT getCheckPt() { return _savePt; }
+	void setCheckPt(POINTFLOAT pt) { _savePt = pt; }
+
+	void CheckPoint();
 };
 
 

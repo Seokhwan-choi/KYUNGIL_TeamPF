@@ -38,6 +38,14 @@ void SceneManager::Render()
 	if (CurrentScene != nullptr)
 		CurrentScene->Render();
 }
+bool SceneManager::FindScene(string name)
+{
+	SceneIter  = SceneList.find(name);
+	if (CurrentScene == SceneIter->second) {
+		return true;
+	}
+	return false;
+}
 // ¾À Ãß°¡ ÇÔ¼ö
 void SceneManager::AddScene(string name, SceneMaker * scene)
 {
@@ -54,6 +62,6 @@ void SceneManager::ChangeScene(string name)
 			CurrentScene->Release();
 
 		CurrentScene = SceneIter->second;
-		SceneIter->second->Init();
+		CurrentScene->Init();
 	}
 }

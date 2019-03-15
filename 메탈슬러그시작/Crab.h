@@ -37,9 +37,12 @@ private:
 	float _dist;
 	//체력
 	int _hp;
-	////마우스 좌표 텍스트
-	//char msg1[128];
-	//POINT _pt;
+	//픽셀 충돌
+	int _probeY;
+	int _probeX;
+	image* _pixelImage;
+	int _pixelGravity;
+	RECT _pixelrc[2];
 	//플레이어 클래스
 	class Player* _player;
 public:
@@ -53,12 +56,18 @@ public:
 	//플레이어 죽임여부 get
 	bool getIsKill(int i) { return _col[i].isKill; }
 	//충돌렉트 get
-	COL getCol(int i) { return _col[i]; }
+	RECT getCol(int i) { return _col[i].rc; }
+	//공격렉트 get
+	RECT getAtt(int i) { return _att[i].rc; }
 	//체력 get
 	int getHp() { return _hp; }
 	//체력 set
 	void setHp(int hp) { _hp = hp; }
 
+	//데미지
+	void crab_damage(int damage) { _hp -= damage; }
+
+	void death();
 	HRESULT Init() override;
 	void Release() override;
 	void Update() override;

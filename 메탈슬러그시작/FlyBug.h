@@ -32,6 +32,16 @@ private:
 	//POINT _pt;
 	//플레이어 클래스
 	class Player* _player;
+	image* _flyBugImg[5];
+	int _index[5];
+	int _countImg[5];
+	int _alpha[3];
+	//플레이어와 거리 계산
+	int _dist;
+	//처음 생성좌표와 거리 계산
+	int _tempDist;
+	int count;
+
 public:
 	FlyBug(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~FlyBug();
@@ -44,12 +54,14 @@ public:
 	bool getIsKill() { return _col.isKill; }
 
 	//충돌렉트 get
-	COL getCol() { return _col; }
+	RECT getCol() { return _col.rc; }
 
 	//체력 get
 	int getHp() { return _hp; }
 	//체력 set
 	void setHp(int hp){_hp = hp;}
+	//데미지
+	void flyBug_damege(int damage) { _hp -= damage; }
 
 	HRESULT Init() override;
 	void Release() override;

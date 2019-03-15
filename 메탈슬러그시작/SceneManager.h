@@ -14,6 +14,7 @@ public:
 	void Update();			// æ¿ æ˜µ•¿Ã∆Æ
 	void Render();			// æ¿ ∑ª¥ı
 
+	bool FindScene(string name);
 	void AddScene(string name, class SceneMaker* scene); // æ¿ √ﬂ∞°
 	void ChangeScene(string name);						 // æ¿ πŸ≤„¡÷±‚
 

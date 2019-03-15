@@ -25,13 +25,17 @@ private:
 	int _bombMax;						//ÆøÅº °¹¼ö 
 	float _x, _y;						//¹ß»ç ´ç½Ã ÇÃ·¹ÀÌ¾î ÁÂÇ¥
 
+	image* _bridgeImg[22];				//´Ù¸® ÀÌ¹ÌÁö
+
+	int index, count;
+
 	vector<BOMB> _vBomb;
 	vector<BOMB>::iterator _viBomb;
 public:
 	Bomb(string name);
 	~Bomb();
 
-	virtual HRESULT Init(const char * imageName, int width, int height, int bombMax, float range);
+	virtual HRESULT Init(const char * imageName, int width, int height, int FrameX, int FrameY, int bombMax, float range);
 	virtual void Release();
 	virtual void Update();
 	virtual void Render();
@@ -43,7 +47,9 @@ public:
 	//¹ß»ç ´ç½Ã ÇÃ·¹ÀÌ¾î ÁÂÇ¥ ÀÔ·Â
 	void setPosition(float x, float y) { _x = x, _y = y; }
 
+	//ÆøÅº º¤ÅÍ get
 	vector<BOMB> getVBomb() { return _vBomb; }
+	//ÆøÅº ¹İº¹ÀÚ get
 	vector<BOMB>::iterator getViBomb() { return _viBomb; }
 };
 

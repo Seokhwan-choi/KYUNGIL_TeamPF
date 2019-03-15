@@ -23,6 +23,7 @@ HRESULT gameNode::init(bool managerInit)
 		TIMEMANAGER->init();				//타임 매니져 초기화
 		SOUNDMANAGER->init();				//사운드 매니져 초기화
 		OBJECTMANAGER->Init();				//오브젝트 매니져 초기화
+		DATA->Init();
 	}
 
 	return S_OK;

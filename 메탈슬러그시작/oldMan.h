@@ -10,7 +10,9 @@ private:
 	RECT _tiedcolRc;
 	//프레임 이미지 관련 변수
 	int _index;
+	int _index1;
 	int _count;
+	int _count1;
 	int _t;
 	int _time;		//묶여잇는 포로 풀기위한 시간변수
 	//움직이는 범위
@@ -25,6 +27,7 @@ private:
 	bool _isCrush;		//부딪혓냐?
 	bool _isGo;			//왼쪽으로 달려나간다
 	bool _isShot;		//쐇냐?
+	bool _isSave;		//구했냐?
 	RECT _temp;
 	bool _touch;       //닿았냐?
 	
@@ -42,6 +45,7 @@ public:
 	void setShot(bool isshot) { _isShot = isshot; }
 	bool getShot() { return _isShot; }
 
+	RECT* getRect() { return _colRc; }
 	void motion();
 	void tied();
 	void move();
