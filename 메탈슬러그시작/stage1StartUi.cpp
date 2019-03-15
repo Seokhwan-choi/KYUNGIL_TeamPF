@@ -24,10 +24,10 @@ stage1StartUi::stage1StartUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot
 	for (int i = 0; i < 14; i++) {
 		startRc[i] = RectMake(_site[i].x, _site[i].y, _wh.x, _wh.y);
 	}
-
+	
 	//이미지 
 	for (int i = 0; i < 14; i++) {
-		string num = to_string(i+1); //string으로 해준다  1234567찾기위해 1더한다 
+		string num = to_string(i+1);
 		string temp = "UI/stage1StartScene/number";
 		string end = ".bmp";
 		string name = temp + num;
@@ -39,7 +39,7 @@ stage1StartUi::stage1StartUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot
 	_speed = 14.4f;
 	_count = 0;
 	_isMove = false;
-	_check = true;
+		
 }
 
 stage1StartUi::~stage1StartUi()
@@ -48,7 +48,7 @@ stage1StartUi::~stage1StartUi()
 
 HRESULT stage1StartUi::Init()
 {
-
+	
 	return S_OK;
 }
 
@@ -58,46 +58,45 @@ void stage1StartUi::Release()
 
 void stage1StartUi::Update()
 {
-	_count++;
-	if (_count == 130) {
-		_isMove = true;
-	}
-	if (_isMove == true) {
-
-		for (int i = 0; i < 8; i++) {
-			_site[i].x += cosf(_angle - (PI/12* i))*_speed;
-			_site[i].y -= sinf(_angle - (PI/12 * i))*_speed;
+		_count++;
+		if (_count == 130) {
+			_isMove = true;
 		}
-		for (int i = 8; i < 14; i++) {
-			_site[i].x += cosf(PI +  (PI/6* (i - 8 )))* _speed;
-			_site[i].y -= sinf(PI + (PI / 6* (i - 8 )))* _speed;
+		if (_isMove == true) {
+			for (int i = 0; i < 8; i++) {
+				_site[i].x += cosf(_angle - (PI / 12 * i))*_speed;
+				_site[i].y -= sinf(_angle - (PI / 12 * i))*_speed;
+			}
+			for (int i = 8; i < 14; i++) {
+				_site[i].x += cosf(PI + (PI / 6 * (i - 8)))* _speed;
+				_site[i].y -= sinf(PI + (PI / 6 * (i - 8)))* _speed;
+			}
 		}
-	}
-	for (int i = 0; i < 14; i++) {
-		startRc[i] = RectMake(_site[i].x, _site[i].y, _wh.x, _wh.y);
-	}
-
-
+		for (int i = 0; i < 14; i++) {
+			startRc[i] = RectMake(_site[i].x, _site[i].y, _wh.x, _wh.y);
+		}
+	
 }
 
 void stage1StartUi::Render()
 {
+		//렉트 보여줄 토글키
+		if(KEYMANAGER->isToggleKey('A')) {
+			for (int i = 0; i < 14; i++) {
+				Rectangle(getMemDC(), startRc[i]);
+			}
+		}
+		//이미지
+		if ((_count > 80 && _count < 95) ||( _count > 110 && _count < 125)) {
+			for (int i = 0; i < 14; i++) {
+				_textImg[i]->alphaRender(getMemDC(), startRc[i].left, startRc[i].top, 0);
+			}
+		}
+		else {
+			for (int i = 0; i < 14; i++) {
+			_textImg[i]->render(getMemDC(), startRc[i].left, startRc[i].top);
+			}
+		}
+	
 
-	//렉트 보여줄 토글키
-	if(KEYMANAGER->isToggleKey('A')) {
-		for (int i = 0; i < 14; i++) {
-			Rectangle(getMemDC(), startRc[i]);
-		}
-	}
-	//이미지
-	if ((_count > 80 && _count < 95) ||( _count > 110 && _count < 125)) {
-		for (int i = 0; i < 14; i++) {
-			_textImg[i]->alphaRender(getMemDC(), startRc[i].left, startRc[i].top, 0);
-		}
-	}
-	else {
-		for (int i = 0; i < 14; i++) {
-		_textImg[i]->render(getMemDC(), startRc[i].left, startRc[i].top);
-		}
-	}
 }

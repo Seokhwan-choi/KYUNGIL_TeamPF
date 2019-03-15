@@ -233,6 +233,9 @@
     <ClInclude Include="StageOne.h">
       <Filter>소스 파일\맵\스테이지원</Filter>
     </ClInclude>
+    <ClInclude Include="startScene.h">
+      <Filter>소스 파일\맵\시작화면</Filter>
+    </ClInclude>
     <ClInclude Include="choiceScene.h">
       <Filter>소스 파일\맵\선택화면</Filter>
     </ClInclude>
@@ -325,9 +328,6 @@
     </ClInclude>
     <ClInclude Include="choiceScene.h">
       <Filter>소스 파일\맵\선택화면</Filter>
-    </ClInclude>
-    <ClInclude Include="startScene.h">
-      <Filter>소스 파일\맵\시작화면</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

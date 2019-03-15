@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Bullet.h"
 #include "Player.h"
-
+#include "oldMan.h"
 Bullet::Bullet(string name) : GameObject(name)
 {
 	_name = name;				// 클래스 이름 설정 해준
@@ -64,7 +64,7 @@ void Bullet::Render()
 		
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
-			if (!_vBullet[i].isFire) continue;
+
 			RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
 			_angle = _vBullet[i].angle;//기본총알
 
@@ -122,15 +122,6 @@ void Bullet::fire(float x, float y, float angle, float speed)
 	bullet.rc = RectMakeCenter(bullet.x, bullet.y, bullet.bulletImage->getFrameWidth(), bullet.bulletImage->getFrameHeight());
 	bullet.angle = angle;
 	_vBullet.push_back(bullet);
-
-	DATA->setArms(DATA->getArms() - 1);  
-
-	if (DATA->getArms() <= 0)
-	{
-		DATA->setWeapon(WEAPON::NORMAL);
-		((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->SetWeapon(WEAPON::NORMAL);
-		//무기바꿀때는 data와 player는 다르니 같이 바까줘야한다 
-	}
 	//for (int i = 0; i < _vBullet.size(); i++)
 	//{
 	//	if (_vBullet[i].isFire) continue;
@@ -169,7 +160,16 @@ void Bullet::move()
 			_vBullet.erase(_vBullet.begin() +i);
 			break; 
 		}
+
+		RECT temp;
+		if (IntersectRect(&temp, &_vBullet[i].rc,
+			&((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->getRect()[0])) {
+			((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->setShot(true);
+		}
+
 	}
+
+
 }
 
 
@@ -211,7 +211,7 @@ HRESULT Boom::Init(const char * imageName, int width, int height , int bulletMax
 		_frameIndex[i] = 0;
 	}
 	
-	_PlayerBoomMax = DATA->getBomb(); 
+	_PlayerBoomMax = 10; 
 
 	return S_OK;
 }
@@ -248,6 +248,8 @@ void Boom::Update()
 		// 증가된 프레임 인덱스를 이미지에 적용 시켜준다.
 		//_vBoom[i].bulletImage->setFrameX(0);            //X축고정 
 		_vBoom[i].bulletImage->setFrameX(_frameIndex[i]);
+
+
 	}
 
 }
@@ -266,11 +268,6 @@ void Boom::fire(float x, float y, float angle, float gravity ,float speed)
 {
 	for (int i = 0; i < _vBoom.size(); i++)
 	{
-		DATA->setBomb(DATA->getBomb() - 1);
-		if (DATA->getBomb() < 0)
-		{
-			DATA->setBomb(0);
-		}
 		if (_vBoom[i].isFire)continue;
 		_vBoom[i].isFire = true; 
 		_vBoom[i].x = _vBoom[i].fireX= x; 
@@ -304,8 +301,14 @@ void Boom::move()
 		{
 			_vBoom[i].isFire = false;
 		}
-	}
 
+		RECT temp;
+		if (IntersectRect(&temp, &_vBoom[i].rc,
+			&((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->getRect()[0])) {
+			((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->setShot(true);
+		}
+
+	}
 }
 
 
@@ -353,7 +356,6 @@ void Bullet1::Update()
 			break;
 		}
 	}
-
 }
 
 void Bullet1::Render()
@@ -365,7 +367,7 @@ void Bullet1::Render()
 
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
-			if (!_vBullet[i].isFire) continue;
+
 			RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
 			_angle = _vBullet[i].angle;//기본총알
 
@@ -482,7 +484,12 @@ void Bullet1::move()
 			_vBullet.erase(_vBullet.begin() + i);
 			break;
 		}
-		
+		RECT temp;
+		if (IntersectRect(&temp, &_vBullet[i].rc,
+			&((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->getRect()[0])) {
+			((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->setShot(true);
+		}
+
 	}
 }
 

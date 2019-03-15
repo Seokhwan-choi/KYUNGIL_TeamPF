@@ -18,7 +18,6 @@ private:
 	float _speed;			   //움직일 렉트 스피드
 	int _count;				   //몇 초뒤에 움직이고 갈 것이다
 	bool _isMove;			   //서로 흩어져서 갈것이냐?
-	bool _check;				// 소리 재생
 	//이미지 
 	image* _textImg[14];
 
