@@ -63,6 +63,7 @@ private:
 		// 총 34가지 동작
 	};
 private:
+
 	//##########################플레이어 이떄만 작동한다 
 	bool _lifelive;               //false일떄만 작동한다 true일떄는 실행종료 
 
@@ -138,6 +139,8 @@ private:
 
 	class Crab* _crab;
 
+	class BossStage* _bosstage;
+
 	//RECT _temp;
 public:
 
@@ -166,6 +169,8 @@ public:
 
 	void PlayerBoomMotion();            //플레이어폭탄상태 
 	void PixelMapCollision(); 
+	void BaseMentPixel();
+	void BossStagePixel(image* _bridge);
 	
 	Bullet1* playerbullet() { return _playerbullet; }
 	Bullet* heavybullet() { return _heavyBullet; }

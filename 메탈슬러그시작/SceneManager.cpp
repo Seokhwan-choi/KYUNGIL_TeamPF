@@ -65,3 +65,14 @@ void SceneManager::ChangeScene(string name)
 		CurrentScene->Init();
 	}
 }
+
+SceneMaker* SceneManager::GetScene(string name)
+{
+	SceneIter = SceneList.find(name);
+	if (SceneIter != SceneList.end()) {
+		return SceneIter->second;
+	}
+	else {
+		return nullptr;
+	}
+}

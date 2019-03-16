@@ -14,6 +14,7 @@ public:
 	RECT Relative(RECT rc);                   //카메라의 상대좌표를 계산해주는녀석 
 	RECT GetCamera() { return _cameraRect; }  //카메라 RECT를 반환하는함수   배경에서 빼줄려고 보통쓴다 
 	                                          //보통 배경할떄 
+	RECT GetRelativeCamera(RECT rc);
 
 	void SetWall(int w) { _wall = w; }         //WALL은 0??맨왼쪽이다??
 	int GetWall() { return _wall; }

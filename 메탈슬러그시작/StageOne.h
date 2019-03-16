@@ -42,6 +42,7 @@ private:
 	RECT _testRect;
 	
 
+	POINTFLOAT _testPosition;
 
 
 

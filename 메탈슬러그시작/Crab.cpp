@@ -14,14 +14,14 @@ Crab::~Crab()
 
 void Crab::death()
 {
-	RECT temp;
-	for (int i = 0; i < 2; i++)
-	{
-		if (IntersectRect(&temp, &_att[i].rc, &_player->GetCollisionPlayer()))
-		{
-			//exit(0);
-		}
-	}
+	//RECT temp;
+	//for (int i = 0; i < 2; i++)
+	//{
+	//	if (IntersectRect(&temp, &_att[i].rc, &_player->GetCollisionPlayer()))
+	//	{
+	//		//exit(0);
+	//	}
+	//}
 	
 }
 
@@ -108,6 +108,7 @@ void Crab::Release()
 
 void Crab::Update()
 {
+
 	this->death();
 	//이동 테스트
 	/*if (KEYMANAGER->isStayKeyDown('I')) {
@@ -140,19 +141,19 @@ void Crab::Update()
 			break;
 		}
 	}
-
+	
 	for (int i = _probeX; i < _probeX + 50; i++)
 	{
 		COLORREF color = GetPixel(_pixelImage->getMemDC(), i, _position.y);
 		int r = GetRValue(color);
 		int g = GetGValue(color);
 		int b = GetBValue(color);
-
+	
 		if ((r == 255 && g == 255 && b == 0))
 		{
 			_pixelGravity = 0.f;
 			_position.x = i - _size.x / 2 - 140;
-
+	
 			break;
 		}
 	}
@@ -475,7 +476,7 @@ void Crab::crabImage()
 			crabImg[0]->setFrameX(indexImg[0]);
 		}
 	}
-	if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE && !(_state == state::R_ATTACK_FINISH))
+	else if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE && !(_state == state::R_ATTACK_FINISH))
 	{
 		countImg[0]++;
 		if (countImg[0] % 10 == 0)
@@ -488,7 +489,7 @@ void Crab::crabImage()
 			crabImg[1]->setFrameX(indexImg[0]);
 		}
 	}
-	if (_state == state::L_ATTACK)
+	else if (_state == state::L_ATTACK)
 	{
 		countImg[1]++;
 		if (countImg[1] % 8 == 0)
@@ -501,7 +502,7 @@ void Crab::crabImage()
 			crabImg[2]->setFrameX(indexImg[1]);
 		}
 	}
-	if (_state == state::R_ATTACK)
+	else if (_state == state::R_ATTACK)
 	{
 		countImg[1]++;
 		if (countImg[1] % 8 == 0)
@@ -514,7 +515,7 @@ void Crab::crabImage()
 			crabImg[3]->setFrameX(indexImg[1]);
 		}
 	}
-	if (_state == state::L_ATTACK_FINISH)
+	else if (_state == state::L_ATTACK_FINISH)
 	{
 		countImg[2]++;
 		if (countImg[2] % 10 == 0)
@@ -527,7 +528,7 @@ void Crab::crabImage()
 			crabImg[0]->setFrameX(indexImg[2]);
 		}
 	}
-	if (_state == state::R_ATTACK_FINISH)
+	else if (_state == state::R_ATTACK_FINISH)
 	{
 		countImg[2]++;
 		if (countImg[2] % 10 == 0)
@@ -540,7 +541,7 @@ void Crab::crabImage()
 			crabImg[1]->setFrameX(indexImg[2]);
 		}
 	}
-	if (_state == state::L_DEATH)
+	else if (_state == state::L_DEATH)
 	{
 		countImg[3]++;
 		if (countImg[3] % 7 == 0)
@@ -553,7 +554,7 @@ void Crab::crabImage()
 			crabImg[4]->setFrameX(indexImg[3]);
 		}
 	}
-	if (_state == state::R_DEATH)
+	else if (_state == state::R_DEATH)
 	{
 		countImg[4]++;
 		if (countImg[4] % 7 == 0)
@@ -574,32 +575,32 @@ void Crab::crabImageRender()
 	{
 		crabImg[0]->frameRender(getMemDC(), CAMERA->Relative(_rc).left, CAMERA->Relative(_rc).top, indexImg[0], 0);
 	}
-	if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE)
+	else if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE)
 	{
 		crabImg[1]->frameRender(getMemDC(), CAMERA->Relative(_rc).left, CAMERA->Relative(_rc).top, indexImg[0], 0);
 	}
-	if (_state == state::L_ATTACK)
+	else if (_state == state::L_ATTACK)
 	{
 		crabImg[2]->frameRender(getMemDC(), _rc.left - 60 - CAMERA->GetCamera().left -300, _rc.top - 22 - CAMERA->GetCamera().top, indexImg[1], 0);
 
 	}
-	if (_state == state::R_ATTACK)
+	else if (_state == state::R_ATTACK)
 	{
 		crabImg[3]->frameRender(getMemDC(), _rc.left + 10 - CAMERA->GetCamera().left - 300, _rc.top - 22 - CAMERA->GetCamera().top, indexImg[1], 0);
 	}
-	if (_state == state::L_ATTACK_FINISH)
+	else if (_state == state::L_ATTACK_FINISH)
 	{
 		crabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[2], 0);
 	}
-	if (_state == state::R_ATTACK_FINISH)
+	else if (_state == state::R_ATTACK_FINISH)
 	{
 		crabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[2], 0);
 	}
-	if (_state == state::L_DEATH)
+	else if (_state == state::L_DEATH)
 	{
 		crabImg[4]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 44 - CAMERA->GetCamera().top, indexImg[3], 0);
 	}
-	if (_state == state::R_DEATH)
+	else if (_state == state::R_DEATH)
 	{
 		crabImg[5]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 44 - CAMERA->GetCamera().top, indexImg[4], 0);
 	}

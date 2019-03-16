@@ -103,6 +103,10 @@ void BubbleCrab::Release()
 
 void BubbleCrab::Update()
 {
+	RECT renderRect = CAMERA->Relative(_rc);
+	if (_rc.right < 0 || _rc.left > WINSIZEX || _rc.top < 0 || _rc.bottom > WINSIZEY)
+		return;
+
 
 	RECT temp;
 	for (int i = 0; i < 2; i++)
@@ -483,7 +487,6 @@ void BubbleCrab::Update()
 				}
 			}
 		}
-		
 		break;
 	case state::R_DEATH:
 		//충돌 렉트 없애기
@@ -647,6 +650,8 @@ void BubbleCrab::bubblecrabImage()
 			BubblecrabImg[3]->setFrameX(indexImg[1]);
 		}
 	}
+
+
 	if (_state == state::L_ATTACK_FINISH)
 	{
 		countImg[2]++;

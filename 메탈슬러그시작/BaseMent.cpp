@@ -128,7 +128,12 @@ void BaseMent::Update(void)
 			_index--;
 		}
 	}
-	
+
+	if (_player->GetCollisionPlayer().left > 6600 ) 
+	{
+		SCENEMANAGER->ChangeScene("보스스테이지");
+	}
+	_player->BaseMentPixel();
 }
 
 void BaseMent::Render(void)

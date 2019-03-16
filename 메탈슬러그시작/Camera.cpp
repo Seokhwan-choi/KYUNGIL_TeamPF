@@ -109,3 +109,4 @@ RECT Camera::Relative(RECT rc)
 	rc.bottom -= _cameraRect.top;
 	return rc;
 }
+

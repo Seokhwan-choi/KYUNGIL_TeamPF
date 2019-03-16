@@ -9,7 +9,7 @@ HRESULT StageOne::Init(void)
 {
 	_player = new Player("플레이어", { 250,0 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
-
+	_testPosition = { 250,WINSIZEY / 2 };
 	//작은게 수
 	_crabCount = 11;
 	//작은게 초기화
@@ -17,7 +17,7 @@ HRESULT StageOne::Init(void)
 	{
 		string num = to_string(i);
 		string name = "crab" + num;
-
+	
 		_crab[i] = new Crab(name, { 2000.f + (i * 350.f), WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
 		if (i == 4)
 		{
@@ -47,45 +47,45 @@ HRESULT StageOne::Init(void)
 		{
 			_crab[i] = new Crab(name, { 10500.f, WINSIZEY / 2 + 150.f }, { 100, 150 }, GameObject::Pivot::Center);
 		}
-
+	
 		_crab[i]->Init();
 		OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _crab[i]);
 	}
-
+	
 	//거품게 수
-	_bubbleCrabCount = 8;
-	//거품게 초기화
-	for (int i = 0; i < _bubbleCrabCount; i++)
-	{
-		string num = to_string(i);
-		string name = "bubbleCrab" + num;
-
-		_bubbleCrab[i] = new BubbleCrab(name, { 3400.f + (i * 100.f), WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
-
-		if (i == 3)
-		{
-			_bubbleCrab[i] = new BubbleCrab(name, { 7400.f + (i * 100.f), WINSIZEY / 2 - 250 }, { 100, 150 }, GameObject::Pivot::Center);
-		}
-		else if (i == 4)
-		{
-			_bubbleCrab[i] = new BubbleCrab(name, { 7600.f + (i * 100.f), WINSIZEY / 2 - 250 }, { 100, 150 }, GameObject::Pivot::Center);
-		}
-		else if (i == 5)
-		{
-			_bubbleCrab[i] = new BubbleCrab(name, { 8200.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
-		}
-		else if (i == 6)
-		{
-			_bubbleCrab[i] = new BubbleCrab(name, { 9000.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
-		}
-		else if (i == 7)
-		{
-			_bubbleCrab[i] = new BubbleCrab(name, { 9200.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
-		}
-
-		_bubbleCrab[i]->Init();
-		OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab[i]);
-	}
+	//_bubbleCrabCount = 8;
+	////거품게 초기화
+	//for (int i = 0; i < _bubbleCrabCount; i++)
+	//{
+	//	string num = to_string(i);
+	//	string name = "bubbleCrab" + num;
+	//
+	//	_bubbleCrab[i] = new BubbleCrab(name, { 3400.f + (i * 100.f), WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
+	//
+	//	if (i == 3)
+	//	{
+	//		_bubbleCrab[i] = new BubbleCrab(name, { 7400.f + (i * 100.f), WINSIZEY / 2 - 250 }, { 100, 150 }, GameObject::Pivot::Center);
+	//	}
+	//	else if (i == 4)
+	//	{
+	//		_bubbleCrab[i] = new BubbleCrab(name, { 7600.f + (i * 100.f), WINSIZEY / 2 - 250 }, { 100, 150 }, GameObject::Pivot::Center);
+	//	}
+	//	else if (i == 5)
+	//	{
+	//		_bubbleCrab[i] = new BubbleCrab(name, { 8200.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
+	//	}
+	//	else if (i == 6)
+	//	{
+	//		_bubbleCrab[i] = new BubbleCrab(name, { 9000.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
+	//	}
+	//	else if (i == 7)
+	//	{
+	//		_bubbleCrab[i] = new BubbleCrab(name, { 9200.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
+	//	}
+	//
+	//	_bubbleCrab[i]->Init();
+	//	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab[i]);
+	//}
 
 	//잠자리 수
 	_flyBugCount = 2;
@@ -258,13 +258,20 @@ void StageOne::Update(void)
 	this->PlayerCollisionEnemy(); //플레이어 몸통과 애너미 충돌시 
 	this->PlayerBoomCollisionBoom(); //플레이어 수류탄과  애너미 충돌시 
 	this->ChangeMap(); 
+	_player->PixelMapCollision();
 }
 
 void StageOne::Render(void)
 {
+
+	////void render(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight);
 	_bgImage2->render(getMemDC(), 0 - (CAMERA->GetCamera().left / 2), -310 - CAMERA->GetCamera().top);
 	_bgImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, -135 - CAMERA->GetCamera().top);
 	_bgSea->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left - 300, WINSIZEY - 278 - CAMERA->GetCamera().top);
+
+	//_bgImage2->render(getMemDC(), 0, 0, CAMERA->GetCamera().left, CAMERA->GetCamera().top, CAMERA->GetCamera().right, CAMERA->GetCamera().bottom);
+	//_bgImage->render(getMemDC(), 0, 0, CAMERA->GetCamera().left, CAMERA->GetCamera().top, CAMERA->GetCamera().right, CAMERA->GetCamera().bottom);
+	//_bgSea->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left - 300, WINSIZEY - 278 - CAMERA->GetCamera().top);
 	
 	if (_PixelCheck) {
 		_PixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, -135 - CAMERA->GetCamera().top);

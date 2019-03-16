@@ -10,6 +10,8 @@ HRESULT BossStage::Init(void)
 	_waterground = IMAGEMANAGER->findImage("보스출렁");
 	// = IMAGEMANAGER->findImage("곧부서짐");
 
+	CAMERA->SetCamera({ (float)WINSIZEX / 2.f, (float)WINSIZEY / 2.f });
+
 
 	for (int i = 0; i < 22; ++i) 
 	{
@@ -18,8 +20,21 @@ HRESULT BossStage::Init(void)
 		_bridge[i].rc = RectMake( (175 * i), WINSIZEY - 215, 175, 183);
 		_bridge[i].bridgeImg = IMAGEMANAGER->addImage(str, string("Background/"+ string(str) + ".bmp").c_str(), (175 * i), WINSIZEY - 215, 175, 183, true, RGB(255,0,255));
 		_bridge[i].isCrush = false;
-
 	}
+
+
+
+	for (int i = 0; i < 22; ++i)
+	{
+		char str[100];
+		sprintf(str, "픽셀다리%d", i + 1);
+		_pixelbridge[i].rc = RectMake((175 * i), WINSIZEY - 215, 175, 183);
+		_pixelbridge[i].bridgeImg = IMAGEMANAGER->addImage(str, string("Background/" + string(str) + ".bmp").c_str(), (175 * i), WINSIZEY - 215, 175, 183, true, RGB(255, 0, 255));
+		_pixelbridge[i].isCrush = false;
+		_pixelbridge[i].isShow = false;
+	}
+
+
 
 	_start = false;
 	_loopX = 0;
@@ -30,7 +45,7 @@ HRESULT BossStage::Init(void)
 		_reset[i] = false;
 	}
 
-	_player = new Player("플레이어", { WINSIZEX / 2 + 200, WINSIZEY / 2 + 175 }, { 50, 50 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { WINSIZEX / 2 + 200, WINSIZEY / 2 -300 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	_boss = new Boss("boss", { -WINSIZEX / 4, WINSIZEY / 2 + 100 }, { WINSIZEX / 2, WINSIZEY }, GameObject::Pivot::Center);
@@ -85,7 +100,6 @@ void BossStage::Update(void)
 
 
 	// ============== 배경다리 이동 및 보정 시킨다. ==================
-
 	if (_start) 
 	{
 		for (int i = 0; i < 22; ++i)
@@ -97,6 +111,24 @@ void BossStage::Update(void)
 			if (_bridge[i].bridgeImg->getX() < - 175) 
 			{
 				_bridge[i].bridgeImg->setX(-200);
+			}
+		}
+
+		for (int i = 0; i < 22; ++i) {
+			//x좌표 -3씩 앞당김
+			_pixelbridge[i].bridgeImg->setX(_pixelbridge[i].bridgeImg->getX() - 3);
+
+			//화면 -175지점에 왔을 경우 뒤로 되돌린다. 
+			if (_pixelbridge[i].bridgeImg->getX() < -175)
+			{
+				_pixelbridge[i].bridgeImg->setX(-200);
+				_pixelbridge[i].isShow = false;
+			}
+
+			if (_pixelbridge[i].bridgeImg->getX() < WINSIZEX)
+			 {
+
+				_pixelbridge[i].isShow = true;
 			}
 		}
 	}
@@ -116,12 +148,16 @@ void BossStage::Update(void)
 		{
 			_bridge[i].isCrush = true;
 		}
+
+		if (_pixelbridge[i].bridgeImg->getX() == -200)
+		{
+			_pixelbridge[i].isCrush = true;
+		}
 	}
 
 	for (int i = 0; i < 11; i++)
 	{
 		if (!_bridge[i].isCrush) break;
-
 		if (_bridge[i].isCrush && i == 10)
 		{
 			_reset[0] = true;
@@ -136,6 +172,12 @@ void BossStage::Update(void)
 			_bridge[i].isCrush = false;
 		}
 
+		for (int i = 0; i < 11; i++)
+		{
+			_pixelbridge[i].bridgeImg->setX(_pixelbridge[21].bridgeImg->getX() + 150 + (i * 175));
+			_pixelbridge[i].isCrush = false;
+		}
+
 		_reset[0] = false;
 	}
 
@@ -144,6 +186,10 @@ void BossStage::Update(void)
 		if (_bridge[i].bridgeImg->getX() == -200)
 		{
 			_bridge[i].isCrush = true;
+		}
+		if (_pixelbridge[i].bridgeImg->getX() == -200)
+		{
+			_pixelbridge[i].isCrush = true;
 		}
 	}
 
@@ -165,7 +211,20 @@ void BossStage::Update(void)
 			_bridge[i].isCrush = false;
 		}
 
+		for (int i = 11; i < 22; i++)
+		{
+			_pixelbridge[i].bridgeImg->setX(_pixelbridge[10].bridgeImg->getX() + 150 + ((i - 11) * 175));
+			_pixelbridge[i].isCrush = false;
+		}
+
 		_reset[1] = false;
+	}
+
+	this->PlayerBulletBoss();
+	for (int i = 0; i < 22; ++i) 
+	{
+		//if (!_pixelbridge[i].isShow) continue;
+		_player->BossStagePixel(_pixelbridge[i].bridgeImg);
 	}
 }
 
@@ -175,20 +234,40 @@ void BossStage::Render(void)
 	RECT _rc = RectMake(0, 0, WINSIZEX, WINSIZEY);
 	_bgImage->loopRender(getMemDC(), &_rc, _loopX, 0);
 	// ============== 배경바닥 출렁출렁 시킨다. =================
-	_waterground->frameRender(getMemDC(), 0, WINSIZEY - 100);
+	_waterground->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left - 300, WINSIZEY - 100 - CAMERA->GetCamera().top);
 	// ======================================================
 
 	//다리 이미지 그리기
 	for (int i = 0; i < 22; ++i)
 	{	
 		//Rectangle(getMemDC(), _bridge[i].rc);
-		_bridge[i].bridgeImg->render(getMemDC(), _bridge[i].bridgeImg->getX(), _bridge[i].bridgeImg->getY());
+		_bridge[i].bridgeImg->render(getMemDC(), _bridge[i].bridgeImg->getX() - CAMERA->GetCamera().left - 300, _bridge[i].bridgeImg->getY() - CAMERA->GetCamera().top);
 	}
 	
-	if (!_start)
+	if (_start)
 	{
-		//_breakImage->render(getMemDC(), -235, WINSIZEY - 215);
+		//다리 이미지 그리기
+		for (int i = 0; i < 22; ++i)
+		{
+			_pixelbridge[i].bridgeImg->render(getMemDC(), _pixelbridge[i].bridgeImg->getX() -  CAMERA->GetCamera().left - 300, _pixelbridge[i].bridgeImg->getY() - CAMERA->GetCamera().top);
+		}
 	}
 
 	OBJECTMANAGER->Render();
+}
+
+void BossStage::PlayerBulletBoss()
+{
+	RECT temp; 
+
+	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
+	{
+		if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_boss->GetRect()))
+		{
+			_boss->Damage(1); 
+			_player->playerbullet()->SetisFire(i, false);
+
+		}
+	}
+
 }

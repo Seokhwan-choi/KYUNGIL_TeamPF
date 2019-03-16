@@ -346,6 +346,11 @@ void image::release()
 
 void image::render(HDC hdc, int destX, int destY)
 {
+	RECT renderRect = RectMake(destX, destY, _imageInfo->width, _imageInfo->height);
+	if (renderRect.right < 0 || renderRect.left > WINSIZEX || renderRect.bottom < 0 || renderRect.top > WINSIZEY)
+		return;
+
+
 	if (_isTrans)//배경색 없애고 출력
 	{
 		//GdiTransparentBlt : 비트맵의 특정색상을 제외하고 고속복사 해주는 함수
@@ -371,6 +376,8 @@ void image::render(HDC hdc, int destX, int destY)
 
 void image::render(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight)
 {
+
+
 	if (_isTrans)//배경색 없애고 출력
 	{
 		//GdiTransparentBlt : 비트맵의 특정색상을 제외하고 고속복사 해주는 함수
@@ -396,6 +403,11 @@ void image::render(HDC hdc, int destX, int destY, int sourX, int sourY, int sour
 
 void image::alphaRender(HDC hdc, BYTE alpha)
 {
+	RECT renderRect = RectMake(_imageInfo->x, _imageInfo->y, _imageInfo->width, _imageInfo->height);
+	if (renderRect.right < 0 || renderRect.left > WINSIZEX || renderRect.bottom < 0 || renderRect.top > WINSIZEY)
+		return;
+
+
 	//알파블렌딩 처음 사용하냐?
 	//알파블렌드를 사용할 수 있도록 초기화 해라
 	if (!_blendImage) this->initForAlphaBlend();
@@ -442,6 +454,9 @@ void image::alphaRender(HDC hdc, BYTE alpha)
 
 void image::alphaRender(HDC hdc, int destX, int destY, BYTE alpha)
 {
+	RECT renderRect = RectMake(destX, destY, _imageInfo->width, _imageInfo->height);
+	if (renderRect.right < 0 || renderRect.left > WINSIZEX || renderRect.bottom < 0 || renderRect.top > WINSIZEY)
+		return;
 	//알파블렌딩 처음 사용하냐?
 	//알파블렌드를 사용할 수 있도록 초기화 해라
 	if (!_blendImage) this->initForAlphaBlend();
@@ -487,6 +502,7 @@ void image::alphaRender(HDC hdc, int destX, int destY, BYTE alpha)
 
 void image::alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha)
 {
+
 	//알파블렌딩 처음 사용하냐?
 //알파블렌드를 사용할 수 있도록 초기화 해라
 	if (!_blendImage) this->initForAlphaBlend();
@@ -532,6 +548,10 @@ void image::alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int
 
 void image::frameRender(HDC hdc, int destX, int destY)
 {
+	RECT renderRect = RectMake(destX, destY, _imageInfo->frameWidth, _imageInfo->frameHeight);
+	if (renderRect.right < 0 || renderRect.left > WINSIZEX || renderRect.bottom < 0 || renderRect.top > WINSIZEY)
+		return;
+
 	if (_isTrans) //배경색 없앨꺼냐?
 	{
 		//GdiTransparentBlt : 비트맵의 특정색상을 제외하고 고속복사 해주는 함수
@@ -560,6 +580,9 @@ void image::frameRender(HDC hdc, int destX, int destY)
 
 void image::frameRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY)
 {
+	RECT renderRect = RectMake(destX, destY, _imageInfo->frameWidth, _imageInfo->frameHeight);
+	if (renderRect.right < 0 || renderRect.left > WINSIZEX || renderRect.bottom < 0 || renderRect.top > WINSIZEY)
+		return;
 	//이미지 예외처리
 	//int hp;
 	//if (hp < 0) hp = 0;
@@ -603,6 +626,9 @@ void image::frameRender(HDC hdc, int destX, int destY, int currentFrameX, int cu
 
 void image::alphaFrameRender(HDC hdc, int destX, int destY, int currentframeX, int currentframeY, int alpha)
 {
+	RECT renderRect = RectMake(destX, destY, _imageInfo->frameWidth, _imageInfo->frameHeight);
+	if (renderRect.right < 0 || renderRect.left > WINSIZEX || renderRect.bottom < 0 || renderRect.top > WINSIZEY)
+		return;
 	//RECT renderRC = RectMake(destX, destY, _imageInfo->frameWidth, _imageInfo->frameHeight);
 	//if (renderRC.right < 0 || renderRC.left > WINSIZEX || renderRC.top > WINSIZEY || renderRC.bottom < 0)
 	//	return;
@@ -775,6 +801,9 @@ void image::loopAlphaRender(HDC hdc, const LPRECT drawArea, int offsetX, int off
 
 void image::stretchRender(HDC hdc, int destX, int destY, float scale)
 {
+	RECT renderRect = RectMake(destX, destY, _imageInfo->width * scale, _imageInfo->height * scale);
+	if (renderRect.right < 0 || renderRect.left > WINSIZEX || renderRect.bottom < 0 || renderRect.top > WINSIZEY)
+		return;
 	//스트레치이미지 처음 사용하냐?
 	//이미지 스케일링을 사용할 수 있도록 초기화 해라
 	if (!_stretchImage) this->initForStretchBlt();
@@ -813,6 +842,9 @@ void image::stretchRender(HDC hdc, int destX, int destY, float scale)
 
 void image::stretchFrameRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY, float scale)
 {
+	RECT renderRect = RectMake(destX, destY, _imageInfo->frameWidth* scale, _imageInfo->frameHeight * scale);
+	if (renderRect.right < 0 || renderRect.left > WINSIZEX || renderRect.bottom < 0 || renderRect.top > WINSIZEY)
+		return;
 	//스트레치이미지 처음 사용하냐?
 	//이미지 스케일링을 사용할 수 있도록 초기화 해라
 	if (!_stretchImage) this->initForStretchBlt();

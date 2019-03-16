@@ -2,7 +2,6 @@
 #include "ObjectManager.h"
 
 #include "GameObject.h"
-
 ObjectManager::ObjectManager()
 {
 	// 타입의 갯수만큼 map에 데이터를 초기화 해준다. 

@@ -1,0 +1,379 @@
+﻿  stdafx.cpp
+d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\CommomMacroFuntion.h(7): warning C4005: 'PI': 매크로 재정의
+  d:\경일\2.20부터\팀포폴용파일\team\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
+  BaseMent.cpp
+  BigCrab.cpp
+BigCrab.cpp(36): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(42): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(51): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(53): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(95): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(136): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(140): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(318): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(320): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(326): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(327): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(329): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(336): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(338): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(340): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(342): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(350): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(352): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(461): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(462): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(475): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(476): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(586): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(586): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(591): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(591): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(643): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BigCrab.cpp(643): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Bomb.cpp
+Bomb.cpp(98): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Bomb.cpp(140): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Boss.cpp
+Boss.cpp(56): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(64): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(68): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(72): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(72): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(143): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(147): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(154): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(155): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(159): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(163): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(163): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(467): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(468): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(626): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(627): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(646): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Boss.cpp(647): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  BossStage.cpp
+BossStage.cpp(19): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BossStage.cpp(17): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+BossStage.cpp(185): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Bubble.cpp
+Bubble.cpp(57): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bubble.cpp(75): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bubble.cpp(91): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bubble.cpp(101): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bubble.cpp(110): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Bubble.cpp(123): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bubble.cpp(153): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Bubble.cpp(170): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bubble.cpp(191): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Bubble.cpp(231): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  BubbleCrab.cpp
+BubbleCrab.cpp(49): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(57): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(65): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(66): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(67): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(68): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(75): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(76): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(89): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(93): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(126): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(132): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(139): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(151): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(158): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(168): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(174): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(179): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(186): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(187): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(188): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(189): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(196): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(197): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(394): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(395): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(398): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(399): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(456): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(456): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(461): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(461): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(492): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(492): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(497): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(497): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(514): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(514): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+BubbleCrab.cpp(556): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+  Bullet.cpp
+Bullet.cpp(29): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(41): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(65): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(72): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Bullet.cpp(119): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Bullet.cpp(140): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(149): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Bullet.cpp(218): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(257): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(266): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(278): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Bullet.cpp(289): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(297): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Bullet.cpp(342): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(354): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(368): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(444): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Bullet.cpp(468): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+Bullet.cpp(477): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Camera.cpp
+Camera.cpp(10): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Camera.cpp(62): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Camera.cpp(68): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Camera.cpp(99): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  choiceScene.cpp
+  choiceUi.cpp
+choiceUi.cpp(63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+choiceUi.cpp(289): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+choiceUi.cpp(294): warning C4477: 'sprintf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'POINT'입니다.
+choiceUi.cpp(294): warning C4473: 'sprintf': 서식 문자열에 대한 인수가 충분하게 전달되지 않았습니다.
+  choiceUi.cpp(294): note: 자리 표시자 및 해당 매개 변수에는 variadic 인수가 2개 필요하지만 1개가 제공되었습니다.
+  choiceUi.cpp(294): note: 누락된 variadic 인수 2이(가) 서식 문자열 '%d'에 필요합니다.
+choiceUi.cpp(294): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+  Crab.cpp
+Crab.cpp(62): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(70): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(78): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(79): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(80): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(81): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(88): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(89): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(97): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(98): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(100): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(124): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(125): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(130): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(137): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(146): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(153): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(162): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(163): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(165): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(171): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(176): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(183): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(184): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(185): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(186): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(193): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(194): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(328): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(329): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(332): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(333): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(361): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(361): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(366): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(366): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(392): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(392): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(397): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Crab.cpp(397): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  FireCannon.cpp
+FireCannon.cpp(151): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(160): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(169): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(178): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(187): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(242): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(264): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(288): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(312): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(336): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(366): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(375): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(384): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(393): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(402): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(465): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(500): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(537): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(574): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+FireCannon.cpp(611): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Fish.cpp
+Fish.cpp(23): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Fish.cpp(70): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Fish.cpp(73): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Fish.cpp(153): warning C4244: '-=': 'double'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Fish.cpp(154): warning C4244: '-=': 'double'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Fish.cpp(236): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Fish.cpp(255): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Fish.cpp(257): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Flybug.cpp
+Flybug.cpp(31): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(37): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(44): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(63): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(68): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(88): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(89): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(102): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(108): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(113): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(117): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(330): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Flybug.cpp(330): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameCompleteUi.cpp
+GameCompleteUi.cpp(22): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+GameCompleteUi.cpp(32): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+GameCompleteUi.cpp(75): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  gameNode.cpp
+  GameObject.cpp
+GameObject.cpp(88): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+GameObject.cpp(92): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+GameObject.cpp(96): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameOverUi.cpp
+  GameOverUi_2.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  Gizmo.cpp
+  image.cpp
+image.cpp(114): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\string.h(136): note: 'strcpy' 선언을 참조하십시오.
+image.cpp(156): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\string.h(136): note: 'strcpy' 선언을 참조하십시오.
+image.cpp(202): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\string.h(136): note: 'strcpy' 선언을 참조하십시오.
+image.cpp(250): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\string.h(136): note: 'strcpy' 선언을 참조하십시오.
+image.cpp(782): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+image.cpp(783): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+image.cpp(820): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+image.cpp(821): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  imageManager.cpp
+  ItemUi.cpp
+ItemUi.cpp(39): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+ItemUi.cpp(40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+ItemUi.cpp(75): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+ItemUi.cpp(80): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+ItemUi.cpp(96): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+ItemUi.cpp(110): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  KeyManager.cpp
+  loading.cpp
+loading.cpp(40): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+loading.cpp(41): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+loading.cpp(74): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+loading.cpp(75): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+loading.cpp(180): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다.
+loading.cpp(204): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+loading.cpp(216): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+loading.cpp(232): warning C4244: '인수': 'unsigned int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+loading.cpp(232): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  LoadingScene.cpp
+LoadingScene.cpp(142): warning C4305: '인수': 'COLORREF'에서 'bool'(으)로 잘립니다.
+LoadingScene.cpp(142): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  MainGame.cpp
+  Monster.cpp
+  ObjectManager.cpp
+  oldMan.cpp
+oldMan.cpp(16): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+oldMan.cpp(28): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+oldMan.cpp(66): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+oldMan.cpp(71): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+oldMan.cpp(87): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+oldMan.cpp(509): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+oldMan.cpp(511): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+oldMan.cpp(513): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+oldMan.cpp(514): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+oldMan.cpp(515): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Player.cpp
+Player.cpp(11): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+Player.cpp(868): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(868): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(871): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(871): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(880): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(880): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(885): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(885): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(891): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(891): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(896): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(896): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(908): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(908): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(913): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(913): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(919): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(919): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(924): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(924): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(934): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(934): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(937): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(937): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(1177): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(1196): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(1197): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(1198): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(3414): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(3416): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(3418): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(3425): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(3440): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(3442): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(3444): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Player.cpp(3450): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  PlayerData.cpp
+  playerDataUi.cpp
+playerDataUi.cpp(18): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+playerDataUi.cpp(169): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+playerDataUi.cpp(170): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+playerDataUi.cpp(171): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+playerDataUi.cpp(172): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+playerDataUi.cpp(173): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  progressBar.cpp
+progressBar.cpp(10): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+progressBar.cpp(11): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+progressBar.cpp(26): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+progressBar.cpp(27): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+progressBar.cpp(22): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+progressBar.cpp(23): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
+progressBar.cpp(47): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  randomFunction.cpp
+  SceneMaker.cpp
+  SceneManager.cpp
+  soundManager.cpp
+  stage1StartUi.cpp
+stage1StartUi.cpp(25): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+stage1StartUi.cpp(35): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+stage1StartUi.cpp(76): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  StageOne.cpp
+StageOne.cpp(295): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+StageOne.cpp(312): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+StageOne.cpp(373): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+StageOne.cpp(387): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  startScene.cpp
+  startUi.cpp
+  timeManager.cpp
+timeManager.cpp(98): warning C4101: 'str' :참조되지 않은 지역 변수입니다.
+  timeUi.cpp
+  totalScore.cpp
+  util.cpp
+  winMain.cpp
+  코드를 생성하고 있습니다...

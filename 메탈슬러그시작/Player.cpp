@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Monster.h"
+#include "BossStage.h"
 #include "Crab.h"
 #define SPEED 6
 
@@ -1186,7 +1187,6 @@ void Player::Update()
 		this->PlayerMotionState();
 		this->PlayerBulletMotion();
 		this->PlayerBoomMotion();
-		this->PixelMapCollision();
 		_playerbullet->move();//플레이어 총알은 항시 움직이고 
 		// 처음에는 _playerboom->move() 였다.
 		// 인덱스 변하는건 Update()에 있어서
@@ -1196,6 +1196,12 @@ void Player::Update()
 		collisionplayer = RectMakeCenter(_position.x, _position.y+40, 100, 130);
 		_colb = RectMakeCenter(_position.x, _position.y + _size.y / 2 - 100, 10, 10);
 		_colr = RectMakeCenter(_position.x + _size.x / 2 - 120, _position.y + 35, 10, 10);
+
+		if (SCENEMANAGER->FindScene("보스스테이지")) {
+			if (_position.x - 200 > WINSIZEX) {
+				_position.x -= (_position.x - 200) - WINSIZEX;
+			}
+		}
 		//플레이어 충돌랙트는 항심움직인다 
 		//_InterPlayerRc = RectMakeCenter(_position.x+75, _position.y+130, 60, 95);//충돌렉트는 항심움직인다 
 
@@ -1203,7 +1209,7 @@ void Player::Update()
 	
 //	_temp = RectMakeCenter(_InterPlayerRc.left + 75, _InterPlayerRc.bottom, 15, 15);
 }
-// ===================================================================================================================================
+// =================================================================================================================================
 // ####################################################### 플레이어 Render ##############################################################
 // =====================================================================================================================================
 void Player::Render()
@@ -3456,20 +3462,66 @@ void Player::PixelMapCollision()
 	}
 }
 
-//void Player::EnemyCollision()      //플레이어 기본딱총 
-//{
-//	RECT temp; 
-//	for (int i = 0; i < _playerbullet->getVBullet().size(); i++)
-//	{
-//		cout << "ㅎㅎ " << endl;
-//		if (IntersectRect(&temp, &_playerbullet->getVBullet()[i].rc, &_crab->getCol(2)  ) )//몬스터 ))
-//		{//만약에 플레이어 기본총알과  애너미가 충돌햇을시 
-//			//buulet1 기본총알의 공격력은 1인상태 
-//			//((Crab*)OBJECTMANAGER->FindObject(ObjectType::Enum::ENEMY, "crab"))->setHp(((Crab*)OBJECTMANAGER->FindObject(ObjectType::Enum::ENEMY, "crab"))->getHp() - 1);
-//
-//			//exit(0);
-//			//&((Crab*)OBJECTMANAGER->FindObject(ObjectType::Enum::ENEMY, "crab")).
-//		}
-//	}
-//}
-//
+void Player::BaseMentPixel()
+{
+
+	_pixely = _colb.bottom; //여기가 애니메이션 맨아래부분 
+
+	for (int i = _pixely; i < _pixely + 40; i++)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("지하배경픽셀")->getMemDC(), _position.x, i);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+		if ((r == 255 && g == 255 && b == 0) && _jumppower <= 0)
+		{
+			_jumppower = 0.0f;
+			_position.y = i - 110;
+
+			if ((_isJump))
+			{
+				_wstate = WALKSTATE::IDLE;
+				_state = STATE::IDLE;
+				_isJump = false;
+				//_gravity = 0.0f; //픽셀충돌시에는 gravity는  0.0f가된다 
+			}
+			break;
+		}
+
+	}
+
+}
+
+void Player::BossStagePixel(image* _bridge)
+{
+	_pixely = _colb.bottom; //여기가 애니메이션 맨아래부분
+	for (int i = _pixely; i < _pixely + 40; i++)
+	{
+		float x = _position.x - _bridge->getX();
+		float y = i - _bridge->getY();
+		COLORREF color = GetPixel(_bridge->getMemDC(), x, y);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+		
+		if ((r == 255 && g == 255 && b == 0) && _jumppower <= 0)
+		{
+			_jumppower = 0.0f;
+			_position.y = i - 125;
+			_position.x -= 3;
+			//cout << "들어옴" << endl;ㄴ
+
+			if ((_isJump))
+			{
+				_wstate = WALKSTATE::IDLE;
+				_state = STATE::IDLE;
+				_isJump = false;
+				//_gravity = 0.0f; //픽셀충돌시에는 gravity는  0.0f가된다 
+			}
+			break;
+		}
+
+	}
+
+
+}

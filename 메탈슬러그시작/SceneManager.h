@@ -17,6 +17,7 @@ public:
 	bool FindScene(string name);
 	void AddScene(string name, class SceneMaker* scene); // ¾À Ãß°¡
 	void ChangeScene(string name);						 // ¾À ¹Ù²ãÁÖ±â
+	SceneMaker* GetScene(string name);
 
 														 // »ı¼ºÀÚ ÇöÀç ¾À nullptr ÃÊ±âÈ­
 	SceneManager() { CurrentScene = nullptr; }

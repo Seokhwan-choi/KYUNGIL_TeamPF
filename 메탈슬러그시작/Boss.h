@@ -76,6 +76,8 @@ public:
 	//ÆøÅº ¹ß»ç ¸í·É
 	void fireBomb();
 
+	void Damage(int att) { _hp -= att;  }
+
 	HRESULT Init() override;
 	void Release() override;
 	void Update() override;
