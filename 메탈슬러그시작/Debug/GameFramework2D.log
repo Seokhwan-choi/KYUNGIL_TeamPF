@@ -1,0 +1,12 @@
+﻿  StageOne.cpp
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\stageone.cpp(273): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\stageone.cpp(288): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\stageone.cpp(306): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\stageone.cpp(321): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\stageone.cpp(339): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\stageone.cpp(354): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\stageone.cpp(373): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\stageone.cpp(388): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\stageone.cpp(446): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\stageone.cpp(462): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  GameFramework2D.vcxproj -> C:\Users\vddbb\Documents\github\KYUNGIL_TeamPF\메탈슬러그시작\Debug\WindowAPI.exe

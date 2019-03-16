@@ -427,37 +427,38 @@ void Crab::Render()
 	//게 이미지 그리기
 	this->crabImageRender();
 
-	//픽셀 감지 렉트 그리기
-	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc[0]));
-	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc[1]));
 	//렉트 보기
-	if (KEYMANAGER->isToggleKey(VK_TAB))
-	{
-		//카메라 렉트 그리기
-		Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
+	//if (KEYMANAGER->isToggleKey(VK_TAB))
+	//{
+	
+	//	//카메라 렉트 그리기
+	//	Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
 
-		//렉트 그리기
-		Rectangle(getMemDC(), CAMERA->Relative(_rc));
+	//	//렉트 그리기
+	//	Rectangle(getMemDC(), CAMERA->Relative(_rc));
 
-		//충돌렉트 그리기
-		for (int i = 0; i < 4; i++)
-		{
-			//Rectangle(getMemDC(), CAMERA->Relative(_col[i].rc));
-		}
+	//	//충돌렉트 그리기
+	//	for (int i = 0; i < 4; i++)
+	//	{
+	//		//Rectangle(getMemDC(), CAMERA->Relative(_col[i].rc));
+	//	}
 
-		//시체처리렉트 그리기
-		for (int i = 0; i < 3; i++)
-		{
-			Rectangle(getMemDC(), CAMERA->Relative(_part[i].rc));
-		}
-		//공격처리렉트 그리기
-		for (int i = 0; i < 2; i++)
-		{
-			Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
-		}
-		//렉트 그리기
-		Rectangle(getMemDC(), CAMERA->Relative(_rc));
-	}
+	//	//시체처리렉트 그리기
+	//	for (int i = 0; i < 3; i++)
+	//	{
+	//		Rectangle(getMemDC(), CAMERA->Relative(_part[i].rc));
+	//	}
+	//	//공격처리렉트 그리기
+	//	for (int i = 0; i < 2; i++)
+	//	{
+	//		Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
+	//	}
+	//	//렉트 그리기
+	//	Rectangle(getMemDC(), CAMERA->Relative(_rc));
+		//픽셀 감지 렉트 그리기
+	//	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc[0]));
+	//	Rectangle(getMemDC(), CAMERA->Relative(_pixelrc[1]));
+	//}
 }
 
 void Crab::crabImage()

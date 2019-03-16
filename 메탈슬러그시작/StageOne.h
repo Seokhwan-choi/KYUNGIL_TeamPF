@@ -7,7 +7,7 @@ private:
 	class Player* _player;
 	class Crab* _crab[11];
 	class BubbleCrab* _bubbleCrab[8];
-	class FlyBug* _flyBug[6];
+	class FlyBug* _flyBug[8];
 
 	image* _bgImage;			// 배경이미지 
 	image* _bgSea;				// 배경 출렁출렁

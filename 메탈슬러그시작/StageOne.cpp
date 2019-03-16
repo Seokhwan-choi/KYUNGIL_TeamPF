@@ -88,47 +88,30 @@ HRESULT StageOne::Init(void)
 	}
 
 	//잠자리 수
-	_flyBugCount = 2;
+	_flyBugCount = 8;
 	//잠자리 초기화
 	for (int i = 0; i < _flyBugCount; i++)
 	{
 		string num = to_string(i);
 		string name = "_flyBug" + num;
+		if (i < 3)
+		{
+			_flyBug[i] = new FlyBug(name, { 10000.f + (i * 150.f), 130.f }, { 200, 100 }, GameObject::Pivot::Center);
+			_flyBug[i]->Init();
+		}
+		else if (i > 2 && i < 6)
+		{
+			_flyBug[i] = new FlyBug(name, { 11000.f + (i * 150.f), 130.f }, { 200, 100 }, GameObject::Pivot::Center);
+			_flyBug[i]->Init();
+		}
+		else if (i > 5 && i < 8)
+		{
+			_flyBug[i] = new FlyBug(name, { 11500.f + (i * 150.f), 130.f }, { 200, 100 }, GameObject::Pivot::Center);
+			_flyBug[i]->Init();
+		}
 		
-		_flyBug[i] = new FlyBug(name, { 11500, 130.f }, { 200, 100 }, GameObject::Pivot::Center);
-		
-		/*if (i == 2)
-		{
-			_flyBug[i] = new FlyBug(name, { 15500.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-		}
-		else if (i == 3)
-		{
-			_flyBug[i] = new FlyBug(name, { 15500.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-		}
-		else if (i == 4)
-		{
-			_flyBug[i] = new FlyBug(name, { 16000.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-		}
-		else if (i == 5)
-		{
-			_flyBug[i] = new FlyBug(name, { 16000.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-		}*/
-		_flyBug[i]->Init();
-
 		OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug[i]);
 	}
-	//_bigCrab = new BigCrab("crab", { 2060, WINSIZEY / 2 + 110 }, { 200, 280 }, GameObject::Pivot::Center);
-	//_bigCrab->Init();
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bigCrab);
-
-
-	//잠자리 생성
-	//FlyBug* _flyBug = new FlyBug("flyBug", { 1060, 200 }, { 200, 100 }, GameObject::Pivot::Center);
-	//잠자리 객체 추가하기
-	//_flyBug->Init();
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug);
-
-
 	
 	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui);
