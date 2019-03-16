@@ -270,13 +270,13 @@ void FlyBug::Update()
 			//충돌 렉트 없애기
 			_col.rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
 
-			if (_position.y + _size.y / 2 < WINSIZEY)
+			if (_position.y + _size.y / 2 < CAMERA->GetCamera().bottom - 400)
 			{
 				//시체 부분 떨어뜨리기
 				_position.y += 5.f;
 			}
 			//땅에 도착했을 때
-			if (_position.y + _size.y / 2 >= WINSIZEY)
+			if (_position.y + _size.y / 2 >= CAMERA->GetCamera().bottom - 400)
 			{
 				_index[3] = 12;
 				if (_index[3] == 12)
@@ -300,7 +300,7 @@ void FlyBug::Update()
 
 				if (_deathTimer % 100 == 0)
 				{
-					OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "flyBug"));
+					_isActive = false;
 				}
 			}
 

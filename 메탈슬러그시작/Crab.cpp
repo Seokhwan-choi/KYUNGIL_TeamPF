@@ -366,22 +366,12 @@ void Crab::Update()
 			_att[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
 		}
 
-		//임시로 y좌표 설정함
-		if (_position.y + _size.y / 2 < 730.f)
-		{
-			//시체 부분 떨어뜨리기
-			_position.y += 5.f;
-		}
+		//이미지 사라지기 전 타이머
+		_deathTimer++;
 
-		//땅에 도착했을 때
-		if (_position.y + _size.y / 2 >= 730.f)
+		if (_deathTimer % 150 == 0)
 		{
-			_deathTimer++;
-
-			if (_deathTimer % 150 == 0)
-			{
-				_isActive = false;
-			}
+			_isActive = false;
 		}
 
 		break;
@@ -397,22 +387,14 @@ void Crab::Update()
 			_att[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
 		}
 
-		//임시로 y좌표 설정함
-		if (_position.y + _size.y / 2 < 730.f)
+		//이미지 사라지기 전 타이머
+		_deathTimer++;
+
+		if (_deathTimer % 150 == 0)
 		{
-			//시체 부분 떨어뜨리기
-			_position.y += 5.f;
+			_isActive = false;
 		}
 
-		//땅에 도착했을 때
-		if (_position.y + _size.y / 2 >= 730.f)
-		{
-			_deathTimer++;
-			if (_deathTimer % 150 == 0)
-			{
-				_isActive = false;
-			}
-		}
 
 		break;
 	}
