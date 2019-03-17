@@ -21,6 +21,7 @@ OldMan::OldMan(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, CAPTIV
 	_isShot = false;
 	_touch = false;
 	_isSave = false;
+	_isTouch = false;
 	_temp = RectMake(0, 0, 0, 0);
 	_t = 0;
 	_captive = captive;
@@ -57,7 +58,6 @@ void OldMan::Release(void)
 
 void OldMan::Update(void)
 {
-	
 	RECT temp;
 	//항시중력값을 준다
 	_position.y += _gravity;
@@ -165,8 +165,9 @@ void OldMan::Update(void)
 					_touch = true;
 					if (_touch == true && ((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->getShow() == true) {
 						DATA->setScore(DATA->getScore() + 100);
+						SOUNDMANAGER->play("아이템먹음");
+						SOUNDMANAGER->play("헤비먹음");
 						((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->setShow(false);
-						_touch = false;
 						break;
 					}
 				}
@@ -236,6 +237,7 @@ void OldMan::Update(void)
 				_touch = true;
 				if (_touch == true && ((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->getShow() == true) {
 					DATA->setScore(DATA->getScore() + 100);
+					SOUNDMANAGER->play("아이템먹음");
 					((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->setShow(false);
 					_touch = false;
 					break;
@@ -291,6 +293,7 @@ void OldMan::Update(void)
 			if (IntersectRect(&temp, &((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer(), &OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect())) {
 				_touch = true;
 				if (_touch == true && ((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->getShow() == true) {
+					SOUNDMANAGER->play("아이템먹음");
 					((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->setShow(false);
 					_touch = false;
 					break;
@@ -351,6 +354,7 @@ void OldMan::Update(void)
 				_touch = true;
 				if (_touch == true && ((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->getShow() == true) {
 					DATA->setScore(DATA->getScore() + 100);
+					SOUNDMANAGER->play("아이템먹음");
 					((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->setShow(false);
 					_touch = false;
 					break;

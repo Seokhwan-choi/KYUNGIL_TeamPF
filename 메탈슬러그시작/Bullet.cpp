@@ -522,7 +522,6 @@ void Bullet1::move()
 				((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman1"))->setShot(true);
 			}
 		}
-
 		if (SCENEMANAGER->FindScene("스테이지원"))
 		{
 			RECT temp;

@@ -122,6 +122,7 @@ void ItemUi::Update(void)
 				DATA->setScore(DATA->getScore() + 500);
 				_isShow = false;
 				_isTouch = false;
+				SOUNDMANAGER->play("아이템먹음");
 				break;
 			}
 			break;
@@ -130,6 +131,7 @@ void ItemUi::Update(void)
 				DATA->setScore(DATA->getScore() + 500);
 				_isShow = false;
 				_isTouch = false;
+				SOUNDMANAGER->play("아이템먹음");
 				break;
 			}
 			break;
@@ -138,6 +140,7 @@ void ItemUi::Update(void)
 				DATA->setScore(DATA->getScore() + 500);
 				_isShow = false;
 				_isTouch = false;
+				SOUNDMANAGER->play("아이템먹음");
 				break;
 			}
 			break;

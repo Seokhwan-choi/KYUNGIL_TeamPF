@@ -24,6 +24,10 @@ startUi::startUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	//========================================================
 	_count = 0;
 	_index = 0;
+<<<<<<< HEAD
+=======
+	SOUNDMANAGER->play("3");
+>>>>>>> feature/UI
 
 }
 
@@ -54,9 +58,9 @@ void startUi::Update()
 	}
 	//엔터시 게임 캐릭터 선택창으로 이동한다
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN)) {
+		SOUNDMANAGER->play("아이템먹음");
 		SCENEMANAGER->ChangeScene("캐릭터선택화면");
 	}
-
 	
 }
 

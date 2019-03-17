@@ -24,7 +24,7 @@ stage1StartUi::stage1StartUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot
 	for (int i = 0; i < 14; i++) {
 		startRc[i] = RectMake(_site[i].x, _site[i].y, _wh.x, _wh.y);
 	}
-	
+	SOUNDMANAGER->play("미션1시작");
 	//이미지 
 	for (int i = 0; i < 14; i++) {
 		string num = to_string(i+1);
