@@ -6,10 +6,10 @@ private:
 	RECT _cameraRect;				// 카메라 RECT
 	RECT _wallRect;					// 카메라 막기 RECT
 	POINTFLOAT _cameraPos;			// 카메라 중점 좌표
-	int _wall;                       //우리가 뒤로못 지나가게하는 벽??
+	int _wall;                      // 우리가 뒤로못 지나가게하는 벽??
 public:
 
-	void SetCamera(POINTFLOAT pos);           //카메라의 중점  
+	void SetCamera(POINTFLOAT pos, bool check);           //카메라의 중점  
 	void SetCamera2(POINTFLOAT pos);
 	void SetCamera3(POINTFLOAT pos);
 	RECT Relative(RECT rc);                   //카메라의 상대좌표를 계산해주는녀석 

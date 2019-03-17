@@ -3,17 +3,11 @@
 #include "Player.h"
 
 // 카메라 위치를 세팅 해준다.
-void Camera::SetCamera(POINTFLOAT pos)
+void Camera::SetCamera(POINTFLOAT pos, bool check)
 {
 	// 해당 타겟을 중심으로 카메라를 그려준다.
 	_cameraPos = pos;
 	_cameraRect = RectMakeCenter(_cameraPos.x, _cameraPos.y, WINSIZEX, WINSIZEY);
-
-
-	if (_cameraRect.left >= _wall)
-	{
-		_wall = _cameraRect.left;
-	}
 
 	// 추가 예정
 	// 추가적으로 카메라의 위치를 보정해줘야 한다.
@@ -21,7 +15,6 @@ void Camera::SetCamera(POINTFLOAT pos)
 	if (_cameraRect.left < _wall)// && _cameraRect.left > 0) 
 	{
 		_cameraPos.x += _wall - _cameraRect.left;
-
 	}
 
 	 if (_cameraRect.bottom > 958)
@@ -39,18 +32,16 @@ void Camera::SetCamera(POINTFLOAT pos)
 	// ==========================================================
 	// ###################### 장벽 구간 ##########################
 	// ==========================================================
-	//if (_cameraRect.right > 6750)
-	//{
-	//	_cameraPos.x -= _cameraRect.right - 6750;
-	//}
-	//else {
-	//	
-	//}
-	//
-	//if (_cameraRect.right < 7500
-	//	&& _cameraRect.top < 0 ) {
-	//	_cameraPos.y -= _cameraRect.top;
-	//}
+	if (_cameraRect.right > 6750 && !check)
+	{
+		_cameraPos.x -= _cameraRect.right - 6750;
+	}
+	else {
+		if (_cameraRect.left >= _wall)
+		{
+			_wall = _cameraRect.left;
+		}
+	}
 	// ==========================================================
 	// ##########################################################
 	// ==========================================================

@@ -16,10 +16,6 @@ HRESULT Bullet::Init(float range)
 {
 	
 	_range = range;
-	
-	
-	
-	
 	return S_OK;
 }
 

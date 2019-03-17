@@ -189,7 +189,7 @@ void StageOne::Release(void)
 void StageOne::Update(void)
 {
 	OBJECTMANAGER->Update();
-	CAMERA->SetCamera(_player->GetPosition());
+	CAMERA->SetCamera(_player->GetPosition(), _PixelCheck);
 	
 	_count++;
 	if (_count % 10 == 0) {
@@ -221,7 +221,7 @@ void StageOne::Update(void)
 	}
 
 	//CAMERA->SetCamera(_player->GetPosition());
-	if (_crush) {
+	if (!_crush) {
 		RECT _temp;
 		if (IntersectRect(&_temp, &_player->GetRect(), &_wallRect)) {
 			_player->SetPosition({
@@ -245,10 +245,10 @@ void StageOne::Render(void)
 	_bgImage2->render(getMemDC(), 0 - (CAMERA->GetCamera().left / 2), -310 - CAMERA->GetCamera().top);
 	_bgImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, -135 - CAMERA->GetCamera().top);
 	_bgSea->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left - 300, WINSIZEY - 278 - CAMERA->GetCamera().top);
+	_wallImage->frameRender(getMemDC(), 5850 - CAMERA->GetCamera().left, 0 - CAMERA->GetCamera().top);
 	
 	if (_PixelCheck) {
 		_PixelImage->render(getMemDC(), 0 - CAMERA->GetCamera().left - 300, -135 - CAMERA->GetCamera().top);
-		_wallImage->frameRender(getMemDC(), 5850 - CAMERA->GetCamera().left, 0 - CAMERA->GetCamera().top);
 		_tongImage->frameRender(getMemDC(), 13000 - CAMERA->GetCamera().left - 300, -65 - CAMERA->GetCamera().top);
 	}
 
