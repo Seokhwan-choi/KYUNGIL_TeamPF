@@ -314,6 +314,51 @@ void StageOne::PlayerBulletCollisionEnemy()
 			
 		}
 	}
+
+	//버블게 
+
+	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_bubbleCrab[j]->GetRect()))
+			{
+				_bubbleCrab[j]->bubbleCrab_damage(1);
+
+
+				_player->playerbullet()->SetisFire(i, false);
+			}
+		}
+
+	}
+
+
+	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_bubbleCrab[j]->GetRect()))
+			{
+				_bubbleCrab[j]->bubbleCrab_damage(1);
+				_player->heavybullet()->SetisFire(i, false);
+			}
+		}
+
+	}
+
+
+	for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_bubbleCrab[j]->GetRect()))
+			{
+				_bubbleCrab[j]->bubbleCrab_damage(1);
+				_player->playerboom()->SetisFire(i, false);
+			}
+		}
+
+	}
 }
 
 void StageOne::PlayerCollisionEnemy()//플레이어 몸통과 애너미 몸통과 충돌햇을시 
@@ -427,6 +472,53 @@ void StageOne::ChangeMap()
 			SOUNDMANAGER->pause("스테이지시작");
 
 		}
+	}
+}
+
+void StageOne::FlyCollision()
+{
+	RECT temp;
+	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_flyBug[j]->GetRect()))
+			{
+				_flyBug[j]->flyBug_damege(1);
+
+
+				_player->playerbullet()->SetisFire(i, false);
+			}
+		}
+
+	}
+
+
+	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_flyBug[j]->GetRect()))
+			{
+				_flyBug[j]->flyBug_damege(1);
+				_player->heavybullet()->SetisFire(i, false);
+			}
+		}
+
+	}
+
+
+	for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_flyBug[j]->GetRect()))
+			{
+				_flyBug[j]->flyBug_damege(1);
+				_player->playerboom()->SetisFire(i, false);
+			}
+		}
+
 	}
 }
 

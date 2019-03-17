@@ -9,6 +9,7 @@ BubbleCrab::BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot
 
 BubbleCrab::~BubbleCrab()
 {
+
 }
 
 HRESULT BubbleCrab::Init()
@@ -385,7 +386,7 @@ void BubbleCrab::Update()
 	}
 
 	//磷澜 贸府
-	if (_hp == 0)
+	if (_hp <= 0)
 	{
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
@@ -398,7 +399,7 @@ void BubbleCrab::Update()
 	}
 
 	//磷绰 家府
-	if (_hp == 0 && !_deathSound)
+	if (_hp <= 0 && !_deathSound)
 	{
 		SOUNDMANAGER->play("芭前霸磷澜");
 		_deathSound = true;

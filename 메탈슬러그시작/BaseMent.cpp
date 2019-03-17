@@ -254,6 +254,48 @@ void BaseMent::Collisison()
 
 	}
 
+	//¹öºí°Ô 
+
+	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_bubbleCrab[j]->GetRect()))
+			{
+				_bubbleCrab[j]->bubbleCrab_damage(1);
+				_player->playerbullet()->SetisFire(i, false);
+			}
+		}
+
+	}
+
+
+	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_bubbleCrab[j]->GetRect()))
+			{
+				_bubbleCrab[j]->bubbleCrab_damage(1);
+				_player->heavybullet()->SetisFire(i, false);
+			}
+		}
+
+	}
+
+
+	for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_bubbleCrab[j]->GetRect()))
+			{
+				_bubbleCrab[j]->bubbleCrab_damage(1);
+				_player->playerboom()->SetisFire(i, false);
+			}
+		}
+
+	}
 }
 
 void BaseMent::FishColl()

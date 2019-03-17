@@ -186,13 +186,13 @@ void BigCrab::Update()
 	}
 
 	//Á×À½ Ã³¸®
-	if (_hp == 0)
+	if (_hp <= 0)
 	{
 		_state = state::DEATH;
 	}
 
 	//Á×´Â ¼Ò¸®
-	if (_hp == 0 && !_deathSound)
+	if (_hp <= 0 && !_deathSound)
 	{
 		SOUNDMANAGER->play("Å«°ÔÁ×À½");
 		_deathSound = true;

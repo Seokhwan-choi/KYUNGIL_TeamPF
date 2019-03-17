@@ -58,6 +58,8 @@ public:
 	void PlayerBoomCollisionBoom();      //플레이어 수류탄과 몬스터 충돌햇을떄 피깍기 
 	void ChangeMap(); 
 
+	void FlyCollision();
+
 
 	StageOne() {}
 	~StageOne() {}
