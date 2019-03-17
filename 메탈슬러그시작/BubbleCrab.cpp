@@ -94,6 +94,7 @@ HRESULT BubbleCrab::Init()
 	_pixelGravity = 1.f;
 	//반복소리 방지를 위한 변수
 	_soundCount = 0;
+	_isDie = false;
 
 	return S_OK;
 }
@@ -373,17 +374,18 @@ void BubbleCrab::Update()
 	}
 
 	//죽음 처리
-	if (_hp == 0)
+	if (_hp == 0 && !_isDie)
 	{
 		_soundCount++;
 
 		//죽는 소리
 		SOUNDMANAGER->play("거품게죽음");
+		_isDie = true;
 
-		if (_soundCount % 2 == 0)
-		{
-			SOUNDMANAGER->stop("거품게죽음");
-		}
+		//if (_soundCount % 2 == 0)
+		//{
+		//	SOUNDMANAGER->stop("거품게죽음");
+		//}
 
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{

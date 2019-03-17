@@ -171,6 +171,15 @@ void Bullet::move()
 			}
 		}
 
+		if (SCENEMANAGER->FindScene("스테이지원"))
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_vBullet[i].rc,
+				&((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->getRect()[0])) {
+				((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->setShot(true);
+			}
+		}
+
 	}
 
 
@@ -319,6 +328,15 @@ void Boom::move()
 				&((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman1"))->getRect()[0])) 
 			{
 				((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman1"))->setShot(true);
+			}
+		}
+
+		if (SCENEMANAGER->FindScene("스테이지원"))
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_vBoom[i].rc,
+				&((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->getRect()[0])) {
+				((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->setShot(true);
 			}
 		}
 
@@ -502,6 +520,15 @@ void Bullet1::move()
 			if (IntersectRect(&temp, &_vBullet[i].rc,
 				&((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman1"))->getRect()[0])) {
 				((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman1"))->setShot(true);
+			}
+		}
+
+		if (SCENEMANAGER->FindScene("스테이지원"))
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_vBullet[i].rc,
+				&((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->getRect()[0])) {
+				((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->setShot(true);
 			}
 		}
 

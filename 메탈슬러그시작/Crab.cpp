@@ -100,7 +100,7 @@ HRESULT Crab::Init()
 	_pixelGravity = 1.f;
 	//반복소리 방지를 위한 변수
 	_soundCount = 0;
-
+	_isDie = false;
 	return S_OK;
 }
 
@@ -296,17 +296,13 @@ void Crab::Update()
 	}
 
 	//죽음 처리
-	if(_hp == 0)
+	if(_hp == 0 && !_isDie)
 	{
 		_soundCount++;
 
 		//죽는 소리
 		SOUNDMANAGER->play("작은게죽음");
-
-		if (_soundCount % 20 == 0)
-		{
-			SOUNDMANAGER->pause("작은게죽음");
-		}
+		_isDie = true;
 
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{

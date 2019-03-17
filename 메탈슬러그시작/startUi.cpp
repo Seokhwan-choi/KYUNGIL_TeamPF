@@ -13,17 +13,18 @@ startUi::startUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_position = pos; //중심값으로 잡아준다
 	_size = size;    //winsizex, winsizey
 	_pivot = Pivot::Center;
-	
+
 	//========================================================
 	// 오프닝씬 이미지 초기화( size : 1280x960 )
 	//========================================================
 	_startBgImage = IMAGEMANAGER->findImage("startScene");
-	
+
 	//========================================================
 	// 프레임 선택 순서 초기화( size : 1280x960 )
 	//========================================================
 	_count = 0;
 	_index = 0;
+
 }
 
 startUi::~startUi()

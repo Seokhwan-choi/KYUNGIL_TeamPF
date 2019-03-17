@@ -378,7 +378,8 @@ void LoadingScene::LoadingSound()
 	// ################################### effect 사운드 삽입 ##########################################
 	// ===============================================================================================
 
-	_loading->loadSound("동전넣기", "SOUND/이펙트/동전넣기.mp3", false, false);
+	_loading->loadSound("동전2", "SOUND/이펙트/snkneo-geo-insert-coin-sound.mp3", false, false);
+	_loading->loadSound("동전", "SOUND/이펙트/동전.mp3", false, false);
 	_loading->loadSound("딱총", "SOUND/이펙트/딱총.mp3", false, false);
 	_loading->loadSound("미션1시작", "SOUND/이펙트/미션1시작.mp3", false, false);
 	_loading->loadSound("미션클리어", "SOUND/이펙트/미션클리어.mp3", false, false);
@@ -394,7 +395,7 @@ void LoadingScene::LoadingSound()
 	// ################################### 몬스터 사운드 삽입 ###########################################
 	// ===============================================================================================
 
-	_loading->loadSound("거품게죽음", "SOUND/몬스터/거품게죽음.mp3", false, false);
+	_loading->loadSound("거품게죽음", "SOUND/몬스터/작은게죽음.mp3", false, false);
 	_loading->loadSound("거품공격", "SOUND/몬스터/거품공격.mp3", false, false);
 	_loading->loadSound("몬스터총맞음", "SOUND/몬스터/몬스터총맞음.mp3", false, false);
 	_loading->loadSound("물고기죽음", "SOUND/몬스터/물고기죽음.mp3", false, false);
