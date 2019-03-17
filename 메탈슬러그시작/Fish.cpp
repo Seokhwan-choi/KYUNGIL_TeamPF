@@ -193,10 +193,13 @@ void Fish::Update()
 		}
 		for (int i = 0; i < 8; i++)
 		{
-			if (KEYMANAGER->isToggleKey('F') || fish_rc[i].hp <= 0) //|| fish_rc[i].hp <= 0)
+			if (KEYMANAGER->isToggleKey('F')  || fish_rc[i].hp <= 0) //|| fish_rc[i].hp <= 0)
 			{
-				_state = state::L_DEATH;
-				fish_rc[i].isDeath = true;
+				//_state = state::L_DEATH;
+				fish_rc[0].isDeath = true;
+				fish_rc[1].isDeath = true;
+				fish_rc[2].isDeath = true;
+				fish_rc[3].isDeath = true;
 			}
 			//}
 			if (!_deathSound && fish_rc[i].isDeath)
@@ -206,31 +209,32 @@ void Fish::Update()
 				_deathSound = true;
 			}
 
-			for (int i = 0; i < 8; i++)
-			{
-				if (_state == state::L_DEATH)
-				{
-					if (fish_rc[i].isDeath == false)
-					{
-						continue;
-					}
+			//for (int i = 0; i < 8; i++)
+			//{
+			//	if (_state == state::L_DEATH)
+			//	{
+			//		if (fish_rc[i].isDeath == true)
+			//		{
+			//			continue;
+			//		}
+			//		fish_rc[i].isDeath = true;
 					if (fish_rc[i].isDeath == true)
 					{
 						fish_rc[i]._fish_state = state::L_DEATH;
 					}
-				}
+			//	}
 				//break;
-			}
+			//}
 
 			for (int i = 0; i < 8; i++)
 			{
 				if (fish_rc[i]._fish_state == state::L_DEATH)
 				{
 					fish_rc[i].count = -1;
-					if (fish_rc[i].isFish == true && fish_rc[1].isDeath == true)
+					if (fish_rc[i].isFish == true && fish_rc[i].isDeath == true)
 					{
 						fish_rc[i].Imgcount[2]++;
-						if (fish_rc[i].Imgcount[2] % 3 == 0)
+						if (fish_rc[i].Imgcount[2] % 5 == 0)
 						{
 							fish_rc[i].Imgindex[2]++;
 							if (fish_rc[i].Imgindex[2] > 12)
@@ -240,7 +244,7 @@ void Fish::Update()
 						}
 						fish_rc[i].fish_death++;
 					}
-					if (fish_rc[i].fish_death % 40 == 0)
+					if (fish_rc[i].fish_death % 100 == 0)
 					{
 						fish_rc[i].Fish_Rc = RectMakeCenter(-1000.f, -1000.f, 50, 50);
 						fish_rc[i].count = 0;
@@ -261,6 +265,7 @@ void Fish::Update()
 		}
 		if (KEYMANAGER->isToggleKey('B') || boxhp <= 0)
 		{
+			is = false;
 			_rc = RectMakeCenter(-1000.f, -1000.f, 50, 50);
 			_cam.pt = { -1000.f,-1000.f };
 			_cam.rc = RectMakeCenter(_cam.pt.x, _cam.pt.y, _size.x * 13.5f, _size.y);
