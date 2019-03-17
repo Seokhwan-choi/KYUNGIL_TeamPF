@@ -385,22 +385,8 @@ void BubbleCrab::Update()
 	}
 
 	//Á×À½ Ã³¸®
-	if (_hp == 0 && !_isDie)
+	if (_hp == 0)
 	{
-<<<<<<< HEAD
-		_soundCount++;
-
-		//Á×´Â ¼Ò¸®
-		SOUNDMANAGER->play("°ÅÇ°°ÔÁ×À½");
-		_isDie = true;
-
-		//if (_soundCount % 2 == 0)
-		//{
-		//	SOUNDMANAGER->stop("°ÅÇ°°ÔÁ×À½");
-		//}
-
-=======
->>>>>>> feature/enemy
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_state = state::L_DEATH;

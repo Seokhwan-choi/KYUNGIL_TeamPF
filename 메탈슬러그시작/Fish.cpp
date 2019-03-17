@@ -64,7 +64,7 @@ void Fish::Update()
 			//exit(0);
 		}
 	}
-	
+
 	if (_rc_on == true)
 	{
 		if (is == true)
@@ -193,116 +193,100 @@ void Fish::Update()
 		}
 		for (int i = 0; i < 8; i++)
 		{
-		if (KEYMANAGER->isToggleKey('F') || fish_rc[i].hp <= 0) //|| fish_rc[i].hp <= 0)
-		{
-			_state = state::L_DEATH;
-<<<<<<< HEAD
-			fish_rc[i].isDeath = true;
-			_soundCount++;
-
-			//죽는 소리
-			//SOUNDMANAGER->play("작은게죽음");
-
-			if (_soundCount % 20 == 0)
+			if (KEYMANAGER->isToggleKey('F') || fish_rc[i].hp <= 0) //|| fish_rc[i].hp <= 0)
 			{
-				//SOUNDMANAGER->pause("작은게죽음");
+				_state = state::L_DEATH;
+				fish_rc[i].isDeath = true;
+			}
+			//}
+			if (!_deathSound && fish_rc[i].isDeath)
+			{
+				//죽는 소리
+				SOUNDMANAGER->play("물고기죽음");
+				_deathSound = true;
+			}
+
+			for (int i = 0; i < 8; i++)
+			{
+				if (_state == state::L_DEATH)
+				{
+					if (fish_rc[i].isDeath == false)
+					{
+						continue;
+					}
+					if (fish_rc[i].isDeath == true)
+					{
+						fish_rc[i]._fish_state = state::L_DEATH;
+					}
+				}
+				//break;
+			}
+
+			for (int i = 0; i < 8; i++)
+			{
+				if (fish_rc[i]._fish_state == state::L_DEATH)
+				{
+					fish_rc[i].count = -1;
+					if (fish_rc[i].isFish == true && fish_rc[1].isDeath == true)
+					{
+						fish_rc[i].Imgcount[2]++;
+						if (fish_rc[i].Imgcount[2] % 3 == 0)
+						{
+							fish_rc[i].Imgindex[2]++;
+							if (fish_rc[i].Imgindex[2] > 12)
+							{
+								fish_rc[i].Imgindex[2] = 12;
+							}
+						}
+						fish_rc[i].fish_death++;
+					}
+					if (fish_rc[i].fish_death % 40 == 0)
+					{
+						fish_rc[i].Fish_Rc = RectMakeCenter(-1000.f, -1000.f, 50, 50);
+						fish_rc[i].count = 0;
+						fish_rc[i].Imgcount[0] = 0;
+						fish_rc[i].Imgindex[0] = 0;
+						fish_rc[i].Imgcount[1] = 0;
+						fish_rc[i].Imgindex[1] = 0;
+						fish_rc[i].Imgchange = false;
+						fish_rc[i].isFish = false;
+						fish_rc[i].isDeath = false;
+					}
+				}
 			}
 		}
-		}
-
-=======
-			fish_rc[1].isDeath = true;
-		}
-		//}
-		if (!_deathSound && fish_rc[1].isDeath)
+		if (boxhp < 0)
 		{
-			//죽는 소리
-			SOUNDMANAGER->play("물고기죽음");
-			_deathSound = true;
+			boxhp = 0;
 		}
->>>>>>> feature/enemy
-
-		for (int i = 0; i < 8; i++)
+		if (KEYMANAGER->isToggleKey('B') || boxhp <= 0)
 		{
-			if (_state == state::L_DEATH)
+			_rc = RectMakeCenter(-1000.f, -1000.f, 50, 50);
+			_cam.pt = { -1000.f,-1000.f };
+			_cam.rc = RectMakeCenter(_cam.pt.x, _cam.pt.y, _size.x * 13.5f, _size.y);
+
+			for (int i = 0; i < 8; i++)
 			{
-				if (fish_rc[i].isDeath == false)
+				if (fish_rc[i].isFish == true)
 				{
 					continue;
 				}
-				if (fish_rc[i].isDeath == true)
+				if (fish_rc[0].isFish == false
+					&& fish_rc[1].isFish == false
+					&& fish_rc[2].isFish == false
+					&& fish_rc[3].isFish == false
+					&& fish_rc[4].isFish == false
+					&& fish_rc[5].isFish == false
+					&& fish_rc[6].isFish == false
+					&& fish_rc[7].isFish == false
+					)
 				{
-					fish_rc[i]._fish_state = state::L_DEATH;
+					_isActive = false;
 				}
-			}
-			//break;
-		}
-
-		for (int i = 0; i < 8; i++)
-		{
-			if (fish_rc[i]._fish_state == state::L_DEATH)
-			{
-				fish_rc[i].count = -1;
-				if (fish_rc[i].isFish == true && fish_rc[1].isDeath == true)
-				{
-					fish_rc[i].Imgcount[2]++;
-					if (fish_rc[i].Imgcount[2] % 3 == 0)
-					{
-						fish_rc[i].Imgindex[2]++;
-						if (fish_rc[i].Imgindex[2] > 12)
-						{
-							fish_rc[i].Imgindex[2] = 12;
-						}
-					}
-					fish_rc[i].fish_death++;
-				}
-				if (fish_rc[i].fish_death % 40 == 0)
-				{
-					fish_rc[i].Fish_Rc = RectMakeCenter(-1000.f, -1000.f, 50, 50);
-					fish_rc[i].count = 0;
-					fish_rc[i].Imgcount[0] = 0;
-					fish_rc[i].Imgindex[0] = 0;
-					fish_rc[i].Imgcount[1] = 0;
-					fish_rc[i].Imgindex[1] = 0;
-					fish_rc[i].Imgchange = false;
-					fish_rc[i].isFish = false;
-					fish_rc[i].isDeath = false;
-				}
-			}
-		}
-	}
-	if (boxhp < 0)
-	{
-		boxhp = 0;
-	}
-	if (KEYMANAGER->isToggleKey('B') || boxhp <= 0)
-	{
-		_rc = RectMakeCenter(-1000.f, -1000.f, 50, 50);
-		_cam.pt = { -1000.f,-1000.f };
-		_cam.rc = RectMakeCenter(_cam.pt.x, _cam.pt.y, _size.x * 13.5f, _size.y);
-
-		for (int i = 0; i < 8; i++)
-		{
-			if (fish_rc[i].isFish == true)
-			{
-				continue;
-			}
-			if (fish_rc[0].isFish == false
-				&& fish_rc[1].isFish == false
-				&& fish_rc[2].isFish == false
-				&& fish_rc[3].isFish == false
-				&& fish_rc[4].isFish == false
-				&& fish_rc[5].isFish == false
-				&& fish_rc[6].isFish == false
-				&& fish_rc[7].isFish == false
-				)
-			{
-				_isActive = false;
 			}
 		}
 	}
 }
-
 void Fish::Render()
 {
 	//카메라 렉트 그리기
