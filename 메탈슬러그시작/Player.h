@@ -141,6 +141,8 @@ private:
 
 	class BossStage* _bosstage;
 
+	bool _isShot;			
+
 	//RECT _temp;
 public:
 

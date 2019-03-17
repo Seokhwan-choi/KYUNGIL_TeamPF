@@ -54,6 +54,7 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_isLeft = false;
 	_normalangle = 0.0f; 
 	_boomfire = false;   //ÆøÅº ¹ß»çµÌ³Ä?
+	_isShot = false;
 
 #pragma region _player
 	// ========================================== ÇÃ·¹ÀÌ¾î ÀÌ¹ÌÁö =======================================================
@@ -638,6 +639,14 @@ void Player::Update()
 			if (KEYMANAGER->isOnceKeyDown('A'))//AÅ°¸¦ ´­·µÀ»‹š 
 			{
 				_playerbulletfire = true;// µ¿ÀÛÀ» ·£´õÇÏ°Ù´Ù 
+				if (_weapon == WEAPON::NORMAL) {
+					SOUNDMANAGER->play("µüÃÑ");
+				}
+				else {
+					SOUNDMANAGER->play("Çìºñ¹ß»ç");
+				}
+					
+				
 				if (_weapon == WEAPON::HEAVY)
 				{
 					_hfire = true;

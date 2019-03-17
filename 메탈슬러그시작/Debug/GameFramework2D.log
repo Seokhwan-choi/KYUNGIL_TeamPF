@@ -1,116 +1,47 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-﻿  BossStage.cpp
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\bossstage.cpp(19): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\bossstage.cpp(28): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\bossstage.cpp(17): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\bossstage.cpp(26): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: 'sprintf' 선언을 참조하십시오.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\bossstage.cpp(244): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\bossstage.cpp(253): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\bossstage.cpp(265): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\bossstage.cpp(275): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\bossstage.cpp(285): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+﻿  Player.cpp
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(12): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(878): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(878): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(881): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(881): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(890): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(890): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(894): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(894): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(900): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(900): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(904): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(904): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(916): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(916): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(920): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(920): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(926): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(926): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(930): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(930): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(940): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(940): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(943): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(943): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(1183): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(1201): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(1202): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(1203): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3418): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3420): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3422): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3429): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3444): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3446): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3448): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3454): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3465): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3467): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3469): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3476): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3494): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3495): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3499): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3507): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   GameFramework2D.vcxproj -> C:\Users\user\Desktop\Metal Slug 3\메탈슬러그시작\Debug\WindowAPI.exe
-=======
-﻿  stdafx.cpp
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\commommacrofuntion.h(7): warning C4005: 'PI': 매크로 재정의
-  c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\util.h(6): note: 'PI'의 이전 정의를 참조하십시오.
-  BaseMent.cpp
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\basement.cpp(207): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\basement.cpp(222): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\basement.cpp(237): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\basement.cpp(257): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  BigCrab.cpp
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(36): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(38): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(40): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(42): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(51): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(53): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(95): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(144): warning C4244: '=': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(148): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(349): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(351): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(357): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(358): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(360): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(367): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(369): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(371): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(373): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(381): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(383): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(491): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(492): warning C4244: '-=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(505): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(506): warning C4244: '+=': 'FLOAT'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(643): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(643): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(648): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(648): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(700): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bigcrab.cpp(700): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Bomb.cpp
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bomb.cpp(99): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bomb.cpp(141): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Boss.cpp
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(56): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(64): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(68): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(72): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(72): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(153): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(157): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(164): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(165): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(169): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(173): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(173): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(476): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(477): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(673): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(674): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(693): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\boss.cpp(694): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-=======
-﻿  BaseMent.cpp
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\basement.cpp(210): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\basement.cpp(225): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\basement.cpp(240): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\basement.cpp(260): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
->>>>>>> feature/UI
-  BossStage.cpp
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bossstage.cpp(21): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bossstage.cpp(30): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bossstage.cpp(19): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bossstage.cpp(28): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bossstage.cpp(242): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bossstage.cpp(251): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bossstage.cpp(263): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bossstage.cpp(273): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\bossstage.cpp(283): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  GameCompleteUi.cpp
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\gamecompleteui.cpp(22): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\gamecompleteui.cpp(32): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\gamecompleteui.cpp(78): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  StageOne.cpp
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\stageone.cpp(283): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\stageone.cpp(300): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\stageone.cpp(359): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\stageone.cpp(375): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  playerDataUi.cpp
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\playerdataui.cpp(18): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\playerdataui.cpp(171): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\playerdataui.cpp(172): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\playerdataui.cpp(173): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\playerdataui.cpp(174): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\playerdataui.cpp(175): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-  GameFramework2D.vcxproj -> C:\Users\남신우\Documents\KYUNGIL_TeamPF\메탈슬러그시작\Debug\WindowAPI.exe
->>>>>>> feature/UI
