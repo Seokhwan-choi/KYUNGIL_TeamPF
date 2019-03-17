@@ -56,8 +56,13 @@ private:
 	int _pixelGravity;
 	RECT _pixelrc;
 
+<<<<<<< HEAD
 	bool _isDie;		//죽었냐
 	int _soundCount;	//사운드반복재생방지
+=======
+	bool _bubbleShootSound;	//거품사운드반복재생방지
+	bool _deathSound;	//사운드반복재생방지
+>>>>>>> feature/enemy
 public:
 	BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BubbleCrab();

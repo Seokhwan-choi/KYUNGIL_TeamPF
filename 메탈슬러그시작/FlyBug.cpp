@@ -71,6 +71,10 @@ HRESULT FlyBug::Init()
 	_attackAngle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
 
 	count = 0;
+
+	//반복소리 방지를 위한 변수
+	_deathSound = false;
+
 	return S_OK;
 }
 
@@ -149,19 +153,15 @@ void FlyBug::Update()
 	//죽음 처리
 	if (_hp == 0)
 	{
-		_soundCount++;
-
-		//죽는 소리
-		SOUNDMANAGER->play("잠자리죽음");
-
-		if (_soundCount % 20 == 0)
-		{
-			SOUNDMANAGER->pause("잠자리죽음");
-		}
-
 		_state = state::DEATH;
 	}
 
+	if (_hp <= 0 && !_deathSound)
+	{
+		//죽는 소리
+		SOUNDMANAGER->play("잠자리죽음");
+		_deathSound = true;
+	}
 	//이동 테스트
 	/*if (KEYMANAGER->isStayKeyDown(VK_LEFT)) {
 	   _position.x -= 5.f;

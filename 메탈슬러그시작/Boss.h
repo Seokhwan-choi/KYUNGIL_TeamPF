@@ -27,7 +27,8 @@ private:
 	bool _isBuffStartEnd;			//보스 버프 등장 종료 유무
 
 	image* _bridgeImg[22];			//다리 이미지
-
+	bool _isImgCrush[22];			//다리 충돌 여부
+	
 	//충돌 처리 구조체
 	COL _col;
 	//근접 공격처리 구조체
@@ -57,7 +58,10 @@ private:
 	image* _deathWater;
 	bool _isDeathWaterEnd;
 
-
+	//사운드반복재생방지
+	bool _attSound;
+	bool _buffSound;
+	bool _deathSound;
 public:
 	Boss(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Boss();

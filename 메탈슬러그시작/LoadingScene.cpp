@@ -32,7 +32,7 @@ void LoadingScene::Update(void)
 	_loading->update();
 	if (_loading->loadingDone())
 	{
-		SCENEMANAGER->ChangeScene("지하스테이지"); //스테이지원, 지하스테이지, 보스스테이지
+		SCENEMANAGER->ChangeScene("보스스테이지"); //시작화면, 스테이지원, 지하스테이지, 보스스테이지
 	}
 }
 
@@ -400,12 +400,14 @@ void LoadingScene::LoadingSound()
 	_loading->loadSound("거품공격", "SOUND/몬스터/거품공격.mp3", false, false);
 	_loading->loadSound("몬스터총맞음", "SOUND/몬스터/몬스터총맞음.mp3", false, false);
 	_loading->loadSound("물고기죽음", "SOUND/몬스터/물고기죽음.mp3", false, false);
-	_loading->loadSound("보스게부숨", "SOUND/몬스터/보스게부숨.mp3", false, false);
+	_loading->loadSound("보스게근접", "SOUND/몬스터/보스게근접.mp3", false, false);
+	_loading->loadSound("보스게폭탄", "SOUND/몬스터/보스게폭탄.mp3", false, false);
+	_loading->loadSound("보스게버프", "SOUND/몬스터/보스게버프.mp3", false, false);
 	_loading->loadSound("보스게죽음", "SOUND/몬스터/보스게죽음.mp3", false, false);
-	_loading->loadSound("보스페이즈2", "SOUND/몬스터/보스페이즈2.mp3", false, false);
 	_loading->loadSound("작은게죽음", "SOUND/몬스터/작은게죽음.mp3", false, false);
 	_loading->loadSound("잠자리죽음", "SOUND/몬스터/잠자리죽음.mp3", false, false);
 	_loading->loadSound("큰게죽음", "SOUND/몬스터/큰게죽음.mp3", false, false);
+	_loading->loadSound("큰게거품공격", "SOUND/몬스터/큰게거품공격.mp3", false, false);
 
 	// ===============================================================================================
 	// #################################### BGM 사운드 삽입 ###########################################

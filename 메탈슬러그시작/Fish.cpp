@@ -43,7 +43,10 @@ HRESULT Fish::Init()
 	fishImg[0] = IMAGEMANAGER->findImage("fish1");
 	fishImg[1] = IMAGEMANAGER->findImage("fish2");
 	fishImg[2] = IMAGEMANAGER->findImage("fish3");
-	_soundCount = 0;	//사운드반복재생방지
+
+	//반복소리 방지를 위한 변수
+	_deathSound = false;
+
 	return S_OK;
 }
 
@@ -193,6 +196,7 @@ void Fish::Update()
 		if (KEYMANAGER->isToggleKey('F') || fish_rc[i].hp <= 0) //|| fish_rc[i].hp <= 0)
 		{
 			_state = state::L_DEATH;
+<<<<<<< HEAD
 			fish_rc[i].isDeath = true;
 			_soundCount++;
 
@@ -206,6 +210,17 @@ void Fish::Update()
 		}
 		}
 
+=======
+			fish_rc[1].isDeath = true;
+		}
+		//}
+		if (!_deathSound && fish_rc[1].isDeath)
+		{
+			//죽는 소리
+			SOUNDMANAGER->play("물고기죽음");
+			_deathSound = true;
+		}
+>>>>>>> feature/enemy
 
 		for (int i = 0; i < 8; i++)
 		{
@@ -287,8 +302,6 @@ void Fish::Update()
 		}
 	}
 }
-	
-
 
 void Fish::Render()
 {
