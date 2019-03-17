@@ -108,6 +108,7 @@ HRESULT BigCrab::Init()
 
 void BigCrab::Release()
 {
+
 }
 
 void BigCrab::Update()
@@ -116,14 +117,14 @@ void BigCrab::Update()
 	RECT temp;
 	for (int i = 0; i < 2; i++)
 	{
-		if (IntersectRect(&temp, &player->GetRect(), &_att[i].rc))
+		if (IntersectRect(&temp, &_player->GetRect(), &_att[i].rc))
 		{
 			//exit(0);
 		}
 	}
 	for (int i = 0; i < 6; i++)
 	{
-		if (IntersectRect(&temp, &player->GetRect(), &_bubble->getVBubble()[i].rc))
+		if (IntersectRect(&temp, &_player->GetRect(), &_bubble->getVBubble()[i].rc))
 		{
 			//exit(0);
 		}
