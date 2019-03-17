@@ -233,11 +233,11 @@ void BigCrab::Render()
 		{
 			_bigCrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[1], 1);
 		}
-		if (_state == state::L_ATTACK && !(_state == state::L_BUBBLE_SHOOT_MOVE))
+		if (_state == state::L_ATTACK && !(_state == state::L_BUBBLE_SHOOT_MOVE) && !(_state == state::DEATH))
 		{
 			_bigCrabImg[2]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[2], 0);
 		}
-		if (_state == state::R_ATTACK && !(_state == state::R_BUBBLE_SHOOT_MOVE))
+		if (_state == state::R_ATTACK && !(_state == state::R_BUBBLE_SHOOT_MOVE) && !(_state == state::DEATH))
 		{
 			_bigCrabImg[2]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[3], 1);
 		}
