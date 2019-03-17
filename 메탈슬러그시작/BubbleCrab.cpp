@@ -799,7 +799,7 @@ void BubbleCrab::bubblecrabImageRender()
 			BubblecrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[2], 0);
 		}
 	}
-	if (_hp < 0)
+	if (_hp <= 0)
 	{
 		if (_state == state::L_DEATH && _deathTimer < 150)
 		{
