@@ -29,6 +29,8 @@ private:
 
 	int index, count;
 
+	bool _bombSound;					//사운드반복재생방지
+
 	vector<BOMB> _vBomb;
 	vector<BOMB>::iterator _viBomb;
 public:

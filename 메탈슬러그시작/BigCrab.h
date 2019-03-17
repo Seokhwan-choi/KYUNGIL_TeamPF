@@ -45,7 +45,8 @@ private:
 	image* _pixelImage;
 	RECT _pixelrc;
 
-	int _soundCount;	//사운드반복재생방지
+	bool _bubbleShootSound;	//거품사운드반복재생방지
+	bool _deathSound;	//사운드반복재생방지
 public:
 	BigCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BigCrab();

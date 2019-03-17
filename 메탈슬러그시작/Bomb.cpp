@@ -42,6 +42,8 @@ HRESULT Bomb::Init(const char * imageName, int width, int height, int FrameX, in
 		_bridgeImg[i] = IMAGEMANAGER->findImage(key);
 	}
 
+	_bombSound = false;
+
 	return S_OK;
 }
 
@@ -77,7 +79,6 @@ void Bomb::Render()
 	{
 		for (int i = 0; i < 22; ++i) 
 		{
-			
 			Rectangle(getMemDC(), _bridgeImg[i]->boudingBox());
 		}
 	}
@@ -141,6 +142,9 @@ void Bomb::move()
 
 		float dist = GetDistance(_idx->fireX, _idx->fireY, _idx->x, _idx->y);
 		
+		//폭탄 다리 충돌 소리 초기화
+		_bombSound = false;
+
 		//다리 충돌 체크 임시 렉트
 		RECT rc;
 		//다리와 충돌 체크
@@ -148,6 +152,13 @@ void Bomb::move()
 		{
 			if (IntersectRect(&rc, &_idx->rc, &_bridgeImg[i]->boudingBox()) && _idx->isFire == true)
 			{
+				//다리 파괴 소리
+				if (!_bombSound)
+				{
+					SOUNDMANAGER->play("보스게폭탄");
+					_bombSound = true;
+				}
+
 				//임시로 보냄
 				_bridgeImg[i]->setX(-200);
 				//_bridgeImg[i]->setX(1575 + (i * 175));
@@ -158,8 +169,6 @@ void Bomb::move()
 				index = 10;
 			}
 		}
-
-		
 
 		//사거리 멀어지면 폭탄 사라짐
 		if (_range < dist)

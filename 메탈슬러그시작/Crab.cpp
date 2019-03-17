@@ -99,7 +99,7 @@ HRESULT Crab::Init()
 	_pixelImage = IMAGEMANAGER->findImage("배경픽셀");
 	_pixelGravity = 1.f;
 	//반복소리 방지를 위한 변수
-	_soundCount = 0;
+	_deathSound = false;
 
 	return S_OK;
 }
@@ -297,16 +297,6 @@ void Crab::Update()
 	//죽음 처리
 	if(_hp == 0)
 	{
-		_soundCount++;
-
-		//죽는 소리
-		SOUNDMANAGER->play("작은게죽음");
-
-		if (_soundCount % 20 == 0)
-		{
-			SOUNDMANAGER->pause("작은게죽음");
-		}
-
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_state = state::L_DEATH;
@@ -315,6 +305,13 @@ void Crab::Update()
 		{
 			_state = state::R_DEATH;
 		}
+	}
+
+	//죽는 소리
+	if (_hp == 0 && !_deathSound)
+	{
+		SOUNDMANAGER->play("작은게죽음");
+		_deathSound = true;
 	}
 
 	//상태에 따른 움직임 처리

@@ -44,7 +44,7 @@ private:
 	int _pixelGravity;
 	RECT _pixelrc[2];
 
-	int _soundCount;	//사운드반복재생방지
+	bool _deathSound;	//사운드반복재생방지
 	//플레이어 클래스
 	class Player* _player;
 public:

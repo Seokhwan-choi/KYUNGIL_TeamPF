@@ -30,7 +30,7 @@ HRESULT BossStage::Init(void)
 		_reset[i] = false;
 	}
 
-	_player = new Player("플레이어", { WINSIZEX / 2 + 200, WINSIZEY / 2 + 175 }, { 50, 50 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { WINSIZEX - 200, WINSIZEY / 2 + 175 }, { 50, 50 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	_boss = new Boss("boss", { -WINSIZEX / 4, WINSIZEY / 2 + 100 }, { WINSIZEX / 2, WINSIZEY }, GameObject::Pivot::Center);
@@ -72,7 +72,7 @@ void BossStage::Update(void)
 			//x좌표 -3씩 앞당김
 			_bridge[i].bridgeImg->setX(_bridge[i].bridgeImg->getX() - 3);
 
-			//화면 -175지점에 왔을 경우 뒤로 되돌린다. 
+			//화면 -175지점에 왔을 경우 보이지 않는 곳으로 이미지를 모은다. 
 			if (_bridge[i].bridgeImg->getX() < - 175) 
 			{
 				_bridge[i].bridgeImg->setX(-200);

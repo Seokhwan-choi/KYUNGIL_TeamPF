@@ -1,2 +1,21 @@
-﻿  MainGame.cpp
-  GameFramework2D.vcxproj -> C:\Users\user\Desktop\Metal Slug 3\메탈슬러그시작\Debug\WindowAPI.exe
+﻿  Boss.cpp
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(56): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(64): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(68): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(72): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(72): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(153): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(157): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(164): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(165): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(169): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(173): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(173): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(476): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(477): warning C4244: '+=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(658): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(659): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(678): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\vddbb\documents\github\kyungil_teampf\메탈슬러그시작\boss.cpp(679): warning C4244: '초기화 중': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameFramework2D.vcxproj -> C:\Users\vddbb\Documents\github\KYUNGIL_TeamPF\메탈슬러그시작\Debug\WindowAPI.exe

@@ -92,8 +92,10 @@ HRESULT BubbleCrab::Init()
 	_pixelImage[0] = IMAGEMANAGER->findImage("배경픽셀");
 	_pixelImage[1] = IMAGEMANAGER->findImage("지하배경픽셀");
 	_pixelGravity = 1.f;
+
 	//반복소리 방지를 위한 변수
-	_soundCount = 0;
+	_deathSound = false;
+	_bubbleShootSound = false;
 
 	return S_OK;
 }
@@ -270,19 +272,29 @@ void BubbleCrab::Update()
 	//거품 한발씩 발사 처리
 	if (_bubbleGauge % 83 == 0)
 	{
+		_bubbleShootSound = false;
+
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_bubble->fire(_position.x + 150, _position.y, _bubbleAngle, 5.f);
 
 			//거품소리
-			SOUNDMANAGER->play("거품공격");
+			if (!_bubbleShootSound)
+			{
+				SOUNDMANAGER->play("거품공격");
+				_bubbleShootSound = true;
+			}
 		}
 		else if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
 			_bubble->fire(_position.x + 50, _position.y, _bubbleAngle, 5.f);
 
 			//거품소리
-			SOUNDMANAGER->play("거품공격");
+			if (!_bubbleShootSound)
+			{
+				SOUNDMANAGER->play("거품공격");
+				_bubbleShootSound = true;
+			}
 		}
 
 		//값 초기화
@@ -355,16 +367,6 @@ void BubbleCrab::Update()
 	//죽음 처리
 	if (_hp == 0)
 	{
-		_soundCount++;
-
-		//죽는 소리
-		SOUNDMANAGER->play("거품게죽음");
-
-		if (_soundCount % 2 == 0)
-		{
-			SOUNDMANAGER->stop("거품게죽음");
-		}
-
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_state = state::L_DEATH;
@@ -373,6 +375,13 @@ void BubbleCrab::Update()
 		{
 			_state = state::R_DEATH;
 		}
+	}
+
+	//죽는 소리
+	if (_hp == 0 && !_deathSound)
+	{
+		SOUNDMANAGER->play("거품게죽음");
+		_deathSound = true;
 	}
 
 	//상태에 따른 움직임 처리
@@ -496,7 +505,6 @@ void BubbleCrab::Update()
 				&& _bubble->getVBubble()[2].isFire == false)
 			{
 				_isActive = false;
-
 			}
 		}
 		break;

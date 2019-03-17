@@ -100,8 +100,11 @@ HRESULT BigCrab::Init()
 	//체력 초기화
 	_hp = 20;
 
-	int _soundCount = 0;	//사운드반복재생방지
 	float _bubbleAngle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);;
+
+	//반복소리 방지를 위한 변수
+	_deathSound = false;
+	_bubbleShootSound = false;
 
 	return S_OK;
 }
@@ -116,6 +119,7 @@ void BigCrab::Update()
 	_bubble->move1();
 	_bubble->render();
 	this->Attcol();
+	
 	//항시 중력 적용
 	_position.y += 5.f;
 
@@ -167,17 +171,14 @@ void BigCrab::Update()
 	//죽음 처리
 	if (_hp == 0)
 	{
-		_soundCount++;
-
-		//죽는 소리
-		SOUNDMANAGER->play("큰게죽음");
-
-		if (_soundCount % 20 == 0)
-		{
-			SOUNDMANAGER->pause("큰게죽음");
-		}
-
 		_state = state::DEATH;
+	}
+
+	//죽는 소리
+	if (_hp == 0 && !_deathSound)
+	{
+		SOUNDMANAGER->play("큰게죽음");
+		_deathSound = true;
 	}
 
 	this->Crabpattern();
@@ -196,40 +197,43 @@ void BigCrab::Update()
 
 void BigCrab::Render()
 {
-	//큰게 이미지 그리기
-	if (_state == state::L_IDLE && !(_state == state::L_MOVE) && !(_state == state::L_ATTACK) && !(_state == state::DEATH))
+	if(_hp > 0)
 	{
-		_bigCrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[0], 0);
+		//큰게 이미지 그리기
+		if (_state == state::L_IDLE && !(_state == state::L_MOVE) && !(_state == state::L_ATTACK))
+		{
+			_bigCrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[0], 0);
+		}
+		if (_state == state::R_IDLE && !(_state == state::R_MOVE) && !(_state == state::R_ATTACK))
+		{
+			_bigCrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[0], 1);
+		}
+		if (_state == state::L_MOVE && !(_state == state::L_ATTACK))
+		{
+			_bigCrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[1], 0);
+		}
+		if (_state == state::R_MOVE && !(_state == state::R_ATTACK))
+		{
+			_bigCrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[1], 1);
+		}
+		if (_state == state::L_ATTACK && !(_state == state::L_BUBBLE_SHOOT_MOVE))
+		{
+			_bigCrabImg[2]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[2], 0);
+		}
+		if (_state == state::R_ATTACK && !(_state == state::R_BUBBLE_SHOOT_MOVE))
+		{
+			_bigCrabImg[2]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[3], 1);
+		}
+		if (_state == state::L_BUBBLE_SHOOT_MOVE)
+		{
+			_bigCrabImg[3]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[4], 0);
+		}
+		if (_state == state::R_BUBBLE_SHOOT_MOVE)
+		{
+			_bigCrabImg[3]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[5], 1);
+		}
 	}
-	if (_state == state::R_IDLE && !(_state == state::R_MOVE) && !(_state == state::R_ATTACK) && !(_state == state::DEATH))
-	{
-		_bigCrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[0], 1);
-	}
-	if (_state == state::L_MOVE && !(_state == state::L_ATTACK) && !(_state == state::DEATH))
-	{
-		_bigCrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[1], 0);
-	}
-	if (_state == state::R_MOVE && !(_state == state::R_ATTACK) && !(_state == state::DEATH))
-	{
-		_bigCrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[1], 1);
-	}
-	if (_state == state::L_ATTACK && !(_state == state::L_BUBBLE_SHOOT_MOVE) && !(_state == state::DEATH))
-	{
-		_bigCrabImg[2]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[2], 0);
-	}
-	if (_state == state::R_ATTACK && !(_state == state::R_BUBBLE_SHOOT_MOVE) && !(_state == state::DEATH))
-	{
-		_bigCrabImg[2]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[3], 1);
-	}
-	if (_state == state::L_BUBBLE_SHOOT_MOVE && !(_state == state::DEATH))
-	{
-		_bigCrabImg[3]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[4], 0);
-	}
-	if (_state == state::R_BUBBLE_SHOOT_MOVE && !(_state == state::DEATH))
-	{
-		_bigCrabImg[3]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - 150 - CAMERA->GetCamera().top, index[5], 1);
-	}
-	if (_state == state::DEATH)
+	else if (_hp <= 0)
 	{
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
@@ -457,7 +461,6 @@ void BigCrab::Crabpattern()
 		index[1] = 0;
 	}
 
-
 	if (_state == state::L_ATTACK)
 	{
 		countImg[2]++;
@@ -486,8 +489,6 @@ void BigCrab::Crabpattern()
 		_att[1].rc.left += _size.x / 2 + 40.f;
 		_att[1].rc.right += _size.x / 2 + 40.f;
 	}
-
-
 
 	if (_state == state::L_BUBBLE_SHOOT_MOVE)
 	{
@@ -567,19 +568,29 @@ void BigCrab::Crabpattern()
 	{
 		index[4] = 7;
 
+		_bubbleShootSound = false;
+
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_bubble->fire(_position.x + 300, _position.y - 60, _bubbleAngle, 5.f);
 
 			//거품소리
-			SOUNDMANAGER->play("거품공격");
+			if (!_bubbleShootSound)
+			{
+				SOUNDMANAGER->play("큰게거품공격");
+				_bubbleShootSound = true;
+			}
 		}
-		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
+		else if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
 			_bubble->fire(_position.x, _position.y - 60, _bubbleAngle, 5.f);
 
 			//거품소리
-			SOUNDMANAGER->play("거품공격");
+			if (!_bubbleShootSound)
+			{
+				SOUNDMANAGER->play("큰게거품공격");
+				_bubbleShootSound = true;
+			}
 		}
 
 		//값 초기화
@@ -608,7 +619,7 @@ void BigCrab::Crabpattern()
 	{
 		index[4] = 0;
 	}
-	if (_state == state::DEATH)
+	if (_state == state::DEATH || _hp <= 0)
 	{
 		//충돌 렉트 없애기
 		for (int i = 0; i < 4; i++)
@@ -677,7 +688,5 @@ void BigCrab::Crabpattern()
 			}
 
 		}
-		
-
 	}
 }

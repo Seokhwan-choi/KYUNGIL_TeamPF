@@ -93,6 +93,7 @@ HRESULT Boss::Init()
 		string key = "다리" + idx;
 
 		_bridgeImg[i] = IMAGEMANAGER->findImage(key);
+		_isImgCrush[i] = false;
 	}
 
 	for (int i = 0; i < 7; i++)
@@ -120,6 +121,11 @@ HRESULT Boss::Init()
 	_alpha[0] = 255;
 	_alpha[1] = 255;
 	_isDeathWaterEnd = false;
+
+	//사운드반복재생방지
+	_attSound = false;
+	_buffSound = false;
+	_deathSound = false;
 
 	return S_OK;
 }
@@ -258,13 +264,10 @@ void Boss::Update()
 	{
 		_isBuff = false;
 		_stopDelay = 140;
-		_moveDelay = 210;
+		_moveDelay = 200;
 	}
 	else if (_hp == 150 && !_isBuffStart)
 	{
-		//변신 사운드 
-		SOUNDMANAGER->play("보스페이즈2");
-
 		_position.x = -WINSIZEX / 4;
 		_isBuffStart = true;
 		_attTimer = 0;
@@ -481,10 +484,36 @@ void Boss::Update()
 	{
 		if (IntersectRect(&rc, &_att.rc, &_bridgeImg[i]->boudingBox()))
 		{
-			//근접 공격 소리
-			SOUNDMANAGER->play("보스게부숨");
 			//임시로 보냄
 			_bridgeImg[i]->setX(-200);
+			//소리 위한 상태 처리
+			_isImgCrush[i] = true;
+		}
+	}
+
+	//이미지 충돌여부 상태 업데이트 
+	for (int i = 0; i < 22; i++)
+	{
+		if (!(_bridgeImg[i]->getX() == -200))
+		{
+			_isImgCrush[i] = false;
+		}
+	}
+
+	//근접 공격 소리
+	for (int i = 0; i < 22; i++)
+	{
+		if (!_isImgCrush[i]) continue;
+		
+		//다리 충돌 소리 초기화
+		_attSound = false;
+
+		//뒤로 이동상태가 아닐때  
+		if (!_attSound && !SOUNDMANAGER->isPlaySound("보스게근접") 
+			&& _state != STATE::BACK_MOVE)
+		{
+			SOUNDMANAGER->play("보스게근접");
+			_attSound = true;
 		}
 	}
 
@@ -497,8 +526,20 @@ void Boss::Update()
 	if (KEYMANAGER->isStayKeyDown('P'))
 	{
 		_hp = 0;
-		//죽는 소리
+	}
+
+	//버프 소리
+	if (_hp == 150 && !_buffSound)
+	{
+		SOUNDMANAGER->play("보스게버프");
+		_buffSound = true;
+	}
+
+	//죽는 소리
+	if (_hp <= 0 && !_deathSound)
+	{
 		SOUNDMANAGER->play("보스게죽음");
+		_deathSound = true;
 	}
 
 	//왼쪽,오른쪽 화염포 움직임 처리
@@ -563,7 +604,6 @@ void Boss::Render()
 		&& (_isBuffStartEnd)
 		&& _state == state::BOMB_SHOOT)
 	{
-
 		_BoassImg[4]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[4], 0);
 	}
 
