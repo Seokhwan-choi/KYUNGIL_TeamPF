@@ -34,7 +34,6 @@ playerDataUi::playerDataUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot p
 	//불변수 초기화
 	_isMeet = false;	//만나지 않았다
 	_count = 0;
-	DATA->Init();
 
 }
 
