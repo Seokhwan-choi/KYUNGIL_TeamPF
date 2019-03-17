@@ -45,7 +45,7 @@ Player::Player(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	//_weapon = WEAPON::NORMAL;
 	_weapon = DATA->getWeapon();						//플레이어의 기본 총상태는 딱총상태이다 
 	_sword = SWORD::RIGHTATTACK;					//칼은 기본적으로 오른쪽모션먼저세팅되어있다 
-	_state = STATE::IDLE;
+	_state = STATE::FLY;
 	PlayerRealSwordState = false;					//진짜 충돌할 칼의 bool 값 
 	SwordCount = 0;									//칼 몆초뒤에 꺼주게할려고  				
 	_playerbulletfire = false;						//총알 발사 눌렀냐?

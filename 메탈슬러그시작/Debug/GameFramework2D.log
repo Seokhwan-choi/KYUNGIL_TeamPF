@@ -1,17 +1,59 @@
-<<<<<<< HEAD
-﻿  Fish.cpp
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(23): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(74): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(77): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(158): warning C4244: '-=': 'double'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(159): warning C4244: '-=': 'double'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(250): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(270): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(272): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  Player.cpp
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(12): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(878): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(878): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(881): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(881): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(890): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(890): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(894): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(894): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(900): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(900): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(904): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(904): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(916): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(916): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(920): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(920): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(926): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(926): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(930): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(930): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(940): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(940): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(943): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(943): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(1183): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(1201): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(1202): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(1203): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3418): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3420): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3422): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3429): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3444): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3446): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3448): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3454): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3465): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3467): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3469): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3476): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3494): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3495): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3499): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3507): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  StageOne.cpp
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\stageone.cpp(275): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\stageone.cpp(292): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\stageone.cpp(312): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\stageone.cpp(328): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\stageone.cpp(342): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\stageone.cpp(396): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\stageone.cpp(412): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\stageone.cpp(473): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\stageone.cpp(489): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\user\desktop\metal slug 3\메탈슬러그시작\stageone.cpp(503): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  코드를 생성하고 있습니다...
   GameFramework2D.vcxproj -> C:\Users\user\Desktop\Metal Slug 3\메탈슬러그시작\Debug\WindowAPI.exe
-=======
-﻿  LoadingScene.cpp
-c:\users\ce028\downloads\teampf\메탈슬러그시작\loadingscene.cpp(142): warning C4305: '인수': 'unsigned long'에서 'bool'(으)로 잘립니다.
-c:\users\ce028\downloads\teampf\메탈슬러그시작\loadingscene.cpp(142): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  GameFramework2D.vcxproj -> C:\Users\ce028\Downloads\TeamPF\메탈슬러그시작\Debug\WindowAPI.exe
->>>>>>> feature/enemy

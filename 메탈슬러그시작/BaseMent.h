@@ -13,7 +13,6 @@ private:
 	class BubbleCrab* _bubbleCrab[10];	//거품게
 	class BigCrab* _bigCrab[3];			//큰게
 
-
 	image* _Out;						// 나오는 곳 이미지
 	int _count;							// 나오는 곳 이미지 프레임 카운트
 	int _index;							// 나오는 곳 이미지 프레임 인덱스

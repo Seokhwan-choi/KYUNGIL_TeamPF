@@ -9,7 +9,7 @@ HRESULT StageOne::Init(void)
 {
 	SOUNDMANAGER->play("스테이지시작");
 
-	_player = new Player("플레이어", { 250,0 }, { 320, 403 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { 450,0 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 	//작은게 수
 	_crabCount = 11;
@@ -170,6 +170,7 @@ HRESULT StageOne::Init(void)
 	_index3 = 0; 
 	_count3 = 0;
 
+	_PixelCheck = false;
 	_crush = false;
 
 
@@ -198,15 +199,6 @@ void StageOne::Update(void)
 		}
 		IMAGEMANAGER->findImage("배경출렁")->setFrameX(_index);
 	}
-
-	//_count2++; //6000 정도 도달하면 뭄이 열리게 하면된다  
-	//if (_count2 % 10 == 0) {
-	//	_index2++;
-	//	if (_index2 > 6) {
-	//		_index2 = 0;
-	//	}
-	//	IMAGEMANAGER->findImage("맵장벽")->setFrameX(_index2);
-	//}
 
 	if (_player->GetCollisionPlayer().right > 6200)
 	{
