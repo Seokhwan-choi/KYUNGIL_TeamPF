@@ -7,6 +7,8 @@
 
 HRESULT StageOne::Init(void)
 {
+	SOUNDMANAGER->play("스테이지시작");
+
 	_player = new Player("플레이어", { 250,0 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 	//작은게 수
@@ -422,6 +424,8 @@ void StageOne::ChangeMap()
 		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
 		{
 			SCENEMANAGER->ChangeScene("지하스테이지");
+			SOUNDMANAGER->pause("스테이지시작");
+
 		}
 	}
 }
