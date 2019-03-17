@@ -53,81 +53,65 @@ HRESULT StageOne::Init(void)
 	}
 	
 	//거품게 수
-	//_bubbleCrabCount = 8;
-	////거품게 초기화
-	//for (int i = 0; i < _bubbleCrabCount; i++)
-	//{
-	//	string num = to_string(i);
-	//	string name = "bubbleCrab" + num;
-	//
-	//	_bubbleCrab[i] = new BubbleCrab(name, { 3400.f + (i * 100.f), WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
-	//
-	//	if (i == 3)
-	//	{
-	//		_bubbleCrab[i] = new BubbleCrab(name, { 7400.f + (i * 100.f), WINSIZEY / 2 - 250 }, { 100, 150 }, GameObject::Pivot::Center);
-	//	}
-	//	else if (i == 4)
-	//	{
-	//		_bubbleCrab[i] = new BubbleCrab(name, { 7600.f + (i * 100.f), WINSIZEY / 2 - 250 }, { 100, 150 }, GameObject::Pivot::Center);
-	//	}
-	//	else if (i == 5)
-	//	{
-	//		_bubbleCrab[i] = new BubbleCrab(name, { 8200.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
-	//	}
-	//	else if (i == 6)
-	//	{
-	//		_bubbleCrab[i] = new BubbleCrab(name, { 9000.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
-	//	}
-	//	else if (i == 7)
-	//	{
-	//		_bubbleCrab[i] = new BubbleCrab(name, { 9200.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
-	//	}
-	//
-	//	_bubbleCrab[i]->Init();
-	//	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab[i]);
-	//}
+	_bubbleCrabCount = 8;
+	//거품게 초기화
+	for (int i = 0; i < _bubbleCrabCount; i++)
+	{
+		string num = to_string(i);
+		string name = "bubbleCrab" + num;
+	
+		_bubbleCrab[i] = new BubbleCrab(name, { 3400.f + (i * 100.f), WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
+	
+		if (i == 3)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 7400.f + (i * 100.f), WINSIZEY / 2 - 250 }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 4)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 7600.f + (i * 100.f), WINSIZEY / 2 - 250 }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 5)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 8200.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 6)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 9000.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+		else if (i == 7)
+		{
+			_bubbleCrab[i] = new BubbleCrab(name, { 9200.f + (i * 100.f), WINSIZEY / 2 - 120 }, { 100, 150 }, GameObject::Pivot::Center);
+		}
+	
+		_bubbleCrab[i]->Init();
+		OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bubbleCrab[i]);
+	}
 
 	//잠자리 수
-	_flyBugCount = 2;
+	_flyBugCount = 8;
 	//잠자리 초기화
 	for (int i = 0; i < _flyBugCount; i++)
 	{
 		string num = to_string(i);
 		string name = "_flyBug" + num;
-		_flyBug[i] = new FlyBug(name, { 11500, 130.f }, { 200, 100 }, GameObject::Pivot::Center);
+		if (i < 3)
+		{
+			_flyBug[i] = new FlyBug(name, { 10000.f + (i * 150.f), 130.f }, { 200, 100 }, GameObject::Pivot::Center);
+			_flyBug[i]->Init();
+		}
+		else if (i > 2 && i < 6)
+		{
+			_flyBug[i] = new FlyBug(name, { 11000.f + (i * 150.f), 130.f }, { 200, 100 }, GameObject::Pivot::Center);
+			_flyBug[i]->Init();
+		}
+		else if (i > 5 && i < 8)
+		{
+			_flyBug[i] = new FlyBug(name, { 11500.f + (i * 150.f), 130.f }, { 200, 100 }, GameObject::Pivot::Center);
+			_flyBug[i]->Init();
+		}
 		
-		/*if (i == 2)
-		{
-			_flyBug[i] = new FlyBug(name, { 15500.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-		}
-		else if (i == 3)
-		{
-			_flyBug[i] = new FlyBug(name, { 15500.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-		}
-		else if (i == 4)
-		{
-			_flyBug[i] = new FlyBug(name, { 16000.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-		}
-		else if (i == 5)
-		{
-			_flyBug[i] = new FlyBug(name, { 16000.f + (i * 250.f), 150.f }, { 200, 100 }, GameObject::Pivot::Center);
-		}*/
-		_flyBug[i]->Init();
-
 		OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug[i]);
 	}
-	//_bigCrab = new BigCrab("crab", { 2060, WINSIZEY / 2 + 110 }, { 200, 280 }, GameObject::Pivot::Center);
-	//_bigCrab->Init();
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _bigCrab);
-
-
-	//잠자리 생성
-	//FlyBug* _flyBug = new FlyBug("flyBug", { 1060, 200 }, { 200, 100 }, GameObject::Pivot::Center);
-	//잠자리 객체 추가하기
-	//_flyBug->Init();
-	//OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _flyBug);
-
-
 	
 	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
 	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui);
@@ -226,7 +210,7 @@ void StageOne::Update(void)
 
 	if (_player->GetCollisionPlayer().right > 6200)
 	{
-		_count2++; //6000 정도 도달하면 뭄이 열리게 하면된다  
+		_count2++; //6000 정도 도달하면 문이 열리게 하면된다  
 		if (_count2 % 10 == 0)
 		{
 			_index2++;

@@ -80,7 +80,8 @@ HRESULT BubbleCrab::Init()
 
 	//플레이어와의 각도 초기화
 	_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
-
+	//거품발사시 플레이어와의 각도 초기화
+	_bubbleAngle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
 	//거품 클래스 초기화
 	_bubble = new Bubble("거품");
 	_bubble->Init2("Enemy/거품.bmp", 420, 60, 7, 1, 3, 1280);
@@ -91,6 +92,8 @@ HRESULT BubbleCrab::Init()
 	_pixelImage[0] = IMAGEMANAGER->findImage("배경픽셀");
 	_pixelImage[1] = IMAGEMANAGER->findImage("지하배경픽셀");
 	_pixelGravity = 1.f;
+	//반복소리 방지를 위한 변수
+	_soundCount = 0;
 
 	return S_OK;
 }
@@ -200,19 +203,21 @@ void BubbleCrab::Update()
 	_att[0].rc = RectMakeCenter(_att[0].pt.x - _size.x / 3, _att[0].pt.y - _size.y / 15, _size.x / 3, _size.y - 50);
 	_att[1].rc = RectMakeCenter(_att[1].pt.x + _size.x / 3, _att[1].pt.y - _size.y / 15, _size.x / 3, _size.y - 50);
 
-	//플레이어와 각도 체크
-	_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
-
-	//플레이어와 거리 체크
-	_dist = GetDistance(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
+	//살아있을 때만 체크
+	if (_hp > 0)
+	{
+		//플레이어와 각도 체크
+		_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
+		//플레이어와 거리 체크
+		_dist = GetDistance(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
+	}
 
 	//상태에 따른 이미지 변경
 	this->bubblecrabImage();
+
 	//거품 움직임 처리
-	
 	_bubble->move();
 	_bubble->render();
-	
 
 	//카메라와 충돌이 아닐 경우 대기 상태
 	if (!_cam.isCrush)
@@ -268,6 +273,18 @@ void BubbleCrab::Update()
 		&& (_state == state::L_BUBBLE_SHOOT_MOVE || _state == state::R_BUBBLE_SHOOT_MOVE))
 	{
 		_bubbleGauge++;
+		//거품발사시 플레이어와의 각도
+		float angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
+
+		//플레이어 위치에 따른 거품발사 각도 보정
+		if (angle > PI / 2 && angle < PI / 180 * 270)
+		{
+			_bubbleAngle = PI;
+		}
+		else if (angle > PI / 180 * 270 && angle < PI / 2)
+		{
+			_bubbleAngle = 0.f;
+		}
 	}
 
 	//거품 한발씩 발사 처리
@@ -275,11 +292,17 @@ void BubbleCrab::Update()
 	{
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
-			_bubble->fire(_position.x + 150, _position.y, _angle, 5.f);
+			_bubble->fire(_position.x + 150, _position.y, _bubbleAngle, 5.f);
+
+			//거품소리
+			SOUNDMANAGER->play("거품공격");
 		}
-		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
+		else if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
-			_bubble->fire(_position.x + 50, _position.y, _angle, 5.f);
+			_bubble->fire(_position.x + 50, _position.y, _bubbleAngle, 5.f);
+
+			//거품소리
+			SOUNDMANAGER->play("거품공격");
 		}
 
 		//값 초기화
@@ -344,13 +367,28 @@ void BubbleCrab::Update()
 	}
 
 	//체력에 따른 죽음 처리
-	if (KEYMANAGER->isToggleKey('R') || _hp <= 0)
+	if (KEYMANAGER->isToggleKey('R'))
 	{
+		_hp = 0;
+	}
+
+	//죽음 처리
+	if (_hp == 0)
+	{
+		_soundCount++;
+
+		//죽는 소리
+		SOUNDMANAGER->play("거품게죽음");
+
+		if (_soundCount % 2 == 0)
+		{
+			SOUNDMANAGER->stop("거품게죽음");
+		}
+
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_state = state::L_DEATH;
 		}
-
 		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
 			_state = state::R_DEATH;
@@ -465,26 +503,20 @@ void BubbleCrab::Update()
 			_att[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
 		}
 
-		//임시로 y좌표 설정함
-		if (_position.y + _size.y / 2 < 730.f)
+		//이미지 사라지기 전 타이머
+		_deathTimer++;
+
+		if (_deathTimer % 150 == 0)
 		{
-			//시체 부분 떨어뜨리기
-			_position.y += 5.f;
-		}
+			_rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
 
-		//땅에 도착했을 때
-		if (_position.y + _size.y / 2 >= 730.f)
-		{
-			_deathTimer++;
+			//거품이 사라지면 그때 시체가 사라진다
+			if (_bubble->getVBubble()[0].isFire == false
+				&& _bubble->getVBubble()[1].isFire == false
+				&& _bubble->getVBubble()[2].isFire == false)
+			{
+				_isActive = false;
 
-			if (_deathTimer % 150 == 0)
-			{				
-				if (_bubble->getVBubble()[0].isFire == false && _bubble->getVBubble()[1].isFire == false && _bubble->getVBubble()[2].isFire == false)
-				{
-					_isActive = false;
-
-					break;
-				}
 			}
 		}
 		break;
@@ -500,29 +532,21 @@ void BubbleCrab::Update()
 			_att[i].rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
 		}
 
-		//임시로 y좌표 설정함
-		if (_position.y + _size.y / 2 < 730.f)
-		{
-			//시체 부분 떨어뜨리기
-			_position.y += 5.f;
-		}
 
-		//땅에 도착했을 때
-		if (_position.y + _size.y / 2 >= 730.f)
-		{
-			_deathTimer++;
+		//이미지 사라지기 전 타이머
+		_deathTimer++;
 
-			if (_deathTimer % 150 == 0)
+		if (_deathTimer % 150 == 0)
+		{
+			_rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
+
+			//거품이 사라지면 그때 시체가 사라진다
+			if (_bubble->getVBubble()[0].isFire == false
+				&& _bubble->getVBubble()[1].isFire == false
+				&& _bubble->getVBubble()[2].isFire == false)
 			{
-				_rc = RectMakeCenter(-1000.f, -1000.f, _size.x, _size.y / 2);
-
+				_isActive = false;
 			}
-		}
-		if (_bubble->getVBubble()[0].isFire == false && _bubble->getVBubble()[1].isFire == false && _bubble->getVBubble()[2].isFire == false)
-		{
-			_isActive = false;
-
-			break;
 		}
 		break;
 	}
@@ -650,9 +674,7 @@ void BubbleCrab::bubblecrabImage()
 			BubblecrabImg[3]->setFrameX(indexImg[1]);
 		}
 	}
-
-
-	if (_state == state::L_ATTACK_FINISH)
+	if (_state == state::L_ATTACK_FINISH || _state == state::L_BUBBLE_SHOOT_FINISH)
 	{
 		countImg[2]++;
 		if (countImg[2] % 10 == 0)

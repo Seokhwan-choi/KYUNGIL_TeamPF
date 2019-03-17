@@ -49,13 +49,13 @@ private:
 
 	image* _BoassImg[7];
 	int _index[7];
-	int _deathWaterIndex[5];
+	int _deathWaterIndex[6];
 	int _countImg[7];
-	int speed;
+	int _frameSpeed;		//프레임렌더 속도
 	int _alpha[2];
 
 	image* _deathWater;
-	bool _isdeathWaterEnd;
+	bool _isDeathWaterEnd;
 
 
 public:

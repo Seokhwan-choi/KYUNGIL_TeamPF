@@ -106,6 +106,7 @@ void FireCannon::Render()
 				_idx->fireCannonImage[1]->frameRender(getMemDC(), _idx->rc.left, _idx->rc.top, index[4], 0);
 			}
 		}
+
 		for (_idx1; _idx1 != _end1; ++_idx1)
 		{
 			if (!_idx1->isFire) continue;
@@ -146,8 +147,8 @@ void FireCannon::leftFire(float x, float y, float angle, float speed)
 		if (_idx == _vFireCannon[0].begin())
 		{
 			_idx->isFire = true;
-			_idx->x = _idx->fireX = x + _idx->fireCannonImage[1]->getFrameWidth() * 4;
-			_idx->y = _idx->fireY = y- 40.f;
+			_idx->x = _idx->fireX = x + _idx->fireCannonImage[1]->getFrameWidth() * 4 - 100.f;
+			_idx->y = _idx->fireY = y - 130.f;
 			_idx->rc = RectMakeCenter(_idx->x, _idx->y, _idx->fireCannonImage[0]->getFrameWidth(), _idx->fireCannonImage[0]->getFrameHeight());
 			_idx->speed = speed;
 			_idx->angle = angle;
@@ -155,8 +156,8 @@ void FireCannon::leftFire(float x, float y, float angle, float speed)
 		else if(_idx == _vFireCannon[0].begin() + 1)
 		{
 			_idx->isFire = true;
-			_idx->x = _idx->fireX = x + _idx->fireCannonImage[1]->getFrameWidth() * 3;
-			_idx->y = _idx->fireY = y - 30.f;
+			_idx->x = _idx->fireX = x + _idx->fireCannonImage[1]->getFrameWidth() * 3 - 60.f;
+			_idx->y = _idx->fireY = y - 40.f;
 			_idx->rc = RectMakeCenter(_idx->x, _idx->y, _idx->fireCannonImage[1]->getFrameWidth(), _idx->fireCannonImage[1]->getFrameHeight());
 			_idx->speed = speed;
 			_idx->angle = angle;
@@ -164,8 +165,8 @@ void FireCannon::leftFire(float x, float y, float angle, float speed)
 		else if (_idx == _vFireCannon[0].begin() + 2)
 		{
 			_idx->isFire = true;
-			_idx->x = _idx->fireX = x + _idx->fireCannonImage[1]->getFrameWidth() * 2;
-			_idx->y = _idx->fireY = y - 20.f;
+			_idx->x = _idx->fireX = x + _idx->fireCannonImage[1]->getFrameWidth() * 2 - 40.f;
+			_idx->y = _idx->fireY = y - 35.f;
 			_idx->rc = RectMakeCenter(_idx->x, _idx->y, _idx->fireCannonImage[1]->getFrameWidth(), _idx->fireCannonImage[1]->getFrameHeight());
 			_idx->speed = speed;
 			_idx->angle = angle;
@@ -173,8 +174,8 @@ void FireCannon::leftFire(float x, float y, float angle, float speed)
 		else if (_idx == _vFireCannon[0].begin() + 3)
 		{
 			_idx->isFire = true;
-			_idx->x = _idx->fireX = x + _idx->fireCannonImage[1]->getFrameWidth();
-			_idx->y = _idx->fireY = y - 10.f;
+			_idx->x = _idx->fireX = x + _idx->fireCannonImage[1]->getFrameWidth() - 20.f;
+			_idx->y = _idx->fireY = y - 25.f;
 			_idx->rc = RectMakeCenter(_idx->x, _idx->y, _idx->fireCannonImage[1]->getFrameWidth(), _idx->fireCannonImage[1]->getFrameHeight());
 			_idx->speed = speed;
 			_idx->angle = angle;
@@ -183,7 +184,7 @@ void FireCannon::leftFire(float x, float y, float angle, float speed)
 		{
 			_idx->isFire = true;
 			_idx->x = _idx->fireX = x;
-			_idx->y = _idx->fireY = y;
+			_idx->y = _idx->fireY = y - 15.f;
 			_idx->rc = RectMakeCenter(_idx->x, _idx->y, _idx->fireCannonImage[1]->getFrameWidth(), _idx->fireCannonImage[1]->getFrameHeight());
 			_idx->speed = speed;
 			_idx->angle = angle;
@@ -234,14 +235,27 @@ void FireCannon::leftFireMove()
 
 		if (_idx == _vFireCannon[0].begin())
 		{
-			_idx->gravity += 0.35f;
-			_idx->angle -= 0.045f;
+			_idx->gravity += 0.55f;
+			_idx->angle -= 0.035f;
 			_idx->x += cosf(_idx->angle) * _idx->speed;
 			_idx->y += -sinf(_idx->angle) * _idx->speed + _idx->gravity;
 
 			_idx->rc = RectMakeCenter(_idx->x, _idx->y, _idx->fireCannonImage[0]->getFrameWidth(), _idx->fireCannonImage[0]->getFrameHeight());
 
 			float dist = GetDistance(_idx->fireX, _idx->fireY, _idx->x, _idx->y);
+
+			//다리 충돌 체크 임시 렉트
+			RECT rc;
+			//다리와 충돌 체크
+			for (int i = 0; i < 22; i++)
+			{
+				if (IntersectRect(&rc, &_idx->rc, &_bridgeImg[i]->boudingBox()))
+				{
+					//값 초기화
+					_idx->isFire = false;
+					_idx->gravity = 0.f;
+				}
+			}
 
 			//사거리 멀어지면 화염포 사라짐
 			if (_range < dist)
@@ -256,7 +270,7 @@ void FireCannon::leftFireMove()
 
 			float angle = GetAngle(_idx->x, _idx->y, _prevIdx->x, _prevIdx->y);
 
-			_idx->gravity += 0.3f;
+			_idx->gravity += 0.53f;
 
 			_idx->x += cosf(angle) * _idx->speed;
 			_idx->y += -sinf(angle) * _idx->speed + _idx->gravity;
@@ -265,6 +279,19 @@ void FireCannon::leftFireMove()
 
 			float dist = GetDistance(_idx->fireX, _idx->fireY, _idx->x, _idx->y);
 
+			//다리 충돌 체크 임시 렉트
+			RECT rc;
+			//다리와 충돌 체크
+			for (int i = 0; i < 22; i++)
+			{
+				if (IntersectRect(&rc, &_idx->rc, &_bridgeImg[i]->boudingBox()))
+				{
+					//값 초기화
+					_idx->isFire = false;
+					_idx->gravity = 0.f;
+					index[1] = 0;
+				}
+			}
 
 			//사거리 멀어지면 화염포 사라짐
 			if (_range < dist)
@@ -280,7 +307,7 @@ void FireCannon::leftFireMove()
 
 			float angle = GetAngle(_idx->x, _idx->y, _prevIdx->x, _prevIdx->y);
 
-			_idx->gravity += 0.28f;
+			_idx->gravity += 0.51f;
 
 			_idx->x += cosf(angle) * _idx->speed;
 			_idx->y += -sinf(angle) * _idx->speed + _idx->gravity;
@@ -289,6 +316,19 @@ void FireCannon::leftFireMove()
 
 			float dist = GetDistance(_idx->fireX, _idx->fireY, _idx->x, _idx->y);
 
+			//다리 충돌 체크 임시 렉트
+			RECT rc;
+			//다리와 충돌 체크
+			for (int i = 0; i < 22; i++)
+			{
+				if (IntersectRect(&rc, &_idx->rc, &_bridgeImg[i]->boudingBox()))
+				{
+					//값 초기화
+					_idx->isFire = false;
+					_idx->gravity = 0.f;
+					index[2] = 0;
+				}
+			}
 
 			//사거리 멀어지면 화염포 사라짐
 			if (_range < dist)
@@ -304,7 +344,7 @@ void FireCannon::leftFireMove()
 
 			float angle = GetAngle(_idx->x, _idx->y, _prevIdx->x, _prevIdx->y);
 
-			_idx->gravity += 0.26f;
+			_idx->gravity += 0.49f;
 
 			_idx->x += cosf(angle) * _idx->speed;
 			_idx->y += -sinf(angle) * _idx->speed + _idx->gravity;
@@ -313,6 +353,19 @@ void FireCannon::leftFireMove()
 
 			float dist = GetDistance(_idx->fireX, _idx->fireY, _idx->x, _idx->y);
 
+			//다리 충돌 체크 임시 렉트
+			RECT rc;
+			//다리와 충돌 체크
+			for (int i = 0; i < 22; i++)
+			{
+				if (IntersectRect(&rc, &_idx->rc, &_bridgeImg[i]->boudingBox()))
+				{
+					//값 초기화
+					_idx->isFire = false;
+					_idx->gravity = 0.f;
+					index[3] = 0;
+				}
+			}
 
 			//사거리 멀어지면 화염포 사라짐
 			if (_range < dist)
@@ -328,7 +381,7 @@ void FireCannon::leftFireMove()
 
 			float angle = GetAngle(_idx->x, _idx->y, _prevIdx->x, _prevIdx->y);
 
-			_idx->gravity += 0.24f;
+			_idx->gravity += 0.47f;
 
 			_idx->x += cosf(angle) * _idx->speed;
 			_idx->y += -sinf(angle) * _idx->speed + _idx->gravity;
@@ -337,6 +390,19 @@ void FireCannon::leftFireMove()
 
 			float dist = GetDistance(_idx->fireX, _idx->fireY, _idx->x, _idx->y);
 
+			//다리 충돌 체크 임시 렉트
+			RECT rc;
+			//다리와 충돌 체크
+			for (int i = 0; i < 22; i++)
+			{
+				if (IntersectRect(&rc, &_idx->rc, &_bridgeImg[i]->boudingBox()))
+				{
+					//값 초기화
+					_idx->isFire = false;
+					_idx->gravity = 0.f;
+					index[4] = 0;
+				}
+			}
 
 			//사거리 멀어지면 화염포 사라짐
 			if (_range < dist)
@@ -362,7 +428,7 @@ void FireCannon::rightFire(float x, float y, float angle, float speed)
 		{
 			_idx1->isFire = true;
 			_idx1->x = _idx1->fireX = x + _idx1->fireCannonImage[1]->getFrameWidth() * 4;
-			_idx1->y = _idx1->fireY = y - 40.f;
+			_idx1->y = _idx1->fireY = y - 20.f;
 			_idx1->rc = RectMakeCenter(_idx1->x, _idx1->y, _idx1->fireCannonImage[0]->getFrameWidth(), _idx1->fireCannonImage[0]->getFrameHeight());
 			_idx1->speed = speed;
 			_idx1->angle = angle;
@@ -371,7 +437,7 @@ void FireCannon::rightFire(float x, float y, float angle, float speed)
 		{
 			_idx1->isFire = true;
 			_idx1->x = _idx1->fireX = x + _idx1->fireCannonImage[1]->getFrameWidth() * 3;
-			_idx1->y = _idx1->fireY = y - 30.f;
+			_idx1->y = _idx1->fireY = y - 15.f;
 			_idx1->rc = RectMakeCenter(_idx1->x, _idx1->y, _idx1->fireCannonImage[1]->getFrameWidth(), _idx1->fireCannonImage[1]->getFrameHeight());
 			_idx1->speed = speed;
 			_idx1->angle = angle;
@@ -380,7 +446,7 @@ void FireCannon::rightFire(float x, float y, float angle, float speed)
 		{
 			_idx1->isFire = true;
 			_idx1->x = _idx1->fireX = x + _idx1->fireCannonImage[1]->getFrameWidth() * 2;
-			_idx1->y = _idx1->fireY = y - 20.f;
+			_idx1->y = _idx1->fireY = y - 10.f;
 			_idx1->rc = RectMakeCenter(_idx1->x, _idx1->y, _idx1->fireCannonImage[1]->getFrameWidth(), _idx1->fireCannonImage[1]->getFrameHeight());
 			_idx1->speed = speed;
 			_idx1->angle = angle;
@@ -389,7 +455,7 @@ void FireCannon::rightFire(float x, float y, float angle, float speed)
 		{
 			_idx1->isFire = true;
 			_idx1->x = _idx1->fireX = x + _idx1->fireCannonImage[1]->getFrameWidth();
-			_idx1->y = _idx1->fireY = y - 10.f;
+			_idx1->y = _idx1->fireY = y - 5.f;
 			_idx1->rc = RectMakeCenter(_idx1->x, _idx1->y, _idx1->fireCannonImage[1]->getFrameWidth(), _idx1->fireCannonImage[1]->getFrameHeight());
 			_idx1->speed = speed;
 			_idx1->angle = angle;
@@ -529,7 +595,7 @@ void FireCannon::rightFireMove()
 
 			float angle = GetAngle(_idx1->x, _idx1->y, _prevIdx->x, _prevIdx->y);
 
-			_idx1->gravity += 0.03f;
+			_idx1->gravity += 0.038f;
 
 			_idx1->x += cosf(angle) * _idx1->speed;
 			_idx1->y += -sinf(angle) * _idx1->speed + _idx1->gravity;
@@ -566,7 +632,7 @@ void FireCannon::rightFireMove()
 
 			float angle = GetAngle(_idx1->x, _idx1->y, _prevIdx->x, _prevIdx->y);
 
-			_idx1->gravity += 0.02f;
+			_idx1->gravity += 0.036f;
 
 			_idx1->x += cosf(angle) * _idx1->speed;
 			_idx1->y += -sinf(angle) * _idx1->speed + _idx1->gravity;
@@ -603,7 +669,7 @@ void FireCannon::rightFireMove()
 
 			float angle = GetAngle(_idx1->x, _idx1->y, _prevIdx->x, _prevIdx->y);
 
-			_idx1->gravity += 0.01f;
+			_idx1->gravity += 0.034f;
 
 			_idx1->x += cosf(angle) * _idx1->speed;
 			_idx1->y += -sinf(angle) * _idx1->speed + _idx1->gravity;

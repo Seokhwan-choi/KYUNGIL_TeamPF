@@ -43,7 +43,7 @@ HRESULT Fish::Init()
 	fishImg[0] = IMAGEMANAGER->findImage("fish1");
 	fishImg[1] = IMAGEMANAGER->findImage("fish2");
 	fishImg[2] = IMAGEMANAGER->findImage("fish3");
-	
+	_soundCount = 0;	//사운드반복재생방지
 	return S_OK;
 }
 
@@ -106,6 +106,7 @@ void Fish::Update()
 				}
 			}
 		}
+
 		for (int i = 0; i < 8; i++)
 		{
 			if (fish_rc[i]._fish_state == state::L_MOVE)
@@ -189,10 +190,19 @@ void Fish::Update()
 		}
 		//for (int i = 0; i < 8; i++)
 		//{
-		if (KEYMANAGER->isToggleKey('R')) //|| fish_rc[i].hp <= 0)
+		if (KEYMANAGER->isToggleKey('F')) //|| fish_rc[i].hp <= 0)
 		{
 			_state = state::L_DEATH;
 			fish_rc[1].isDeath = true;
+			_soundCount++;
+
+			//죽는 소리
+			SOUNDMANAGER->play("작은게죽음");
+
+			if (_soundCount % 20 == 0)
+			{
+				SOUNDMANAGER->pause("작은게죽음");
+			}
 		}
 		//}
 
@@ -250,7 +260,7 @@ void Fish::Update()
 	{
 		boxhp = 0;
 	}
-	if (KEYMANAGER->isToggleKey('S') || boxhp <= 0)
+	if (KEYMANAGER->isToggleKey('B') || boxhp <= 0)
 	{
 		_rc = RectMakeCenter(-1000.f, -1000.f, 50, 50);
 		_cam.pt = { -1000.f,-1000.f };
@@ -272,7 +282,7 @@ void Fish::Update()
 				&& fish_rc[7].isFish == false
 				)
 			{
-				OBJECTMANAGER->RemoveObject(ObjectType::ENEMY, OBJECTMANAGER->FindObject(ObjectType::ENEMY, "fish"));
+				_isActive = false;
 			}
 		}
 	}

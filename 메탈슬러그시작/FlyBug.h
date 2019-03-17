@@ -13,7 +13,8 @@ private:
 	//공격 처리를 위한 변수
 	int _gauge;
 	float _attackAngle;
-	bool _isAttack;
+	bool _isAttack;			//공격 실행 여부
+	bool _isAttackReturn;	//공격 후 제자리로 이동 명령
 	POINTFLOAT _tempPt;
 	//죽음 처리를 위한 변수
 	int _deathTimer;
@@ -38,10 +39,11 @@ private:
 	int _alpha[3];
 	//플레이어와 거리 계산
 	int _dist;
-	//처음 생성좌표와 거리 계산
-	int _tempDist;
+	//잠자리 처음 생성좌표와 거리 계산
+	int _initDist;
 	int count;
 
+	int _soundCount;	//사운드반복재생방지
 public:
 	FlyBug(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~FlyBug();

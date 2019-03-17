@@ -40,11 +40,11 @@ private:
 	image* fishImg[3];
 	//카운터
 	int count_death;
-
 	int boxhp;
 
 	bool _rc_on;
 	bool is;
+	int _soundCount;	//사운드반복재생방지
 public:
 	Fish(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~Fish();

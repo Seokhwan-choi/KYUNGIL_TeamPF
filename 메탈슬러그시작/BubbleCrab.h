@@ -34,6 +34,8 @@ private:
 	ATTACK _att[2];	//0 : left, 1 : right
 	//플레이어와의 각도
 	float _angle;
+	//거품발사시 플레이어와의 각도
+	float _bubbleAngle;
 	//플레이어와의 거리
 	float _dist;
 	//텍스트
@@ -54,6 +56,7 @@ private:
 	int _pixelGravity;
 	RECT _pixelrc;
 
+	int _soundCount;	//사운드반복재생방지
 public:
 	BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BubbleCrab();
