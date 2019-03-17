@@ -38,6 +38,8 @@ private:
 	Fish_t fish_rc[8];
 	//물고기 이미지
 	image* fishImg[3];
+	//상자 이미지
+	image* fish_box;
 	//카운터
 	int count_death;
 	int boxhp;

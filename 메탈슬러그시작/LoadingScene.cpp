@@ -32,7 +32,7 @@ void LoadingScene::Update(void)
 	_loading->update();
 	if (_loading->loadingDone())
 	{
-		SCENEMANAGER->ChangeScene("시작화면"); //시작화면, 스테이지원, 지하스테이지, 보스스테이지
+		SCENEMANAGER->ChangeScene("지하스테이지"); //시작화면, 스테이지원, 지하스테이지, 보스스테이지
 	}
 }
 
@@ -255,6 +255,7 @@ void LoadingScene::LoadingImage()
 	_loading->loadFrameImage("fish1", "Enemy/물고기-1.bmp", 1200, 60, 12, 1, true, RGB(255, 0, 255));
 	_loading->loadFrameImage("fish2", "Enemy/물고기-2.bmp", 2400, 60, 24, 1, true, RGB(255, 0, 255));
 	_loading->loadFrameImage("fish3", "Enemy/물고기-3.bmp", 1300, 60, 13, 1, true, RGB(255, 0, 255));
+	_loading->loadImage("fishbox", "Enemy/물고기-상자.bmp", 196, 170, true, RGB(255,0,255));
 	//=============================================================
 	//	##근접게##
 	//=============================================================
