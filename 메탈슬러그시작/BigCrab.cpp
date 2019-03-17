@@ -41,7 +41,7 @@ HRESULT BigCrab::Init()
 	//왼쪽
 	_col[3].rc = RectMakeCenter(_col[3].pt.x + _size.x / 2 + 5, _col[3].pt.y, _size.x / 10, _size.y);
 	//플레이어 클래스 초기화
-	player = (Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어");
+	_player = (Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어");
 	//공격용 렉트 초기화
 	for (int i = 0; i < 2; i++)
 	{
@@ -56,7 +56,7 @@ HRESULT BigCrab::Init()
 	//왼쪽입니다
 	isLeft = true;
 	//플레이어와의 각도 초기화
-	_angle = GetAngle(_position.x, _position.y, player->GetPosition().x, player->GetPosition().y);
+	_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
 
 	_bubble = new Bubble("거품");
 	_bubble->Init2("Enemy/거품.bmp", 480, 60, 7, 1, 6, 1280);
@@ -100,6 +100,9 @@ HRESULT BigCrab::Init()
 	//체력 초기화
 	_hp = 20;
 
+	int _soundCount = 0;	//사운드반복재생방지
+	float _bubbleAngle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);;
+
 	return S_OK;
 }
 
@@ -131,13 +134,16 @@ void BigCrab::Update()
 			_position.y = i - _size.y / 2 + 50;
 			break;
 		}
-
 	}
 
-	//각도 체크
-	_angle = GetAngle(_position.x, _position.y, player->GetPosition().x, player->GetPosition().y);
-	//거리 체크
-	_dist = GetDistance(_position.x, _position.y, player->GetPosition().x, player->GetPosition().y);
+	if (_hp > 0)
+	{
+		//각도 체크
+		_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
+		//거리 체크
+		_dist = GetDistance(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
+	}
+
 	//이동 테스트
 	/*if (KEYMANAGER->isStayKeyDown('I'))
 	{
@@ -153,8 +159,24 @@ void BigCrab::Update()
 	}*/
 
 	//체력이 0일 경우 죽음 상태로 변경
-	if (_hp <= 0 || KEYMANAGER->isOnceKeyDown('P'))
+	if (KEYMANAGER->isToggleKey('P'))
 	{
+		_hp = 0;
+	}
+
+	//죽음 처리
+	if (_hp == 0)
+	{
+		_soundCount++;
+
+		//죽는 소리
+		SOUNDMANAGER->play("큰게죽음");
+
+		if (_soundCount % 20 == 0)
+		{
+			SOUNDMANAGER->pause("큰게죽음");
+		}
+
 		_state = state::DEATH;
 	}
 
@@ -174,13 +196,6 @@ void BigCrab::Update()
 
 void BigCrab::Render()
 {
-	//카메라 렉트 그리기
-	for (int i = 0; i < 4; i++)
-	{
-		Rectangle(getMemDC(), CAMERA->Relative(_cam[i].rc));
-	}
-	//큰게 렉트 그리기
-	Rectangle(getMemDC(), CAMERA->Relative(_rc));
 	//큰게 이미지 그리기
 	if (_state == state::L_IDLE && !(_state == state::L_MOVE) && !(_state == state::L_ATTACK) && !(_state == state::DEATH))
 	{
@@ -241,18 +256,30 @@ void BigCrab::Render()
 
 	}
 
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		//카메라 렉트 그리기
+		for (int i = 0; i < 4; i++)
+		{
+			Rectangle(getMemDC(), CAMERA->Relative(_cam[i].rc));
+		}
 
-	//Rectangle(getMemDC(), CAMERA->Relative(_pixelrc));
-	//큰게 충돌렉트 그리기
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	Rectangle(getMemDC(), CAMERA->Relative(_col[i].rc));
-	//}
-	//큰게 공격용렉트 그리기
-	//for (int i = 0; i < 2; i++)
-	//{
-	//	Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
-	//}
+		//큰게 렉트 그리기
+		Rectangle(getMemDC(), CAMERA->Relative(_rc));
+
+		//큰게 충돌렉트 그리기
+		for (int i = 0; i < 4; i++)
+		{
+			Rectangle(getMemDC(), CAMERA->Relative(_col[i].rc));
+		}
+
+		//큰게 공격용렉트 그리기
+		for (int i = 0; i < 2; i++)
+		{
+			Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
+		}
+	}
+
 	//거품 그리기
 	_bubble->Render();
 }
@@ -260,7 +287,7 @@ void BigCrab::Render()
 void BigCrab::Attcol()
 {
 	RECT temp;
-	if (IntersectRect(&temp, &_cam[1].rc, &player->GetRect()) && !IntersectRect(&temp, &_cam[3].rc, &player->GetRect()))
+	if (IntersectRect(&temp, &_cam[1].rc, &_player->GetRect()) && !IntersectRect(&temp, &_cam[3].rc, &_player->GetRect()))
 	{
 		_cam[1].isCrush = true;
 		_isAttack = true;
@@ -270,7 +297,7 @@ void BigCrab::Attcol()
 		_cam[1].isCrush = false;
 
 	}
-	if (IntersectRect(&temp, &_cam[1].rc, &player->GetRect()) && IntersectRect(&temp, &_cam[3].rc, &player->GetRect()))
+	if (IntersectRect(&temp, &_cam[1].rc, &_player->GetRect()) && IntersectRect(&temp, &_cam[3].rc, &_player->GetRect()))
 	{
 		_cam[3].isCrush = true;
 	}
@@ -278,7 +305,7 @@ void BigCrab::Attcol()
 	{
 		_cam[3].isCrush = false;
 	}
-	if (IntersectRect(&temp, &_cam[2].rc, &player->GetRect()))
+	if (IntersectRect(&temp, &_cam[2].rc, &_player->GetRect()))
 	{
 		_cam[2].isCrush = true;
 	}
@@ -286,7 +313,7 @@ void BigCrab::Attcol()
 	{
 		_cam[2].isCrush = false;
 	}
-	if (IntersectRect(&temp, &_cam[0].rc, &player->GetRect()))
+	if (IntersectRect(&temp, &_cam[0].rc, &_player->GetRect()))
 	{
 		_cam[0].isCrush = true;
 	}
@@ -364,7 +391,7 @@ void BigCrab::Crabpattern()
 		_isStop = true;
 	}
 
-	if (_dist <= player->GetSize().x / 2 + _size.x / 2 && (!(_state == state::L_BUBBLE_SHOOT_MOVE)) && !(_state == state::R_BUBBLE_SHOOT_MOVE))
+	if (_dist <= _player->GetSize().x / 2 + _size.x / 2 && (!(_state == state::L_BUBBLE_SHOOT_MOVE)) && !(_state == state::R_BUBBLE_SHOOT_MOVE))
 	{
 		_isAttack = false;
 	}
@@ -378,7 +405,7 @@ void BigCrab::Crabpattern()
 			_gauge = 1;
 		}
 	}
-	if (_cam[3].isCrush && _isAttack == false && !(_state == state::DEATH))
+	if (!(_state == state::DEATH) && _cam[3].isCrush && _isAttack == false)
 	{
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
@@ -523,17 +550,36 @@ void BigCrab::Crabpattern()
 	if (_isBubbleShoot == true)
 	{
 		_bubbleGauge++;
+		//거품발사시 플레이어와의 각도
+		float angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
+
+		//플레이어 위치에 따른 거품발사 각도 보정
+		if (angle > PI / 2 && angle < PI / 180 * 270)
+		{
+			_bubbleAngle = PI;
+		}
+		else if (angle > PI / 180 * 270 && angle < PI / 2)
+		{
+			_bubbleAngle = 0.f;
+		}
 	}
 	if (_bubbleGauge % 25 == 0 && bubbleMax < 6)
 	{
 		index[4] = 7;
+
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
-			_bubble->fire(_position.x + 300, _position.y - 60, _angle, 5.f);
+			_bubble->fire(_position.x + 300, _position.y - 60, _bubbleAngle, 5.f);
+
+			//거품소리
+			SOUNDMANAGER->play("거품공격");
 		}
 		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
-			_bubble->fire(_position.x, _position.y - 60, _angle, 5.f);
+			_bubble->fire(_position.x, _position.y - 60, _bubbleAngle, 5.f);
+
+			//거품소리
+			SOUNDMANAGER->play("거품공격");
 		}
 
 		//값 초기화

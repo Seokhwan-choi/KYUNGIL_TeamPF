@@ -32,7 +32,7 @@ void LoadingScene::Update(void)
 	_loading->update();
 	if (_loading->loadingDone())
 	{
-		SCENEMANAGER->ChangeScene("스테이지원"); //스테이지원, 지하스테이지, 보스스테이지
+		SCENEMANAGER->ChangeScene("시작화면"); //스테이지원, 지하스테이지, 보스스테이지
 	}
 }
 
@@ -394,6 +394,7 @@ void LoadingScene::LoadingSound()
 	// ################################### 몬스터 사운드 삽입 ###########################################
 	// ===============================================================================================
 
+	_loading->loadSound("거품게죽음", "SOUND/몬스터/거품게죽음.mp3", false, false);
 	_loading->loadSound("거품공격", "SOUND/몬스터/거품공격.mp3", false, false);
 	_loading->loadSound("몬스터총맞음", "SOUND/몬스터/몬스터총맞음.mp3", false, false);
 	_loading->loadSound("물고기죽음", "SOUND/몬스터/물고기죽음.mp3", false, false);

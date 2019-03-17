@@ -56,6 +56,7 @@ private:
 	int _pixelGravity;
 	RECT _pixelrc;
 
+	int _soundCount;	//사운드반복재생방지
 public:
 	BubbleCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BubbleCrab();

@@ -140,9 +140,25 @@ void FlyBug::Update()
 		_attackAngle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
 	}
 
-	//플레이어 총알과 충돌 체크
-	if (KEYMANAGER->isToggleKey('R') || _hp <= 0)
+	//체력 0으로 만들기
+	if (KEYMANAGER->isToggleKey('F'))
 	{
+		_hp = 0;
+	}
+
+	//죽음 처리
+	if (_hp == 0)
+	{
+		_soundCount++;
+
+		//죽는 소리
+		SOUNDMANAGER->play("잠자리죽음");
+
+		if (_soundCount % 20 == 0)
+		{
+			SOUNDMANAGER->pause("잠자리죽음");
+		}
+
 		_state = state::DEATH;
 	}
 

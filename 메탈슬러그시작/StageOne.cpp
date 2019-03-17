@@ -203,7 +203,7 @@ void StageOne::Update(void)
 
 	if (_player->GetCollisionPlayer().right > 6200)
 	{
-		_count2++; //6000 정도 도달하면 뭄이 열리게 하면된다  
+		_count2++; //6000 정도 도달하면 문이 열리게 하면된다  
 		if (_count2 % 10 == 0)
 		{
 			_index2++;

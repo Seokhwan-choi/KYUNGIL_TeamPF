@@ -14,12 +14,13 @@ private:
 	//공격처리 구조체
 	ATTACK _att[2];
 	//플레이어 클래스
-	class Player* player;
+	class Player* _player;
 	//행동을 위한 카운트
 	int count;
 	//왼쪽 오른쪽
 	bool isLeft;
 	float _angle;
+	float _bubbleAngle;
 	float _dist;
 	bool _isStop;
 	int bubbleMax;
@@ -43,6 +44,8 @@ private:
 	int _probeY;
 	image* _pixelImage;
 	RECT _pixelrc;
+
+	int _soundCount;	//사운드반복재생방지
 public:
 	BigCrab(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~BigCrab();

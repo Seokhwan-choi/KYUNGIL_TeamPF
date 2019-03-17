@@ -105,7 +105,9 @@ HRESULT Boss::Init()
 	_deathWaterIndex[2] = 12;
 	_deathWaterIndex[3] = 8;
 	_deathWaterIndex[4] = 24;
-	speed = 6;
+	_deathWaterIndex[5] = 0;
+	_frameSpeed = 6;
+
 	_BoassImg[0] = IMAGEMANAGER->findImage("boss");
 	_BoassImg[1] = IMAGEMANAGER->findImage("boss1");
 	_BoassImg[2] = IMAGEMANAGER->findImage("boss2");
@@ -114,9 +116,11 @@ HRESULT Boss::Init()
 	_BoassImg[5] = IMAGEMANAGER->findImage("boss5");
 	_BoassImg[6] = IMAGEMANAGER->findImage("boss6");
 	_deathWater = IMAGEMANAGER->findImage("deathwater");
+
 	_alpha[0] = 255;
 	_alpha[1] = 255;
-	_isdeathWaterEnd = false;
+	_isDeathWaterEnd = false;
+
 	return S_OK;
 }
 
@@ -258,6 +262,9 @@ void Boss::Update()
 	}
 	else if (_hp == 150 && !_isBuffStart)
 	{
+		//변신 사운드 
+		SOUNDMANAGER->play("보스페이즈2");
+
 		_position.x = -WINSIZEX / 4;
 		_isBuffStart = true;
 		_attTimer = 0;
@@ -276,7 +283,7 @@ void Boss::Update()
 	if (!_isBuff)
 	{
 		_countImg[0]++;
-		if (_countImg[0] % speed == 0)
+		if (_countImg[0] % _frameSpeed == 0)
 		{
 			_index[0]++;
 			if (_index[0] > 11)
@@ -288,7 +295,7 @@ void Boss::Update()
 	if (_isBuffStart)
 	{
 		_countImg[2]++;
-		if (_countImg[2] % speed == 0)
+		if (_countImg[2] % _frameSpeed == 0)
 		{
 			_index[2]++;
 			if (_index[2] > 11)
@@ -300,7 +307,7 @@ void Boss::Update()
 	if (_index[2] == 11)
 	{
 		_countImg[3]++;
-		if (_countImg[3] % speed == 0)
+		if (_countImg[3] % _frameSpeed == 0)
 		{
 			_index[3]++;
 			if (_index[3] > 11)
@@ -313,7 +320,7 @@ void Boss::Update()
 	switch (_state)
 	{
 	case STATE::BACK_MOVE:
-		speed = 6;
+		_frameSpeed = 6;
 		if (_rc.right > 100.f)
 		{
 			if (!_isBuff)
@@ -332,8 +339,8 @@ void Boss::Update()
 		}
 		break;
 	case STATE::ATTACK:
+		_frameSpeed = 3;
 		//앞으로 이동 공격
-		speed = 3;
 		if (_rc.right < WINSIZEX / 2 - 50)
 		{
 			//체력에 따른 공격 속도 수정
@@ -352,7 +359,7 @@ void Boss::Update()
 		//화면 중앙에서 대기 상태일 때
 		if (_rc.right >= WINSIZEX / 2 - 50)
 		{
-			speed = 6;
+			_frameSpeed = 6;
 			//체력에 따른 공격 딜레이 수정
 			if (!_isBuff)
 			{
@@ -409,7 +416,7 @@ void Boss::Update()
 			_countImg[6]++;
 			if (_countImg[6] % 2 == 0)
 			{
-				for (int i = 0; i < 5; i++)
+				for (int i = 0; i < 7; i++)
 				{
 					_deathWaterIndex[i]++;
 					if (_deathWaterIndex[i] > 25)
@@ -424,7 +431,7 @@ void Boss::Update()
 			_countImg[6]++;
 			if (_countImg[6] % 2 == 0)
 			{
-				for (int i = 0; i < 5; i++)
+				for (int i = 0; i < 7; i++)
 				{
 					_deathWaterIndex[i]++;
 					if (_deathWaterIndex[i] > 25)
@@ -438,7 +445,8 @@ void Boss::Update()
 				&& _deathWaterIndex[1] == 25
 				&& _deathWaterIndex[2] == 25
 				&& _deathWaterIndex[3] == 25
-				&& _deathWaterIndex[4] == 25)
+				&& _deathWaterIndex[4] == 25
+				&& _deathWaterIndex[5] == 25)
 			{
 				_alpha[1] -= 10;
 				if (_alpha[1] < 0)
@@ -449,7 +457,7 @@ void Boss::Update()
 		}
 		if (_alpha[1] == 0)
 		{
-			_isdeathWaterEnd = true;
+			_isDeathWaterEnd = true;
 		}
 		break;
 	}
@@ -460,9 +468,7 @@ void Boss::Update()
 		|| _attTimer % _attDelay == 2
 		|| _attTimer % _attDelay == 3
 		|| _attTimer % _attDelay == 4
-		//|| _attTimer % _attDelay == 5
 		) 
-		
 	{
 		_att.rc.left += 410.f;
 		_att.rc.right += 410.f;
@@ -475,6 +481,8 @@ void Boss::Update()
 	{
 		if (IntersectRect(&rc, &_att.rc, &_bridgeImg[i]->boudingBox()))
 		{
+			//근접 공격 소리
+			SOUNDMANAGER->play("보스게부숨");
 			//임시로 보냄
 			_bridgeImg[i]->setX(-200);
 		}
@@ -489,6 +497,8 @@ void Boss::Update()
 	if (KEYMANAGER->isStayKeyDown('P'))
 	{
 		_hp = 0;
+		//죽는 소리
+		SOUNDMANAGER->play("보스게죽음");
 	}
 
 	//왼쪽,오른쪽 화염포 움직임 처리
@@ -518,12 +528,6 @@ void Boss::Update()
 
 void Boss::Render()
 {
-	//보스 렉트 그리기
-	//Rectangle(getMemDC(), _rc);
-
-	//충돌 렉트 그리기
-	//Rectangle(getMemDC(), _col.rc);
-
 	if ((_state == state::IDLE || _state == state::BACK_MOVE || _state == state::ATTACK)
 		&& !_isBuff
 		&& !(_state == state::FIRECANNON_SHOOT) 
@@ -533,16 +537,19 @@ void Boss::Render()
 	{
 		_BoassImg[0]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[0], 0);
 	}
+
 	if (!(_state == state::BACK_MOVE) 
 		&& !_isBuff
 		&& _state == state::FIRECANNON_SHOOT)
 	{
 		_BoassImg[1]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[1], 0);
 	}
+
 	if (_isBuffStart && !_isBuffStartEnd)
 	{
 		_BoassImg[2]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[2], 0);
 	}
+
 	if ((_state == state::IDLE || _state == state::BACK_MOVE || _state == state::ATTACK)
 		&& !(_state == state::FIRECANNON_SHOOT)
 		&& !(_state == state::BOMB_SHOOT)
@@ -551,6 +558,7 @@ void Boss::Render()
 	{
 		_BoassImg[3]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[3], 0);
 	}
+
 	if (!(_state == state::BACK_MOVE)
 		&& (_isBuffStartEnd)
 		&& _state == state::BOMB_SHOOT)
@@ -558,49 +566,48 @@ void Boss::Render()
 
 		_BoassImg[4]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[4], 0);
 	}
+
 	if (_state == state::DEATH)
 	{
 		//_BoassImg[6]->frameRender(getMemDC(), _rc.left, _rc.top - 100, _index[5], 0);
 		_BoassImg[6]->alphaFrameRender(getMemDC(), _rc.left, _rc.top - 100, _index[5], 0, _alpha[0]);
-		RECT rc[5];
+		RECT rc[6];
 		rc[0] = RectMakeCenter(60, WINSIZEY - 200, 100, 400);
-		rc[1] = RectMakeCenter(180, WINSIZEY - 200, 100, 400);
+		rc[1] = RectMakeCenter(180, WINSIZEY - 180, 100, 400);
 		rc[2] = RectMakeCenter(300, WINSIZEY - 200, 100, 400);
-		rc[3] = RectMakeCenter(420, WINSIZEY - 200, 100, 400);
+		rc[3] = RectMakeCenter(420, WINSIZEY - 180, 100, 400);
 		rc[4] = RectMakeCenter(540, WINSIZEY - 200, 100, 400);
-		
-		for (int i = 0; i < 5; i++)
+		rc[5] = RectMakeCenter(660, WINSIZEY - 180, 100, 400);
+		for (int i = 0; i < 6; i++)
 		{
-			if (_isdeathWaterEnd == false)
+			if (_isDeathWaterEnd == false)
 			{
 				//_deathWater->frameRender(getMemDC(), rc[i].left, rc[i].top, _deathWaterIndex[i], 0);
 				_deathWater->alphaFrameRender(getMemDC(), rc[i].left, rc[i].top, _deathWaterIndex[i], 0, _alpha[1]);
 			}
 		}
-		
-		
 	}
-	//화염포 대포 렉트 그리기
-	//for (int i = 0; i < 2; i++)
-	//{
-	//	Rectangle(getMemDC(), _fShoot[i].rc);
-	//}
 
 	//화염포 그리기
 	_fireCannon->Render();
 
-	//폭탄 공격 처리 렉트 그리기
-	//Rectangle(getMemDC(), _bShoot.rc);
-
 	//미사일 폭탄 그리기
 	_bomb->Render();
 
-	//근접 공격 처리 렉트 그리기
-	//Rectangle(getMemDC(), _att.rc);
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		//화염포 대포 렉트 그리기
+		for (int i = 0; i < 2; i++)
+		{
+			Rectangle(getMemDC(), _fShoot[i].rc);
+		}
+		
+		//폭탄 공격 처리 렉트 그리기
+		Rectangle(getMemDC(), _bShoot.rc);
 
-	//텍스트 출력
-	//sprintf(msg1, "_fireDist : %f", _fireDist);
-	//TextOut(getMemDC(), 50, 50, msg1, strlen(msg1));
+		//근접 공격 처리 렉트 그리기
+		Rectangle(getMemDC(), _att.rc);
+	}
 }
 
 //양쪽 화염포 발사 명령

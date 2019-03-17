@@ -98,6 +98,8 @@ HRESULT Crab::Init()
 	_probeX = _position.x + _size.x / 2;
 	_pixelImage = IMAGEMANAGER->findImage("배경픽셀");
 	_pixelGravity = 1.f;
+	//반복소리 방지를 위한 변수
+	_soundCount = 0;
 
 	return S_OK;
 }
@@ -193,11 +195,15 @@ void Crab::Update()
 	_att[0].rc = RectMakeCenter(_att[0].pt.x - _size.x / 3, _att[0].pt.y - _size.y / 15, _size.x / 3, _size.y - 50);
 	_att[1].rc = RectMakeCenter(_att[1].pt.x + _size.x / 3, _att[1].pt.y - _size.y / 15, _size.x / 3, _size.y - 50);
 
-	//플레이어와 각도 체크
-	_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
+	//살아있을 때만 체크
+	if (_hp > 0)
+	{
+		//플레이어와 각도 체크
+		_angle = GetAngle(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
+		//플레이어와 거리 체크
+		_dist = GetDistance(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
+	}
 
-	//플레이어와 거리 체크
-	_dist = GetDistance(_position.x, _position.y, _player->GetPosition().x, _player->GetPosition().y);
 
 	//카메라와 충돌이 아닐 경우 대기 상태
 	if (!_cam.isCrush)
@@ -282,15 +288,29 @@ void Crab::Update()
 		}
 	}
 
-	//체력에 따른 죽음 처리
-	if (KEYMANAGER->isToggleKey('R') || _hp <= 0)
+	//체력 0으로 만들기
+	if (KEYMANAGER->isToggleKey('G'))
 	{
-		
+		_hp = 0;
+	}
+
+	//죽음 처리
+	if(_hp == 0)
+	{
+		_soundCount++;
+
+		//죽는 소리
+		SOUNDMANAGER->play("작은게죽음");
+
+		if (_soundCount % 20 == 0)
+		{
+			SOUNDMANAGER->pause("작은게죽음");
+		}
+
 		if (_angle <= PI + PI / 2 && _angle > PI / 2)
 		{
 			_state = state::L_DEATH;
 		}
-
 		if (_angle < PI / 2 && _angle >= 0.f || _angle > PI + PI / 2 && _angle <= PI * 2)
 		{
 			_state = state::R_DEATH;
@@ -372,6 +392,7 @@ void Crab::Update()
 		if (_deathTimer % 150 == 0)
 		{
 			_isActive = false;
+			_deathTimer = 0;
 		}
 
 		break;
@@ -393,8 +414,8 @@ void Crab::Update()
 		if (_deathTimer % 150 == 0)
 		{
 			_isActive = false;
+			_deathTimer = 0;
 		}
-
 
 		break;
 	}
@@ -445,7 +466,10 @@ void Crab::Render()
 
 void Crab::crabImage()
 {
-	if ((_state == state::L_IDLE || _state == state::L_MOVE || _state == state::L_ATTACK_MOVE) && !(_state == state::L_ATTACK_FINISH))
+	if ((_state == state::L_IDLE 
+		|| _state == state::L_MOVE 
+		|| _state == state::L_ATTACK_MOVE) 
+		&& !(_state == state::L_ATTACK_FINISH))
 	{
 		countImg[0]++;
 		if (countImg[0] % 10 == 0)
@@ -458,7 +482,10 @@ void Crab::crabImage()
 			crabImg[0]->setFrameX(indexImg[0]);
 		}
 	}
-	if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE && !(_state == state::R_ATTACK_FINISH))
+	if (_state == state::R_IDLE 
+		|| _state == state::R_MOVE 
+		|| _state == state::R_ATTACK_MOVE
+		&& !(_state == state::R_ATTACK_FINISH))
 	{
 		countImg[0]++;
 		if (countImg[0] % 10 == 0)
@@ -553,11 +580,16 @@ void Crab::crabImage()
 
 void Crab::crabImageRender()
 {
-	if ((_state == state::L_IDLE || _state == state::L_MOVE || _state == state::L_ATTACK_MOVE) && !(_state == state::L_ATTACK_FINISH))
+	if ((_state == state::L_IDLE 
+		|| _state == state::L_MOVE 
+		|| _state == state::L_ATTACK_MOVE) 
+		&& !(_state == state::L_ATTACK_FINISH))
 	{
 		crabImg[0]->frameRender(getMemDC(), CAMERA->Relative(_rc).left, CAMERA->Relative(_rc).top, indexImg[0], 0);
 	}
-	if (_state == state::R_IDLE || _state == state::R_MOVE || _state == state::R_ATTACK_MOVE)
+	if (_state == state::R_IDLE 
+		|| _state == state::R_MOVE 
+		|| _state == state::R_ATTACK_MOVE)
 	{
 		crabImg[1]->frameRender(getMemDC(), CAMERA->Relative(_rc).left, CAMERA->Relative(_rc).top, indexImg[0], 0);
 	}

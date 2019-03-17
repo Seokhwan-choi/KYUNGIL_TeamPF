@@ -43,6 +43,7 @@ private:
 	int _initDist;
 	int count;
 
+	int _soundCount;	//사운드반복재생방지
 public:
 	FlyBug(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~FlyBug();
