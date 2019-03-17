@@ -290,9 +290,9 @@ void choiceUi::Render()
 		TextOut(getMemDC(), 0, 200, str, strlen(str));
 	}
 
-	char str1[128];
-	sprintf(str1, "마우스좌표:%d,%d", _ptMouse);
-	TextOut(getMemDC(), 0, 200, str1, strlen(str1));
+	//char str1[128];
+	//sprintf(str1, "마우스좌표:%d,%d", _ptMouse);
+	//TextOut(getMemDC(), 0, 200, str1, strlen(str1));
 	
 
 }

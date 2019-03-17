@@ -47,11 +47,7 @@ public:
 	PIXEL getPixel(int i) { return _pixelbridge[i]; }
 	image* getImage(int i) { return _pixelbridge[i].bridgeImg; }
 	BRIDGE getBridge(int i) { return _bridge[i]; }
-
 	void PlayerBulletBoss(); //플레이어 총알과 보스 충돌햇을시 
-	
-
-
 	BossStage() {}
 	~BossStage() {}
 };

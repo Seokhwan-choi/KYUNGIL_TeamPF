@@ -105,6 +105,11 @@ void Bullet::Render()
 void Bullet::fire(float x, float y, float angle, float speed)
 {
 
+	DATA->setArms(DATA->getArms() - 1);
+	if (DATA->getArms() <= 0) {
+		DATA->setWeapon(WEAPON::NORMAL);
+		((Player*)(OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")))->SetWeapon(WEAPON::NORMAL);
+	}
 
 	_angle = angle;
 
@@ -157,7 +162,6 @@ void Bullet::move()
 			_vBullet.erase(_vBullet.begin() +i);
 			break; 
 		}
-
 		if (SCENEMANAGER->FindScene("지하스테이지"))
 		{
 			RECT temp;
@@ -211,7 +215,7 @@ HRESULT Boom::Init(const char * imageName, int width, int height , int bulletMax
 		_frameIndex[i] = 0;
 	}
 	
-	_PlayerBoomMax = 10; 
+	_PlayerBoomMax = DATA->getBomb() ; 
 
 	return S_OK;
 }
@@ -268,11 +272,7 @@ void Boom::fire(float x, float y, float angle, float gravity ,float speed)
 {
 	for (int i = 0; i < _vBoom.size(); i++)
 	{
-		DATA->setBomb(DATA->getBomb() - 1);
-		if (DATA->getBomb() < 0)
-		{
-			DATA->setBomb(0);
-		}
+		
 		if (_vBoom[i].isFire)continue;
 		_vBoom[i].isFire = true; 
 		_vBoom[i].x = _vBoom[i].fireX= x; 
@@ -282,7 +282,13 @@ void Boom::fire(float x, float y, float angle, float gravity ,float speed)
 		_vBoom[i].speed = speed; 
 		_vBoom[i].angle = angle; 
 		_vBoom[i].gravity = gravity; 
-		_PlayerBoomMax -= 1;  
+		_PlayerBoomMax -= 1;
+		
+		DATA->setBomb(DATA->getBomb() - 1);
+		if (DATA->getBomb() <= 0) {
+			DATA->setBomb(0);
+			_PlayerBoomMax = 0;
+		}
 		break;
 	}
 }
@@ -306,7 +312,6 @@ void Boom::move()
 		{
 			_vBoom[i].isFire = false;
 		}
-
 		if (SCENEMANAGER->FindScene("지하스테이지"))
 		{
 			RECT temp;
@@ -374,7 +379,6 @@ void Bullet1::Render()
 	{
 		for (int i = 0; i < _vBullet.size(); i++)
 		{
-
 			if (_vBullet[i].isFire == false) continue;
 			RECT bulletRc = CAMERA->Relative(_vBullet[i].rc);
 			_angle = _vBullet[i].angle;//기본총알
@@ -492,7 +496,6 @@ void Bullet1::move()
 			_vBullet.erase(_vBullet.begin() + i);
 			break;
 		}
-
 		if (SCENEMANAGER->FindScene("지하스테이지"))
 		{
 			RECT temp;
@@ -501,9 +504,6 @@ void Bullet1::move()
 				((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman1"))->setShot(true);
 			}
 		}
-	
-
-
 
 	}
 }

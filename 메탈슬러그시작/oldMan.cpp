@@ -76,7 +76,7 @@ void OldMan::Update(void)
 			if ((r == 255 && g == 255 && b == 0))
 			{
 				_gravity = 0.0f;
-				_position.y = i - _size.y - 140;
+				_position.y = i - _size.y - 125;
 				break;
 			}
 		}
@@ -288,11 +288,9 @@ void OldMan::Update(void)
 		if (_isGo && _t > 210) {
 			_rumistate = RUMISTATE::RUN;
 			_position.x -= 6.f;
-			if (IntersectRect(&temp, &OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect(),
-				&OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect())) {
+			if (IntersectRect(&temp, &((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer(), &OBJECTMANAGER->FindObject(ObjectType::UI, "item")->GetRect())) {
 				_touch = true;
 				if (_touch == true && ((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->getShow() == true) {
-					DATA->setScore(DATA->getScore() + 100);
 					((ItemUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "item"))->setShow(false);
 					_touch = false;
 					break;

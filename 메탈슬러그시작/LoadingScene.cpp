@@ -178,7 +178,7 @@ void LoadingScene::LoadingImage()
 	_loading->loadFrameImage("heavy_dis", "UI/item/item_4.bmp", 100, 20, 4, 1, true, RGB(255, 0, 255));
 	_loading->loadFrameImage("fish", "UI/item/item_5.bmp", 540, 60, 6, 1, true, RGB(255, 0, 255));
 	_loading->loadFrameImage("chicken", "UI/item/item_6.bmp", 1364, 50, 11, 1, true, RGB(255, 0, 255));
-	_loading->loadFrameImage("fuit", "UI/item/item_7.bmp", 389, 38, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("fuit", "UI/item/item_7.bmp", 1500,50, 12, 1, true, RGB(255, 0, 255));
 
 
 	// ===============================================================================================

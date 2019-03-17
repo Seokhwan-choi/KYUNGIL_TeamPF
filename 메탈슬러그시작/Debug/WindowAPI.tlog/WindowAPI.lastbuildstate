@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.16299.0
 Debug|Win32|C:\Users\user\Desktop\Metal Slug 3\메탈슬러그시작\|
+=======
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.17763.0
+Debug|Win32|C:\Users\남신우\Desktop\20190315 1458\메탈슬러그시작\|
+>>>>>>> feature/UI

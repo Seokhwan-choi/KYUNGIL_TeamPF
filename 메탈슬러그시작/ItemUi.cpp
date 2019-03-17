@@ -21,7 +21,6 @@ ItemUi::ItemUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM i
 		_isShow = true;
 		break;
 	case ITEM::FRUIT:
-		_isShow = true;
 		break;
 	case ITEM::HEAVY:
 		break;
@@ -158,9 +157,12 @@ void ItemUi::Update(void)
 		case ITEM::CRAB:
 			break;
 		case ITEM::BOMB:
-			_isShow = true;
-			if (_isShow == true) {
+			if (_isShow == true && _isTouch == true) {
 				DATA->setBomb(DATA->getBomb() + 10);
+				//고친부분
+				_isShow = false;
+				_isTouch = false;
+				break;
 			}
 			break;
 		default:
@@ -251,7 +253,9 @@ void ItemUi::Render(void)
 		//Rectangle(getMemDC(), _rect);
 		break;
 	case ITEM::FRUIT:
-		IMAGEMANAGER->frameRender("fuit", getMemDC(), _rect.left, _rect.top);
+		if (_isShow == true) {
+			IMAGEMANAGER->frameRender("fuit", getMemDC(), _rect.left, _rect.top);
+		}
 		//Rectangle(getMemDC(), _rect);
 		break;
 	case ITEM::HEAVY:

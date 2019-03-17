@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿  Player.cpp
 c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(12): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
 c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(869): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -49,3 +50,9 @@ c:\users\user\desktop\metal slug 3\메탈슬러그시작\player.cpp(3512): warni
 ﻿  MainGame.cpp
 >>>>>>> feature/enemy
   GameFramework2D.vcxproj -> C:\Users\user\Desktop\Metal Slug 3\메탈슬러그시작\Debug\WindowAPI.exe
+=======
+﻿  LoadingScene.cpp
+c:\users\남신우\desktop\20190315 1458\메탈슬러그시작\loadingscene.cpp(142): warning C4305: '인수': 'unsigned long'에서 'bool'(으)로 잘립니다.
+c:\users\남신우\desktop\20190315 1458\메탈슬러그시작\loadingscene.cpp(142): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameFramework2D.vcxproj -> C:\Users\남신우\Desktop\20190315 1458\메탈슬러그시작\Debug\WindowAPI.exe
+>>>>>>> feature/UI

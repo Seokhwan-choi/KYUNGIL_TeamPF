@@ -295,7 +295,6 @@ void BigCrab::Render()
 			Rectangle(getMemDC(), CAMERA->Relative(_att[i].rc));
 		}
 	}
-
 	//거품 그리기
 	_bubble->Render();
 }

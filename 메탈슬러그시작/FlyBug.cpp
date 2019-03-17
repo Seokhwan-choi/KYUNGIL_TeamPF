@@ -141,6 +141,7 @@ void FlyBug::Update()
 
 	//체력 0으로 만들기
 	if (KEYMANAGER->isToggleKey('F'))
+	//플레이어와 충돌 체크
 	{
 		_hp = 0;
 	}

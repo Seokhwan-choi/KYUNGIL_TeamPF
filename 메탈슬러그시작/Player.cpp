@@ -882,7 +882,6 @@ void Player::Update()
 							}
 							else if (!_isLeft)
 							{
-
 								_heavyBullet->fire(RND->range(_position.x + 70, _position.x + 90), _position.y, _angle, 15.0f);
 							}
 							break;
@@ -893,7 +892,6 @@ void Player::Update()
 							}
 							else if (!_isLeft)
 							{
-
 								_heavyBullet->fire(RND->range(_position.x, _position.x - 20), _position.y - 170, _angle, 15.0f);
 							}
 							break;
@@ -910,7 +908,6 @@ void Player::Update()
 							}
 							else if (!_isLeft)
 							{
-
 								_heavyBullet->fire(RND->range(_position.x + 10, _position.x - 10), _position.y + 200, _angle1, 15.0f);
 							}
 							break;
@@ -921,7 +918,6 @@ void Player::Update()
 							}
 							else if (!_isLeft)
 							{
-
 								_heavyBullet->fire(RND->range(_position.x - 10, _position.x + 10), _position.y + 100, _angle1, 15.0f);
 							}
 							break;
@@ -3463,7 +3459,6 @@ void Player::PixelMapCollision()
 	
 	}
 }
-
 void Player::BaseMentPixel()
 {
 
