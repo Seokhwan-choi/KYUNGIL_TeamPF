@@ -1197,8 +1197,10 @@ void Player::Update()
 		_colb = RectMakeCenter(_position.x, _position.y + _size.y / 2 - 100, 10, 10);
 		_colr = RectMakeCenter(_position.x + _size.x / 2 - 120, _position.y + 35, 10, 10);
 
-		if (SCENEMANAGER->FindScene("보스스테이지")) {
-			if (_position.x - 200 > WINSIZEX) {
+		if (SCENEMANAGER->FindScene("보스스테이지")) 
+		{
+			if (_position.x - 200 > WINSIZEX)
+			{
 				_position.x -= (_position.x - 200) - WINSIZEX;
 			}
 		}

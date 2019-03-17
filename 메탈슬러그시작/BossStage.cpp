@@ -8,10 +8,8 @@ HRESULT BossStage::Init(void)
 {
 	_bgImage = IMAGEMANAGER->findImage("보스배경");
 	_waterground = IMAGEMANAGER->findImage("보스출렁");
-	// = IMAGEMANAGER->findImage("곧부서짐");
 
 	CAMERA->SetCamera({ (float)WINSIZEX / 2.f, (float)WINSIZEY / 2.f });
-
 
 	for (int i = 0; i < 22; ++i) 
 	{
@@ -21,8 +19,6 @@ HRESULT BossStage::Init(void)
 		_bridge[i].bridgeImg = IMAGEMANAGER->addImage(str, string("Background/"+ string(str) + ".bmp").c_str(), (175 * i), WINSIZEY - 215, 175, 183, true, RGB(255,0,255));
 		_bridge[i].isCrush = false;
 	}
-
-
 
 	for (int i = 0; i < 22; ++i)
 	{
@@ -35,41 +31,23 @@ HRESULT BossStage::Init(void)
 	}
 
 
-
 	_start = false;
 	_loopX = 0;
 	_gcount = 0;
 	_gframe = 0;
+
+
 	for (int i = 0; i < 2; i++)
 	{
 		_reset[i] = false;
 	}
+
 
 	_player = new Player("플레이어", { WINSIZEX / 2 + 200, WINSIZEY / 2 -300 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	_boss = new Boss("boss", { -WINSIZEX / 4, WINSIZEY / 2 + 100 }, { WINSIZEX / 2, WINSIZEY }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::BOSS, _boss);
-
-	//GameCompleteUi* _gamecompleteui = new GameCompleteUi("gamecompleteui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	//OBJECTMANAGER->AddObject(ObjectType::UI, _gamecompleteui);
-	//
-	//totalScore* _totalscore = new totalScore("totalscore", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	//OBJECTMANAGER->AddObject(ObjectType::UI, _totalscore);
-	//
-	//
-	//GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	//OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui);
-	////
-	//GameOverUi_2* _gameoverui2 = new GameOverUi_2("gameoverui2", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	//OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui2);
-	////
-	//timeUi* _timeui = new timeUi("timeui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	//OBJECTMANAGER->AddObject(ObjectType::UI, _timeui);
-	//
-	//playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
-	//OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
-
 
 
 	OBJECTMANAGER->Init();
@@ -234,7 +212,7 @@ void BossStage::Render(void)
 	RECT _rc = RectMake(0, 0, WINSIZEX, WINSIZEY);
 	_bgImage->loopRender(getMemDC(), &_rc, _loopX, 0);
 	// ============== 배경바닥 출렁출렁 시킨다. =================
-	_waterground->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left - 300, WINSIZEY - 100 - CAMERA->GetCamera().top);
+	_waterground->frameRender(getMemDC(), 0 - CAMERA->GetCamera().left, WINSIZEY - 100 - CAMERA->GetCamera().top);
 	// ======================================================
 
 	//다리 이미지 그리기
@@ -242,6 +220,7 @@ void BossStage::Render(void)
 	{	
 		//Rectangle(getMemDC(), _bridge[i].rc);
 		_bridge[i].bridgeImg->render(getMemDC(), _bridge[i].bridgeImg->getX() - CAMERA->GetCamera().left - 300, _bridge[i].bridgeImg->getY() - CAMERA->GetCamera().top);
+		//_bridge[i].bridgeImg->render(getMemDC(), _bridge[i].bridgeImg->getX(), _bridge[i].bridgeImg->getY());
 	}
 	
 	if (_start)
@@ -250,6 +229,7 @@ void BossStage::Render(void)
 		for (int i = 0; i < 22; ++i)
 		{
 			_pixelbridge[i].bridgeImg->render(getMemDC(), _pixelbridge[i].bridgeImg->getX() -  CAMERA->GetCamera().left - 300, _pixelbridge[i].bridgeImg->getY() - CAMERA->GetCamera().top);
+			//_pixelbridge[i].bridgeImg->render(getMemDC(), _pixelbridge[i].bridgeImg->getX(), _pixelbridge[i].bridgeImg->getY());
 		}
 	}
 

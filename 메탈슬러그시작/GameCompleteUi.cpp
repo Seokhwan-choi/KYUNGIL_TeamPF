@@ -56,7 +56,7 @@ void GameCompleteUi::Release()
 
 void GameCompleteUi::Update()
 {
-	if (((Boss*)(OBJECTMANAGER->FindObject(ObjectType::BOSS, "boss")))->getHp() == 300) {
+	if (((Boss*)(OBJECTMANAGER->FindObject(ObjectType::BOSS, "boss")))->getHp() == 0) {
 		_count++;
 		if (_count == 130) {
 			_isMove = true;
@@ -83,7 +83,7 @@ void GameCompleteUi::Update()
 
 void GameCompleteUi::Render()
 {
-	if (((Boss*)(OBJECTMANAGER->FindObject(ObjectType::BOSS, "boss")))->getHp() == 300) {
+	if (((Boss*)(OBJECTMANAGER->FindObject(ObjectType::BOSS, "boss")))->getHp() == 0) {
 
 		if (KEYMANAGER->isToggleKey('A')) {
 			for (int i = 0; i < 17; i++) {
