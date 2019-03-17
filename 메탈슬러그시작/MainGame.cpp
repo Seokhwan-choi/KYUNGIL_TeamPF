@@ -43,7 +43,7 @@ void MainGame::update(void)
 {
 	gameNode::update();	
 	SCENEMANAGER->Update();
-	//OBJECTMANAGER->Update();
+	SOUNDMANAGER->update();
 }
 
 //==========================================================================//

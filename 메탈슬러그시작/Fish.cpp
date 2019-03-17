@@ -198,7 +198,7 @@ void Fish::Update()
 			{
 				//_state = state::L_DEATH;
 			//	fish_rc[0].isDeath = true;
-				fish_rc[1].isDeath = true;
+				fish_rc[i].isDeath = true;
 			//	fish_rc[2].isDeath = true;
 			//	fish_rc[3].isDeath = true;
 			}
