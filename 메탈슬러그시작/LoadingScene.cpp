@@ -32,7 +32,7 @@ void LoadingScene::Update(void)
 	_loading->update();
 	if (_loading->loadingDone())
 	{
-		SCENEMANAGER->ChangeScene("시작화면"); //스테이지원, 지하스테이지, 보스스테이지
+		SCENEMANAGER->ChangeScene("지하스테이지"); //스테이지원, 지하스테이지, 보스스테이지
 	}
 }
 

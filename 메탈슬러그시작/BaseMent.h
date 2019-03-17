@@ -27,6 +27,9 @@ public:
 	void Update(void);
 	void Render(void);
 
+	void Collisison();
+	void FishColl();
+
 	BaseMent() {}
 	~BaseMent() {}
 };

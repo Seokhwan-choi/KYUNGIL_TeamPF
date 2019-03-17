@@ -178,6 +178,8 @@ void BaseMent::Update(void)
 		SCENEMANAGER->ChangeScene("보스스테이지");
 	}
 	_player->BaseMentPixel();
+	this->Collisison();
+	this->FishColl();
 }
 
 void BaseMent::Render(void)
@@ -196,4 +198,72 @@ void BaseMent::Render(void)
 	OBJECTMANAGER->Render();
 
 	//_Out->frameRender(getMemDC(), 500 - CAMERA->GetCamera().left, 500 - CAMERA->GetCamera().right);
+}
+
+void BaseMent::Collisison()
+{
+	RECT temp;
+
+	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_bigCrab[j]->GetRect()))
+			{
+				_bigCrab[j]->bigCrab_damage(1);
+				_player->playerbullet()->SetisFire(i, false);
+				break;
+			}
+		}
+
+	}
+
+
+	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_bigCrab[j]->GetRect()))
+			{
+				_bigCrab[j]->bigCrab_damage(1);
+				_player->heavybullet()->SetisFire(i, false);
+				break;
+			}
+		}
+
+	}
+
+
+	for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_bigCrab[j]->GetRect()))
+			{
+				_bigCrab[j]->bigCrab_damage(1);
+				_player->playerboom()->SetisFire(i, false);
+				break;
+			}
+		}
+
+	}
+
+}
+
+void BaseMent::FishColl()
+{
+	RECT temp;
+
+	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			if (IntersectRect(&temp, &_fish->getCol(j), &_player->playerbullet()->getVBullet()[i].rc)
+				&& _player->playerbullet()->getVBullet()[i].isFire == true)
+			{
+				_player->playerbullet()->SetisFire(i, false);
+				_fish->fish_damage(j,1);
+			}
+		}
+	}
 }

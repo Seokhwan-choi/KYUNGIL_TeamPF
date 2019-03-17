@@ -28,7 +28,7 @@ HRESULT Fish::Init()
 		fish_rc[i].Imgcount[0] = fish_rc[i].Imgindex[0] = 0;
 		fish_rc[i].Imgcount[1] = fish_rc[i].Imgindex[1] = 0;
 		fish_rc[i].Imgcount[2] = fish_rc[i].Imgindex[2] = 0;
-		fish_rc[i].hp = 3;
+		fish_rc[i].hp = 1;
 		fish_rc[i].isDeath = false;
 	}
 	_rc_on = true;
@@ -188,23 +188,23 @@ void Fish::Update()
 				fish_rc[i].hp = 0;
 			}
 		}
-		//for (int i = 0; i < 8; i++)
-		//{
-		if (KEYMANAGER->isToggleKey('F')) //|| fish_rc[i].hp <= 0)
+		for (int i = 0; i < 8; i++)
+		{
+		if (KEYMANAGER->isToggleKey('F') || fish_rc[i].hp <= 0) //|| fish_rc[i].hp <= 0)
 		{
 			_state = state::L_DEATH;
-			fish_rc[1].isDeath = true;
+			fish_rc[i].isDeath = true;
 			_soundCount++;
 
 			//¡◊¥¬ º“∏Æ
-			SOUNDMANAGER->play("¿€¿∫∞‘¡◊¿Ω");
+			//SOUNDMANAGER->play("¿€¿∫∞‘¡◊¿Ω");
 
 			if (_soundCount % 20 == 0)
 			{
-				SOUNDMANAGER->pause("¿€¿∫∞‘¡◊¿Ω");
+				//SOUNDMANAGER->pause("¿€¿∫∞‘¡◊¿Ω");
 			}
 		}
-		//}
+		}
 
 
 		for (int i = 0; i < 8; i++)
@@ -220,7 +220,7 @@ void Fish::Update()
 					fish_rc[i]._fish_state = state::L_DEATH;
 				}
 			}
-			break;
+			//break;
 		}
 
 		for (int i = 0; i < 8; i++)

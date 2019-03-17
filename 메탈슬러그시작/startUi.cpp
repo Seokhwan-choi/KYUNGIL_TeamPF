@@ -24,10 +24,7 @@ startUi::startUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	//========================================================
 	_count = 0;
 	_index = 0;
-<<<<<<< HEAD
-=======
 	SOUNDMANAGER->play("3");
->>>>>>> feature/UI
 
 }
 
