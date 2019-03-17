@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  Fish.cpp
 c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(23): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(73): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -8,3 +9,10 @@ c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(245): warning 
 c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(264): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\user\desktop\metal slug 3\메탈슬러그시작\fish.cpp(266): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   GameFramework2D.vcxproj -> C:\Users\user\Desktop\Metal Slug 3\메탈슬러그시작\Debug\WindowAPI.exe
+=======
+﻿  choiceUi.cpp
+c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(63): warning C4244: '인수': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\남신우\documents\kyungil_teampf\메탈슬러그시작\choiceui.cpp(303): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
+  GameFramework2D.vcxproj -> C:\Users\남신우\Documents\KYUNGIL_TeamPF\메탈슬러그시작\Debug\WindowAPI.exe
+>>>>>>> feature/UI
