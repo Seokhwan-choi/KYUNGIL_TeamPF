@@ -9,11 +9,11 @@ HRESULT LoadingScene::Init(void)
 	_loading = new loading;
 	_loading->init();
 
-	stage1StartUi* _stage1startui = new stage1StartUi("stage1startui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
-
-	GameCompleteUi* _gamecompleteui = new GameCompleteUi("gamecompleteui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
-	OBJECTMANAGER->AddObject(ObjectType::UI, _gamecompleteui);
+	//stage1StartUi* _stage1startui = new stage1StartUi("stage1startui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	//OBJECTMANAGER->AddObject(ObjectType::UI, _stage1startui);
+	//
+	//GameCompleteUi* _gamecompleteui = new GameCompleteUi("gamecompleteui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	//OBJECTMANAGER->AddObject(ObjectType::UI, _gamecompleteui);
 
 	this->LoadingSound();
 	this->LoadingImage();
@@ -32,7 +32,7 @@ void LoadingScene::Update(void)
 	_loading->update();
 	if (_loading->loadingDone())
 	{
-		SCENEMANAGER->ChangeScene("지하스테이지"); //스테이지원, 지하스테이지, 보스스테이지
+		SCENEMANAGER->ChangeScene("보스스테이지"); //스테이지원, 지하스테이지, 보스스테이지
 	}
 }
 
@@ -49,11 +49,10 @@ void LoadingScene::LoadingImage()
 	// ===============================================================================================
 	_loading->loadFrameImage("배경출렁", "Background/배경출렁2.bmp", 19568, 278, 8, 1);
 	_loading->loadFrameImage("맵장벽", "Background/맵장벽.bmp", 5400, 960, 6, 1, true, RGB(255, 0, 255));
-	_loading->loadFrameImage("통들어감", "Background/통들어감.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("통", "Background/통나옴.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
 	_loading->loadImage("배경", "Background/배경.bmp", 14070, 1150, true, RGB(255, 0, 255));
 	_loading->loadImage("배경의배경", "Background/배경의배경.bmp", 9562, 1200, true, RGB(255, 0, 255));
 	_loading->loadImage("배경픽셀", "Background/배경픽셀.bmp", 14070, 1150, true, RGB(255, 0, 255));
-	_loading->loadImage("검정", "검정.bmp", 1280, 958);
 	// ===============================================================================================
 	// ###############################################################################################
 	// ===============================================================================================
@@ -65,8 +64,8 @@ void LoadingScene::LoadingImage()
 	// ################# 지하 스테이지 이미지 ###########################################################
 	// ===============================================================================================
 
-	_loading->loadImage("지하배경", "BackGround/지하배경.bmp", 6774, 958);
-	_loading->loadImage("지하배경픽셀", "BackGround/지하배경픽셀.bmp", 6774, 958);
+	_loading->loadImage("지하배경", "BackGround/지하베이스.bmp", 6774, 958);
+	_loading->loadImage("지하배경픽셀", "BackGround/지하베이스픽셀.bmp", 6774, 958);
 	_loading->loadFrameImage("통나옴", "BackGround/통나옴.bmp", 7392, 384, 22, 1, true, RGB(255, 0, 255));
 
 	//IMAGEMANAGER->addImage("지하배경", "BackGround/지하베이스.bmp", 6774, 958);
@@ -171,15 +170,15 @@ void LoadingScene::LoadingImage()
 	// ################# 아이템 이미지 #################################################################
 	// ===============================================================================================
 	//플레이어와 닿기 전
-	_loading->loadFrameImage("cap_granade", "UI/item/item_1.bmp", 7, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("cap_granade", "UI/item/item_1.bmp",899,55, 7, 1, true, RGB(255, 0, 255));
 	_loading->loadImage("heavy", "UI/item/item_2.bmp", 50, 50, true, RGB(255, 0, 255));
 	_loading->loadImage("granade", "UI/item/item_3.bmp", 50, 50, true, RGB(255, 0, 255));
 
 	//플레이어와 닿은 후 사라지도록 만들어야함
 	_loading->loadFrameImage("heavy_dis", "UI/item/item_4.bmp", 100, 20, 4, 1, true, RGB(255, 0, 255));
 	_loading->loadFrameImage("fish", "UI/item/item_5.bmp", 540, 60, 6, 1, true, RGB(255, 0, 255));
-	_loading->loadFrameImage("chicken", "UI/item/item_6.bmp", 341, 32, 11, 1, true, RGB(255, 0, 255));
-	_loading->loadFrameImage("fuit", "UI/item/item_7.bmp", 389, 38, 12, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("chicken", "UI/item/item_6.bmp", 1364, 50, 11, 1, true, RGB(255, 0, 255));
+	_loading->loadFrameImage("fuit", "UI/item/item_7.bmp", 1500,50, 12, 1, true, RGB(255, 0, 255));
 
 
 	// ===============================================================================================
@@ -212,25 +211,25 @@ void LoadingScene::LoadingImage()
 	// #################스타트 및 컴플리트 이미지 #################################################################
 	// ===============================================================================================
 	//스타트
-	for (int i = 0; i < 14; i++) {
-		string num = to_string(i + 1);
-		string temp = "UI/stage1StartScene/number";
-		string end = ".bmp";
-		string name = temp + num;
-		string fullName = name + end;//템프는 저장장소 파일 이름 .12355.bmp
-		_loading->loadImage(name, fullName.c_str(),((stage1StartUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "stage1startui"))->getSite()[i].x,
-			((stage1StartUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "stage1startui"))->getSite()[i].y, 79, 109, true, RGB(255, 0, 255));
-	}
-	//컴플리트
-	for (int i = 0; i < 17; i++) {
-		string num = to_string(i + 1);
-		string temp = "UI/missioncomplete/number";
-		string end = ".bmp";
-		string name = temp + num;
-		string fullName = name + end;
-		_loading->loadImage(name, fullName.c_str(),((GameCompleteUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "gamecompleteui"))->getSite()[i].x,
-			((GameCompleteUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "gamecompleteui"))->getSite()[i].y,79, 109, true, RGB(255, 0, 255));
-	}
+	//for (int i = 0; i < 14; i++) {
+	//	string num = to_string(i + 1);
+	//	string temp = "UI/stage1StartScene/number";
+	//	string end = ".bmp";
+	//	string name = temp + num;
+	//	string fullName = name + end;
+	//	_loading->loadImage(name, fullName.c_str(),((stage1StartUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "stage1startui"))->getSite()[i].x,
+	//		((stage1StartUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "stage1startui"))->getSite()[i].y, 79, 109, true, RGB(255, 0, 255));
+	//}
+	////컴플리트
+	//for (int i = 0; i < 17; i++) {
+	//	string num = to_string(i + 1);
+	//	string temp = "UI/missioncomplete/number";
+	//	string end = ".bmp";
+	//	string name = temp + num;
+	//	string fullName = name + end;
+	//	_loading->loadImage(name, fullName.c_str(),((GameCompleteUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "gamecompleteui"))->getSite()[i].x,
+	//		((GameCompleteUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "gamecompleteui"))->getSite()[i].y,79, 109, true, RGB(255, 0, 255));
+	//}
 
 
 	//=============================================================
@@ -366,7 +365,6 @@ void LoadingScene::LoadingSound()
 	_loading->loadSound("포로떙큐", "SOUND/포로/포로땡큐.mp3", false, false);		// 포로 감사
 	_loading->loadSound("포로충성", "SOUND/포로/포로감사.mp3", false, false);		// 포로 충성
 	_loading->loadSound("가방포로", "SOUND/포로/가방포로.mp3", false, false);		// 가방포로(유미) 감사
-	_loading->loadSound("오케이", "SOUND/오케이.mp3", false, false);
 
 	// ===============================================================================================
 	// ################################### 선택 사운드 삽입 ############################################
@@ -380,7 +378,7 @@ void LoadingScene::LoadingSound()
 	// ################################### effect 사운드 삽입 ##########################################
 	// ===============================================================================================
 
-	_loading->loadSound("동전", "SOUND/이펙트/동전.mp3", false, false);
+	_loading->loadSound("동전넣기", "SOUND/이펙트/동전넣기.mp3", false, false);
 	_loading->loadSound("딱총", "SOUND/이펙트/딱총.mp3", false, false);
 	_loading->loadSound("미션1시작", "SOUND/이펙트/미션1시작.mp3", false, false);
 	_loading->loadSound("미션클리어", "SOUND/이펙트/미션클리어.mp3", false, false);
@@ -415,11 +413,5 @@ void LoadingScene::LoadingSound()
 	_loading->loadSound("선택전", "SOUND/브금/선택전.mp3", true, true);
 	_loading->loadSound("스테이지시작", "SOUND/브금/스테이지시작.mp3", true, true);
 	_loading->loadSound("지하시작", "SOUND/브금/지하시작.mp3", true, true);
-
-	// ===============================================================================================
-	// #################################### 커서 ###########################################
-	// ===============================================================================================
-	_loading->loadSound("커서", "SOUND/cursor.wav", false, false);
-
 	
 }

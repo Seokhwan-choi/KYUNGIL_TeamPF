@@ -14,8 +14,6 @@ private:
 	int _count;
 	int _index;
 
-	int t;
-
 	
 public:
 

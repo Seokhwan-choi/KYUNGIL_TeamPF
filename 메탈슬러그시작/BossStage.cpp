@@ -3,18 +3,13 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "UI.h"
-#include "Boss.h"
-
 
 HRESULT BossStage::Init(void)
 {
-	SOUNDMANAGER->play("보스전시작");
-
 	_bgImage = IMAGEMANAGER->findImage("보스배경");
 	_waterground = IMAGEMANAGER->findImage("보스출렁");
 	// = IMAGEMANAGER->findImage("곧부서짐");
 
-	//CAMERA->SetCamera({ WINSIZEX / 2, WINSIZEY / 2 });
 
 	for (int i = 0; i < 22; ++i) 
 	{
@@ -35,11 +30,32 @@ HRESULT BossStage::Init(void)
 		_reset[i] = false;
 	}
 
-	_player = new Player("플레이어", { WINSIZEX - 100, WINSIZEY / 2  }, { 50, 50 }, GameObject::Pivot::Center);
+	_player = new Player("플레이어", { WINSIZEX / 2 + 200, WINSIZEY / 2 + 175 }, { 50, 50 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	_boss = new Boss("boss", { -WINSIZEX / 4, WINSIZEY / 2 + 100 }, { WINSIZEX / 2, WINSIZEY }, GameObject::Pivot::Center);
-	OBJECTMANAGER->AddObject(ObjectType::Enum::ENEMY, _boss);
+	OBJECTMANAGER->AddObject(ObjectType::Enum::BOSS, _boss);
+
+	GameCompleteUi* _gamecompleteui = new GameCompleteUi("gamecompleteui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _gamecompleteui);
+
+	totalScore* _totalscore = new totalScore("totalscore", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _totalscore);
+
+
+	GameOverUi* _gameoverui = new GameOverUi("gameoverui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui);
+	//
+	GameOverUi_2* _gameoverui2 = new GameOverUi_2("gameoverui2", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _gameoverui2);
+	//
+	timeUi* _timeui = new timeUi("timeui", { 0,0 }, { 0,0 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _timeui);
+
+	playerDataUi* _playerdataui = new playerDataUi("playerdataui", { WINSIZEX / 2,WINSIZEY / 2 }, { 50,50 }, GameObject::Pivot::LeftTop);
+	OBJECTMANAGER->AddObject(ObjectType::UI, _playerdataui);
+
+
 
 	OBJECTMANAGER->Init();
 
@@ -151,8 +167,6 @@ void BossStage::Update(void)
 
 		_reset[1] = false;
 	}
-
-	this->PlayerBulletCollisionBoss(); 
 }
 
 void BossStage::Render(void)
@@ -177,55 +191,4 @@ void BossStage::Render(void)
 	}
 
 	OBJECTMANAGER->Render();
-}
-
-void BossStage::PlayerBulletCollisionBoss()
-{
-	RECT temp;
-
-
-	//############################################애너미 2번쨰 랙트랑충돌
-	//#######################일반총알 
-	for (int i = 0; i < _player->playerbullet()->getVBullet().size(); i++)
-	{
-		if (_player->playerbullet()->getVBullet()[i].isFire == false) continue;
-
-			if (IntersectRect(&temp, &_player->playerbullet()->getVBullet()[i].rc, &_boss->getCol())  ) /*_crab[i]->getCol(2)*/  
-			{
-     			_boss->boss_damge(1);
-				_player->playerbullet()->SetisFire(i, false);
-				cout << "충돌" << endl;
-				break;
-			}
-		
-	}
-	//###########################해비머신건 총알 
-	for (int i = 0; i < _player->heavybullet()->getVBullet().size(); i++)
-	{
-		if (_player->heavybullet()->getVBullet()[i].isFire == false)continue;
-		
-			if (IntersectRect(&temp, &_player->heavybullet()->getVBullet()[i].rc, &_boss->getCol()))
-			{
-				_boss->boss_damge(1);
-				_player->heavybullet()->SetisFire(i, false);
-				cout << "충돌" << endl;
-				break;
-			}
-	}
-
-	//###########################수류탄 충돌 
-	for (int i = 0; i < _player->playerboom()->getVBoom().size(); i++)
-	{
-		if (_player->playerboom()->getVBoom()[i].isFire == false)continue;
-
-		if (IntersectRect(&temp, &_player->playerboom()->getVBoom()[i].rc, &_boss->getCol()))
-		{
-			_boss->boss_damge(1);
-			_player->playerboom()->SetisFire(i, false);
-			break;
-		}
-	}
-
-
-
 }

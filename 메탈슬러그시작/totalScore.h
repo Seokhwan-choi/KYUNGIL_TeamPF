@@ -16,10 +16,14 @@ private:
 	int _index;
 	int _saveNum;		//구한 숫자 넣어주기 위한 숫자
 	bool _isSave;		//구한 숫자랑 같냐?
+	bool _isShow;	//제한시간 및 목숨이 0 일시 true로 변환 해줌
 
 public:
 	totalScore(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot);
 	~totalScore();
+
+	void setIsShow(bool isshow) { _isShow = isshow; }
+
 
 	virtual HRESULT Init();
 	virtual void Release();

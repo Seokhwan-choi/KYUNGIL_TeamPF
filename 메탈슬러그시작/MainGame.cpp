@@ -19,7 +19,7 @@ HRESULT MainGame::init(void)
 
 	//첫 시작화면
 	SCENEMANAGER->ChangeScene("로딩");
-	SOUNDMANAGER->init();
+
 	return S_OK;	
 }
 
@@ -43,7 +43,6 @@ void MainGame::update(void)
 {
 	gameNode::update();	
 	SCENEMANAGER->Update();
-	SOUNDMANAGER->update();
 	//OBJECTMANAGER->Update();
 }
 

@@ -63,7 +63,7 @@ public:
 	~Boss();
 
 	//충돌 렉트 get
-	RECT getCol() { return _col.rc; }
+	COL getCol() { return _col; }
 	//공격 렉트 get
 	ATTACK getAtt() { return _att; }
 	//보스 체력 get
@@ -75,8 +75,6 @@ public:
 	void fireShoot();
 	//폭탄 발사 명령
 	void fireBomb();
-
-	void boss_damge(int damage) { _hp -= damage; }
 
 	HRESULT Init() override;
 	void Release() override;

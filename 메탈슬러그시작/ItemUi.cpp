@@ -18,10 +18,9 @@ ItemUi::ItemUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot, ITEM i
 		_isShow = true;
 		break;
 	case ITEM::CHICKEN:
-
+		_isShow = true;
 		break;
 	case ITEM::FRUIT:
-		_isShow = true;
 		break;
 	case ITEM::HEAVY:
 		break;
@@ -74,33 +73,52 @@ void ItemUi::Update(void)
 	//아래쪽 충돌렉트 위치 좌표 업데이트
 	_coly = _position.y + _size.y;
 	//픽셀충돌
+	if (SCENEMANAGER->FindScene("스테이지원")) {
+
+		for (int i = _coly - 60; i < _coly + 60; i++) {
+			COLORREF color = GetPixel(IMAGEMANAGER->findImage("배경픽셀")->getMemDC(), _position.x, i);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+
+			if (r == 255 && g == 255 && b == 0) {
+				_gravity = 0.0f;
+				_position.y = i - _size.y - 140;
+				break;
+			}
+
+		}
+	}
+	if (SCENEMANAGER->FindScene("지하스테이지")) {
+
 	for (int i = _coly - 60; i < _coly + 60; i++) {
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("배경픽셀")->getMemDC(), _position.x, i);
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("지하배경픽셀")->getMemDC(), _position.x, i);
 		int r = GetRValue(color);
 		int g = GetGValue(color);
 		int b = GetBValue(color);
 
 		if (r == 255 && g == 255 && b == 0) {
 			_gravity = 0.0f;
-			_position.y = i - _size.y - 120;
+			_position.y = i - _size.y;
 			break;
 		}
 
 	}
+	}
+
 	_botRc = RectMake(_position.x + _size.x / 2, _coly, 10, 10);
 
 	_count++;
 	RECT temp;
 
 	//충돌체크
-	if (IntersectRect(&temp, &_rc, &OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어")->GetRect())) {
+	if (IntersectRect(&temp, &_rc, &((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->GetCollisionPlayer())) {
 		_isTouch = true;
 		switch (_item)
 		{
 			//점수처리
 		case ITEM::FISH:
 			if (_isTouch == true && _isShow == true) {
-				SOUNDMANAGER->play("아이템먹음");
 				DATA->setScore(DATA->getScore() + 500);
 				_isShow = false;
 				_isTouch = false;
@@ -109,7 +127,6 @@ void ItemUi::Update(void)
 			break;
 		case ITEM::CHICKEN:
 			if (_isTouch == true && _isShow == true) {
-				SOUNDMANAGER->play("아이템먹음");
 				DATA->setScore(DATA->getScore() + 500);
 				_isShow = false;
 				_isTouch = false;
@@ -118,7 +135,6 @@ void ItemUi::Update(void)
 			break;
 		case ITEM::FRUIT:
 			if (_isTouch == true && _isShow == true) {
-				SOUNDMANAGER->play("아이템먹음");
 				DATA->setScore(DATA->getScore() + 500);
 				_isShow = false;
 				_isTouch = false;
@@ -141,9 +157,12 @@ void ItemUi::Update(void)
 		case ITEM::CRAB:
 			break;
 		case ITEM::BOMB:
-			if (_isShow == true) {
-				((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->SetWeapon(WEAPON::HEAVY);
+			if (_isShow == true && _isTouch == true) {
 				DATA->setBomb(DATA->getBomb() + 10);
+				//고친부분
+				_isShow = false;
+				_isTouch = false;
+				break;
 			}
 			break;
 		default:
@@ -177,24 +196,24 @@ void ItemUi::Update(void)
 				IMAGEMANAGER->findImage("chicken")->setFrameX(_index);
 			}
 			break;
-		//case ITEM::FRUIT:
-		//	IMAGEMANAGER->findImage("fruit")->setFrameY(0);
-		//	if (_count % 15 == 0) {
-		//		_index++;
-		//		if (_index > 11) {
-		//			_index = 0;
-		//		}
-		//		IMAGEMANAGER->findImage("fruit")->setFrameX(_index);
-		//	}
-		//	break;
+		case ITEM::FRUIT:
+			IMAGEMANAGER->findImage("fuit")->setFrameY(0);
+			if (_count % 15 == 0) {
+				_index++;
+				if (_index > 11) {
+					_index = 0;
+				}
+				IMAGEMANAGER->findImage("fuit")->setFrameX(_index);
+			}
+			break;
 		case ITEM::CRAB:
 			break;
 		case ITEM::BOMB:
 			IMAGEMANAGER->findImage("cap_granade")->setFrameY(0);
 			if (_count % 15 == 0) {
-				_index++;
-				if (_index > 6) {
-					_index = 0;
+				_index--;
+				if (_index < 0) {
+					_index = 5;
 				}
 				IMAGEMANAGER->findImage("cap_granade")->setFrameX(_index);
 			}
@@ -234,7 +253,9 @@ void ItemUi::Render(void)
 		//Rectangle(getMemDC(), _rect);
 		break;
 	case ITEM::FRUIT:
-		IMAGEMANAGER->frameRender("fruit", getMemDC(), _rect.left, _rect.top);
+		if (_isShow == true) {
+			IMAGEMANAGER->frameRender("fuit", getMemDC(), _rect.left, _rect.top);
+		}
 		//Rectangle(getMemDC(), _rect);
 		break;
 	case ITEM::HEAVY:
@@ -255,7 +276,7 @@ void ItemUi::Render(void)
 		break;
 	case ITEM::BOMB:
 		if (_isShow == true) {
-			IMAGEMANAGER->render("granade", getMemDC(), _rect.left, _rect.top);
+			IMAGEMANAGER->frameRender("cap_granade", getMemDC(), _rect.left, _rect.top);
 		}
 		break;
 	default:
