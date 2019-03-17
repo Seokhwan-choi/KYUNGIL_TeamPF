@@ -58,6 +58,8 @@ void GameCompleteUi::Release()
 void GameCompleteUi::Update()
 {
 	if (((Boss*)(OBJECTMANAGER->FindObject(ObjectType::BOSS, "boss")))->getHp() <= 0) {
+		SOUNDMANAGER->pause("보스전시작");
+
 		_count++;
 		if (_count == 130) {
 			_isMove = true;

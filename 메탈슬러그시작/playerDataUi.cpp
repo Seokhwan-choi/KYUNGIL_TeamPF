@@ -58,6 +58,8 @@ void playerDataUi::Update()
 		//캐릭터  종료씬 update부분 넣어준다.
 		((GameOverUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "gameoverui"))->setIsShow(true);
 		((GameOverUi*)OBJECTMANAGER->FindObject(ObjectType::UI, "gameoverui"))->gameOver();
+		SOUNDMANAGER->pause("보스전시작");
+
 	}
 
 	//this->setRect({300,WINSIZEY/2.f});

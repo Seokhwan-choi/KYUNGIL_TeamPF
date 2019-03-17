@@ -5,7 +5,8 @@
 #include "UI.h"
 HRESULT BaseMent::Init(void)
 {
-	
+	SOUNDMANAGER->play("지하시작");
+
 	_player = new Player("플레이어", { 406,633 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
@@ -176,6 +177,8 @@ void BaseMent::Update(void)
 	if (_player->GetCollisionPlayer().left > 6600 ) 
 	{
 		SCENEMANAGER->ChangeScene("보스스테이지");
+		SOUNDMANAGER->pause("지하시작");
+
 	}
 	_player->BaseMentPixel();
 	this->Collisison();
