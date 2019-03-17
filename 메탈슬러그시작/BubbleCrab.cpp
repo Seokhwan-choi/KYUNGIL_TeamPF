@@ -109,7 +109,7 @@ void BubbleCrab::Release()
 void BubbleCrab::Update()
 {
 	RECT renderRect = CAMERA->Relative(_rc);
-	if (_rc.right < 0 || _rc.left > WINSIZEX || _rc.top < 0 || _rc.bottom > WINSIZEY)
+	if (renderRect.right < 0 || renderRect.left > WINSIZEX || renderRect.top < 0 || renderRect.bottom > WINSIZEY)
 		return;
 
 
@@ -744,6 +744,7 @@ void BubbleCrab::bubblecrabImageRender()
 		|| _state == state::L_ATTACK_MOVE) 
 		&& !(_state == state::L_ATTACK_FINISH))
 	{
+		cout << "거품게 그리자" << endl;
 		BubblecrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[0], 0);
 	}
 

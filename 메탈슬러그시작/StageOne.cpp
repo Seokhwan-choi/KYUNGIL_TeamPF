@@ -58,7 +58,7 @@ HRESULT StageOne::Init(void)
 	{
 		string num = to_string(i);
 		string name = "bubbleCrab" + num;
-	
+		cout << name << endl;
 		_bubbleCrab[i] = new BubbleCrab(name, { 3400.f + (i * 100.f), WINSIZEY / 2 + 175.f }, { 100, 150 }, GameObject::Pivot::Center);
 	
 		if (i == 3)
