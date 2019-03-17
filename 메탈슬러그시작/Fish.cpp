@@ -43,6 +43,7 @@ HRESULT Fish::Init()
 	fishImg[0] = IMAGEMANAGER->findImage("fish1");
 	fishImg[1] = IMAGEMANAGER->findImage("fish2");
 	fishImg[2] = IMAGEMANAGER->findImage("fish3");
+	fish_box = IMAGEMANAGER->findImage("fishbox");
 
 	//반복소리 방지를 위한 변수
 	_deathSound = false;
@@ -196,10 +197,10 @@ void Fish::Update()
 			if (KEYMANAGER->isToggleKey('F')  || fish_rc[i].hp <= 0) //|| fish_rc[i].hp <= 0)
 			{
 				//_state = state::L_DEATH;
-				fish_rc[0].isDeath = true;
+			//	fish_rc[0].isDeath = true;
 				fish_rc[1].isDeath = true;
-				fish_rc[2].isDeath = true;
-				fish_rc[3].isDeath = true;
+			//	fish_rc[2].isDeath = true;
+			//	fish_rc[3].isDeath = true;
 			}
 			//}
 			if (!_deathSound && fish_rc[i].isDeath)
@@ -296,8 +297,13 @@ void Fish::Render()
 {
 	//카메라 렉트 그리기
 	//Rectangle(getMemDC(), CAMERA->Relative(_cam.rc));
-	//렉트 그리기
-	Rectangle(getMemDC(), CAMERA->Relative(_rc));
+	
+	if (is == true)
+	{
+		//렉트 그리기
+		//Rectangle(getMemDC(), CAMERA->Relative(_rc));
+		fish_box->render(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top + 100- CAMERA->GetCamera().top);
+	}	
 	//물고기 렉트 그리기
 	for (int i = 0; i < 8; i++)
 	{
