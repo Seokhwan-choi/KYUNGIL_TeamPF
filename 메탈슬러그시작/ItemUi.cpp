@@ -91,19 +91,19 @@ void ItemUi::Update(void)
 	}
 	if (SCENEMANAGER->FindScene("지하스테이지")) {
 
-	for (int i = _coly - 60; i < _coly + 60; i++) {
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("지하배경픽셀")->getMemDC(), _position.x, i);
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
+		for (int i = _coly - 60; i < _coly + 60; i++) {
+			COLORREF color = GetPixel(IMAGEMANAGER->findImage("지하배경픽셀")->getMemDC(), _position.x, i);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
 
-		if (r == 255 && g == 255 && b == 0) {
-			_gravity = 0.0f;
-			_position.y = i - _size.y;
-			break;
+			if (r == 255 && g == 255 && b == 0) {
+				_gravity = 0.0f;
+				_position.y = i - _size.y;
+				break;
+			}
+
 		}
-
-	}
 	}
 
 	_botRc = RectMake(_position.x + _size.x / 2, _coly, 10, 10);
@@ -145,17 +145,16 @@ void ItemUi::Update(void)
 			}
 			break;
 		case ITEM::HEAVY:
-			if (_isShow == true) {
+		
 				((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->SetWeapon(WEAPON::HEAVY);
 				DATA->setWeapon(WEAPON::HEAVY);
 				DATA->setArms(200);
-			}
+			
 			break;
 		case ITEM::GRENADE:
-			if (_isShow == true) {
 				((Player*)OBJECTMANAGER->FindObject(ObjectType::PLAYER, "플레이어"))->SetWeapon(WEAPON::GRENADE);
 				DATA->setWeapon(WEAPON::GRENADE);
-			}
+			
 			break;
 		case ITEM::CRAB:
 			break;
