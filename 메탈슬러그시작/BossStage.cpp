@@ -9,8 +9,6 @@ HRESULT BossStage::Init(void)
 	_bgImage = IMAGEMANAGER->findImage("보스배경");
 	_waterground = IMAGEMANAGER->findImage("보스출렁");
 
-	CAMERA->SetCamera({ (float)WINSIZEX / 2.f, (float)WINSIZEY / 2.f });
-
 	for (int i = 0; i < 22; ++i) 
 	{
 		char str[100];
@@ -80,6 +78,7 @@ void BossStage::Release(void)
 
 void BossStage::Update(void)
 {
+	CAMERA->SetCamera({ (float)WINSIZEX / 2.f, (float)WINSIZEY / 2.f });
 	// ============== 배경을 천천히 루프 시킨다. ================
 	_loopX++;
 	// ============== 배경바닥 출렁출렁 시킨다. =================
@@ -134,7 +133,7 @@ void BossStage::Update(void)
 		_start = !_start;
 	}
 
-	OBJECTMANAGER->Update();
+	
 
 	// =========================================================
 	//-200위치로 가면 파괴 여부 변경
@@ -222,6 +221,8 @@ void BossStage::Update(void)
 		//if (!_pixelbridge[i].isShow) continue;
 		_player->BossStagePixel(_pixelbridge[i].bridgeImg);
 	}
+
+	OBJECTMANAGER->Update();
 }
 
 void BossStage::Render(void)

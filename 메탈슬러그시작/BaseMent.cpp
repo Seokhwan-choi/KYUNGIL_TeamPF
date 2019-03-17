@@ -173,13 +173,15 @@ void BaseMent::Update(void)
 		}
 	}
 
-	if (_player->GetCollisionPlayer().left > 6600 ) 
-	{
-		SCENEMANAGER->ChangeScene("보스스테이지");
-	}
+	
 	_player->BaseMentPixel();
 	this->Collisison();
 	this->FishColl();
+
+	if (_player->GetCollisionPlayer().left > 6600)
+	{
+		SCENEMANAGER->ChangeScene("보스스테이지");
+	}
 }
 
 void BaseMent::Render(void)

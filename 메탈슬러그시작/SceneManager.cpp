@@ -62,7 +62,7 @@ void SceneManager::ChangeScene(string name)
 			CurrentScene->Release();
 
 		CurrentScene = SceneIter->second;
-		CurrentScene->Init();
+		SceneIter->second->Init();
 	}
 }
 
