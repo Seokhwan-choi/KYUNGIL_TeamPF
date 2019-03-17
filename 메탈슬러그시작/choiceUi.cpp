@@ -104,8 +104,8 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_downDoorImage = IMAGEMANAGER->findImage("downcharacter");
 	SOUNDMANAGER->play("선택문열림");
 	_isChoice = false;
-
 	SOUNDMANAGER->play("선택");
+
 }	
 
 choiceUi::~choiceUi()
@@ -227,8 +227,11 @@ void choiceUi::Update()
 		_t++;
 		if(_t == 250) {
 			SCENEMANAGER->ChangeScene("스테이지원");
+			SOUNDMANAGER->pause("선택");
 		}		
 	}
+	
+
 	this->UpdateRectByPivot();	// RECT 그려준다.
 }
 
