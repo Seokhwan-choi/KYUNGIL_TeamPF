@@ -740,70 +740,75 @@ void BubbleCrab::bubblecrabImage()
 
 void BubbleCrab::bubblecrabImageRender()
 {
-	if ((_state == state::L_IDLE 
-		|| _state == state::L_MOVE 
-		|| _state == state::L_ATTACK_MOVE) 
-		&& !(_state == state::L_ATTACK_FINISH))
+	if (_hp > 0)
 	{
-		cout << "거품게 그리자" << endl;
-		BubblecrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[0], 0);
+		if ((_state == state::L_IDLE
+			|| _state == state::L_MOVE
+			|| _state == state::L_ATTACK_MOVE)
+			&& !(_state == state::L_ATTACK_FINISH))
+		{
+			cout << "거품게 그리자" << endl;
+			BubblecrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[0], 0);
+		}
+
+		if (_state == state::R_IDLE
+			|| _state == state::R_MOVE
+			|| _state == state::R_ATTACK_MOVE)
+		{
+			BubblecrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[0], 0);
+		}
+
+		if (_state == state::L_BUBBLE_SHOOT_MOVE)
+		{
+			BubblecrabImg[6]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[5], 0);
+
+		}
+
+		if (_state == state::R_BUBBLE_SHOOT_MOVE)
+		{
+			BubblecrabImg[7]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[5], 0);
+		}
+
+		if (_state == state::L_ATTACK)
+		{
+			BubblecrabImg[2]->frameRender(getMemDC(), _rc.left - 60 - CAMERA->GetCamera().left - 300, _rc.top - 22 - CAMERA->GetCamera().top, indexImg[1], 0);
+
+		}
+
+		if (_state == state::R_ATTACK)
+		{
+			BubblecrabImg[3]->frameRender(getMemDC(), _rc.left + 10 - CAMERA->GetCamera().left - 300, _rc.top - 22 - CAMERA->GetCamera().top, indexImg[1], 0);
+		}
+
+		if (_state == state::L_ATTACK_FINISH)
+		{
+			BubblecrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[2], 0);
+		}
+
+		if (_state == state::R_ATTACK_FINISH)
+		{
+			BubblecrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[2], 0);
+		}
+
+		if (_state == state::L_BUBBLE_SHOOT_FINISH)
+		{
+			BubblecrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[0], 0);
+		}
+		if (_state == state::R_BUBBLE_SHOOT_FINISH)
+		{
+			BubblecrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[2], 0);
+		}
 	}
-
-	if (_state == state::R_IDLE 
-		|| _state == state::R_MOVE 
-		|| _state == state::R_ATTACK_MOVE)
+	if (_hp < 0)
 	{
-		BubblecrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[0], 0);
-	}
+		if (_state == state::L_DEATH && _deathTimer < 150)
+		{
+			BubblecrabImg[4]->frameRender(getMemDC(), _rc.left - 14 - CAMERA->GetCamera().left - 300, _rc.top - 44 - CAMERA->GetCamera().top, indexImg[3], 0);
+		}
 
-	if (_state == state::L_BUBBLE_SHOOT_MOVE)
-	{
-		BubblecrabImg[6]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[5], 0);
-
-	}
-
-	if (_state == state::R_BUBBLE_SHOOT_MOVE)
-	{
-		BubblecrabImg[7]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[5], 0);
-	}
-
-	if (_state == state::L_ATTACK)
-	{
-		BubblecrabImg[2]->frameRender(getMemDC(), _rc.left - 60 - CAMERA->GetCamera().left - 300, _rc.top - 22 - CAMERA->GetCamera().top, indexImg[1], 0);
-
-	}
-
-	if (_state == state::R_ATTACK)
-	{
-		BubblecrabImg[3]->frameRender(getMemDC(), _rc.left + 10 - CAMERA->GetCamera().left - 300, _rc.top - 22 - CAMERA->GetCamera().top, indexImg[1], 0);
-	}
-
-	if (_state == state::L_ATTACK_FINISH)
-	{
-		BubblecrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[2], 0);
-	}
-
-	if (_state == state::R_ATTACK_FINISH)
-	{
-		BubblecrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[2], 0);
-	}
-
-	if (_state == state::L_BUBBLE_SHOOT_FINISH)
-	{
-		BubblecrabImg[0]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[0], 0);
-	}
-	if (_state == state::R_BUBBLE_SHOOT_FINISH)
-	{
-		BubblecrabImg[1]->frameRender(getMemDC(), _rc.left - CAMERA->GetCamera().left - 300, _rc.top - CAMERA->GetCamera().top, indexImg[2], 0);
-	}
-
-	if (_state == state::L_DEATH && _deathTimer < 150)
-	{
-		BubblecrabImg[4]->frameRender(getMemDC(), _rc.left - 14 - CAMERA->GetCamera().left - 300, _rc.top - 44 - CAMERA->GetCamera().top, indexImg[3], 0);
-	} 
-
-	if (_state == state::R_DEATH && _deathTimer < 150)
-	{
-		BubblecrabImg[5]->frameRender(getMemDC(), _rc.left -14 - CAMERA->GetCamera().left - 300, _rc.top - 44 - CAMERA->GetCamera().top, indexImg[4], 0);
+		if (_state == state::R_DEATH && _deathTimer < 150)
+		{
+			BubblecrabImg[5]->frameRender(getMemDC(), _rc.left - 14 - CAMERA->GetCamera().left - 300, _rc.top - 44 - CAMERA->GetCamera().top, indexImg[4], 0);
+		}
 	}
 }
