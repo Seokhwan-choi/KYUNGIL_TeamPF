@@ -13,7 +13,7 @@ startUi::startUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_position = pos; //중심값으로 잡아준다
 	_size = size;    //winsizex, winsizey
 	_pivot = Pivot::Center;
-	
+
 	//========================================================
 	// 오프닝씬 이미지 초기화( size : 1280x960 )
 	//========================================================
@@ -24,6 +24,8 @@ startUi::startUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	//========================================================
 	_count = 0;
 	_index = 0;
+	SOUNDMANAGER->play("3");
+
 }
 
 startUi::~startUi()
@@ -53,9 +55,9 @@ void startUi::Update()
 	}
 	//엔터시 게임 캐릭터 선택창으로 이동한다
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN)) {
+		SOUNDMANAGER->play("아이템먹음");
 		SCENEMANAGER->ChangeScene("캐릭터선택화면");
 	}
-
 	
 }
 

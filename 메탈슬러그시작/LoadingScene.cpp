@@ -377,7 +377,6 @@ void LoadingScene::LoadingSound()
 	// ===============================================================================================
 	// ################################### effect 사운드 삽입 ##########################################
 	// ===============================================================================================
-
 	_loading->loadSound("동전넣기", "SOUND/이펙트/동전넣기.mp3", false, false);
 	_loading->loadSound("딱총", "SOUND/이펙트/딱총.mp3", false, false);
 	_loading->loadSound("미션1시작", "SOUND/이펙트/미션1시작.mp3", false, false);
@@ -389,6 +388,8 @@ void LoadingScene::LoadingSound()
 	_loading->loadSound("헤비먹음", "SOUND/이펙트/헤비먹음.mp3", false, false);
 	_loading->loadSound("헤비발사", "SOUND/이펙트/헤비발사.mp3", false, false);
 	_loading->loadSound("장벽부서짐", "SOUND/이펙트/장벽부서짐.mp3", false, false);
+	_loading->loadSound("커서", "SOUND/이펙트/cursor.wav", false, false);
+	_loading->loadSound("3", "SOUND/이펙트/3.mp3", false, false);
 
 	// ===============================================================================================
 	// ################################### 몬스터 사운드 삽입 ###########################################

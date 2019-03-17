@@ -21,7 +21,7 @@ private:
 	bool _isCheck[4];		//캐릭터를 보여주기 위한 불값
 	bool _goUp[4];			//숨겨진 캐릭터를 보여주기 위해 선택창올리기  위한 불값
 	bool _isDown;			//캐릭터 보여줄 것인가?
-
+	bool _isChoice;
 	int _a;					//특정 true값을 담기 위한 변수
 	int _count;				//카운터 ++
 	int _time;				//제한시간

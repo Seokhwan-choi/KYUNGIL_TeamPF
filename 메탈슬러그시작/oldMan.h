@@ -28,6 +28,7 @@ private:
 	bool _isGo;			//왼쪽으로 달려나간다
 	bool _isShot;		//쐇냐?
 	bool _isSave;		//구했냐?
+	bool _isTouch;		//닿았냐?
 	RECT _temp;
 	bool _touch;       //닿았냐?
 	
@@ -46,6 +47,8 @@ public:
 	bool getShot() { return _isShot; }
 
 	RECT* getRect() { return _colRc; }
+	RECT getTiedRect() { return _tiedRc; }
+
 	void motion();
 	void tied();
 	void move();

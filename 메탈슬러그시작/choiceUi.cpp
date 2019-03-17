@@ -102,6 +102,10 @@ choiceUi::choiceUi(string name, POINTFLOAT pos, POINTFLOAT size, Pivot pivot)
 	_yellow = IMAGEMANAGER->findImage("yellowred");
 	//캐릭터 선택 후 문이 내려오면서 캐릭터 움직임 보여줄 이미지
 	_downDoorImage = IMAGEMANAGER->findImage("downcharacter");
+	SOUNDMANAGER->play("선택문열림");
+	_isChoice = false;
+
+	SOUNDMANAGER->play("선택");
 }	
 
 choiceUi::~choiceUi()
@@ -144,12 +148,14 @@ void choiceUi::Update()
 		if (_isDown == false) {
 			if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) &&
 				(gameStartRc[4].right < 1019)) {
+				SOUNDMANAGER->play("커서");
 				gameStartRc[4].left += 268;
 				gameStartRc[4].right += 268;
 			}
 			//왼쪽 눌렀냐 선택 렉트  밖으로 벗어나지 않게끔 제한 설정해줌
 			if (KEYMANAGER->isOnceKeyDown(VK_LEFT) &&
 				(gameStartRc[4].left > 268)) {
+				SOUNDMANAGER->play("커서");
 				gameStartRc[4].left -= 268;
 				gameStartRc[4].right -= 268;
 			}
@@ -167,6 +173,11 @@ void choiceUi::Update()
 	}
 	//선택된 이미지 보여주기 문내리며 보여주기
 	if (KEYMANAGER->isStayKeyDown(VK_RETURN) && (IntersectRect(&temp, &colorRc[2], &gameStartRc[4]))) {
+		if (_isChoice == false) {
+			SOUNDMANAGER->play("선택문닫힘");
+			SOUNDMANAGER->play("타마선택");
+			_isChoice = true;
+		}
 		_isDown = true;
 	}
 	if(_isDown == true){

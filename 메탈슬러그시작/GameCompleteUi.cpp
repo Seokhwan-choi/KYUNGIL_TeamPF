@@ -38,6 +38,7 @@ GameCompleteUi::GameCompleteUi(string name, POINTFLOAT pos, POINTFLOAT size, Piv
 	_count = 0;
 	_isMove = false;
 	
+	SOUNDMANAGER->play("미션클리어");
 
 }
 

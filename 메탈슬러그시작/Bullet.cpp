@@ -504,6 +504,15 @@ void Bullet1::move()
 				((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman1"))->setShot(true);
 			}
 		}
+		if (SCENEMANAGER->FindScene("스테이지원"))
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_vBullet[i].rc,
+				&((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->getRect()[0])) {
+				((OldMan*)OBJECTMANAGER->FindObject(ObjectType::UI, "oldman2"))->setShot(true);
+			}
+		}
+
 
 	}
 }
