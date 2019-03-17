@@ -9,6 +9,8 @@ HRESULT BossStage::Init(void)
 	_bgImage = IMAGEMANAGER->findImage("보스배경");
 	_waterground = IMAGEMANAGER->findImage("보스출렁");
 
+	CAMERA->SetCamera3({ WINSIZEX / 2.f, WINSIZEY / 2.f });
+
 	for (int i = 0; i < 22; ++i) 
 	{
 		char str[100];
@@ -40,8 +42,8 @@ HRESULT BossStage::Init(void)
 		_reset[i] = false;
 	}
 
-	_player = new Player("플레이어", { WINSIZEX / 2 + 200, WINSIZEY / 2 -300 }, { 320, 403 }, GameObject::Pivot::Center);
 
+	_player = new Player("플레이어", { WINSIZEX - 200, WINSIZEY / 2 + 250 }, { 320, 403 }, GameObject::Pivot::Center);
 	OBJECTMANAGER->AddObject(ObjectType::Enum::PLAYER, _player);
 
 	_boss = new Boss("boss", { -WINSIZEX / 4, WINSIZEY / 2 + 100 }, { WINSIZEX / 2, WINSIZEY }, GameObject::Pivot::Center);
@@ -78,7 +80,7 @@ void BossStage::Release(void)
 
 void BossStage::Update(void)
 {
-	CAMERA->SetCamera({ (float)WINSIZEX / 2.f, (float)WINSIZEY / 2.f });
+	
 	// ============== 배경을 천천히 루프 시킨다. ================
 	_loopX++;
 	// ============== 배경바닥 출렁출렁 시킨다. =================
@@ -97,6 +99,7 @@ void BossStage::Update(void)
 	// ============== 배경다리 이동 및 보정 시킨다. ==================
 	if (_start) 
 	{
+		CAMERA->SetCamera3(_player->GetPosition());
 		for (int i = 0; i < 22; ++i)
 		{
 			//x좌표 -3씩 앞당김

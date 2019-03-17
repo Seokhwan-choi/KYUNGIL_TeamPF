@@ -1216,23 +1216,14 @@ void Player::Render()
 	{
 		RECT playerRC = CAMERA->Relative(_rc);
 		RECT CHEK = CAMERA->Relative(check);
-		
-		RECT playercehck= CAMERA->Relative(collisionplayer);
+		RECT playercehck = CAMERA->Relative(collisionplayer);
 		Rectangle(getMemDC(), CHEK);
 		Rectangle(getMemDC(), CAMERA->Relative(_colb));
 		Rectangle(getMemDC(), CAMERA->Relative(_colr));
 		//플레이어 충돌랙트 
 		Rectangle(getMemDC(), playercehck);
-
-
-		//RECT interplayerrc= CAMERA->Relative(_InterPlayerRc);
-
 		FrameRect(getMemDC(), &playerRC, HBRUSH(RGB(255, 0, 0)));
-		
-		
-		//collisionplayer = RectMakeCenter(_position.x, _position.y, 100, 100);
 
-		//FrameRect(getMemDC(), &CAMERA->Relative(_temp), HBRUSH(RGB(255, 0, 0)));
 		_playerbullet->Render(); //bullet에서 받아서 기본총 보여주기 
 		_heavyBullet->Render(); //해비머신건 
 

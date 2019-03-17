@@ -100,6 +100,41 @@ void Camera::SetCamera2(POINTFLOAT pos)
 
 }
 
+void Camera::SetCamera3(POINTFLOAT pos)
+{
+
+	// 해당 타겟을 중심으로 카메라를 그려준다.
+	_cameraPos = pos;
+	_cameraRect = RectMakeCenter(_cameraPos.x, _cameraPos.y, WINSIZEX, WINSIZEY);
+
+	if (_cameraRect.bottom > WINSIZEY)
+	{
+		_cameraPos.y -= (_cameraRect.bottom - WINSIZEY);
+	}
+
+	// 추가 예정
+	// 추가적으로 카메라의 위치를 보정해줘야 한다.
+	if (_cameraRect.top <= 0)
+	{
+		_cameraPos.y = _cameraPos.y + (0 - _cameraRect.top);
+	}
+
+	if (_cameraRect.right > WINSIZEX) {
+		_cameraPos.x -= _cameraRect.right - WINSIZEX;
+	}
+
+	if (_cameraRect.left < 0) {
+		_cameraPos.x -= _cameraRect.left;
+	}
+
+	_cameraRect = RectMakeCenter(_cameraPos.x, _cameraPos.y, WINSIZEX, WINSIZEY);
+
+
+
+
+}
+
+
 // 상대 좌표를 계산 해준다.
 RECT Camera::Relative(RECT rc)
 {
